@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run *)",
+      "Bash(grep -E '^\\(○|ƒ|●\\).{0,3}/\\(dashboard\\\\b|$| \\)')",
+      "Bash(grep -E '\\\\s/\\(dashboard\\)?$')",
+      "Bash(git mv *)"
+    ]
+  }
+}
