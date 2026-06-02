@@ -1,0 +1,46 @@
+"use client";
+
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle
+} from "@/components/ui/sheet";
+import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
+
+import type { BrochureDetail } from "../_data";
+
+import { BrochureDetailLayout } from "./brochure-detail-layout";
+
+type Props = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  detail: BrochureDetail;
+};
+
+export function BrochureDetailSheet({ open, onOpenChange, detail }: Props) {
+  const close = () => onOpenChange(false);
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
+        side="right"
+        showCloseButton={false}
+        className="w-full overflow-y-auto p-0 sm:max-w-3xl lg:max-w-5xl"
+      >
+        <VisuallyHidden>
+          <SheetHeader>
+            <SheetTitle>Brochure Detail — {detail.ref}</SheetTitle>
+            <SheetDescription>Brochure builder, preview, and history</SheetDescription>
+          </SheetHeader>
+        </VisuallyHidden>
+        <SheetMobileBar onClose={close} title={`Brochure ${detail.ref}`} />
+        <div className="p-4 sm:p-6">
+          <BrochureDetailLayout detail={detail} />
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
