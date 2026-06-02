@@ -34,7 +34,8 @@ yarn-error.log*
 .vercel
 
 # typescript
-*.tsbuildinfo             
+*.tsbuildinfo    
+tsconfig.tsbuildinfo
 
 # bun
 .bun                 

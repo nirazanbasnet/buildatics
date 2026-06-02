@@ -13,26 +13,43 @@ export function generateAvatarFallback(string: string) {
   return mapped.join("");
 }
 
+const SITE_NAME = "Buildatics";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://buildatics.com";
+const OG_IMAGE = "/images/seo.jpg";
+
+// Builds per-page metadata, e.g. `Design Library | Buildatics`.
+// `additionalTitle` is accepted but ignored — kept so existing pages still type-check.
 export function generateMeta({
   title,
-  additionalTitle = false,
   description,
   canonical
 }: {
   title: string;
-  additionalTitle?: boolean;
   description: string;
-  canonical: string;
+  canonical?: string;
+  additionalTitle?: boolean;
 }): Metadata {
+  const fullTitle = `${title} | ${SITE_NAME}`;
+
   return {
-    title: `${title} for Shadcn UI${additionalTitle ? " – Admin Dashboard Template" : ""}`,
-    description: description,
-    metadataBase: new URL(`https://shadcnuikit.com`),
-    alternates: {
-      canonical: `/dashboard${canonical}`
-    },
+    title: fullTitle,
+    description,
+    applicationName: SITE_NAME,
+    metadataBase: new URL(SITE_URL),
+    alternates: canonical ? { canonical } : undefined,
     openGraph: {
-      images: [`/images/seo.jpg`]
+      title: fullTitle,
+      description,
+      siteName: SITE_NAME,
+      type: "website",
+      ...(canonical ? { url: canonical } : {}),
+      images: [OG_IMAGE]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      images: [OG_IMAGE]
     }
   };
 }
