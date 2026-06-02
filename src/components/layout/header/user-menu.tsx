@@ -1,6 +1,8 @@
+"use client";
+
 import { BadgeCheck, Bell, ChevronRightIcon, CreditCard, LogOut, Sparkles } from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,25 +15,34 @@ import {
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
 
-export default function UserMenu() {
+import { generateAvatarFallback } from "@/lib/utils";
+import { logoutAction } from "@/features/auth/actions/logout";
+import type { SessionUser } from "@/features/auth/types";
+
+type UserMenuProps = {
+  user: SessionUser;
+};
+
+export default function UserMenu({ user }: UserMenuProps) {
+  const name = [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;
+  const initials = generateAvatarFallback(name) || user.email.charAt(0).toUpperCase();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar>
-          <AvatarImage src={`https://i.pravatar.cc/150?img=1`} alt="shadcn ui kit" />
-          <AvatarFallback className="rounded-lg">TB</AvatarFallback>
+          <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-60" align="end">
         <DropdownMenuLabel className="p-0">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
-              <AvatarImage src={`https://i.pravatar.cc/150?img=1`} alt="shadcn ui kit" />
-              <AvatarFallback className="rounded-lg">TB</AvatarFallback>
+              <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">Toby Belhome</span>
-              <span className="text-muted-foreground truncate text-xs">hello@tobybelhome.com</span>
+              <span className="truncate font-semibold">{name}</span>
+              <span className="text-muted-foreground truncate text-xs">{user.email}</span>
             </div>
           </div>
         </DropdownMenuLabel>
@@ -58,7 +69,7 @@ export default function UserMenu() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => logoutAction()}>
           <LogOut />
           Log out
         </DropdownMenuItem>

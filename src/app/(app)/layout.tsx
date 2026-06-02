@@ -8,12 +8,13 @@ import { SiteFooter } from "@src/components/layout/footer/site-footer";
 import { SiteHeader } from "@src/components/layout/header";
 import { getSession } from "@/features/auth";
 
-export default async function AuthLayout({
+// Shell for the real product (top-level routes), separate from the /dashboard reference kit.
+// Mirrors the dashboard (auth) layout: SSR auth guard + sidebar/header/footer wired to the session.
+export default async function AppLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // SSR enforcement to complement the edge guard in proxy.ts: no session → back to login.
   const session = await getSession();
   if (!session) redirect("/dashboard/login/v1");
 

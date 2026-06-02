@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-import { properties, type PropertyView } from "../_data";
+import { properties, type Property, type PropertyView } from "../_data";
 import type { DetailVariantId } from "../../display-center-detail/_components/variants";
 import { PropertyCard } from "./property-card";
 import { PropertyCardV6 } from "./property-card-v6";
@@ -12,6 +12,8 @@ type Props = {
   detailEnabled?: boolean;
   detailVariant?: DetailVariantId;
   gridClassName?: string;
+  // Optional real data. Defaults to the kit's mock list so existing template pages are unchanged.
+  properties?: Property[];
 };
 
 const defaultGrid = "lg:grid-cols-3";
@@ -50,14 +52,15 @@ export function Variant7Layout({
   view,
   detailEnabled,
   detailVariant,
-  gridClassName = defaultGrid
+  gridClassName = defaultGrid,
+  properties: items = properties
 }: Props) {
   return (
     <div
       key={view ?? "facade"}
       className={cn("grid flex-1 gap-5 sm:grid-cols-2", gridClassName)}
     >
-      {properties.map((property, index) => (
+      {items.map((property, index) => (
         <PropertyCardV7
           key={property.id}
           property={property}

@@ -4,7 +4,29 @@
       "Bash(bun run *)",
       "Bash(grep -E '^\\(○|ƒ|●\\).{0,3}/\\(dashboard\\\\b|$| \\)')",
       "Bash(grep -E '\\\\s/\\(dashboard\\)?$')",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(grep -nA30 -iE '^#+ .*\\(ResourceOwnerTokenReq|ResourceOwnerTokenRes|ResourceOwnerRefreshTokenReq\\)\\\\b' docs/api/schemas.md)",
+      "Bash(grep -nA15 -iE '^## TokenCompanyRes' docs/api/schemas.md)",
+      "Bash(sed -n '1,60p' docs/api/endpoints/userprofile.md)",
+      "Bash(sed -n '1,30p' docs/api/endpoints/account.md)",
+      "Bash(sed -n '1,60p' docs/api/README.md)",
+      "Bash(grep -nA10 '## MessageResponseDto' docs/api/schemas.md)",
+      "Bash(grep -nA20 'generateMeta' src/lib/utils.ts)",
+      "Bash(BUILDATICS_API_BASE_URL=https://bap-dev-mon-cap-api.orangeflower-bf81320d.australiaeast.azurecontainerapps.io bun run build)",
+      "Bash(curl -s -X POST \"https://bap-dev-mon-cap-api.orangeflower-bf81320d.australiaeast.azurecontainerapps.io/api/Token/Login\" -H \"Content-Type: application/json\" -d '{\"userName\":\"nope@example.com\",\"password\":\"wrong\",\"rememberMe\":true}')",
+      "Bash(curl -s -X POST \"https://bap-dev-mon-cap-api.orangeflower-bf81320d.australiaeast.azurecontainerapps.io/api/Token/Login\" -H \"Content-Type: application/json\" -d '{\"userName\":\"bala.yerram@rightomation.com.au\",\"password\":\"Test123$\",\"rememberMe\":true}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); d['accessToken']='<jwt '+str\\(len\\(d.get\\('accessToken'\\) or ''\\)\\)+' chars>'; d['refreshToken']=\\('<refresh '+str\\(len\\(d.get\\('refreshToken'\\) or ''\\)\\)+' chars>'\\) if d.get\\('refreshToken'\\) else None; print\\(json.dumps\\(d, indent=2\\)\\)\")",
+      "Bash(export BUILDATICS_API_BASE_URL=https://bap-dev-mon-cap-api.orangeflower-bf81320d.australiaeast.azurecontainerapps.io)",
+      "Bash(grep -nA20 '^## PagedReq' docs/api/schemas.md)",
+      "Bash(grep -nA12 '^## DesignResPage' docs/api/schemas.md)",
+      "Bash(grep -nA40 '^## DesignRes\\\\b' docs/api/schemas.md)",
+      "Bash(export BASE=https://bap-dev-mon-cap-api.orangeflower-bf81320d.australiaeast.azurecontainerapps.io)",
+      "Bash(curl -s -X POST __TRACKED_VAR__/api/Token/Login -H 'Content-Type: application/json' -d '{\"userName\":\"bala.yerram@rightomation.com.au\",\"password\":\"Test123$\",\"rememberMe\":true}')",
+      "Bash(python3 -m json.tool)",
+      "Bash(grep -nA14 '^## __TRACKED_VAR__\\\\b' docs/api/schemas.md)",
+      "Bash(python3 -c ' *)",
+      "Bash(cat)",
+      "Read(//tmp/**)"
     ]
   }
 }

@@ -21,7 +21,6 @@ import {
   ComponentIcon,
   FileTextIcon,
   HardHatIcon,
-  LayoutDashboardIcon,
   SettingsIcon,
   Share2Icon,
   UsersIcon,
@@ -58,6 +57,16 @@ type NavGroup = {
 };
 
 export const navItems: NavGroup[] = [
+  {
+    title: "Design",
+    items: [
+      {
+        title: "Design Library",
+        href: "/design-library",
+        icon: Building2Icon
+      }
+    ]
+  },
   {
     items: [
       {
@@ -107,67 +116,6 @@ export const navItems: NavGroup[] = [
     ]
   },
   {
-    title: "Templates",
-    items: [
-      {
-        title: "Templates",
-        href: "/dashboard/sample",
-        icon: LayoutDashboardIcon,
-        items: [
-          { title: "Display Center", href: "/dashboard/templates/display-center/variant-1" },
-          {
-            title: "Display Center Detail",
-            href: "/dashboard/templates/display-center-detail/variant-1"
-          },
-          {
-            title: "Display Center Filter",
-            href: "/dashboard/templates/display-center-filter/variant-1"
-          },
-          {
-            title: "Preconstruction List",
-            href: "/dashboard/templates/preconstruction-list/variant-1"
-          },
-          {
-            title: "Preconstruction Detail",
-            href: "/dashboard/templates/preconstruction-detail/variant-1"
-          },
-          {
-            title: "Leads List",
-            href: "/dashboard/templates/leads/variant-1"
-          },
-          {
-            title: "Share to Site",
-            href: "/dashboard/templates/share-to-site/variant-1"
-          },
-          {
-            title: "Quotation List",
-            href: "/dashboard/templates/quotation/variant-1"
-          },
-          {
-            title: "Quotation Detail",
-            href: "/dashboard/templates/quotation-detail/variant-1"
-          },
-          {
-            title: "Brochure List",
-            href: "/dashboard/templates/brochures/variant-1"
-          },
-          {
-            title: "Brochure Detail",
-            href: "/dashboard/templates/brochure-detail/variant-1"
-          },
-          {
-            title: "Settings",
-            href: "/dashboard/settings"
-          },
-          {
-            title: "Business",
-            href: "/dashboard/business/documents"
-          }
-        ]
-      }
-    ]
-  },
-  {
     title: "Reference",
     items: [
       {
@@ -189,6 +137,8 @@ export function NavMain() {
   const { isMobile } = useSidebar();
 
   const useMinimal =
+    // Real product routes live outside /dashboard (the reference kit) — always show the product nav there.
+    !pathname.startsWith("/dashboard") ||
     pathname === "/dashboard" ||
     pathname === "/dashboard/display-center" ||
     pathname === "/dashboard/preconstruction-list" ||

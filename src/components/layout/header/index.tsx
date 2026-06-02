@@ -7,12 +7,17 @@ import { Separator } from "@/components/ui/separator";
 import Notifications from "@/components/layout/header/notifications";
 import Search from "@/components/layout/header/search";
 import ThemeSwitch from "@/components/layout/header/theme-switch";
-import UserMenu from "@/components/layout/header/user-menu";
+import UserMenu from "@src/components/layout/header/user-menu";
 import { ThemeCustomizerPanel } from "@src/components/theme-customizer";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
+import type { SessionUser } from "@/features/auth/types";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  user: SessionUser;
+};
+
+export function SiteHeader({ user }: SiteHeaderProps) {
   const { toggleSidebar, open } = useSidebar();
 
   return (
@@ -36,7 +41,7 @@ export function SiteHeader() {
           <ThemeSwitch />
           <ThemeCustomizerPanel />
           <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
-          <UserMenu />
+          <UserMenu user={user} />
         </div>
       </div>
     </header>

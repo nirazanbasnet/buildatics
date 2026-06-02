@@ -166,6 +166,7 @@ Banned in production components:
 - [agent/design.md](agent/design.md) — design system rules
 - [agent/skill.md](agent/skill.md) — how Claude should behave in this repo
 - [agent/templates.md](agent/templates.md) — playground workflow
+- [agent/api.md](agent/api.md) — API interaction rules (BFF, tokens, `apiFetch`)
 - [docs/component-checklist.md](docs/component-checklist.md) — before promoting a template
 
 If a rule here contradicts another file, **this file wins**. Propose a fix.

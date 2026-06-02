@@ -19,7 +19,8 @@ import {
   useSidebar
 } from "@/components/ui/sidebar";
 import { NavMain } from "@src/components/layout/sidebar/nav-main";
-import { NavUser } from "@/components/layout/sidebar/nav-user";
+import { NavUser } from "@src/components/layout/sidebar/nav-user";
+import type { SessionUser } from "@/features/auth/types";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Logo from "@/components/layout/logo";
 import { useThemeConfig } from "@src/components/active-theme";
@@ -35,9 +36,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 
 export function AppSidebar({
+  user,
   variant: variantProp,
   ...props
-}: React.ComponentProps<typeof Sidebar>) {
+}: React.ComponentProps<typeof Sidebar> & { user: SessionUser }) {
   const pathname = usePathname();
   const { setOpen, setOpenMobile, isMobile } = useSidebar();
   const isTablet = useIsTablet();
@@ -65,7 +67,7 @@ export function AppSidebar({
               asChild
               className="hover:text-foreground h-10 group-data-[collapsible=icon]:px-0!"
             >
-              <Link href="/dashboard/display-center">
+              <Link href="/design-library">
                 <Logo />
                 <span className="text-foreground text-xl font-semibold">Buildatics.</span>
               </Link>
@@ -79,7 +81,7 @@ export function AppSidebar({
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser />
+        <NavUser user={user} />
       </SidebarFooter>
     </Sidebar>
   );
