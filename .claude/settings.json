@@ -28,7 +28,12 @@
       "Bash(cat)",
       "Read(//tmp/**)",
       "Bash(grep -nA20 'export const metadata\\\\|export function generateMetadata' src/app/layout.tsx)",
-      "Bash(grep -nA3 'sidebarMenuButtonVariants = cva' components/ui/sidebar.tsx)"
+      "Bash(grep -nA3 'sidebarMenuButtonVariants = cva' components/ui/sidebar.tsx)",
+      "Bash(sed -n '1,18p' docs/api/endpoints/contacts.md)",
+      "Bash(sed -n '1,20p' docs/api/endpoints/staff.md)",
+      "Bash(sed -n '1,16p' docs/api/endpoints/leaddesigns.md)",
+      "Bash(grep -iA3 'LeadStatus' docs/api/openapi.json)",
+      "Bash(python3 -c \"import sys,json; [print\\(s.get\\('firstName'\\),s.get\\('lastName'\\),'|',s.get\\('id'\\)\\) for s in json.load\\(sys.stdin\\)]\")"
     ]
   }
 }

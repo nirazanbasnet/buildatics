@@ -68,6 +68,16 @@ export const navItems: NavGroup[] = [
     ]
   },
   {
+    title: "Sales",
+    items: [
+      {
+        title: "Leads",
+        href: "/leads",
+        icon: UsersIcon
+      }
+    ]
+  },
+  {
     items: [
       {
         title: "Display Center",

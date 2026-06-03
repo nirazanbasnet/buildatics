@@ -48,5 +48,5 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Root, all dashboard routes, and the real product routes; skip Next internals, the API, and static assets.
-  matcher: ["/", "/dashboard/:path*", "/design-library/:path*"]
+  matcher: ["/", "/dashboard/:path*", "/design-library/:path*", "/leads/:path*"]
 };
