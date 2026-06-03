@@ -1,4 +1,4 @@
-import type { DesignRes } from "./dto";
+import type { DesignBlobMapARes, DesignRes, FacadeBlobMapRes } from "./dto";
 import type { DesignProperty } from "../types";
 
 /**
@@ -23,8 +23,10 @@ import type { DesignProperty } from "../types";
  * GAPS — UI fields with NO clean API source (decisions needed with the backend):
  *   1. brand        — DesignRes has no brand/builder field. INTERIM: derive from `code`.
  *                     Options: drop the brand tag, use company.name, or add a field to the API.
- *   2. blob type    — designBlobType / facadeBlobType are unlabeled int enums (0-4); we cannot tell
- *                     "render vs elevation vs plan-left/right" apart. INTERIM: first available previewSasUrl.
+ *   2. blob type    — facadeBlobType 1/2 = renders (left/right), 3/4 = elevations;
+ *                     designBlobType 1/2 = plan pages. We pick the render for the facade view and the
+ *                     plan for the floor view (confirmed against the reference app), with a fallback
+ *                     to the first available preview when those types are missing.
  *   3. id           — top-level DesignRes.id is absent in the /Page response; INTERIM: derive from
  *                     designBlobMaps[].designId, then `code`, then index.
  *   4. detail sub-sections (room dimensions, description, available facades) are out of this pass:
@@ -38,20 +40,32 @@ import type { DesignProperty } from "../types";
 const PLACEHOLDER_FACADE = "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg";
 const PLACEHOLDER_PLAN = "/images/display-center/plans/PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png";
 
-function firstPreview(urls: Array<string | undefined>): string | undefined {
-  return urls.find((u): u is string => Boolean(u));
+// Picks a blob's preview by preferred type order, falling back to the first available preview.
+function pickPreview<T extends { blobModel?: { previewSasUrl?: string } }>(
+  blobs: T[],
+  getType: (blob: T) => number | undefined,
+  preferredTypes: number[]
+): string | undefined {
+  for (const type of preferredTypes) {
+    const match = blobs.find((b) => getType(b) === type && b.blobModel?.previewSasUrl);
+    if (match?.blobModel?.previewSasUrl) return match.blobModel.previewSasUrl;
+  }
+  return blobs.map((b) => b.blobModel?.previewSasUrl).find((u): u is string => Boolean(u));
 }
 
 export function mapDesignToProperty(design: DesignRes, index: number): DesignProperty {
-  const floorPlan = firstPreview(
-    (design.designBlobMaps ?? []).map((b) => b.blobModel?.previewSasUrl)
+  // Floor plan: prefer plan pages (designBlobType 1 then 2).
+  const floorPlan = pickPreview<DesignBlobMapARes>(
+    design.designBlobMaps ?? [],
+    (b) => b.designBlobType,
+    [1, 2]
   );
 
-  const facade = firstPreview(
-    (design.designFacadeMaps ?? []).flatMap((m) =>
-      (m.facade?.facadeBlobMaps ?? []).map((b) => b.blobModel?.previewSasUrl)
-    )
+  // Facade: prefer the rendered facade (facadeBlobType 1 then 2) over elevations (3/4).
+  const facadeBlobs: FacadeBlobMapRes[] = (design.designFacadeMaps ?? []).flatMap(
+    (m) => m.facade?.facadeBlobMaps ?? []
   );
+  const facade = pickPreview<FacadeBlobMapRes>(facadeBlobs, (b) => b.facadeBlobType, [1, 2]);
 
   const id =
     design.id ?? design.designBlobMaps?.[0]?.designId ?? design.code ?? `design-${index}`;
