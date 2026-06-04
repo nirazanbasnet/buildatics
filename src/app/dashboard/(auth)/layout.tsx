@@ -15,7 +15,7 @@ export default async function AuthLayout({
 }>) {
   // SSR enforcement to complement the edge guard in proxy.ts: no session → back to login.
   const session = await getSession();
-  if (!session) redirect("/dashboard/login/v1");
+  if (!session) redirect("/login");
 
   const cookieStore = await cookies();
   const defaultOpen =

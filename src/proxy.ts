@@ -1,10 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const LOGIN_PATH = "/dashboard/login/v1";
+const LOGIN_PATH = "/login";
 const APP_HOME = "/design-library";
 
 // Paths a logged-out visitor is allowed to reach. Authenticated users are bounced away from these.
-const GUEST_PREFIXES = ["/dashboard/login", "/dashboard/register", "/dashboard/forgot-password"];
+const GUEST_PREFIXES = [
+  "/login",
+  "/dashboard/login",
+  "/dashboard/register",
+  "/dashboard/forgot-password"
+];
 // Always reachable regardless of auth state (error screens, etc.).
 const PUBLIC_PREFIXES = ["/dashboard/pages/error"];
 
@@ -48,5 +53,15 @@ export function proxy(request: NextRequest) {
 
 export const config = {
   // Root, all dashboard routes, and the real product routes; skip Next internals, the API, and static assets.
-  matcher: ["/", "/dashboard/:path*", "/design-library/:path*", "/leads/:path*"]
+  matcher: [
+    "/",
+    "/login",
+    "/dashboard/:path*",
+    "/design-library/:path*",
+    "/leads/:path*",
+    "/quotation/:path*",
+    "/profile/:path*",
+    "/users/:path*",
+    "/team/:path*"
+  ]
 };

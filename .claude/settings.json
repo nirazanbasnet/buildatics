@@ -33,7 +33,23 @@
       "Bash(sed -n '1,20p' docs/api/endpoints/staff.md)",
       "Bash(sed -n '1,16p' docs/api/endpoints/leaddesigns.md)",
       "Bash(grep -iA3 'LeadStatus' docs/api/openapi.json)",
-      "Bash(python3 -c \"import sys,json; [print\\(s.get\\('firstName'\\),s.get\\('lastName'\\),'|',s.get\\('id'\\)\\) for s in json.load\\(sys.stdin\\)]\")"
+      "Bash(python3 -c \"import sys,json; [print\\(s.get\\('firstName'\\),s.get\\('lastName'\\),'|',s.get\\('id'\\)\\) for s in json.load\\(sys.stdin\\)]\")",
+      "Bash(python3 -c \"import sys,json;print\\(json.load\\(sys.stdin\\)['totalCount']\\)\")",
+      "Bash(awk '/^## AddressReq/,/^## AddressRes/' docs/api/schemas.md)",
+      "Bash(awk '/^## AddressRes/{f=1} f{print} /^## AllEnumsRes/{exit}' docs/api/schemas.md)",
+      "Bash(awk '/^## RegisterUserReq/{f=1} f{print} /^## ResetPasswordReq/{exit}' docs/api/schemas.md)",
+      "Bash(awk '/^## State/{f=1} f{print} /^## StripeSessionRes/{exit}' docs/api/schemas.md)",
+      "Bash(sed -n '1,40p' src/features/leads/components/table/leads-table.tsx)",
+      "Bash(sed -n '1,60p' src/features/leads/components/toolbar/leads-toolbar.tsx)",
+      "Bash(awk '/^## ForgotPasswordReq/{f=1} f{print} /^## GenderType/{exit}' docs/api/schemas.md)",
+      "Bash(awk -v 's=## __TRACKED_VAR__' '$0==s{f=1;print;next} /^## /{if\\(f\\)exit} f{print}' docs/api/schemas.md)",
+      "Bash(awk -v s=\"## DesignationResPage\" '$0==s{f=1;print;next} /^## /{if\\(f\\)exit} f{print}' docs/api/schemas.md)",
+      "Bash(awk -v s=\"## UserRes\" '$0==s{f=1;print;next} /^## /{if\\(f\\)exit} f{print}' docs/api/schemas.md)",
+      "Bash(rm -rf \"src/app/\\(app\\)/quotation/[leadId]\" && echo \"removed [leadId] route\" && find \"src/app/\\(app\\)/quotation\" -type f)",
+      "Bash(grep -rn \"quotation/\\\\${\" src/features/quotation src/app)"
+    ],
+    "additionalDirectories": [
+      "/Users/nirajanbasnet/Projects/buildatics-builder-app/src/app/(app)/quotation/[leadId]"
     ]
   }
 }

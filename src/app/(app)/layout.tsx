@@ -7,6 +7,7 @@ import { AppSidebar } from "@src/components/layout/sidebar/app-sidebar";
 import { SiteFooter } from "@src/components/layout/footer/site-footer";
 import { SiteHeader } from "@src/components/layout/header";
 import { getSession } from "@/features/auth";
+import { getProfile } from "@/features/profile";
 
 // Shell for the real product (top-level routes), separate from the /dashboard reference kit.
 // Mirrors the dashboard (auth) layout: SSR auth guard + sidebar/header/footer wired to the session.
@@ -16,7 +17,17 @@ export default async function AppLayout({
   children: React.ReactNode;
 }>) {
   const session = await getSession();
-  if (!session) redirect("/dashboard/login/v1");
+  if (!session) redirect("/login");
+
+  // Roles aren't in the session cookie, so fetch the profile to gate the admin-only nav. A failure
+  // here must not break the shell — default to non-admin (the /users page also enforces server-side).
+  let isAdmin = false;
+  try {
+    const profile = await getProfile();
+    isAdmin = (profile.roles ?? []).includes("Admin");
+  } catch {
+    isAdmin = false;
+  }
 
   const cookieStore = await cookies();
   const defaultOpen =
@@ -37,7 +48,7 @@ export default async function AppLayout({
         } as React.CSSProperties
       }
     >
-      <AppSidebar user={session.user} />
+      <AppSidebar user={session.user} isAdmin={isAdmin} />
       <SidebarInset>
         <SiteHeader user={session.user} />
         <div className="bg-muted/40 group-data-[theme-sidebar-mode=floating]/layout:bg-transparent h-[calc(100%-110px)]">

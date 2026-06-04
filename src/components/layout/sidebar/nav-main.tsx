@@ -23,7 +23,9 @@ import {
   HardHatIcon,
   SettingsIcon,
   Share2Icon,
+  UserIcon,
   UsersIcon,
+  UsersRoundIcon,
   type LucideIcon
 } from "lucide-react";
 import Link from "next/link";
@@ -74,6 +76,31 @@ export const navItems: NavGroup[] = [
         title: "Leads",
         href: "/leads",
         icon: UsersIcon
+      },
+      {
+        title: "Quotation",
+        href: "/quotation",
+        icon: FileTextIcon
+      }
+    ]
+  },
+  {
+    title: "Workspace",
+    items: [
+      {
+        title: "Team & Roles",
+        href: "/team",
+        icon: UsersRoundIcon
+      }
+    ]
+  },
+  {
+    title: "Account",
+    items: [
+      {
+        title: "Profile",
+        href: "/profile",
+        icon: UserIcon
       }
     ]
   },
@@ -141,7 +168,19 @@ export const navItems: NavGroup[] = [
   }
 ];
 
-export function NavMain() {
+// Admin-only product nav, injected into the minimal nav when the signed-in user has the Admin role.
+const adminNavGroup: NavGroup = {
+  title: "Admin",
+  items: [
+    {
+      title: "Users",
+      href: "/users",
+      icon: UsersIcon
+    }
+  ]
+};
+
+export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion() ?? false;
   const { isMobile } = useSidebar();
@@ -160,7 +199,8 @@ export function NavMain() {
     pathname.startsWith("/dashboard/business") ||
     pathname.startsWith("/dashboard/templates/") ||
     pathname.startsWith("/dashboard/components");
-  const items: NavGroup[] = useMinimal ? navItems : referenceNavItems;
+  const minimalItems: NavGroup[] = isAdmin ? [...navItems, adminNavGroup] : navItems;
+  const items: NavGroup[] = useMinimal ? minimalItems : referenceNavItems;
 
   return (
     <>

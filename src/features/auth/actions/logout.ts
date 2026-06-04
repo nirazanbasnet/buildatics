@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 import { clearSession } from "../lib/session";
 
-const LOGIN_PATH = "/dashboard/login/v1";
+const LOGIN_PATH = "/login";
 
 export async function logoutAction(): Promise<void> {
   await clearSession();

@@ -37,9 +37,10 @@ import { Button } from "@/components/ui/button";
 
 export function AppSidebar({
   user,
+  isAdmin = false,
   variant: variantProp,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { user: SessionUser }) {
+}: React.ComponentProps<typeof Sidebar> & { user: SessionUser; isAdmin?: boolean }) {
   const pathname = usePathname();
   const { setOpen, setOpenMobile, isMobile } = useSidebar();
   const isTablet = useIsTablet();
@@ -77,7 +78,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <ScrollArea className="h-full">
-          <NavMain />
+          <NavMain isAdmin={isAdmin} />
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>
