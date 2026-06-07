@@ -17,9 +17,14 @@ import {
   ReelNavigation,
   ReelPlayButton,
   ReelProgress,
-  ReelVideo
+  ReelVideo,
 } from "@/components/ui/reel";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 import { reels } from "../data";
@@ -36,7 +41,7 @@ export function SocialMediaStories() {
   const orderedReels = activeReelId
     ? [
         reels.find((reel) => reel.id === activeReelId)!,
-        ...reels.filter((reel) => reel.id !== activeReelId)
+        ...reels.filter((reel) => reel.id !== activeReelId),
       ]
     : reels;
 
@@ -50,7 +55,7 @@ export function SocialMediaStories() {
       <Carousel
         opts={{
           align: "start",
-          dragFree: true
+          dragFree: true,
         }}
         className="w-full"
       >
@@ -61,16 +66,21 @@ export function SocialMediaStories() {
                 <PlusIcon className="opacity-50" />
               </AvatarFallback>
             </Avatar>
-            <span className="text-muted-foreground max-w-16 truncate text-xs">Create</span>
+            <span className="text-muted-foreground max-w-16 truncate text-xs">
+              Create
+            </span>
           </div>
           {reels.map((reel) => (
             <div key={reel.id} onClick={() => handleReelClick(reel.id)}>
               <div className="flex cursor-pointer flex-col items-center gap-2 px-1 hover:opacity-80 lg:px-2">
                 <Avatar
-                  className={cn("size-10 outline-2 outline-offset-3 lg:size-14", {
-                    "outline-green-600": !reel.isRead,
-                    "outline-black/20 dark:outline-white/20": reel.isRead
-                  })}
+                  className={cn(
+                    "size-10 outline-2 outline-offset-3 lg:size-14",
+                    {
+                      "outline-green-600": !reel.isRead,
+                      "outline-black/20 dark:outline-white/20": reel.isRead,
+                    },
+                  )}
                 >
                   <AvatarImage src={reel.avatar} />
                   <AvatarFallback>{reel.username[0]}</AvatarFallback>
@@ -90,20 +100,29 @@ export function SocialMediaStories() {
             <DialogTitle></DialogTitle>
           </DialogHeader>
         </VisuallyHidden>
-        <DialogContent showCloseButton={false} className="overflow-hidden border-0 p-0">
+        <DialogContent
+          showCloseButton={false}
+          className="overflow-hidden border-0 p-0"
+        >
           <Reel data={orderedReels}>
             <ReelProgress />
             <ReelContent>
               {(reel) => (
                 <ReelItem key={reel.id}>
                   {reel.type === "video" && <ReelVideo src={reel.src} />}
-                  {reel.type === "image" && <ReelImage src={reel.src} alt={""} />}
+                  {reel.type === "image" && (
+                    <ReelImage src={reel.src} alt={""} />
+                  )}
                   <ReelFooter className="flex justify-between">
                     <div className="text-white">
                       <h5 className="text-lg font-semibold">{reel.title}</h5>
                       <p className="text-sm opacity-90">{reel.description}</p>
                     </div>
-                    <Button variant="secondary" className="rounded-full bg-white/30" size="icon-lg">
+                    <Button
+                      variant="secondary"
+                      className="rounded-full bg-white/30"
+                      size="icon-lg"
+                    >
                       <HeartIcon className="fill-white/80 text-white/80" />
                     </Button>
                   </ReelFooter>

@@ -7,7 +7,7 @@ export const inviteStaffSchema = z.object({
   lastName: z.string().trim().optional(),
   email: z.string().trim().email("Enter a valid email address."),
   phone: z.string().trim().optional(),
-  roleId: z.string().optional()
+  roleId: z.string().optional(),
 });
 
 export type InviteStaffInput = z.infer<typeof inviteStaffSchema>;

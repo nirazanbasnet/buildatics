@@ -2,7 +2,7 @@ import {
   getAllQuotes,
   getQuoteLeadOptions,
   QuotationList,
-  QUOTES_PAGE_SIZE
+  QUOTES_PAGE_SIZE,
 } from "@/features/quotation";
 import { generateMeta } from "@/lib/utils";
 
@@ -10,12 +10,15 @@ export function generateMetadata() {
   return generateMeta({
     title: "Quotation",
     description: "Track and manage sales quotations across leads.",
-    canonical: "/quotation"
+    canonical: "/quotation",
   });
 }
 
 export default async function QuotationPage() {
-  const [quotes, leads] = await Promise.all([getAllQuotes(), getQuoteLeadOptions()]);
+  const [quotes, leads] = await Promise.all([
+    getAllQuotes(),
+    getQuoteLeadOptions(),
+  ]);
 
   return (
     <QuotationList

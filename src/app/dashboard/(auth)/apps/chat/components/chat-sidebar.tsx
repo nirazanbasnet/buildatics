@@ -5,7 +5,11 @@ import { PlusIcon, Search } from "lucide-react";
 import useChatStore from "../useChatStore";
 import { ChatItemProps } from "../types";
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { ChatListItem } from "./chat-list-item";
 import {
   Card,
@@ -13,14 +17,14 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
@@ -32,7 +36,7 @@ export function ChatSidebar({ chats }: { chats: ChatItemProps[] }) {
     const searchTerm = e.target.value.trim();
 
     const filteredItems = chats.filter((chat) =>
-      chat.user.name.toLowerCase().includes(searchTerm.toLowerCase())
+      chat.user.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilteredChats(filteredItems);
   };
@@ -62,7 +66,11 @@ export function ChatSidebar({ chats }: { chats: ChatItemProps[] }) {
             <InputGroupAddon>
               <Search />
             </InputGroupAddon>
-            <InputGroupInput type="text" placeholder="Chats search..." onChange={changeHandle} />
+            <InputGroupInput
+              type="text"
+              placeholder="Chats search..."
+              onChange={changeHandle}
+            />
           </InputGroup>
         </CardDescription>
       </CardHeader>
@@ -78,7 +86,9 @@ export function ChatSidebar({ chats }: { chats: ChatItemProps[] }) {
               />
             ))
           ) : (
-            <div className="text-muted-foreground mt-4 text-center text-sm">No chat found</div>
+            <div className="text-muted-foreground mt-4 text-center text-sm">
+              No chat found
+            </div>
           )}
         </div>
       </CardContent>

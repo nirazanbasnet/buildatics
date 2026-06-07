@@ -11,7 +11,7 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=1`,
     title: "Decent but could be better",
     body: "The product is okay, but I expected more for the price. A few minor flaws, but overall, it's acceptable.",
-    date: "5 days ago"
+    date: "5 days ago",
   },
   {
     id: 5,
@@ -19,7 +19,7 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=2`,
     title: "Beautiful design",
     body: "I love the sleek design and the ease of use. Haven’t come across such a stylish product in a long time. Highly satisfied!",
-    date: "2 weeks ago"
+    date: "2 weeks ago",
   },
   {
     id: 6,
@@ -27,7 +27,7 @@ const reviews = [
     image: `/imageshttps://i.pravatar.cc/150?img=3`,
     title: "Satisfied with my purchase",
     body: "I’m really happy with this purchase. The quality is great, and it works just as described. No complaints so far!",
-    date: "4 days ago"
+    date: "4 days ago",
   },
   {
     id: 7,
@@ -35,7 +35,7 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=4`,
     title: "Could be improved",
     body: "The product works, but there’s room for improvement. It does its job, but the build quality feels a bit cheap.",
-    date: "6 days ago"
+    date: "6 days ago",
   },
   {
     id: 8,
@@ -43,7 +43,7 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=5`,
     title: "Great for everyday use",
     body: "Perfect for daily use. It’s simple, efficient, and does exactly what it promises. Definitely worth the money.",
-    date: "1 day ago"
+    date: "1 day ago",
   },
   {
     id: 9,
@@ -51,7 +51,7 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=6`,
     title: "Not worth the price",
     body: "The product does the job, but I feel it’s overpriced for what it offers. There are better options available at a similar price.",
-    date: "3 weeks ago"
+    date: "3 weeks ago",
   },
   {
     id: 10,
@@ -59,8 +59,8 @@ const reviews = [
     image: `https://i.pravatar.cc/150?img=10`,
     title: "Highly functional and stylish",
     body: "This product is both functional and stylish. It fits perfectly with my needs, and I’m really impressed with the overall quality.",
-    date: "1 month ago"
-  }
+    date: "1 month ago",
+  },
 ];
 
 export default function ProductReviewList() {
@@ -71,12 +71,16 @@ export default function ProductReviewList() {
           <div className="flex items-start gap-4">
             <Avatar className="size-10">
               <AvatarImage src={review.image} />
-              <AvatarFallback>{generateAvatarFallback(review.name)}</AvatarFallback>
+              <AvatarFallback>
+                {generateAvatarFallback(review.name)}
+              </AvatarFallback>
             </Avatar>
             <div className="grid grow gap-1">
               <div className="flex items-center justify-between gap-2">
                 <div className="font-medium">{review.name}</div>
-                <div className="text-muted-foreground text-xs">{review.date}</div>
+                <div className="text-muted-foreground text-xs">
+                  {review.date}
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Badge variant="outline">

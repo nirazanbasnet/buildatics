@@ -7,7 +7,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Browse, organize, and manage files and folders with a clean list view, search functionality, and quick upload actions. A professional file management application built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/file-manager"
+    canonical: "/apps/file-manager",
   });
 }
 

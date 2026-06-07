@@ -12,7 +12,7 @@ const activities = [
     short_name: "BTC",
     date: "Nov 12, 2024 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
+    valueUSD: 3980.93,
   },
   {
     type: "Buy",
@@ -21,7 +21,7 @@ const activities = [
     short_name: "ETH",
     date: "Nov 28, 2024 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
+    valueUSD: 3980.93,
   },
   {
     type: "Sell",
@@ -30,7 +30,7 @@ const activities = [
     short_name: "DOGE",
     date: "Nov 10, 2024 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
+    valueUSD: 3980.93,
   },
   {
     type: "Buy",
@@ -39,7 +39,7 @@ const activities = [
     symbol: "USDT",
     date: "Nov 12, 2024 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
+    valueUSD: 3980.93,
   },
   {
     type: "Sell",
@@ -48,7 +48,7 @@ const activities = [
     short_name: "TON",
     date: "Sept 04, 2024 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
+    valueUSD: 3980.93,
   },
   {
     type: "Send",
@@ -57,8 +57,8 @@ const activities = [
     short_name: "AVAX",
     date: "Nov 12, 2019 11:34 PM",
     amount: 0.5384,
-    valueUSD: 3980.93
-  }
+    valueUSD: 3980.93,
+  },
 ];
 
 export function RecentActivities() {
@@ -86,7 +86,7 @@ export function RecentActivities() {
                       "border-orange-400 bg-orange-100 text-orange-900 dark:border-orange-700 dark:bg-orange-900 dark:text-white":
                         activity.type === "Buy",
                       "border-blue-400 bg-blue-100 text-blue-900 dark:border-blue-700 dark:bg-blue-900 dark:text-white":
-                        activity.type === "Sell"
+                        activity.type === "Sell",
                     })}
                   >
                     {activity.type}
@@ -96,7 +96,9 @@ export function RecentActivities() {
               </div>
               <div className="ml-auto flex flex-col text-end">
                 <span>{activity.amount} BTC</span>
-                <span className="text-muted-foreground text-sm">{activity.valueUSD} USD</span>
+                <span className="text-muted-foreground text-sm">
+                  {activity.valueUSD} USD
+                </span>
               </div>
             </div>
           ))}

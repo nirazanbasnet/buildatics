@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import {
   ArrowUpDown,
@@ -21,24 +21,28 @@ import {
   MessageSquare,
   Users,
   BarChart3,
-  ChevronDown
+  ChevronDown,
 } from "lucide-react";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -47,7 +51,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -66,7 +70,13 @@ export type Notification = {
   };
   actions?: Array<{
     label: string;
-    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+    variant?:
+      | "default"
+      | "destructive"
+      | "outline"
+      | "secondary"
+      | "ghost"
+      | "link";
     onClick?: () => void;
   }>;
 };
@@ -112,7 +122,10 @@ export const columns: ColumnDef<Notification>[] = [
           <div className="flex gap-4">
             {notification.user ? (
               <Avatar className="size-10">
-                <AvatarImage src={notification.user.avatar} alt={notification.user.name} />
+                <AvatarImage
+                  src={notification.user.avatar}
+                  alt={notification.user.name}
+                />
                 <AvatarFallback>
                   {notification.user.name
                     .split(" ")
@@ -125,7 +138,7 @@ export const columns: ColumnDef<Notification>[] = [
               <div
                 className={cn(
                   "flex size-10 items-center justify-center rounded-full text-white",
-                  iconColor
+                  iconColor,
                 )}
               >
                 <Icon className="size-4" />
@@ -133,9 +146,13 @@ export const columns: ColumnDef<Notification>[] = [
             )}
             <div className="flex-1 space-y-1">
               <div className="text-sm font-semibold">
-                {notification.user ? notification.user.name : notification.title}
+                {notification.user
+                  ? notification.user.name
+                  : notification.title}
               </div>
-              <div className="text-muted-foreground text-sm">{notification.description}</div>
+              <div className="text-muted-foreground text-sm">
+                {notification.description}
+              </div>
               {notification.actions && notification.actions.length > 0 && (
                 <div className="mt-3 flex gap-2">
                   {notification.actions.map((action, index) => (
@@ -154,7 +171,7 @@ export const columns: ColumnDef<Notification>[] = [
           </div>
         </div>
       );
-    }
+    },
   },
   {
     accessorKey: "type",
@@ -162,7 +179,7 @@ export const columns: ColumnDef<Notification>[] = [
     cell: ({ row }) => {
       const type = row.getValue("type") as string;
       return <div className="capitalize">{type}</div>;
-    }
+    },
   },
   {
     accessorKey: "time",
@@ -178,14 +195,21 @@ export const columns: ColumnDef<Notification>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("time")
-  }
+    cell: ({ row }) => row.getValue("time"),
+  },
 ];
 
-export default function NotificationsDataTable({ data }: { data: Notification[] }) {
+export default function NotificationsDataTable({
+  data,
+}: {
+  data: Notification[];
+}) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [globalFilter, setGlobalFilter] = React.useState("");
 
   const table = useReactTable({
@@ -204,45 +228,49 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
       const title = row.original.title.toLowerCase();
       const description = row.original.description.toLowerCase();
       const type = row.original.type.toLowerCase();
-      return title.includes(search) || description.includes(search) || type.includes(search);
+      return (
+        title.includes(search) ||
+        description.includes(search) ||
+        type.includes(search)
+      );
     },
     initialState: {
       pagination: {
-        pageSize: 10
-      }
+        pageSize: 10,
+      },
     },
     state: {
       sorting,
       columnFilters,
       columnVisibility,
-      globalFilter
-    }
+      globalFilter,
+    },
   });
 
   const types = [
     {
       value: "ticket",
-      label: "Ticket"
+      label: "Ticket",
     },
     {
       value: "message",
-      label: "Message"
+      label: "Message",
     },
     {
       value: "team",
-      label: "Team"
-    }
+      label: "Team",
+    },
   ];
 
   const statuses = [
     {
       value: "read",
-      label: "Read"
+      label: "Read",
     },
     {
       value: "unread",
-      label: "Unread"
-    }
+      label: "Unread",
+    },
   ];
 
   return (
@@ -325,7 +353,10 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
                         <CommandEmpty>No filter found.</CommandEmpty>
                         <CommandGroup>
                           {statuses.map((status) => (
-                            <CommandItem key={status.value} value={status.value}>
+                            <CommandItem
+                              key={status.value}
+                              value={status.value}
+                            >
                               {status.label}
                             </CommandItem>
                           ))}
@@ -378,7 +409,9 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -400,12 +433,15 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
                       key={row.id}
                       className={cn(
                         isUnread &&
-                          "border-l border-l-amber-500 bg-orange-50! dark:bg-amber-950/50!"
+                          "border-l border-l-amber-500 bg-orange-50! dark:bg-amber-950/50!",
                       )}
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -413,7 +449,10 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
                 })
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
@@ -424,10 +463,14 @@ export default function NotificationsDataTable({ data }: { data: Notification[] 
         <div className="flex items-center justify-end space-x-2">
           <div className="text-muted-foreground flex-1 text-sm">
             Showing{" "}
-            {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1} to{" "}
+            {table.getState().pagination.pageIndex *
+              table.getState().pagination.pageSize +
+              1}{" "}
+            to{" "}
             {Math.min(
-              (table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize,
-              table.getFilteredRowModel().rows.length
+              (table.getState().pagination.pageIndex + 1) *
+                table.getState().pagination.pageSize,
+              table.getFilteredRowModel().rows.length,
             )}{" "}
             of {table.getFilteredRowModel().rows.length} notification(s)
           </div>

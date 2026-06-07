@@ -6,7 +6,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -22,7 +22,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-  PaginationEllipsis
+  PaginationEllipsis,
 } from "@/components/ui/pagination";
 import {
   MapPin,
@@ -38,7 +38,7 @@ import {
   Home,
   BedDouble,
   Bath,
-  Star
+  Star,
 } from "lucide-react";
 import { Property, PropertyListingCard } from "./property-listing-card";
 import { usePropertyFilterStore } from "../../store";
@@ -54,7 +54,7 @@ const propertyTypes = [
   { id: "medical", label: "Medical", icon: Hospital },
   { id: "office", label: "Office", icon: Building },
   { id: "shophouse", label: "Shophouse", icon: Store },
-  { id: "apartment", label: "Apartment", icon: Building2 }
+  { id: "apartment", label: "Apartment", icon: Building2 },
 ];
 
 const amenitiesList = [
@@ -65,7 +65,7 @@ const amenitiesList = [
   "Gym",
   "Swimming Pool",
   "Surveillance Cameras",
-  "Laundry"
+  "Laundry",
 ];
 
 const ITEMS_PER_PAGE = 9;
@@ -84,20 +84,24 @@ export function PropertyListing({ properties }: PropertyListingProps) {
     setBedroom,
     selectedAmenities,
     toggleAmenity,
-    resetFilters
+    resetFilters,
   } = usePropertyFilterStore();
   const [favorites, setFavorites] = useState<number[]>(
-    properties.filter((p) => p.isFavorite).map((p) => p.id)
+    properties.filter((p) => p.isFavorite).map((p) => p.id),
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState("default");
-  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null,
+  );
   const [sheetOpen, setSheetOpen] = useState(false);
   const [filterSheetOpen, setFilterSheetOpen] = useState(false);
 
   const toggleFavorite = (id: number, e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setFavorites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]));
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id],
+    );
   };
 
   const openPropertyDetail = (property: Property) => {
@@ -107,7 +111,14 @@ export function PropertyListing({ properties }: PropertyListingProps) {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [location, priceRange, customRange, selectedType, bedroom, selectedAmenities]);
+  }, [
+    location,
+    priceRange,
+    customRange,
+    selectedType,
+    bedroom,
+    selectedAmenities,
+  ]);
 
   const filteredProperties = useMemo(() => {
     let result = [...properties];
@@ -121,7 +132,9 @@ export function PropertyListing({ properties }: PropertyListingProps) {
     } else if (priceRange === "20k+") {
       result = result.filter((p) => p.price > 20000);
     } else if (priceRange === "custom") {
-      result = result.filter((p) => p.price >= customRange[0] && p.price <= customRange[1]);
+      result = result.filter(
+        (p) => p.price >= customRange[0] && p.price <= customRange[1],
+      );
     }
 
     if (selectedType !== "all") {
@@ -130,11 +143,15 @@ export function PropertyListing({ properties }: PropertyListingProps) {
 
     if (bedroom !== "any") {
       const bedCount = bedroom === "4" ? 4 : parseInt(bedroom);
-      result = result.filter((p) => (bedroom === "4" ? p.beds >= bedCount : p.beds === bedCount));
+      result = result.filter((p) =>
+        bedroom === "4" ? p.beds >= bedCount : p.beds === bedCount,
+      );
     }
 
     if (selectedAmenities.length > 0) {
-      result = result.filter((p) => selectedAmenities.every((a) => p.amenities.includes(a)));
+      result = result.filter((p) =>
+        selectedAmenities.every((a) => p.amenities.includes(a)),
+      );
     }
 
     switch (sortBy) {
@@ -160,13 +177,13 @@ export function PropertyListing({ properties }: PropertyListingProps) {
     selectedType,
     bedroom,
     selectedAmenities,
-    sortBy
+    sortBy,
   ]);
 
   const totalPages = Math.ceil(filteredProperties.length / ITEMS_PER_PAGE);
   const paginatedProperties = filteredProperties.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
+    currentPage * ITEMS_PER_PAGE,
   );
 
   const formatPrice = (price: number) => {
@@ -174,7 +191,7 @@ export function PropertyListing({ properties }: PropertyListingProps) {
       style: "currency",
       currency: "USD",
       minimumFractionDigits: 0,
-      maximumFractionDigits: 0
+      maximumFractionDigits: 0,
     }).format(price);
   };
 
@@ -331,7 +348,9 @@ export function PropertyListing({ properties }: PropertyListingProps) {
 
       <div className="flex gap-4">
         <div className="flex-1">
-          <Label className="text-muted-foreground mb-1 block text-xs">Room</Label>
+          <Label className="text-muted-foreground mb-1 block text-xs">
+            Room
+          </Label>
           <Select
             value={bedroom}
             onValueChange={(v) => {
@@ -420,7 +439,9 @@ export function PropertyListing({ properties }: PropertyListingProps) {
 
         {paginatedProperties.length === 0 ? (
           <div className="flex h-64 items-center justify-center">
-            <p className="text-muted-foreground">No properties found matching your criteria.</p>
+            <p className="text-muted-foreground">
+              No properties found matching your criteria.
+            </p>
           </div>
         ) : (
           <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -446,7 +467,7 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                   ? "0"
                   : `${(currentPage - 1) * ITEMS_PER_PAGE + 1} - ${Math.min(
                       currentPage * ITEMS_PER_PAGE,
-                      filteredProperties.length
+                      filteredProperties.length,
                     )} of ${filteredProperties.length}`}
               </Badge>
             </div>
@@ -459,7 +480,9 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                       e.preventDefault();
                       setCurrentPage(Math.max(1, currentPage - 1));
                     }}
-                    className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                    className={
+                      currentPage === 1 ? "pointer-events-none opacity-50" : ""
+                    }
                   />
                 </PaginationItem>
                 {getPageNumbers().map((page, index) =>
@@ -480,7 +503,7 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                         {page}
                       </PaginationLink>
                     </PaginationItem>
-                  )
+                  ),
                 )}
                 <PaginationItem>
                   <PaginationNext
@@ -489,7 +512,11 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                       e.preventDefault();
                       setCurrentPage(Math.min(totalPages, currentPage + 1));
                     }}
-                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                    className={
+                      currentPage === totalPages
+                        ? "pointer-events-none opacity-50"
+                        : ""
+                    }
                   />
                 </PaginationItem>
               </PaginationContent>
@@ -521,21 +548,33 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                   className={cn(
                     "bg-background text-muted-foreground hover:text-destructive absolute top-3 left-3 rounded-full",
                     {
-                      "text-destructive": favorites.includes(selectedProperty.id)
-                    }
+                      "text-destructive": favorites.includes(
+                        selectedProperty.id,
+                      ),
+                    },
                   )}
                 >
-                  <Heart fill={favorites.includes(selectedProperty.id) ? "currentColor" : "none"} />
+                  <Heart
+                    fill={
+                      favorites.includes(selectedProperty.id)
+                        ? "currentColor"
+                        : "none"
+                    }
+                  />
                 </Button>
               </div>
               <div className="p-4">
                 <div className="mb-4">
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
-                      <h4 className="text-lg font-bold sm:text-xl">{selectedProperty.title}</h4>
+                      <h4 className="text-lg font-bold sm:text-xl">
+                        {selectedProperty.title}
+                      </h4>
                       <div className="text-muted-foreground mt-1 flex items-center gap-1 text-sm">
                         <MapPin className="size-3 shrink-0" />
-                        <span className="truncate">{selectedProperty.address}</span>
+                        <span className="truncate">
+                          {selectedProperty.address}
+                        </span>
                       </div>
                     </div>
                     <div className="flex shrink-0 items-center gap-1">
@@ -557,7 +596,9 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                     <span className="text-primary text-xl font-bold sm:text-2xl">
                       {formatPrice(selectedProperty.price)}
                     </span>
-                    <span className="text-muted-foreground">/{selectedProperty.priceType}</span>
+                    <span className="text-muted-foreground">
+                      /{selectedProperty.priceType}
+                    </span>
                   </div>
                 </div>
 
@@ -596,7 +637,11 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                   <h4 className="mb-3 font-semibold">Amenities</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedProperty.amenities.map((amenity) => (
-                      <Badge key={amenity} variant="outline" className="font-normal">
+                      <Badge
+                        key={amenity}
+                        variant="outline"
+                        className="font-normal"
+                      >
                         {amenity}
                       </Badge>
                     ))}
@@ -607,11 +652,15 @@ export function PropertyListing({ properties }: PropertyListingProps) {
                   <h4 className="mb-3 font-semibold">Description</h4>
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     This beautiful{" "}
-                    {getPropertyTypeLabel(selectedProperty.propertyType).toLowerCase()} is located
-                    in {selectedProperty.address}. Featuring {selectedProperty.rooms} spacious
-                    rooms, {selectedProperty.beds} comfortable bedrooms, and{" "}
-                    {selectedProperty.baths} modern bathrooms. The property comes with excellent
-                    amenities including {selectedProperty.amenities.join(", ").toLowerCase()}.
+                    {getPropertyTypeLabel(
+                      selectedProperty.propertyType,
+                    ).toLowerCase()}{" "}
+                    is located in {selectedProperty.address}. Featuring{" "}
+                    {selectedProperty.rooms} spacious rooms,{" "}
+                    {selectedProperty.beds} comfortable bedrooms, and{" "}
+                    {selectedProperty.baths} modern bathrooms. The property
+                    comes with excellent amenities including{" "}
+                    {selectedProperty.amenities.join(", ").toLowerCase()}.
                   </p>
                 </div>
 

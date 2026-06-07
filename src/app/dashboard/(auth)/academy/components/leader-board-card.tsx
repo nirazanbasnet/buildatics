@@ -1,6 +1,12 @@
 import { ChevronRight } from "lucide-react";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,26 +17,26 @@ export function LeaderboardCard() {
       id: 1,
       name: "Liam Smith",
       points: 5000,
-      avatar: `https://i.pravatar.cc/150?img=1`
+      avatar: `https://i.pravatar.cc/150?img=1`,
     },
     {
       id: 2,
       name: "Emma Brown",
       points: 4800,
-      avatar: `https://i.pravatar.cc/150?img=2`
+      avatar: `https://i.pravatar.cc/150?img=2`,
     },
     {
       id: 3,
       name: "Noah Johnson",
       points: 4600,
-      avatar: `/imageshttps://i.pravatar.cc/150?img=3`
+      avatar: `/imageshttps://i.pravatar.cc/150?img=3`,
     },
     {
       id: 4,
       name: "Olivia Davis",
       points: 4400,
-      avatar: `https://i.pravatar.cc/150?img=4`
-    }
+      avatar: `https://i.pravatar.cc/150?img=4`,
+    },
   ];
 
   return (

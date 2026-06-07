@@ -1,4 +1,10 @@
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
@@ -33,7 +39,7 @@ export function StatCard({ item }: StatCardProps) {
             variant="outline"
             className={cn(
               "mb-1 flex items-center gap-1 text-xs font-medium",
-              isPositive ? "text-success" : "text-destructive"
+              isPositive ? "text-success" : "text-destructive",
             )}
           >
             {isPositive ? "+" : ""}

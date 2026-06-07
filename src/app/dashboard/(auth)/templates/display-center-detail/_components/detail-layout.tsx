@@ -16,7 +16,13 @@ import { FloorPlanPanel } from "./floor-plan-panel";
 import { RoomDimensionsTable } from "./room-dimensions-table";
 import { SpecificationsTable } from "./specifications-table";
 
-export function DetailLayout({ property, className }: { property: Property; className?: string }) {
+export function DetailLayout({
+  property,
+  className,
+}: {
+  property: Property;
+  className?: string;
+}) {
   const [activeTab, setActiveTab] = useState<DetailTab>(detailTabs[0]);
 
   return (

@@ -34,25 +34,32 @@ export type QuotationDetail = {
   terms: string;
 };
 
-export const quotationDetailTabs = ["Quote Builder", "Preview", "History"] as const;
+export const quotationDetailTabs = [
+  "Quote Builder",
+  "Preview",
+  "History",
+] as const;
 export type QuotationDetailTab = (typeof quotationDetailTabs)[number];
 
 const quotationDetailTabIcons: Record<QuotationDetailTab, LucideIcon> = {
   "Quote Builder": Calculator,
   Preview: Eye,
-  History: History
+  History: History,
 };
 
 export const quotationDetailTabItems = quotationDetailTabs.map((value) => ({
   value,
-  icon: quotationDetailTabIcons[value]
+  icon: quotationDetailTabIcons[value],
 }));
 
-export const quotationDetailStatusLabels: Record<QuotationDetailStatus, string> = {
+export const quotationDetailStatusLabels: Record<
+  QuotationDetailStatus,
+  string
+> = {
   draft: "Draft",
   sent: "Sent",
   signed: "Signed",
-  declined: "Declined"
+  declined: "Declined",
 };
 
 export function formatCurrency(amount: number): string {
@@ -60,11 +67,17 @@ export function formatCurrency(amount: number): string {
 }
 
 export function categoryTotal(category: QuotationCategory): number {
-  return category.items.reduce((sum, item) => (item.visible ? sum + item.cost : sum), 0);
+  return category.items.reduce(
+    (sum, item) => (item.visible ? sum + item.cost : sum),
+    0,
+  );
 }
 
 export function quotedCost(detail: QuotationDetail): number {
-  return detail.categories.reduce((sum, category) => sum + categoryTotal(category), 0);
+  return detail.categories.reduce(
+    (sum, category) => sum + categoryTotal(category),
+    0,
+  );
 }
 
 export function gstAmount(detail: QuotationDetail): number {
@@ -87,10 +100,18 @@ export type QuotationBuilderHandlers = {
   toggleCategoryCollapsed: (categoryId: string) => void;
   deleteCategory: (categoryId: string) => void;
   addLineItem: (categoryId: string) => void;
-  updateLineItem: (categoryId: string, itemId: string, patch: Partial<QuotationLineItem>) => void;
+  updateLineItem: (
+    categoryId: string,
+    itemId: string,
+    patch: Partial<QuotationLineItem>,
+  ) => void;
   toggleLineItemVisibility: (categoryId: string, itemId: string) => void;
   moveLineItem: (categoryId: string, itemId: string, direction: -1 | 1) => void;
-  reorderLineItems: (categoryId: string, activeId: string, overId: string) => void;
+  reorderLineItems: (
+    categoryId: string,
+    activeId: string,
+    overId: string,
+  ) => void;
   duplicateLineItem: (categoryId: string, itemId: string) => void;
   deleteLineItem: (categoryId: string, itemId: string) => void;
 };
@@ -119,25 +140,37 @@ export const quotationDetailMock: QuotationDetail = {
       id: "cat-1",
       name: "Site Works",
       collapsed: false,
-      items: [item("li-1", "Site cut & fill", 32000), item("li-2", "Soil testing & survey", 18000)]
+      items: [
+        item("li-1", "Site cut & fill", 32000),
+        item("li-2", "Soil testing & survey", 18000),
+      ],
     },
     {
       id: "cat-2",
       name: "Structure",
       collapsed: false,
-      items: [item("li-3", "Concrete slab", 28000), item("li-4", "Frame & trusses", 22000)]
+      items: [
+        item("li-3", "Concrete slab", 28000),
+        item("li-4", "Frame & trusses", 22000),
+      ],
     },
     {
       id: "cat-3",
       name: "Lock-up",
       collapsed: false,
-      items: [item("li-5", "Roofing", 26000), item("li-6", "Brickwork & cladding", 24000)]
+      items: [
+        item("li-5", "Roofing", 26000),
+        item("li-6", "Brickwork & cladding", 24000),
+      ],
     },
     {
       id: "cat-4",
       name: "Fit-out",
       collapsed: false,
-      items: [item("li-7", "Plumbing & electrical", 30000), item("li-8", "Plaster & paint", 20000)]
-    }
-  ]
+      items: [
+        item("li-7", "Plumbing & electrical", 30000),
+        item("li-8", "Plaster & paint", 20000),
+      ],
+    },
+  ],
 };

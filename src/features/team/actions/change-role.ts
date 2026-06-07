@@ -11,7 +11,7 @@ import type { TeamActionResult } from "../types";
 export async function changeRole(
   staffId: string,
   newRoleId: string,
-  currentRoleIds: string[]
+  currentRoleIds: string[],
 ): Promise<TeamActionResult> {
   const target = newRoleId && newRoleId !== ROLE_NONE ? newRoleId : null;
 
@@ -20,14 +20,14 @@ export async function changeRole(
       if (roleId === target) continue;
       await apiFetch(
         `/api/Staff/UnassignDesignation?staffId=${encodeURIComponent(staffId)}&designationId=${encodeURIComponent(roleId)}`,
-        { method: "DELETE", auth: true }
+        { method: "DELETE", auth: true },
       );
     }
 
     if (target && !currentRoleIds.includes(target)) {
       await apiFetch(
         `/api/Staff/AssignDesignation?staffId=${encodeURIComponent(staffId)}&designationId=${encodeURIComponent(target)}`,
-        { method: "POST", auth: true }
+        { method: "POST", auth: true },
       );
     }
 
@@ -35,7 +35,10 @@ export async function changeRole(
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to update the role."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to update the role.",
     };
   }
 }

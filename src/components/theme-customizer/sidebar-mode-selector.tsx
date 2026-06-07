@@ -21,7 +21,12 @@ export function SidebarModeSelector() {
         }}
       >
         {SIDEBAR_MODES.map((mode) => (
-          <ToggleGroupItem key={mode.value} variant="outline" className="grow" value={mode.value}>
+          <ToggleGroupItem
+            key={mode.value}
+            variant="outline"
+            className="grow"
+            value={mode.value}
+          >
             {mode.name}
           </ToggleGroupItem>
         ))}

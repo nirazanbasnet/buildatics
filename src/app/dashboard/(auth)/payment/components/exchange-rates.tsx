@@ -4,20 +4,26 @@ import React from "react";
 import { ArrowUpDown, RefreshCwIcon } from "lucide-react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -111,25 +117,26 @@ const chartData = [
   { date: "2024-06-27", desktop: 448, mobile: 490 },
   { date: "2024-06-28", desktop: 149, mobile: 200 },
   { date: "2024-06-29", desktop: 103, mobile: 160 },
-  { date: "2024-06-30", desktop: 446, mobile: 400 }
+  { date: "2024-06-30", desktop: 446, mobile: 400 },
 ];
 
 const chartConfig = {
   views: {
-    label: "Page Views"
+    label: "Page Views",
   },
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   mobile: {
     label: "Mobile",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function ExchangeRates() {
-  const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("desktop");
+  const [activeChart, setActiveChart] =
+    React.useState<keyof typeof chartConfig>("desktop");
   const [selectedPeriod, setSelectedPeriod] = React.useState("7D");
 
   const filteredChartData = React.useMemo(() => {
@@ -230,7 +237,7 @@ export function ExchangeRates() {
             data={filteredChartData}
             margin={{
               left: 12,
-              right: 12
+              right: 12,
             }}
           >
             <CartesianGrid vertical={false} className="stroke-border/50" />
@@ -245,7 +252,7 @@ export function ExchangeRates() {
                 const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
-                  day: "numeric"
+                  day: "numeric",
                 });
               }}
             />
@@ -258,7 +265,7 @@ export function ExchangeRates() {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
-                      year: "numeric"
+                      year: "numeric",
                     });
                   }}
                 />

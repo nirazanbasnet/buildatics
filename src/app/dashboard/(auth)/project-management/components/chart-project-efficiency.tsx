@@ -10,21 +10,21 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartStyle,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 const desktopData = [
@@ -32,39 +32,39 @@ const desktopData = [
   { month: "february", desktop: 305, fill: "var(--color-february)" },
   { month: "march", desktop: 237, fill: "var(--color-march)" },
   { month: "april", desktop: 173, fill: "var(--color-april)" },
-  { month: "may", desktop: 209, fill: "var(--color-may)" }
+  { month: "may", desktop: 209, fill: "var(--color-may)" },
 ];
 
 const chartConfig = {
   visitors: {
-    label: "Visitors"
+    label: "Visitors",
   },
   desktop: {
-    label: "Desktop"
+    label: "Desktop",
   },
   mobile: {
-    label: "Mobile"
+    label: "Mobile",
   },
   january: {
     label: "January",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   february: {
     label: "February",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   march: {
     label: "March",
-    color: "var(--chart-3)"
+    color: "var(--chart-3)",
   },
   april: {
     label: "April",
-    color: "var(--chart-4)"
+    color: "var(--chart-4)",
   },
   may: {
     label: "May",
-    color: "var(--chart-5)"
-  }
+    color: "var(--chart-5)",
+  },
 } satisfies ChartConfig;
 
 export function ChartProjectEfficiency() {
@@ -73,7 +73,7 @@ export function ChartProjectEfficiency() {
 
   const activeIndex = React.useMemo(
     () => desktopData.findIndex((item) => item.month === activeMonth),
-    [activeMonth]
+    [activeMonth],
   );
   const months = React.useMemo(() => desktopData.map((item) => item.month), []);
 
@@ -82,7 +82,9 @@ export function ChartProjectEfficiency() {
       <ChartStyle id={id} config={chartConfig} />
       <CardHeader>
         <CardDescription>January - June 2026</CardDescription>
-        <CardTitle className="font-display text-xl">Project Efficiency</CardTitle>
+        <CardTitle className="font-display text-xl">
+          Project Efficiency
+        </CardTitle>
         <CardAction>
           <Select value={activeMonth} onValueChange={setActiveMonth}>
             <SelectTrigger className="ml-auto" aria-label="Select a value">
@@ -104,7 +106,7 @@ export function ChartProjectEfficiency() {
                       <span
                         className="flex h-3 w-3 shrink-0 rounded-sm"
                         style={{
-                          backgroundColor: color
+                          backgroundColor: color,
                         }}
                       />
                       {config?.label}
@@ -123,7 +125,10 @@ export function ChartProjectEfficiency() {
           className="mx-auto aspect-square w-full max-w-[230px]"
         >
           <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <Pie
               data={desktopData}
               dataKey="desktop"
@@ -131,7 +136,10 @@ export function ChartProjectEfficiency() {
               innerRadius={45}
               strokeWidth={5}
               activeIndex={activeIndex}
-              activeShape={({ outerRadius = 0, ...props }: PieSectorDataItem) => (
+              activeShape={({
+                outerRadius = 0,
+                ...props
+              }: PieSectorDataItem) => (
                 <g>
                   <Sector {...props} outerRadius={outerRadius + 5} />
                   <Sector

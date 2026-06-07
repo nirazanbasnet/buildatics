@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,11 @@ type ForceTermsDialogProps = {
 
 // Accepts the Terms & Conditions on a user's behalf. The API requires the public T&C URL being
 // accepted, so the admin supplies it here.
-export function ForceTermsDialog({ user, onOpenChange, onChanged }: ForceTermsDialogProps) {
+export function ForceTermsDialog({
+  user,
+  onOpenChange,
+  onChanged,
+}: ForceTermsDialogProps) {
   const [isPending, startTransition] = useTransition();
   const [url, setUrl] = useState("");
 
@@ -54,7 +58,8 @@ export function ForceTermsDialog({ user, onOpenChange, onChanged }: ForceTermsDi
         <DialogHeader>
           <DialogTitle>Accept terms on behalf of user</DialogTitle>
           <DialogDescription>
-            Record that {user?.name} has accepted the Terms &amp; Conditions at the URL below.
+            Record that {user?.name} has accepted the Terms &amp; Conditions at
+            the URL below.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2">
@@ -76,7 +81,11 @@ export function ForceTermsDialog({ user, onOpenChange, onChanged }: ForceTermsDi
           >
             Cancel
           </Button>
-          <Button type="button" onClick={onSubmit} disabled={isPending || !url.trim()}>
+          <Button
+            type="button"
+            onClick={onSubmit}
+            disabled={isPending || !url.trim()}
+          >
             {isPending ? "Saving…" : "Accept terms"}
           </Button>
         </DialogFooter>

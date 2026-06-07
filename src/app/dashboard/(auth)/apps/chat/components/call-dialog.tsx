@@ -3,7 +3,12 @@
 import React from "react";
 import { Phone, PhoneMissedIcon, X } from "lucide-react";
 
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -22,7 +27,10 @@ export function CallDialog() {
         </VisuallyHidden>
         <div className="flex items-center gap-4">
           <Avatar className="size-16">
-            <AvatarImage src={`https://i.pravatar.cc/150?img=4`} alt="shadcn/ui avatar" />
+            <AvatarImage
+              src={`https://i.pravatar.cc/150?img=4`}
+              alt="shadcn/ui avatar"
+            />
           </Avatar>
           <div className="text-lg">Jennica calling ...</div>
         </div>

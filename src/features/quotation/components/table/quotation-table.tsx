@@ -15,7 +15,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -23,10 +23,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
 import { QUOTE_STATUSES, statusMeta } from "../../lib/status";
@@ -42,7 +46,13 @@ type QuotationTableProps = {
   onDelete: (quote: QuotationRow) => void;
 };
 
-type SortField = "ref" | "client" | "siteAddress" | "quoteDate" | "expiryDate" | "status";
+type SortField =
+  | "ref"
+  | "client"
+  | "siteAddress"
+  | "quoteDate"
+  | "expiryDate"
+  | "status";
 
 const ACCESSORS: Record<SortField, (q: QuotationRow) => string | number> = {
   ref: (q) => q.ref,
@@ -50,7 +60,7 @@ const ACCESSORS: Record<SortField, (q: QuotationRow) => string | number> = {
   siteAddress: (q) => q.siteAddress,
   quoteDate: (q) => q.quoteDate,
   expiryDate: (q) => q.expiryDate,
-  status: (q) => q.statusValue
+  status: (q) => q.statusValue,
 };
 
 export function QuotationTable({
@@ -59,9 +69,12 @@ export function QuotationTable({
   onView,
   onEdit,
   onChangeStatus,
-  onDelete
+  onDelete,
 }: QuotationTableProps) {
-  const [sort, setSort] = useSortState<SortField>({ field: "quoteDate", direction: "desc" });
+  const [sort, setSort] = useSortState<SortField>({
+    field: "quoteDate",
+    direction: "desc",
+  });
   const sorted = useMemo(() => sortBy(quotes, sort, ACCESSORS), [quotes, sort]);
 
   return (
@@ -112,14 +125,18 @@ export function QuotationTable({
                     </span>
                   </span>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{quote.client}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {quote.client}
+                </TableCell>
                 <TableCell className="text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin className="size-4 shrink-0" />
                     {quote.siteAddress}
                   </span>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{quote.attachedDesign}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {quote.attachedDesign}
+                </TableCell>
                 <TableCell className="text-muted-foreground whitespace-nowrap">
                   {quote.amount}
                 </TableCell>
@@ -133,13 +150,16 @@ export function QuotationTable({
                   <span
                     className={cn(
                       "inline-flex min-w-20 items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                      meta.solid
+                      meta.solid,
                     )}
                   >
                     {quote.statusLabel}
                   </span>
                 </TableCell>
-                <TableCell className="pr-4 text-right" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="pr-4 text-right"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" size="icon" className="size-8">
@@ -158,16 +178,24 @@ export function QuotationTable({
                         Edit
                       </DropdownMenuItem>
                       <DropdownMenuSub>
-                        <DropdownMenuSubTrigger>Change status</DropdownMenuSubTrigger>
+                        <DropdownMenuSubTrigger>
+                          Change status
+                        </DropdownMenuSubTrigger>
                         <DropdownMenuSubContent>
                           <DropdownMenuRadioGroup
                             value={String(quote.statusValue)}
                             onValueChange={(v) =>
-                              onChangeStatus(quote, Number(v) as LeadQuoteStatus)
+                              onChangeStatus(
+                                quote,
+                                Number(v) as LeadQuoteStatus,
+                              )
                             }
                           >
                             {QUOTE_STATUSES.map((s) => (
-                              <DropdownMenuRadioItem key={s.value} value={String(s.value)}>
+                              <DropdownMenuRadioItem
+                                key={s.value}
+                                value={String(s.value)}
+                              >
                                 {s.label}
                               </DropdownMenuRadioItem>
                             ))}
@@ -175,7 +203,10 @@ export function QuotationTable({
                         </DropdownMenuSubContent>
                       </DropdownMenuSub>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem variant="destructive" onClick={() => onDelete(quote)}>
+                      <DropdownMenuItem
+                        variant="destructive"
+                        onClick={() => onDelete(quote)}
+                      >
                         <Trash2 className="size-4" />
                         Delete
                       </DropdownMenuItem>

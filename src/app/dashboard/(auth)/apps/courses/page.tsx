@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Access video lessons, track curriculum progress, and manage learning milestones with an integrated course player and detailed module outlines. A professional e-learning application page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/courses"
+    canonical: "/apps/courses",
   });
 }
 
@@ -29,7 +29,9 @@ export default function Page() {
   return (
     <div className="mx-auto max-w-7xl space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">{course.title}</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          {course.title}
+        </h1>
         <div className="flex gap-2 lg:hidden">
           <Drawer direction="bottom">
             <DrawerTrigger asChild>
@@ -53,7 +55,7 @@ export default function Page() {
                 data={{
                   modules: course.modules,
                   completedCount: course.completedModules,
-                  totalCount: course.totalModules
+                  totalCount: course.totalModules,
                 }}
               />
             </SheetContent>
@@ -80,7 +82,7 @@ export default function Page() {
           <CourseContent
             data={{
               about: course.about,
-              suitFor: course.suitFor
+              suitFor: course.suitFor,
             }}
           />
         </div>
@@ -92,7 +94,7 @@ export default function Page() {
             data={{
               modules: course.modules,
               completedCount: course.completedModules,
-              totalCount: course.totalModules
+              totalCount: course.totalModules,
             }}
           />
         </div>

@@ -16,7 +16,7 @@ import { PaginationNav } from "@src/components/pagination-nav";
 import { PreconstructionListTable } from "./preconstruction-list-table";
 import {
   PreconstructionListToolbar,
-  type PreconstructionListView
+  type PreconstructionListView,
 } from "./preconstruction-list-toolbar";
 
 type Props = {
@@ -30,10 +30,12 @@ export function PreconstructionListLayout({
   projects,
   className,
   detailEnabled,
-  detailVariant
+  detailVariant,
 }: Props) {
   const [view, setView] = useState<PreconstructionListView>("list");
-  const [selected, setSelected] = useState<PreconstructionListProject | null>(null);
+  const [selected, setSelected] = useState<PreconstructionListProject | null>(
+    null,
+  );
 
   const handleProjectClick = detailEnabled ? setSelected : undefined;
 
@@ -45,9 +47,15 @@ export function PreconstructionListLayout({
         </AnimatedSection>
         <AnimatedSection delay={0.04} className="flex-1 overflow-auto">
           {view === "list" ? (
-            <PreconstructionListTable projects={projects} onProjectClick={handleProjectClick} />
+            <PreconstructionListTable
+              projects={projects}
+              onProjectClick={handleProjectClick}
+            />
           ) : (
-            <PreconstructionListCards projects={projects} onProjectClick={handleProjectClick} />
+            <PreconstructionListCards
+              projects={projects}
+              onProjectClick={handleProjectClick}
+            />
           )}
         </AnimatedSection>
         <AnimatedSection delay={0.08}>
@@ -64,7 +72,7 @@ export function PreconstructionListLayout({
             ...preconstructionDetailMock,
             id: selected.id,
             projectNo: selected.projectNo,
-            address: selected.address
+            address: selected.address,
           }}
           variant={detailVariant}
         />

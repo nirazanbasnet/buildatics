@@ -7,7 +7,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
@@ -38,7 +38,7 @@ const items = [
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
     room: "2747",
     description: "requested for a coffee and water",
-    time: "16 mins"
+    time: "16 mins",
   },
   {
     id: "2",
@@ -47,7 +47,7 @@ const items = [
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
     room: "3565",
     description: "Book and manage conference.",
-    time: "24 mins"
+    time: "24 mins",
   },
   {
     id: "3",
@@ -56,7 +56,7 @@ const items = [
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
     room: "3546",
     description: "Provide information about local.",
-    time: "32 mins"
+    time: "32 mins",
   },
   {
     id: "4",
@@ -65,8 +65,8 @@ const items = [
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     room: "5654",
     description: "Allow guests to view and settle.",
-    time: "48 mins"
-  }
+    time: "48 mins",
+  },
 ];
 
 export function RecentActivities() {
@@ -100,7 +100,9 @@ export function RecentActivities() {
                   Room #{item.room}, {item.description}
                 </p>
               </div>
-              <span className="text-muted-foreground text-sm whitespace-nowrap">{item.time}</span>
+              <span className="text-muted-foreground text-sm whitespace-nowrap">
+                {item.time}
+              </span>
             </div>
           ))}
 
@@ -122,7 +124,10 @@ export function RecentActivities() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Avatar className="size-16">
-                  <AvatarImage src={selectedItem.avatar} alt={selectedItem.name} />
+                  <AvatarImage
+                    src={selectedItem.avatar}
+                    alt={selectedItem.name}
+                  />
                   <AvatarFallback>
                     {selectedItem.name
                       .split(" ")
@@ -132,16 +137,22 @@ export function RecentActivities() {
                 </Avatar>
                 <div>
                   <p className="text-lg font-semibold">{selectedItem.name}</p>
-                  <p className="text-muted-foreground text-sm">Room #{selectedItem.room}</p>
+                  <p className="text-muted-foreground text-sm">
+                    Room #{selectedItem.room}
+                  </p>
                 </div>
               </div>
               <div className="space-y-2">
                 <p className=" ">Request</p>
-                <p className="text-muted-foreground text-sm">{selectedItem.description}</p>
+                <p className="text-muted-foreground text-sm">
+                  {selectedItem.description}
+                </p>
               </div>
               <div className="space-y-2">
                 <p className=" ">Time</p>
-                <p className="text-muted-foreground text-sm">{selectedItem.time} ago</p>
+                <p className="text-muted-foreground text-sm">
+                  {selectedItem.time} ago
+                </p>
               </div>
             </div>
           )}

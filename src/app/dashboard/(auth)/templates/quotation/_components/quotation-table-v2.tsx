@@ -22,7 +22,11 @@ function MetaCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function QuotationTableV2({ quotations, className, onQuotationClick }: Props) {
+export function QuotationTableV2({
+  quotations,
+  className,
+  onQuotationClick,
+}: Props) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       {quotations.map((quotation) => {
@@ -31,7 +35,9 @@ export function QuotationTableV2({ quotations, className, onQuotationClick }: Pr
         return (
           <article
             key={quotation.id}
-            onClick={onQuotationClick ? () => onQuotationClick(quotation) : undefined}
+            onClick={
+              onQuotationClick ? () => onQuotationClick(quotation) : undefined
+            }
             onKeyDown={
               interactive
                 ? (e) => {
@@ -47,10 +53,13 @@ export function QuotationTableV2({ quotations, className, onQuotationClick }: Pr
             className={cn(
               "bg-card relative flex items-stretch gap-4 overflow-hidden rounded-lg border py-4 pr-3 pl-5 transition duration-300",
               interactive &&
-                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none"
+                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none",
             )}
           >
-            <span className={cn("absolute inset-y-0 left-0 w-1", status.stripe)} aria-hidden />
+            <span
+              className={cn("absolute inset-y-0 left-0 w-1", status.stripe)}
+              aria-hidden
+            />
 
             <div className="flex min-w-fit flex-col items-start justify-between gap-2">
               <span className="bg-muted text-foreground rounded-md px-2 py-1 font-mono text-sm font-bold tracking-tight">
@@ -91,7 +100,11 @@ export function QuotationTableV2({ quotations, className, onQuotationClick }: Pr
               <span onClick={(e) => e.stopPropagation()}>
                 <QuotationActionsMenu
                   quotationRef={quotation.ref}
-                  onView={onQuotationClick ? () => onQuotationClick(quotation) : undefined}
+                  onView={
+                    onQuotationClick
+                      ? () => onQuotationClick(quotation)
+                      : undefined
+                  }
                 />
               </span>
             </div>

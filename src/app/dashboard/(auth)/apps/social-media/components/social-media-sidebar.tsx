@@ -14,7 +14,7 @@ import {
   Settings,
   SettingsIcon,
   Users,
-  X
+  X,
 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -41,7 +41,7 @@ const navItems: NavItem[] = [
   { icon: <Globe />, label: "APIs" },
   { icon: <CreditCard />, label: "Subscription" },
   { icon: <Settings />, label: "Settings" },
-  { icon: <HelpCircle />, label: "Help & Support" }
+  { icon: <HelpCircle />, label: "Help & Support" },
 ];
 
 export function SocialMediaSidebar() {

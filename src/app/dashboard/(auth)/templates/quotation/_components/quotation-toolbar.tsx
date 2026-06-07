@@ -16,13 +16,19 @@ export function QuotationToolbar({ className }: Props) {
 
   return (
     <div
-      className={cn("flex flex-wrap items-center justify-between gap-3 pb-4", className)}
+      className={cn(
+        "flex flex-wrap items-center justify-between gap-3 pb-4",
+        className,
+      )}
       data-slot="quotation-toolbar"
     >
       <div className="flex items-center gap-2">
         <span className="text-muted-foreground text-sm">Status</span>
         {statusActive ? (
-          <Badge variant="default" className="h-7 gap-1 rounded-full py-1 pr-1 pl-3">
+          <Badge
+            variant="default"
+            className="h-7 gap-1 rounded-full py-1 pr-1 pl-3"
+          >
             Sent
             <Button
               variant="ghost"

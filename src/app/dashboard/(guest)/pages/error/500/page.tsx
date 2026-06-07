@@ -5,7 +5,7 @@ export async function generateMetadata() {
     title: "500 Page",
     description:
       "This is an example of a template for 500 error pages. Built with shadcn/ui, Tailwind CSS and Next.js.",
-    canonical: "/pages/error/500"
+    canonical: "/pages/error/500",
   });
 }
 
@@ -20,7 +20,7 @@ export default function Page() {
                 key={i}
                 className="border-1 border-red-600/30"
                 style={{
-                  opacity: Math.random() * 0.5 + 0.5
+                  opacity: Math.random() * 0.5 + 0.5,
                 }}
               />
             ))}
@@ -30,7 +30,9 @@ export default function Page() {
             <div className="mb-4 text-8xl font-black tracking-tighter text-red-600 sm:text-9xl">
               500
             </div>
-            <div className="text-foreground text-xl font-medium sm:text-2xl">Server Error</div>
+            <div className="text-foreground text-xl font-medium sm:text-2xl">
+              Server Error
+            </div>
           </div>
 
           <div className="from-background/80 absolute right-0 bottom-0 left-0 h-1/3 bg-gradient-to-t to-transparent" />

@@ -9,7 +9,7 @@ import {
   HardHat,
   Lightbulb,
   Pencil,
-  Users
+  Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
@@ -25,7 +25,7 @@ const roleIcons: Record<string, LucideIcon> = {
   "Building Surveyer": ClipboardList,
   Developer: Construction,
   Council: HardHat,
-  "Water Authority": Droplets
+  "Water Authority": Droplets,
 };
 
 type Props = {
@@ -39,7 +39,12 @@ export function PreconstructionDetailContacts({ contacts }: Props) {
     <section className="bg-card rounded-2xl border p-5">
       <header className="flex items-center justify-between gap-3">
         <h3 className="text-foreground text-base font-semibold">Contacts</h3>
-        <Button variant="outline" size="icon" className="size-9" aria-label="Edit contacts">
+        <Button
+          variant="outline"
+          size="icon"
+          className="size-9"
+          aria-label="Edit contacts"
+        >
           <Pencil className="size-4" />
         </Button>
       </header>
@@ -52,7 +57,11 @@ export function PreconstructionDetailContacts({ contacts }: Props) {
             : {
                 initial: { opacity: 0, y: 4 },
                 animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.25, delay: index * 0.03, ease: "easeOut" as const }
+                transition: {
+                  duration: 0.25,
+                  delay: index * 0.03,
+                  ease: "easeOut" as const,
+                },
               };
           return (
             <motion.li
@@ -63,7 +72,9 @@ export function PreconstructionDetailContacts({ contacts }: Props) {
               <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
                 <Icon className="size-4" />
               </span>
-              <span className="text-foreground flex-1 text-sm font-medium">{contact.role}</span>
+              <span className="text-foreground flex-1 text-sm font-medium">
+                {contact.role}
+              </span>
               <span className="text-muted-foreground group-hover:text-foreground text-sm transition-all motion-safe:group-hover:-translate-x-0.5">
                 {contact.value}
               </span>

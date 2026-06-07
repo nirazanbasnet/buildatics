@@ -20,14 +20,14 @@ export const quotationStatusConfig: Record<
     label: "Signed",
     solid: "bg-emerald-500 text-white dark:bg-emerald-600",
     dot: "bg-emerald-500",
-    stripe: "bg-emerald-500"
+    stripe: "bg-emerald-500",
   },
   draft: {
     label: "Draft",
     solid: "bg-blue-500 text-white dark:bg-blue-600",
     dot: "bg-blue-500",
-    stripe: "bg-blue-500"
-  }
+    stripe: "bg-blue-500",
+  },
 };
 
 export const quotations: Quotation[] = Array.from({ length: 14 }, (_, i) => ({
@@ -39,5 +39,5 @@ export const quotations: Quotation[] = Array.from({ length: 14 }, (_, i) => ({
   amount: "$ 125,656",
   quoteDate: "May 20 2026",
   expiryDate: "May 20 2026",
-  status: i % 2 === 0 ? "signed" : "draft"
+  status: i % 2 === 0 ? "signed" : "draft",
 }));

@@ -2,11 +2,24 @@
 
 import Link from "next/link";
 import { generateAvatarFallback } from "@/lib/utils";
-import { Dribbble, Facebook, FileText, Instagram, Linkedin, SheetIcon, X } from "lucide-react";
+import {
+  Dribbble,
+  Facebook,
+  FileText,
+  Instagram,
+  Linkedin,
+  SheetIcon,
+  X,
+} from "lucide-react";
 import useChatStore from "../useChatStore";
 import { UserPropsTypes } from "../types";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -23,7 +36,9 @@ export function UserDetailSheet({ user }: { user: UserPropsTypes }) {
         <div className="overflow-y-auto px-4">
           <div className="my-4 flex flex-col items-center justify-end">
             <Avatar className="mb-4 size-28">
-              {user.avatar && <AvatarImage src={user.avatar} alt="avatar image" />}
+              {user.avatar && (
+                <AvatarImage src={user.avatar} alt="avatar image" />
+              )}
               <AvatarFallback className="text-2xl">
                 {generateAvatarFallback(user.name)}
               </AvatarFallback>
@@ -128,7 +143,9 @@ export function UserDetailSheet({ user }: { user: UserPropsTypes }) {
             )}
             {user.social_links?.length && (
               <div className="space-y-3 py-4">
-                <h5 className="text-xs font-semibold uppercase">Social Links</h5>
+                <h5 className="text-xs font-semibold uppercase">
+                  Social Links
+                </h5>
                 <div className="flex flex-wrap items-center gap-2 *:shrink-0">
                   {user.social_links.map((item, key) => (
                     <Button

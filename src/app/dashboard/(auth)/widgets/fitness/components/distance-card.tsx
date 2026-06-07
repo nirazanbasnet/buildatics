@@ -1,6 +1,12 @@
 import { Navigation, ArrowRight } from "lucide-react";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 
@@ -8,7 +14,9 @@ export function DistanceCard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-muted-foreground text-sm font-medium">Distance</CardTitle>
+        <CardTitle className="text-muted-foreground text-sm font-medium">
+          Distance
+        </CardTitle>
         <CardAction>
           <Navigation className="size-4 text-blue-500" />
         </CardAction>

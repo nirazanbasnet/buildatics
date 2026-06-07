@@ -8,34 +8,40 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 const chartData = [
   { browser: "new", tickets: 40, fill: "var(--color-new)" },
-  { browser: "open", tickets: 25, fill: "var(--color-open)" }
+  { browser: "open", tickets: 25, fill: "var(--color-open)" },
 ];
 
 const chartConfig = {
   new: {
     label: "New Tickets",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   open: {
     label: "Open Tickets",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function TicketsCard() {
   return (
     <Card className="h-full">
       <CardContent>
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[270px]">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[270px]"
+        >
           <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <Pie
               data={chartData}
               dataKey="tickets"
@@ -83,7 +89,9 @@ export function TicketsCard() {
           </div>
           <div className="flex flex-1 flex-row justify-between md:flex-col md:justify-normal">
             <div className="text-sm">New Tickets</div>
-            <div className="text-muted-foreground ms-auto text-sm md:ms-0">40</div>
+            <div className="text-muted-foreground ms-auto text-sm md:ms-0">
+              40
+            </div>
           </div>
         </div>
         <div className="flex w-full items-center gap-3">
@@ -92,7 +100,9 @@ export function TicketsCard() {
           </div>
           <div className="flex flex-1 flex-row justify-between md:flex-col md:justify-normal">
             <div className="text-sm">Open Tickets</div>
-            <div className="text-muted-foreground ms-auto text-sm md:ms-0">25</div>
+            <div className="text-muted-foreground ms-auto text-sm md:ms-0">
+              25
+            </div>
           </div>
         </div>
         <div className="flex w-full items-center gap-3">
@@ -101,7 +111,9 @@ export function TicketsCard() {
           </div>
           <div className="flex flex-1 flex-row justify-between md:flex-col md:justify-normal">
             <div className="text-sm">Response Time</div>
-            <div className="text-muted-foreground ms-auto text-sm md:ms-0">1 Day</div>
+            <div className="text-muted-foreground ms-auto text-sm md:ms-0">
+              1 Day
+            </div>
           </div>
         </div>
       </CardFooter>

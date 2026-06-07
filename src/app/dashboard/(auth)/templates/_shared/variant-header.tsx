@@ -35,9 +35,10 @@ export function VariantHeader({
   action,
   variants,
   activeVariant,
-  promotedVariant
+  promotedVariant,
 }: Props) {
-  const isActivePromoted = activeVariant !== undefined && activeVariant === promotedVariant;
+  const isActivePromoted =
+    activeVariant !== undefined && activeVariant === promotedVariant;
 
   return (
     <div className="border-border bg-muted/40 mb-4 flex flex-wrap items-center justify-between gap-3 rounded-md border p-2 px-3">
@@ -78,7 +79,9 @@ export function VariantHeader({
                       <Check
                         className={cn(
                           "size-3",
-                          isActive ? "text-primary-foreground" : "text-emerald-500"
+                          isActive
+                            ? "text-primary-foreground"
+                            : "text-emerald-500",
                         )}
                       />
                     ) : null}

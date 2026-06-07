@@ -12,7 +12,7 @@ export async function getTeamMembers(): Promise<TeamMemberRow[]> {
   const staff = await apiFetch<StaffRes[]>("/api/Staff/All", {
     method: "POST",
     auth: true,
-    body: {}
+    body: {},
   });
   return (staff ?? []).map(mapStaffToRow);
 }
@@ -27,10 +27,14 @@ export async function getRoleOptions(): Promise<RoleOption[]> {
     const res = await apiFetch<DesignationResPage>("/api/Designations/Page", {
       method: "POST",
       auth: true,
-      body: { pageNumber, pageSize: ROLES_PAGE_SIZE }
+      body: { pageNumber, pageSize: ROLES_PAGE_SIZE },
     });
     const items = res.items ?? [];
-    roles.push(...items.map((d) => ({ id: d.id ?? "", name: d.name ?? "—" })).filter((r) => r.id));
+    roles.push(
+      ...items
+        .map((d) => ({ id: d.id ?? "", name: d.name ?? "—" }))
+        .filter((r) => r.id),
+    );
 
     const total = res.totalCount ?? roles.length;
     if (roles.length >= total || items.length < ROLES_PAGE_SIZE) break;

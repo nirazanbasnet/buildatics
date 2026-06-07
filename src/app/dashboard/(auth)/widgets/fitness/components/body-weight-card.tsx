@@ -6,7 +6,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -15,13 +15,13 @@ const chartData = [
   { month: "March", weight: 70 },
   { month: "April", weight: 45 },
   { month: "May", weight: 68 },
-  { month: "June", weight: 57 }
+  { month: "June", weight: 57 },
 ];
 const chartConfig = {
   weight: {
     label: "Weight",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export function BodyWeightCard() {
@@ -38,13 +38,16 @@ export function BodyWeightCard() {
         <p className="text-sm text-white/80">72 kg target</p>
       </CardHeader>
       <CardContent className="relative">
-        <ChartContainer config={chartConfig} className="aspect-square h-[200px] w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-square h-[200px] w-full"
+        >
           <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
               left: 5,
-              right: 5
+              right: 5,
             }}
           >
             <CartesianGrid stroke="var(--color-slate-600)" vertical={false} />
@@ -55,16 +58,19 @@ export function BodyWeightCard() {
               tickMargin={8}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <Line
               dataKey="weight"
               type="natural"
               stroke="var(--color-amber-300)"
               dot={{
-                fill: "var(--color-slate-600)"
+                fill: "var(--color-slate-600)",
               }}
               activeDot={{
-                r: 6
+                r: 6,
               }}
             />
           </LineChart>

@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Connect with users, share updates, and interact with social feeds using a modern multi-column layout featuring stories and interactive posts. A professional social media app built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/social-media"
+    canonical: "/apps/social-media",
   });
 }
 

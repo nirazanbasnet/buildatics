@@ -10,11 +10,15 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionProgress } from "@src/components/ui/motion-progress";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
 import { leadStatusLabels, type Lead } from "../_data";
@@ -25,7 +29,14 @@ type Props = {
   onLeadClick?: (lead: Lead) => void;
 };
 
-type SortField = "leadNo" | "address" | "status" | "stage" | "budget" | "client" | "progress";
+type SortField =
+  | "leadNo"
+  | "address"
+  | "status"
+  | "stage"
+  | "budget"
+  | "client"
+  | "progress";
 
 const ACCESSORS: Record<SortField, (lead: Lead) => string | number> = {
   leadNo: (l) => l.leadNo,
@@ -34,15 +45,22 @@ const ACCESSORS: Record<SortField, (lead: Lead) => string | number> = {
   stage: (l) => l.stage,
   budget: (l) => l.budget,
   client: (l) => l.client,
-  progress: (l) => l.progress
+  progress: (l) => l.progress,
 };
 
 export function LeadsTable({ leads, className, onLeadClick }: Props) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [sort, toggleSort] = useSortState<SortField>({ field: "leadNo", direction: "asc" });
-  const sortedLeads = useMemo(() => sortBy(leads, sort, ACCESSORS), [leads, sort]);
+  const [sort, toggleSort] = useSortState<SortField>({
+    field: "leadNo",
+    direction: "asc",
+  });
+  const sortedLeads = useMemo(
+    () => sortBy(leads, sort, ACCESSORS),
+    [leads, sort],
+  );
 
-  const allSelected = sortedLeads.length > 0 && selected.size === sortedLeads.length;
+  const allSelected =
+    sortedLeads.length > 0 && selected.size === sortedLeads.length;
   const someSelected = selected.size > 0 && selected.size < sortedLeads.length;
 
   function toggleAll(value: boolean) {
@@ -59,13 +77,20 @@ export function LeadsTable({ leads, className, onLeadClick }: Props) {
   }
 
   return (
-    <div className={cn("bg-card h-full overflow-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "bg-card h-full overflow-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="w-12 pl-4">
               <Checkbox
-                checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
                 onCheckedChange={(v) => toggleAll(v === true)}
                 aria-label="Select all leads"
               />
@@ -88,7 +113,12 @@ export function LeadsTable({ leads, className, onLeadClick }: Props) {
             <SortableTableHead field="client" sort={sort} onSort={toggleSort}>
               Client
             </SortableTableHead>
-            <SortableTableHead field="progress" sort={sort} onSort={toggleSort} className="pr-4">
+            <SortableTableHead
+              field="progress"
+              sort={sort}
+              onSort={toggleSort}
+              className="pr-4"
+            >
               Progress
             </SortableTableHead>
           </TableRow>
@@ -103,7 +133,10 @@ export function LeadsTable({ leads, className, onLeadClick }: Props) {
                 onClick={onLeadClick ? () => onLeadClick(lead) : undefined}
                 className={onLeadClick ? "cursor-pointer" : undefined}
               >
-                <TableCell className="py-3 pl-4" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="py-3 pl-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Checkbox
                     checked={isChecked}
                     onCheckedChange={(v) => toggleOne(lead.id, v === true)}
@@ -126,9 +159,15 @@ export function LeadsTable({ leads, className, onLeadClick }: Props) {
                     {leadStatusLabels[lead.status]}
                   </span>
                 </TableCell>
-                <TableCell className="text-foreground font-medium">{lead.stage}</TableCell>
-                <TableCell className="text-muted-foreground">{lead.budget}</TableCell>
-                <TableCell className="text-muted-foreground">{lead.client}</TableCell>
+                <TableCell className="text-foreground font-medium">
+                  {lead.stage}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {lead.budget}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {lead.client}
+                </TableCell>
                 <TableCell className="pr-4">
                   <MotionProgress value={lead.progress} index={index} />
                 </TableCell>

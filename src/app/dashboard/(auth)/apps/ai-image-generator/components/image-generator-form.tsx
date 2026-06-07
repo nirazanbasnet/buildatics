@@ -8,7 +8,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -39,7 +39,7 @@ const styles = [
   "Photographic",
   "Illustration",
   "Abstract",
-  "Vintage"
+  "Vintage",
 ];
 
 const aspectRatios = [
@@ -47,7 +47,7 @@ const aspectRatios = [
   { value: "16:9", label: "Landscape (16:9)" },
   { value: "9:16", label: "Portrait (9:16)" },
   { value: "4:3", label: "Classic (4:3)" },
-  { value: "3:2", label: "Photo (3:2)" }
+  { value: "3:2", label: "Photo (3:2)" },
 ];
 
 const qualities = ["Standard", "High", "Ultra"];
@@ -56,10 +56,13 @@ const quickPrompts = [
   { label: "Futuristic City", icon: Sparkles },
   { label: "Fantasy Dragon", icon: Palette },
   { label: "Abstract Art", icon: Image },
-  { label: "Nature Scene", icon: Wand2 }
+  { label: "Nature Scene", icon: Wand2 },
 ];
 
-function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) {
+function CardFormContent({
+  onGenerate,
+  isGenerating,
+}: ImageGeneratorFormProps) {
   const [formData, setFormData] = useState<GenerationParams>({
     prompt: "",
     negativePrompt: "",
@@ -67,7 +70,7 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
     aspectRatio: "1:1",
     quality: "Standard",
     count: 2,
-    seed: ""
+    seed: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -93,7 +96,9 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             id="prompt"
             placeholder="Describe the image you want to generate..."
             value={formData.prompt}
-            onChange={(e) => setFormData((prev) => ({ ...prev, prompt: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, prompt: e.target.value }))
+            }
             className="min-h-[100px]"
           />
           <p className="text-muted-foreground text-xs">
@@ -108,7 +113,12 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             id="negative-prompt"
             placeholder="What you don't want in the image..."
             value={formData.negativePrompt}
-            onChange={(e) => setFormData((prev) => ({ ...prev, negativePrompt: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                negativePrompt: e.target.value,
+              }))
+            }
             className="min-h-[80px] resize-none"
           />
         </div>
@@ -119,7 +129,9 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             <Label>Style</Label>
             <Select
               value={formData.style}
-              onValueChange={(value) => setFormData((prev) => ({ ...prev, style: value }))}
+              onValueChange={(value) =>
+                setFormData((prev) => ({ ...prev, style: value }))
+              }
             >
               <SelectTrigger className="w-full">
                 <SelectValue />
@@ -138,7 +150,9 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             <Label>Aspect Ratio</Label>
             <Select
               value={formData.aspectRatio}
-              onValueChange={(value) => setFormData((prev) => ({ ...prev, aspectRatio: value }))}
+              onValueChange={(value) =>
+                setFormData((prev) => ({ ...prev, aspectRatio: value }))
+              }
             >
               <SelectTrigger className="w-full">
                 <SelectValue />
@@ -160,7 +174,9 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             <Label>Quality</Label>
             <Select
               value={formData.quality}
-              onValueChange={(value) => setFormData((prev) => ({ ...prev, quality: value }))}
+              onValueChange={(value) =>
+                setFormData((prev) => ({ ...prev, quality: value }))
+              }
             >
               <SelectTrigger className="w-full">
                 <SelectValue />
@@ -204,12 +220,19 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
             id="seed"
             placeholder="Random seed for reproducibility"
             value={formData.seed}
-            onChange={(e) => setFormData((prev) => ({ ...prev, seed: e.target.value }))}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, seed: e.target.value }))
+            }
           />
         </div>
 
         {/* Generate Button */}
-        <Button type="submit" size="lg" className="w-full" disabled={isGenerating}>
+        <Button
+          type="submit"
+          size="lg"
+          className="w-full"
+          disabled={isGenerating}
+        >
           {isGenerating ? (
             <>
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
@@ -251,7 +274,7 @@ function CardFormContent({ onGenerate, isGenerating }: ImageGeneratorFormProps) 
 
 export const ImageGeneratorForm: React.FC<ImageGeneratorFormProps> = ({
   onGenerate,
-  isGenerating
+  isGenerating,
 }) => {
   return (
     <>
@@ -259,7 +282,10 @@ export const ImageGeneratorForm: React.FC<ImageGeneratorFormProps> = ({
       <ScrollArea className="hidden h-full min-h-0 lg:block">
         <Card>
           <CardContent className="space-y-6">
-            <CardFormContent onGenerate={onGenerate} isGenerating={isGenerating} />
+            <CardFormContent
+              onGenerate={onGenerate}
+              isGenerating={isGenerating}
+            />
           </CardContent>
         </Card>
       </ScrollArea>

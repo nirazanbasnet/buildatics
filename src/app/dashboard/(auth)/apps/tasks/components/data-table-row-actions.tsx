@@ -15,7 +15,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { labels } from "../data/data";
@@ -25,13 +25,19 @@ interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
 }
 
-export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {
   const task = taskSchema.parse(row.original);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="data-[state=open]:bg-muted size-8">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="data-[state=open]:bg-muted size-8"
+        >
           <MoreHorizontal />
           <span className="sr-only">Open menu</span>
         </Button>

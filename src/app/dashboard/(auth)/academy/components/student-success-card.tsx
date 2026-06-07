@@ -15,7 +15,7 @@ export function StudentSuccessCard({
   currentSuccessRate = 86,
   previousSuccessRate = 82,
   totalStudents = 1250,
-  passingStudents = 1075
+  passingStudents = 1075,
 }: StudentSuccessCardProps) {
   const successRateChange = currentSuccessRate - previousSuccessRate;
   const isPositiveChange = successRateChange >= 0;
@@ -28,7 +28,9 @@ export function StudentSuccessCard({
       </CardHeader>
       <CardContent className="space-y-8 lg:space-y-6">
         <div className="flex items-center justify-between">
-          <span className="font-display text-3xl lg:text-4xl">{currentSuccessRate}%</span>
+          <span className="font-display text-3xl lg:text-4xl">
+            {currentSuccessRate}%
+          </span>
           <div
             className={`flex items-center text-sm ${isPositiveChange ? "text-green-600" : "text-red-600"}`}
           >

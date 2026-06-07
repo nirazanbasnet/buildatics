@@ -6,16 +6,22 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Card, CardHeader, CardTitle, CardContent, CardAction } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardAction,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {} from "@/components/ui/dropdown-menu";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { FolderUp } from "lucide-react";
 
@@ -26,22 +32,22 @@ const chartData = [
   { month: "April", received: 73, send: 230, withdraw: 120 },
   { month: "May", received: 209, send: 130, withdraw: 125 },
   { month: "June", received: 214, send: 140, withdraw: 270 },
-  { month: "July", received: 144, send: 170, withdraw: 240 }
+  { month: "July", received: 144, send: 170, withdraw: 240 },
 ];
 
 const chartConfig = {
   received: {
     label: "Total Received",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   send: {
     label: "Total Send",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   withdraw: {
     label: "Total Withdraw",
-    color: "var(--chart-3)"
-  }
+    color: "var(--chart-3)",
+  },
 } satisfies ChartConfig;
 
 export function BalanceSummeryChart() {
@@ -93,7 +99,7 @@ export function BalanceSummeryChart() {
             data={chartData}
             margin={{
               left: 12,
-              right: 12
+              right: 12,
             }}
           >
             <CartesianGrid vertical={false} />

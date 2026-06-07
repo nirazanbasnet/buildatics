@@ -16,13 +16,18 @@ export function CourseContent({ data }: CourseContentProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const previewLength = 200;
   const shouldTruncate = about.length > previewLength;
-  const displayText = isExpanded || !shouldTruncate ? about : `${about.slice(0, previewLength)}...`;
+  const displayText =
+    isExpanded || !shouldTruncate
+      ? about
+      : `${about.slice(0, previewLength)}...`;
 
   return (
     <div className="space-y-6">
       <section>
         <h2 className="mb-3 text-lg font-semibold">About This Course</h2>
-        <p className="text-muted-foreground leading-relaxed whitespace-pre-line">{displayText}</p>
+        <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+          {displayText}
+        </p>
         {shouldTruncate && (
           <Button
             variant="ghost"

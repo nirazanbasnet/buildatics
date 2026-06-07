@@ -7,7 +7,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Area, AreaChart, XAxis, YAxis } from "recharts";
 
@@ -18,7 +18,7 @@ const weeklyData = [
   { label: "Thu", revenue: 70, visit: 55 },
   { label: "Fri", revenue: 65, visit: 48 },
   { label: "Sat", revenue: 58, visit: 42 },
-  { label: "Sun", revenue: 60, visit: 50 }
+  { label: "Sun", revenue: 60, visit: 50 },
 ];
 
 const monthlyData = [
@@ -33,7 +33,7 @@ const monthlyData = [
   { label: "Sep", revenue: 62, visit: 48 },
   { label: "Oct", revenue: 66, visit: 51 },
   { label: "Nov", revenue: 65, visit: 50 },
-  { label: "Dec", revenue: 69, visit: 54 }
+  { label: "Dec", revenue: 69, visit: 54 },
 ];
 
 const yearlyData = [
@@ -43,28 +43,30 @@ const yearlyData = [
   { label: "2022", revenue: 68, visit: 52 },
   { label: "2023", revenue: 78, visit: 62 },
   { label: "2024", revenue: 85, visit: 70 },
-  { label: "2025", revenue: 92, visit: 78 }
+  { label: "2025", revenue: 92, visit: 78 },
 ];
 
 const dataByPeriod = {
   weekly: weeklyData,
   monthly: monthlyData,
-  yearly: yearlyData
+  yearly: yearlyData,
 };
 
 const chartConfig = {
   revenue: {
     label: "Revenue",
-    color: "var(--primary)"
+    color: "var(--primary)",
   },
   visit: {
     label: "Visit",
-    color: "var(--muted-foreground)"
-  }
+    color: "var(--muted-foreground)",
+  },
 } satisfies ChartConfig;
 
 export function PerformanceChart() {
-  const [period, setPeriod] = useState<"weekly" | "monthly" | "yearly">("monthly");
+  const [period, setPeriod] = useState<"weekly" | "monthly" | "yearly">(
+    "monthly",
+  );
   const chartPoints = dataByPeriod[period];
 
   return (
@@ -85,7 +87,9 @@ export function PerformanceChart() {
         </div>
         <Tabs
           value={period}
-          onValueChange={(value) => setPeriod(value as "weekly" | "monthly" | "yearly")}
+          onValueChange={(value) =>
+            setPeriod(value as "weekly" | "monthly" | "yearly")
+          }
         >
           <TabsList>
             <TabsTrigger value="weekly">W</TabsTrigger>
@@ -96,15 +100,34 @@ export function PerformanceChart() {
       </CardHeader>
       <CardContent>
         <div className="relative">
-          <ChartContainer config={chartConfig} className="aspect-video w-full lg:h-[240px]">
-            <AreaChart data={chartPoints} margin={{ top: 12, right: 0, left: -30, bottom: 0 }}>
+          <ChartContainer
+            config={chartConfig}
+            className="aspect-video w-full lg:h-[240px]"
+          >
+            <AreaChart
+              data={chartPoints}
+              margin={{ top: 12, right: 0, left: -30, bottom: 0 }}
+            >
               <defs>
                 <linearGradient id="fillRevenue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
+                  <stop
+                    offset="5%"
+                    stopColor="var(--primary)"
+                    stopOpacity={0.3}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--primary)"
+                    stopOpacity={0}
+                  />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="label" tickLine={false} axisLine={false} tickMargin={8} />
+              <XAxis
+                dataKey="label"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+              />
               <YAxis tickLine={false} axisLine={false} tickMargin={8} />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Area

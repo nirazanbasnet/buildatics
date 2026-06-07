@@ -12,22 +12,22 @@ const data = [
     value: "$34.1K",
     change: "+6.1%",
     changeType: "positive",
-    href: "#"
+    href: "#",
   },
   {
     name: "Users",
     value: "500.1K",
     change: "+19.2%",
     changeType: "positive",
-    href: "#"
+    href: "#",
   },
   {
     name: "User growth",
     value: "11.3%",
     change: "-1.2%",
     changeType: "negative",
-    href: "#"
-  }
+    href: "#",
+  },
 ];
 
 export default function StatCards() {
@@ -38,19 +38,23 @@ export default function StatCards() {
           <Card key={item.name} className="py-0">
             <CardContent className="space-y-4 p-6">
               <div className="flex items-start justify-between space-x-2">
-                <span className="text-muted-foreground truncate text-sm">{item.name}</span>
+                <span className="text-muted-foreground truncate text-sm">
+                  {item.name}
+                </span>
                 <span
                   className={cn(
                     "text-sm font-medium",
                     item.changeType === "positive"
                       ? "text-emerald-700 dark:text-emerald-500"
-                      : "text-red-700 dark:text-red-500"
+                      : "text-red-700 dark:text-red-500",
                   )}
                 >
                   {item.change}
                 </span>
               </div>
-              <dd className="text-foreground mt-1 text-3xl font-semibold">{item.value}</dd>
+              <dd className="text-foreground mt-1 text-3xl font-semibold">
+                {item.value}
+              </dd>
             </CardContent>
             <CardFooter className="border-border flex justify-end border-t p-0!">
               <Link

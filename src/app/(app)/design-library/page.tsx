@@ -7,7 +7,7 @@ export function generateMetadata() {
   return generateMeta({
     title: "Design Library",
     description: "Browse the design library of house plans and facades.",
-    canonical: "/design-library"
+    canonical: "/design-library",
   });
 }
 

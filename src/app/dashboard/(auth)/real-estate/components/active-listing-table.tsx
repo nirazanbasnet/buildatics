@@ -1,9 +1,24 @@
 "use client";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from "@/components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarGroup,
+  AvatarImage,
+} from "@/components/ui/avatar";
 import { Search } from "lucide-react";
 import {
   Table,
@@ -11,7 +26,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
 import type { ActiveListingRow } from "../types";
@@ -20,10 +35,13 @@ interface ActiveListingTableProps {
   items: ActiveListingRow[];
 }
 
-const statusVariant: Record<ActiveListingRow["status"], "default" | "secondary" | "destructive"> = {
+const statusVariant: Record<
+  ActiveListingRow["status"],
+  "default" | "secondary" | "destructive"
+> = {
   Occupied: "default",
   Available: "secondary",
-  "Sold Out": "destructive"
+  "Sold Out": "destructive",
 };
 
 export function ActiveListingTable({ items }: ActiveListingTableProps) {
@@ -31,7 +49,9 @@ export function ActiveListingTable({ items }: ActiveListingTableProps) {
   const q = search.toLowerCase();
 
   const filteredItems = items.filter(
-    (item) => item.property.toLowerCase().includes(q) || item.location.toLowerCase().includes(q)
+    (item) =>
+      item.property.toLowerCase().includes(q) ||
+      item.location.toLowerCase().includes(q),
   );
 
   return (
@@ -66,7 +86,10 @@ export function ActiveListingTable({ items }: ActiveListingTableProps) {
           <TableBody>
             {filteredItems.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-muted-foreground h-24 text-center">
+                <TableCell
+                  colSpan={7}
+                  className="text-muted-foreground h-24 text-center"
+                >
                   {items.length === 0
                     ? "No active listings yet."
                     : "No listings match your search."}
@@ -86,7 +109,10 @@ export function ActiveListingTable({ items }: ActiveListingTableProps) {
                         <p className="font-semibold" title={item.property}>
                           {item.property}
                         </p>
-                        <p className="text-muted-foreground text-sm" title={item.location}>
+                        <p
+                          className="text-muted-foreground text-sm"
+                          title={item.location}
+                        >
                           {item.location}
                         </p>
                       </div>
@@ -104,7 +130,9 @@ export function ActiveListingTable({ items }: ActiveListingTableProps) {
                           </Avatar>
                         ))}
                       </AvatarGroup>
-                      <span className="text-muted-foreground text-xs">+{item.leads.count}</span>
+                      <span className="text-muted-foreground text-xs">
+                        +{item.leads.count}
+                      </span>
                     </div>
                   </TableCell>
                   <TableCell>{item.views}</TableCell>

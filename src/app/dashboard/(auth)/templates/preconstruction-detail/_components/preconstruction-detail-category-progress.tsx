@@ -5,23 +5,28 @@ import { motion, useReducedMotion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
-import type { PreconstructionCategory, PreconstructionCategoryStatus } from "../_data";
+import type {
+  PreconstructionCategory,
+  PreconstructionCategoryStatus,
+} from "../_data";
 
-const statusStyles: Record<PreconstructionCategoryStatus, { wrapper: string; icon: typeof Check }> =
-  {
-    done: {
-      wrapper: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400",
-      icon: Check
-    },
-    "in-progress": {
-      wrapper: "bg-blue-500/15 text-blue-600 dark:text-blue-400",
-      icon: MoreHorizontal
-    },
-    pending: {
-      wrapper: "bg-orange-500/15 text-orange-600 dark:text-orange-400",
-      icon: MinusCircle
-    }
-  };
+const statusStyles: Record<
+  PreconstructionCategoryStatus,
+  { wrapper: string; icon: typeof Check }
+> = {
+  done: {
+    wrapper: "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400",
+    icon: Check,
+  },
+  "in-progress": {
+    wrapper: "bg-blue-500/15 text-blue-600 dark:text-blue-400",
+    icon: MoreHorizontal,
+  },
+  pending: {
+    wrapper: "bg-orange-500/15 text-orange-600 dark:text-orange-400",
+    icon: MinusCircle,
+  },
+};
 
 type Props = {
   categories: PreconstructionCategory[];
@@ -32,7 +37,9 @@ export function PreconstructionDetailCategoryProgress({ categories }: Props) {
 
   return (
     <section className="bg-card rounded-2xl border p-5">
-      <h3 className="text-foreground text-base font-semibold">Category Progress</h3>
+      <h3 className="text-foreground text-base font-semibold">
+        Category Progress
+      </h3>
       <ul className="mt-4 flex flex-col gap-3">
         {categories.map((category, index) => {
           const { wrapper, icon: Icon } = statusStyles[category.status];
@@ -41,7 +48,11 @@ export function PreconstructionDetailCategoryProgress({ categories }: Props) {
             : {
                 initial: { opacity: 0, y: 4 },
                 animate: { opacity: 1, y: 0 },
-                transition: { duration: 0.25, delay: index * 0.03, ease: "easeOut" as const }
+                transition: {
+                  duration: 0.25,
+                  delay: index * 0.03,
+                  ease: "easeOut" as const,
+                },
               };
           return (
             <motion.li
@@ -52,12 +63,14 @@ export function PreconstructionDetailCategoryProgress({ categories }: Props) {
               <span
                 className={cn(
                   "flex size-7 shrink-0 items-center justify-center rounded-full",
-                  wrapper
+                  wrapper,
                 )}
               >
                 <Icon className="size-4" />
               </span>
-              <span className="text-foreground flex-1 text-sm font-medium">{category.label}</span>
+              <span className="text-foreground flex-1 text-sm font-medium">
+                {category.label}
+              </span>
               <span className="text-muted-foreground group-hover:text-foreground text-sm tabular-nums transition-all motion-safe:group-hover:-translate-x-0.5">
                 {category.completed}/{category.total}
               </span>

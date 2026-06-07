@@ -2,7 +2,10 @@ import { MapPin } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import { preconstructionListStatusLabels, type PreconstructionListProject } from "../_data";
+import {
+  preconstructionListStatusLabels,
+  type PreconstructionListProject,
+} from "../_data";
 
 type Props = {
   projects: PreconstructionListProject[];
@@ -13,11 +16,18 @@ type Props = {
 function ProgressRing({ value }: { value: number }) {
   const radius = 18;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (Math.min(100, Math.max(0, value)) / 100) * circumference;
+  const offset =
+    circumference - (Math.min(100, Math.max(0, value)) / 100) * circumference;
   return (
     <div className="relative size-12 shrink-0">
       <svg className="size-12 -rotate-90" viewBox="0 0 44 44">
-        <circle cx="22" cy="22" r={radius} className="stroke-muted fill-none" strokeWidth="4" />
+        <circle
+          cx="22"
+          cy="22"
+          r={radius}
+          className="stroke-muted fill-none"
+          strokeWidth="4"
+        />
         <circle
           cx="22"
           cy="22"
@@ -47,7 +57,11 @@ function MetaCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function PreconstructionListTableV2({ projects, className, onProjectClick }: Props) {
+export function PreconstructionListTableV2({
+  projects,
+  className,
+  onProjectClick,
+}: Props) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       {projects.map((project) => {
@@ -71,7 +85,7 @@ export function PreconstructionListTableV2({ projects, className, onProjectClick
             className={cn(
               "bg-card hover:bg-muted/30 flex items-stretch gap-4 rounded-lg border p-4 transition-colors",
               interactive &&
-                "focus-visible:ring-ring cursor-pointer focus-visible:ring-2 focus-visible:outline-none"
+                "focus-visible:ring-ring cursor-pointer focus-visible:ring-2 focus-visible:outline-none",
             )}
           >
             <div className="flex min-w-fit flex-col items-start justify-between gap-2">
@@ -87,7 +101,9 @@ export function PreconstructionListTableV2({ projects, className, onProjectClick
             <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
               <div className="flex items-center gap-1.5 text-sm">
                 <MapPin className="text-muted-foreground size-4 shrink-0" />
-                <span className="text-foreground truncate">{project.address}</span>
+                <span className="text-foreground truncate">
+                  {project.address}
+                </span>
               </div>
               <dl className="grid grid-cols-3 gap-x-4">
                 <MetaCell label="Stage" value={project.stage} />

@@ -25,7 +25,7 @@ export function SegmentedNav<T extends string>({
   value,
   onValueChange,
   ariaLabel,
-  className
+  className,
 }: Props<T>) {
   const layoutId = useId();
 
@@ -37,7 +37,7 @@ export function SegmentedNav<T extends string>({
       data-slot="segmented-nav"
       className={cn(
         "border-border inline-flex w-full shrink-0 items-center overflow-hidden rounded-md border",
-        className
+        className,
       )}
     >
       {items.map((item) => {
@@ -56,14 +56,18 @@ export function SegmentedNav<T extends string>({
               "focus-visible:ring-ring border-border relative flex flex-1 items-center justify-center gap-2 border-r px-4 py-2.5 text-sm font-medium whitespace-nowrap transition-colors last:border-r-0 focus-visible:ring-2 focus-visible:outline-none",
               isActive
                 ? "text-primary-foreground"
-                : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
           >
             {isActive ? (
               <motion.span
                 layoutId={layoutId}
                 className="bg-primary absolute inset-0 z-0"
-                transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                transition={{
+                  type: "tween",
+                  duration: 0.35,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 aria-hidden
               />
             ) : null}

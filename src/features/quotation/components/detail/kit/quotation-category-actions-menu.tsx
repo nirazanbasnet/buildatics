@@ -8,7 +8,7 @@ import {
   MoreVertical,
   Pencil,
   Plus,
-  Trash2
+  Trash2,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ export function QuotationCategoryActionsMenu({
   onMoveUp,
   onMoveDown,
   onDelete,
-  className
+  className,
 }: Props) {
   return (
     <DropdownMenu>

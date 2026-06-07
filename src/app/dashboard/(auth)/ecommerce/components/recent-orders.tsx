@@ -12,9 +12,15 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronLeft, ChevronRight, FolderUp, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  ChevronLeft,
+  ChevronRight,
+  FolderUp,
+  MoreHorizontal,
+} from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +28,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -30,9 +36,15 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -55,194 +67,194 @@ const orders: Order[] = [
     id: 1023,
     customer: {
       name: "Theodore Bell",
-      image: `https://i.pravatar.cc/150?img=1`
+      image: `https://i.pravatar.cc/150?img=1`,
     },
     product: {
-      name: "Tire Doodad"
+      name: "Tire Doodad",
     },
     amount: 300,
-    status: "processing"
+    status: "processing",
   },
   {
     id: 2045,
     customer: {
       name: "Amelia Grant",
-      image: `https://i.pravatar.cc/150?img=2`
+      image: `https://i.pravatar.cc/150?img=2`,
     },
     product: {
-      name: "Engine Kit"
+      name: "Engine Kit",
     },
     amount: 450,
-    status: "paid"
+    status: "paid",
   },
   {
     id: 3067,
     customer: {
       name: "Eleanor Ward",
-      image: `/imageshttps://i.pravatar.cc/150?img=3`
+      image: `/imageshttps://i.pravatar.cc/150?img=3`,
     },
     product: {
-      name: "Brake Pad"
+      name: "Brake Pad",
     },
     amount: 200,
-    status: "success"
+    status: "success",
   },
   {
     id: 4089,
     customer: {
       name: "Henry Carter",
-      image: `https://i.pravatar.cc/150?img=4`
+      image: `https://i.pravatar.cc/150?img=4`,
     },
     product: {
-      name: "Fuel Pump"
+      name: "Fuel Pump",
     },
     amount: 500,
-    status: "processing"
+    status: "processing",
   },
   {
     id: 5102,
     customer: {
       name: "Olivia Harris",
-      image: `https://i.pravatar.cc/150?img=5`
+      image: `https://i.pravatar.cc/150?img=5`,
     },
     product: {
-      name: "Steering Wheel"
+      name: "Steering Wheel",
     },
     amount: 350,
-    status: "failed"
+    status: "failed",
   },
   {
     id: 6123,
     customer: {
       name: "James Robinson",
-      image: `https://i.pravatar.cc/150?img=6`
+      image: `https://i.pravatar.cc/150?img=6`,
     },
     product: {
-      name: "Air Filter"
+      name: "Air Filter",
     },
     amount: 180,
-    status: "paid"
+    status: "paid",
   },
   {
     id: 7145,
     customer: {
       name: "Sophia Martinez",
-      image: `https://i.pravatar.cc/150?img=7`
+      image: `https://i.pravatar.cc/150?img=7`,
     },
     product: {
-      name: "Oil Filter"
+      name: "Oil Filter",
     },
     amount: 220,
-    status: "success"
+    status: "success",
   },
   {
     id: 8167,
     customer: {
       name: "Liam Thompson",
-      image: `https://i.pravatar.cc/150?img=8`
+      image: `https://i.pravatar.cc/150?img=8`,
     },
     product: {
-      name: "Radiator Cap"
+      name: "Radiator Cap",
     },
     amount: 290,
-    status: "processing"
+    status: "processing",
   },
   {
     id: 9189,
     customer: {
       name: "Emma Wilson",
-      image: `https://i.pravatar.cc/150?img=9`
+      image: `https://i.pravatar.cc/150?img=9`,
     },
     product: {
-      name: "Spark Plug"
+      name: "Spark Plug",
     },
     amount: 150,
-    status: "success"
+    status: "success",
   },
   {
     id: 10211,
     customer: {
       name: "Noah Davis",
-      image: `https://i.pravatar.cc/150?img=10`
+      image: `https://i.pravatar.cc/150?img=10`,
     },
     product: {
-      name: "Transmission Fluid"
+      name: "Transmission Fluid",
     },
     amount: 120,
-    status: "paid"
+    status: "paid",
   },
   {
     id: 11233,
     customer: {
       name: "Ava Johnson",
-      image: `https://i.pravatar.cc/150?img=1`
+      image: `https://i.pravatar.cc/150?img=1`,
     },
     product: {
-      name: "Battery Terminal"
+      name: "Battery Terminal",
     },
     amount: 85,
-    status: "processing"
+    status: "processing",
   },
   {
     id: 12255,
     customer: {
       name: "William Brown",
-      image: `https://i.pravatar.cc/150?img=2`
+      image: `https://i.pravatar.cc/150?img=2`,
     },
     product: {
-      name: "Alternator"
+      name: "Alternator",
     },
     amount: 420,
-    status: "failed"
+    status: "failed",
   },
   {
     id: 13277,
     customer: {
       name: "Charlotte Miller",
-      image: `/imageshttps://i.pravatar.cc/150?img=3`
+      image: `/imageshttps://i.pravatar.cc/150?img=3`,
     },
     product: {
-      name: "Timing Belt"
+      name: "Timing Belt",
     },
     amount: 380,
-    status: "success"
+    status: "success",
   },
   {
     id: 14299,
     customer: {
       name: "Benjamin Taylor",
-      image: `https://i.pravatar.cc/150?img=4`
+      image: `https://i.pravatar.cc/150?img=4`,
     },
     product: {
-      name: "Shock Absorber"
+      name: "Shock Absorber",
     },
     amount: 550,
-    status: "processing"
+    status: "processing",
   },
   {
     id: 15321,
     customer: {
       name: "Mia Anderson",
-      image: `https://i.pravatar.cc/150?img=5`
+      image: `https://i.pravatar.cc/150?img=5`,
     },
     product: {
-      name: "Windshield Wiper"
+      name: "Windshield Wiper",
     },
     amount: 95,
-    status: "paid"
+    status: "paid",
   },
   {
     id: 16343,
     customer: {
       name: "Elijah Thomas",
-      image: `https://i.pravatar.cc/150?img=6`
+      image: `https://i.pravatar.cc/150?img=6`,
     },
     product: {
-      name: "Headlight Assembly"
+      name: "Headlight Assembly",
     },
     amount: 320,
-    status: "success"
-  }
+    status: "success",
+  },
 ];
 
 const columns: ColumnDef<Order>[] = [
@@ -250,10 +262,13 @@ const columns: ColumnDef<Order>[] = [
     accessorKey: "id",
     header: "ID",
     cell: ({ row }) => (
-      <Button variant="link" className="text-muted-foreground hover:text-primary h-auto p-0">
+      <Button
+        variant="link"
+        className="text-muted-foreground hover:text-primary h-auto p-0"
+      >
         <Link href="#">#{row.getValue("id")}</Link>
       </Button>
-    )
+    ),
   },
   {
     accessorKey: "customer",
@@ -267,13 +282,17 @@ const columns: ColumnDef<Order>[] = [
       </div>
     ),
     filterFn: (row, columnId, filterValue) => {
-      return row.original.customer.name.toLowerCase().includes(filterValue.toLowerCase());
-    }
+      return row.original.customer.name
+        .toLowerCase()
+        .includes(filterValue.toLowerCase());
+    },
   },
   {
     accessorKey: "product",
     header: "Product",
-    cell: ({ row }) => <div className="capitalize">{row.original.product.name}</div>
+    cell: ({ row }) => (
+      <div className="capitalize">{row.original.product.name}</div>
+    ),
   },
   {
     accessorKey: "amount",
@@ -295,11 +314,11 @@ const columns: ColumnDef<Order>[] = [
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
       }).format(amount);
 
       return <div className="font-medium">{formatted}</div>;
-    }
+    },
   },
   {
     accessorKey: "status",
@@ -311,7 +330,7 @@ const columns: ColumnDef<Order>[] = [
         success: "success",
         processing: "info",
         paid: "warning",
-        failed: "destructive"
+        failed: "destructive",
       } as const;
 
       const statusClass = statusMap[status] ?? "default";
@@ -321,7 +340,7 @@ const columns: ColumnDef<Order>[] = [
           {status.replace("-", " ")}
         </Badge>
       );
-    }
+    },
   },
   {
     id: "actions",
@@ -339,7 +358,9 @@ const columns: ColumnDef<Order>[] = [
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(String(order.id))}>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(String(order.id))}
+              >
                 Copy order ID
               </DropdownMenuItem>
               <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -348,26 +369,30 @@ const columns: ColumnDef<Order>[] = [
           </DropdownMenu>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function EcommerceRecentOrdersCard() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-  const [{ pageIndex, pageSize }, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
-    pageSize: 8
-  });
+  const [{ pageIndex, pageSize }, setPagination] =
+    React.useState<PaginationState>({
+      pageIndex: 0,
+      pageSize: 8,
+    });
 
   const pagination = React.useMemo(
     () => ({
       pageIndex,
-      pageSize
+      pageSize,
     }),
-    [pageIndex, pageSize]
+    [pageIndex, pageSize],
   );
 
   const table = useReactTable({
@@ -387,9 +412,9 @@ export function EcommerceRecentOrdersCard() {
       columnFilters,
       columnVisibility,
       rowSelection,
-      pagination
+      pagination,
     },
-    pageCount: Math.ceil(orders.length / pageSize)
+    pageCount: Math.ceil(orders.length / pageSize),
   });
 
   return (
@@ -413,8 +438,12 @@ export function EcommerceRecentOrdersCard() {
       <CardContent className="space-y-4">
         <Input
           placeholder="Filter orders..."
-          value={(table.getColumn("customer")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("customer")?.setFilterValue(event.target.value)}
+          value={
+            (table.getColumn("customer")?.getFilterValue() as string) ?? ""
+          }
+          onChange={(event) =>
+            table.getColumn("customer")?.setFilterValue(event.target.value)
+          }
           className="max-w-xs"
         />
         <div className="rounded-md border">
@@ -427,7 +456,10 @@ export function EcommerceRecentOrdersCard() {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -437,17 +469,26 @@ export function EcommerceRecentOrdersCard() {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>
@@ -458,7 +499,8 @@ export function EcommerceRecentOrdersCard() {
         <div className="flex items-center justify-between">
           <p className="text-muted-foreground text-sm">
             Showing {pageIndex * pageSize + 1} to{" "}
-            {Math.min((pageIndex + 1) * pageSize, orders.length)} of {orders.length} entries
+            {Math.min((pageIndex + 1) * pageSize, orders.length)} of{" "}
+            {orders.length} entries
           </p>
           <div className="space-x-2">
             <Button

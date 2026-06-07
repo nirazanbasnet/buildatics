@@ -8,7 +8,7 @@ export function generateStaticParams() {
 }
 
 export default async function ComponentShowcasePage({
-  params
+  params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
@@ -21,7 +21,9 @@ export default async function ComponentShowcasePage({
   return (
     <div className="space-y-6">
       <header className="space-y-1">
-        <p className="text-muted-foreground text-xs tracking-wide uppercase">Component</p>
+        <p className="text-muted-foreground text-xs tracking-wide uppercase">
+          Component
+        </p>
         <h1 className="text-3xl font-semibold tracking-tight">{entry.name}</h1>
         <p className="text-muted-foreground text-sm">{entry.description}</p>
       </header>

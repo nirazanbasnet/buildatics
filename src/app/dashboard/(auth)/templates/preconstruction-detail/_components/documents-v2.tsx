@@ -25,14 +25,22 @@ export function DocumentsV2({ project, className }: Props) {
       handleDragLeave,
       handleDragOver,
       handleDrop,
-      removeFile
-    }
+      removeFile,
+    },
   ] = useFileUpload({ multiple: true });
 
   return (
-    <PreconstructionTabLayout categories={project.categories} className={className}>
-      <section className="bg-card rounded-2xl border p-5" data-slot="documents-card">
-        <h3 className="text-foreground text-base font-semibold">Upload files</h3>
+    <PreconstructionTabLayout
+      categories={project.categories}
+      className={className}
+    >
+      <section
+        className="bg-card rounded-2xl border p-5"
+        data-slot="documents-card"
+      >
+        <h3 className="text-foreground text-base font-semibold">
+          Upload files
+        </h3>
 
         <div
           role="button"
@@ -83,7 +91,9 @@ export function DocumentsV2({ project, className }: Props) {
           </ul>
         ) : null}
 
-        <h3 className="text-foreground mt-6 mb-3 text-base font-semibold">Attached files</h3>
+        <h3 className="text-foreground mt-6 mb-3 text-base font-semibold">
+          Attached files
+        </h3>
         <AttachedFilesTable data={project.documents} />
       </section>
     </PreconstructionTabLayout>

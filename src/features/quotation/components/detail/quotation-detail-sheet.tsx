@@ -9,7 +9,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
@@ -28,7 +28,11 @@ type QuotationDetailSheetProps = {
 
 // Slide-over quotation detail — same sheet layer as the sample list page detail. Loads the quote +
 // line items on open, then renders the builder inside the sheet.
-export function QuotationDetailSheet({ target, onOpenChange, onChanged }: QuotationDetailSheetProps) {
+export function QuotationDetailSheet({
+  target,
+  onOpenChange,
+  onChanged,
+}: QuotationDetailSheetProps) {
   const [detail, setDetail] = useState<QuoteDetailModel | null>(null);
   const [, startTransition] = useTransition();
 
@@ -60,7 +64,9 @@ export function QuotationDetailSheet({ target, onOpenChange, onChanged }: Quotat
       >
         <VisuallyHidden>
           <SheetHeader>
-            <SheetTitle>Quotation Detail — {detail?.title ?? "Loading"}</SheetTitle>
+            <SheetTitle>
+              Quotation Detail — {detail?.title ?? "Loading"}
+            </SheetTitle>
             <SheetDescription>Quotation builder and summary</SheetDescription>
           </SheetHeader>
         </VisuallyHidden>

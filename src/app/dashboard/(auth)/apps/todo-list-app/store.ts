@@ -19,8 +19,14 @@ interface TodoStore {
   addTodo: (
     todo: Omit<
       Todo,
-      "id" | "createdAt" | "comments" | "files" | "subTasks" | "starred" | "reminderDate"
-    >
+      | "id"
+      | "createdAt"
+      | "comments"
+      | "files"
+      | "subTasks"
+      | "starred"
+      | "reminderDate"
+    >,
   ) => void;
   updateTodo: (id: string, updatedTodo: Partial<Omit<Todo, "id">>) => void;
   deleteTodo: (id: string) => void;
@@ -39,7 +45,11 @@ interface TodoStore {
   addFile: (todoId: string, file: Omit<TodoFile, "id">) => void;
   removeFile: (todoId: string, fileId: string) => void;
   addSubTask: (todoId: string, title: string) => void;
-  updateSubTask: (todoId: string, subTaskId: string, completed: boolean) => void;
+  updateSubTask: (
+    todoId: string,
+    subTaskId: string,
+    completed: boolean,
+  ) => void;
   removeSubTask: (todoId: string, subTaskId: string) => void;
   toggleStarred: (todoId: string) => void;
 }
@@ -58,7 +68,7 @@ export const useTodoStore = create<TodoStore>((set) => ({
 
   setTodos: (todos) =>
     set(() => ({
-      todos: todos
+      todos: todos,
     })),
   addTodo: (todo) =>
     set((state) => ({
@@ -71,39 +81,41 @@ export const useTodoStore = create<TodoStore>((set) => ({
           comments: [],
           files: [],
           subTasks: [],
-          starred: false
-        }
-      ]
+          starred: false,
+        },
+      ],
     })),
 
   updateTodo: (id, updatedTodo) =>
     set((state) => ({
-      todos: state.todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTodo } : todo))
+      todos: state.todos.map((todo) =>
+        todo.id === id ? { ...todo, ...updatedTodo } : todo,
+      ),
     })),
 
   deleteTodo: (id) =>
     set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id)
+      todos: state.todos.filter((todo) => todo.id !== id),
     })),
 
   setSelectedTodoId: (id) =>
     set(() => ({
-      selectedTodoId: id
+      selectedTodoId: id,
     })),
 
   setActiveTab: (tab) =>
     set(() => ({
-      activeTab: tab
+      activeTab: tab,
     })),
 
   setAddDialogOpen: (isOpen) =>
     set(() => ({
-      isAddDialogOpen: isOpen
+      isAddDialogOpen: isOpen,
     })),
 
   setTodoSheetOpen: (isOpen) =>
     set(() => ({
-      isTodoSheetOpen: isOpen
+      isTodoSheetOpen: isOpen,
     })),
 
   addComment: (todoId, text) =>
@@ -117,12 +129,12 @@ export const useTodoStore = create<TodoStore>((set) => ({
                 {
                   id: uuidv4(),
                   text,
-                  createdAt: new Date()
-                }
-              ]
+                  createdAt: new Date(),
+                },
+              ],
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   deleteComment: (todoId, commentId) =>
@@ -131,10 +143,12 @@ export const useTodoStore = create<TodoStore>((set) => ({
         todo.id === todoId
           ? {
               ...todo,
-              comments: todo.comments.filter((comment) => comment.id !== commentId)
+              comments: todo.comments.filter(
+                (comment) => comment.id !== commentId,
+              ),
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   reorderTodos: (todoPositions) =>
@@ -154,27 +168,27 @@ export const useTodoStore = create<TodoStore>((set) => ({
 
   setViewMode: (mode) =>
     set(() => ({
-      viewMode: mode
+      viewMode: mode,
     })),
 
   setFilterUser: (users) =>
     set(() => ({
-      filterUser: users
+      filterUser: users,
     })),
 
   setFilterPriority: (priority) =>
     set(() => ({
-      filterPriority: priority
+      filterPriority: priority,
     })),
 
   setSearchQuery: (query) =>
     set(() => ({
-      searchQuery: query
+      searchQuery: query,
     })),
 
   toggleShowStarredOnly: () =>
     set((state) => ({
-      showStarredOnly: !state.showStarredOnly
+      showStarredOnly: !state.showStarredOnly,
     })),
 
   addFile: (todoId, file) =>
@@ -187,12 +201,12 @@ export const useTodoStore = create<TodoStore>((set) => ({
                 ...(todo.files || []),
                 {
                   ...file,
-                  id: uuidv4()
-                }
-              ]
+                  id: uuidv4(),
+                },
+              ],
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   removeFile: (todoId, fileId) =>
@@ -201,10 +215,10 @@ export const useTodoStore = create<TodoStore>((set) => ({
         todo.id === todoId
           ? {
               ...todo,
-              files: (todo.files || []).filter((file) => file.id !== fileId)
+              files: (todo.files || []).filter((file) => file.id !== fileId),
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   addSubTask: (todoId, title) =>
@@ -218,12 +232,12 @@ export const useTodoStore = create<TodoStore>((set) => ({
                 {
                   id: uuidv4(),
                   title,
-                  completed: false
-                }
-              ]
+                  completed: false,
+                },
+              ],
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   updateSubTask: (todoId, subTaskId, completed) =>
@@ -233,11 +247,11 @@ export const useTodoStore = create<TodoStore>((set) => ({
           ? {
               ...todo,
               subTasks: (todo.subTasks || []).map((subTask) =>
-                subTask.id === subTaskId ? { ...subTask, completed } : subTask
-              )
+                subTask.id === subTaskId ? { ...subTask, completed } : subTask,
+              ),
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   removeSubTask: (todoId, subTaskId) =>
@@ -246,16 +260,18 @@ export const useTodoStore = create<TodoStore>((set) => ({
         todo.id === todoId
           ? {
               ...todo,
-              subTasks: (todo.subTasks || []).filter((subTask) => subTask.id !== subTaskId)
+              subTasks: (todo.subTasks || []).filter(
+                (subTask) => subTask.id !== subTaskId,
+              ),
             }
-          : todo
-      )
+          : todo,
+      ),
     })),
 
   toggleStarred: (todoId) =>
     set((state) => ({
       todos: state.todos.map((todo) =>
-        todo.id === todoId ? { ...todo, starred: !todo.starred } : todo
-      )
-    }))
+        todo.id === todoId ? { ...todo, starred: !todo.starred } : todo,
+      ),
+    })),
 }));

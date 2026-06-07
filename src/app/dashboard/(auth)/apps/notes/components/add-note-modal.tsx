@@ -2,23 +2,44 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { ImageIcon, Tag, PenSquare, Check, Trash2Icon, ArchiveIcon } from "lucide-react";
+import {
+  ImageIcon,
+  Tag,
+  PenSquare,
+  Check,
+  Trash2Icon,
+  ArchiveIcon,
+} from "lucide-react";
 import { RichTextEditorDemo } from "@/components/ui/custom/tiptap/rich-text-editor";
 import { Content } from "@tiptap/react";
 
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { NoteLabel } from "../types";
 import { Badge } from "@/components/ui/badge";
@@ -64,7 +85,9 @@ export function AddNoteModal() {
           <DialogTitle>Add Note</DialogTitle>
         </VisuallyHidden>
 
-        <form className={cn({ "p-6": !imagePreview, "p-6 pt-0": imagePreview })}>
+        <form
+          className={cn({ "p-6": !imagePreview, "p-6 pt-0": imagePreview })}
+        >
           <div className="space-y-6">
             <Input
               placeholder="Title"
@@ -117,7 +140,10 @@ export function AddNoteModal() {
                         </PopoverTrigger>
                         <PopoverContent className="w-[200px] p-0">
                           <Command>
-                            <CommandInput placeholder="Search tags..." className="h-9" />
+                            <CommandInput
+                              placeholder="Search tags..."
+                              className="h-9"
+                            />
                             <CommandList>
                               <CommandEmpty>No labels found.</CommandEmpty>
                               <CommandGroup className="p-2">
@@ -130,22 +156,31 @@ export function AddNoteModal() {
                                       onSelect={() => {
                                         if (selectedTags.includes(label)) {
                                           return setSelectedTags(
-                                            selectedTags.filter((item) => item.id !== label.id)
+                                            selectedTags.filter(
+                                              (item) => item.id !== label.id,
+                                            ),
                                           );
                                         }
 
                                         return setSelectedTags(
                                           [...noteLabels].filter((u) =>
-                                            [...selectedTags, label].includes(u)
-                                          )
+                                            [...selectedTags, label].includes(
+                                              u,
+                                            ),
+                                          ),
                                         );
                                       }}
                                     >
                                       <div className="flex grow items-center gap-2">
                                         <span
-                                          className={cn("block size-3 rounded-full", label.color)}
+                                          className={cn(
+                                            "block size-3 rounded-full",
+                                            label.color,
+                                          )}
                                         ></span>
-                                        <span className="text-sm leading-none">{label.title}</span>
+                                        <span className="text-sm leading-none">
+                                          {label.title}
+                                        </span>
                                         {selectedTags.includes(label) ? (
                                           <Check className="text-primary ms-auto size-3" />
                                         ) : null}

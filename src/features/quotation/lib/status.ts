@@ -14,14 +14,36 @@ export type StatusMeta = {
 };
 
 export const QUOTE_STATUSES: StatusMeta[] = [
-  { value: 0, label: "Draft", solid: "bg-muted text-foreground", terminal: false },
-  { value: 1, label: "Sent", solid: "bg-primary text-primary-foreground", terminal: false },
-  { value: 2, label: "Accepted", solid: "bg-emerald-500 text-white dark:bg-emerald-600", terminal: true },
-  { value: 3, label: "Rejected", solid: "bg-destructive text-white", terminal: true }
+  {
+    value: 0,
+    label: "Draft",
+    solid: "bg-muted text-foreground",
+    terminal: false,
+  },
+  {
+    value: 1,
+    label: "Sent",
+    solid: "bg-primary text-primary-foreground",
+    terminal: false,
+  },
+  {
+    value: 2,
+    label: "Accepted",
+    solid: "bg-emerald-500 text-white dark:bg-emerald-600",
+    terminal: true,
+  },
+  {
+    value: 3,
+    label: "Rejected",
+    solid: "bg-destructive text-white",
+    terminal: true,
+  },
 ];
 
 const BY_VALUE = new Map(QUOTE_STATUSES.map((s) => [s.value, s]));
 
-export function statusMeta(value: LeadQuoteStatus | null | undefined): StatusMeta {
+export function statusMeta(
+  value: LeadQuoteStatus | null | undefined,
+): StatusMeta {
   return BY_VALUE.get((value ?? 0) as LeadQuoteStatus) ?? QUOTE_STATUSES[0];
 }

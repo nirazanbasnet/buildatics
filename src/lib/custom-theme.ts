@@ -9,7 +9,9 @@ export const CUSTOM_THEME_STYLE_ID = "tweakcn-custom-theme";
 export function applyCustomTheme(css: string) {
   if (typeof document === "undefined") return;
 
-  let style = document.getElementById(CUSTOM_THEME_STYLE_ID) as HTMLStyleElement | null;
+  let style = document.getElementById(
+    CUSTOM_THEME_STYLE_ID,
+  ) as HTMLStyleElement | null;
   if (!style) {
     style = document.createElement("style");
     style.id = CUSTOM_THEME_STYLE_ID;

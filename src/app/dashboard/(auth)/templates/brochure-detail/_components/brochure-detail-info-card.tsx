@@ -8,7 +8,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +23,7 @@ type Props = {
 function Row({
   icon: Icon,
   label,
-  children
+  children,
 }: {
   icon: LucideIcon;
   label: string;
@@ -34,21 +34,32 @@ function Row({
       <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
         <Icon className="size-4" />
       </span>
-      <span className="text-foreground flex-1 text-sm font-medium">{label}</span>
+      <span className="text-foreground flex-1 text-sm font-medium">
+        {label}
+      </span>
       {children}
     </li>
   );
 }
 
-export function BrochureDetailInfoCard({ detail, onTemplateChange, className }: Props) {
+export function BrochureDetailInfoCard({
+  detail,
+  onTemplateChange,
+  className,
+}: Props) {
   return (
-    <section className={cn("bg-card rounded-2xl border p-5", className)} data-slot="brochure-info">
+    <section
+      className={cn("bg-card rounded-2xl border p-5", className)}
+      data-slot="brochure-info"
+    >
       <ul className="flex flex-col gap-3.5">
         <Row icon={FileText} label="#Ref">
           <span className="text-muted-foreground text-sm">{detail.ref}</span>
         </Row>
         <Row icon={MapPin} label="Site Address">
-          <span className="text-muted-foreground truncate text-sm">{detail.siteAddress}</span>
+          <span className="text-muted-foreground truncate text-sm">
+            {detail.siteAddress}
+          </span>
         </Row>
         <Row icon={Home} label="Brochure Design">
           <Select value={detail.template} onValueChange={onTemplateChange}>

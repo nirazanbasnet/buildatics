@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -23,13 +23,13 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { createCompanyDesign } from "../../actions/create-company-design";
 import {
   createCompanyDesignFormSchema,
-  type CreateCompanyDesignInput
+  type CreateCompanyDesignInput,
 } from "../../lib/create-company-design-schema";
 
 type CreateDesignSheetProps = {
@@ -50,7 +50,7 @@ const DEFAULTS: CreateCompanyDesignInput = {
   livingRooms: "",
   maximumCarsInGarage: "",
   storeys: "",
-  visibleOnWebsite: false
+  visibleOnWebsite: false,
 };
 
 // Numeric fields rendered in a 2-up grid. label drives the FormLabel; key is the schema field.
@@ -66,15 +66,19 @@ const NUMERIC_FIELDS: Array<{
   { key: "bedrooms", label: "Bedrooms" },
   { key: "bathrooms", label: "Bathrooms" },
   { key: "livingRooms", label: "Living rooms" },
-  { key: "maximumCarsInGarage", label: "Garage (cars)" }
+  { key: "maximumCarsInGarage", label: "Garage (cars)" },
 ];
 
-export function CreateDesignSheet({ open, onOpenChange, onSaved }: CreateDesignSheetProps) {
+export function CreateDesignSheet({
+  open,
+  onOpenChange,
+  onSaved,
+}: CreateDesignSheetProps) {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<CreateCompanyDesignInput>({
     resolver: zodResolver(createCompanyDesignFormSchema),
-    defaultValues: DEFAULTS
+    defaultValues: DEFAULTS,
   });
 
   useEffect(() => {
@@ -90,23 +94,31 @@ export function CreateDesignSheet({ open, onOpenChange, onSaved }: CreateDesignS
         onSaved?.();
         return;
       }
-      if (res.fieldErrors?.name) form.setError("name", { message: res.fieldErrors.name });
+      if (res.fieldErrors?.name)
+        form.setError("name", { message: res.fieldErrors.name });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Create design</SheetTitle>
           <SheetDescription className="sr-only">
-            Add a new company design. Images can be uploaded after the design is created.
+            Add a new company design. Images can be uploaded after the design is
+            created.
           </SheetDescription>
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5">
               <FormField
                 control={form.control}
@@ -143,7 +155,11 @@ export function CreateDesignSheet({ open, onOpenChange, onSaved }: CreateDesignS
                   <FormItem>
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea rows={3} placeholder="Short description" {...field} />
+                      <Textarea
+                        rows={3}
+                        placeholder="Short description"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -167,7 +183,9 @@ export function CreateDesignSheet({ open, onOpenChange, onSaved }: CreateDesignS
                             step={f.step ?? "1"}
                             placeholder="0"
                             {...field}
-                            value={typeof field.value === "string" ? field.value : ""}
+                            value={
+                              typeof field.value === "string" ? field.value : ""
+                            }
                           />
                         </FormControl>
                         <FormMessage />
@@ -184,10 +202,15 @@ export function CreateDesignSheet({ open, onOpenChange, onSaved }: CreateDesignS
                   <FormItem className="flex items-center justify-between gap-4 rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel>Visible on website</FormLabel>
-                      <FormDescription>Show this design on your public website.</FormDescription>
+                      <FormDescription>
+                        Show this design on your public website.
+                      </FormDescription>
                     </div>
                     <FormControl>
-                      <Switch checked={field.value} onCheckedChange={field.onChange} />
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
                     </FormControl>
                   </FormItem>
                 )}

@@ -74,11 +74,11 @@ export const useProfileStore = create<ProfileState>(() => ({
     department: "No department",
     teams: 7,
     projects: 8,
-    online: true
+    online: true,
   },
   profileCompletion: 82,
   activities: [],
   connections: [],
   teams: [],
-  projects: []
+  projects: [],
 }));

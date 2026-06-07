@@ -9,11 +9,15 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Manage account settings and preferences. A professional page built with React, TypeScript, Tailwind CSS, shadcn/ui, react-hook-form, and Zod.",
-    canonical: "/pages/settings"
+    canonical: "/pages/settings",
   });
 }
 
-export default function SettingsLayout({ children }: { children: React.ReactNode }) {
+export default function SettingsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="mx-auto max-w-5xl space-y-4 lg:space-y-6">
       <div className="space-y-0.5">

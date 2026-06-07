@@ -7,7 +7,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
@@ -22,7 +22,7 @@ const FONT_CLASS: Record<string, string> = {
   "plus-jakarta-sans": "font-[var(--font-plus-jakarta-sans)]",
   "pt-sans": "font-[var(--font-pt-sans)]",
   "kumbh-sans": "font-[var(--font-kumbh-sans)]",
-  "overpass-mono": "font-[var(--font-overpass-mono)]"
+  "overpass-mono": "font-[var(--font-overpass-mono)]",
 };
 
 export function FontSelector() {
@@ -31,14 +31,19 @@ export function FontSelector() {
   return (
     <div className="flex flex-col gap-3">
       <Label>Font:</Label>
-      <Select value={theme.font} onValueChange={(value) => setTheme({ ...theme, font: value })}>
+      <Select
+        value={theme.font}
+        onValueChange={(value) => setTheme({ ...theme, font: value })}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a font" />
         </SelectTrigger>
         <SelectContent align="end">
           {FONTS.map((font) => (
             <SelectItem key={font.value} value={font.value}>
-              <span className={FONT_CLASS[font.value] ?? "font-sans"}>{font.name}</span>
+              <span className={FONT_CLASS[font.value] ?? "font-sans"}>
+                {font.name}
+              </span>
             </SelectItem>
           ))}
         </SelectContent>

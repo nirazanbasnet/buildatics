@@ -15,7 +15,7 @@ export function MotionTableRow({ index = 0, className, ...props }: Props) {
       transition={{ duration: 0.25, delay: index * 0.03, ease: "easeOut" }}
       className={cn(
         "group hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-        className
+        className,
       )}
       {...props}
     />

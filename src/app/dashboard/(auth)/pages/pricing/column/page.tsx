@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Check } from "lucide-react";
@@ -16,7 +16,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 
@@ -29,7 +29,12 @@ export default function Page() {
       description: "Essential features for individuals",
       monthlyPrice: 9.99,
       yearlyPrice: 99.99,
-      features: ["1 user", "5GB storage", "Basic support", "Limited integrations"]
+      features: [
+        "1 user",
+        "5GB storage",
+        "Basic support",
+        "Limited integrations",
+      ],
     },
     {
       name: "Pro",
@@ -41,8 +46,8 @@ export default function Page() {
         "50GB storage",
         "Priority support",
         "Advanced integrations",
-        "Analytics"
-      ]
+        "Analytics",
+      ],
     },
     {
       name: "Enterprise",
@@ -55,42 +60,45 @@ export default function Page() {
         "24/7 premium support",
         "Custom integrations",
         "Advanced analytics",
-        "API access"
-      ]
-    }
+        "API access",
+      ],
+    },
   ];
 
   const faqs = [
     {
       question: "What payment methods do you accept?",
       answer:
-        "We accept all major credit components, including Visa, MasterCard, American Express, and Discover. We also support PayPal for your convenience."
+        "We accept all major credit components, including Visa, MasterCard, American Express, and Discover. We also support PayPal for your convenience.",
     },
     {
       question: "Can I cancel my subscription at any time?",
       answer:
-        "Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to the platform until the end of your current billing period."
+        "Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to the platform until the end of your current billing period.",
     },
     {
       question: "Is there a limit to how many courses I can take?",
       answer:
-        "No, there's no limit. With our Premium Plan, you have unlimited access to all courses on our platform. You can take as many courses as you like, at your own pace."
+        "No, there's no limit. With our Premium Plan, you have unlimited access to all courses on our platform. You can take as many courses as you like, at your own pace.",
     },
     {
       question: "Do you offer a free trial?",
       answer:
-        "We offer a 7-day free trial for new users. This allows you to explore our platform and content before committing to a subscription. No credit card is required for the trial."
+        "We offer a 7-day free trial for new users. This allows you to explore our platform and content before committing to a subscription. No credit card is required for the trial.",
     },
     {
       question: "Are the courses downloadable for offline viewing?",
       answer:
-        "Yes, our mobile app allows you to download courses for offline viewing. This feature is available for both iOS and Android devices."
-    }
+        "Yes, our mobile app allows you to download courses for offline viewing. This feature is available for both iOS and Android devices.",
+    },
   ];
 
   const formatPrice = (price: number) => `$${price.toFixed(2)}`;
 
-  const calculateYearlySavings = (monthlyPrice: number, yearlyPrice: number) => {
+  const calculateYearlySavings = (
+    monthlyPrice: number,
+    yearlyPrice: number,
+  ) => {
     const yearlyCost = monthlyPrice * 12;
     const savings = yearlyCost - yearlyPrice;
     const savingsPercentage = (savings / yearlyCost) * 100;
@@ -100,15 +108,21 @@ export default function Page() {
   return (
     <div className="mx-auto max-w-(--breakpoint-lg) lg:py-16">
       <div className="mb-6 flex flex-col items-start justify-between space-y-2 lg:flex-row lg:items-center">
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">Choose Your Plan</h1>
+        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+          Choose Your Plan
+        </h1>
         <div className="flex items-start justify-center space-x-2 lg:items-center">
-          <span className={`text-sm ${!isYearly ? "font-bold" : ""}`}>Monthly</span>
+          <span className={`text-sm ${!isYearly ? "font-bold" : ""}`}>
+            Monthly
+          </span>
           <Switch
             checked={isYearly}
             onCheckedChange={setIsYearly}
             aria-label="Toggle yearly pricing"
           />
-          <span className={`text-sm ${isYearly ? "font-bold" : ""}`}>Yearly</span>
+          <span className={`text-sm ${isYearly ? "font-bold" : ""}`}>
+            Yearly
+          </span>
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -121,12 +135,21 @@ export default function Page() {
             <CardContent className="grow">
               <div className="mb-4">
                 <p className="font-display text-4xl">
-                  {isYearly ? formatPrice(tier.yearlyPrice) : formatPrice(tier.monthlyPrice)}
-                  <span className="text-sm font-normal">/{isYearly ? "year" : "month"}</span>
+                  {isYearly
+                    ? formatPrice(tier.yearlyPrice)
+                    : formatPrice(tier.monthlyPrice)}
+                  <span className="text-sm font-normal">
+                    /{isYearly ? "year" : "month"}
+                  </span>
                 </p>
                 {isYearly && (
                   <Badge variant="success" className="absolute end-4 top-4">
-                    Save {calculateYearlySavings(tier.monthlyPrice, tier.yearlyPrice)}%
+                    Save{" "}
+                    {calculateYearlySavings(
+                      tier.monthlyPrice,
+                      tier.yearlyPrice,
+                    )}
+                    %
                   </Badge>
                 )}
               </div>
@@ -151,7 +174,9 @@ export default function Page() {
         <div className="grid gap-4 md:grid-cols-3">
           <Card className="gap-2">
             <CardHeader>
-              <CardTitle className="lg:text-xl">Comprehensive Library</CardTitle>
+              <CardTitle className="lg:text-xl">
+                Comprehensive Library
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
@@ -174,7 +199,9 @@ export default function Page() {
               <CardTitle className="lg:text-xl">Flexible Learning</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Study at your own pace, anytime and anywhere</p>
+              <p className="text-muted-foreground">
+                Study at your own pace, anytime and anywhere
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -182,7 +209,9 @@ export default function Page() {
 
       <div className="mt-10 max-w-(--breakpoint-sm) space-y-10">
         <div>
-          <h2 className="mb-4 text-xl font-semibold">Frequently Asked Questions</h2>
+          <h2 className="mb-4 text-xl font-semibold">
+            Frequently Asked Questions
+          </h2>
           <Card>
             <CardContent>
               <Accordion type="single" collapsible className="w-full">

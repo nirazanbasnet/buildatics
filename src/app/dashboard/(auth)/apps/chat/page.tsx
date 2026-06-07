@@ -11,7 +11,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Manage real-time conversations, media sharing, and contact lists with a modern messaging ui. A professional chat application page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/chat"
+    canonical: "/apps/chat",
   });
 }
 
@@ -19,7 +19,9 @@ export default function Page() {
   const contacts = contactsData as unknown as UserPropsTypes[];
   const chats = (chatsData as unknown as ChatItemProps[]).map((item) => ({
     ...item,
-    user: contacts.find((contact) => contact.id === item.user_id) as UserPropsTypes
+    user: contacts.find(
+      (contact) => contact.id === item.user_id,
+    ) as UserPropsTypes,
   }));
 
   return (

@@ -22,7 +22,7 @@ export function MailList({ items }: MailListProps) {
             key={item.id}
             className={cn(
               "hover:bg-accent/70 flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
-              selectedMail?.id === item.id && "bg-accent/70"
+              selectedMail?.id === item.id && "bg-accent/70",
             )}
             onClick={() => setSelectedMail(item)}
           >
@@ -30,16 +30,20 @@ export function MailList({ items }: MailListProps) {
               <div className="flex items-center">
                 <div className="flex items-center gap-2">
                   <div className="font-semibold">{item.name}</div>
-                  {!item.read && <span className="flex h-2 w-2 rounded-full bg-blue-600" />}
+                  {!item.read && (
+                    <span className="flex h-2 w-2 rounded-full bg-blue-600" />
+                  )}
                 </div>
                 <div
                   className={cn(
                     "ml-auto text-xs",
-                    selectedMail?.id === item.id ? "text-foreground" : "text-muted-foreground"
+                    selectedMail?.id === item.id
+                      ? "text-foreground"
+                      : "text-muted-foreground",
                   )}
                 >
                   {formatDistanceToNow(new Date(item.date), {
-                    addSuffix: true
+                    addSuffix: true,
                   })}
                 </div>
               </div>
@@ -64,7 +68,9 @@ export function MailList({ items }: MailListProps) {
   );
 }
 
-function getBadgeVariantFromLabel(label: string): ComponentProps<typeof Badge>["variant"] {
+function getBadgeVariantFromLabel(
+  label: string,
+): ComponentProps<typeof Badge>["variant"] {
   if (["work"].includes(label.toLowerCase())) {
     return "default";
   }

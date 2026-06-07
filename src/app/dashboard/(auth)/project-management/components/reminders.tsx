@@ -1,6 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, CircleCheck, PlusCircleIcon } from "lucide-react";
 import { AddReminderDialog } from "./add-reminder-dialog";
@@ -21,7 +27,7 @@ const reminders: Reminder[] = [
     level: "low",
     type: "Design Education",
     isCompleted: false,
-    date: "Today, 12:30"
+    date: "Today, 12:30",
   },
   {
     id: 2,
@@ -29,7 +35,7 @@ const reminders: Reminder[] = [
     level: "medium",
     type: "Meeting",
     isCompleted: true,
-    date: "Today, 10:00"
+    date: "Today, 10:00",
   },
   {
     id: 3,
@@ -37,8 +43,8 @@ const reminders: Reminder[] = [
     level: "high",
     type: "Customer Support",
     isCompleted: false,
-    date: "Tomorrow, 16:30"
-  }
+    date: "Tomorrow, 16:30",
+  },
 ];
 
 export function Reminders() {
@@ -60,7 +66,7 @@ export function Reminders() {
                     className={cn("d-inline me-2 size-2 rounded-full", {
                       "bg-gray-400": reminder.level === "low",
                       "bg-orange-400": reminder.level === "medium",
-                      "bg-red-600": reminder.level === "high"
+                      "bg-red-600": reminder.level === "high",
                     })}
                   ></span>{" "}
                   {reminder.level}{" "}
@@ -72,7 +78,9 @@ export function Reminders() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-muted-foreground text-sm">{reminder.date}</div>
+                <div className="text-muted-foreground text-sm">
+                  {reminder.date}
+                </div>
                 <div className="text-sm">{reminder.note}</div>
                 <Badge variant="outline">{reminder.type}</Badge>
               </CardContent>
@@ -80,7 +88,11 @@ export function Reminders() {
           ))}
         </div>
         <div className="mt-4 text-end">
-          <Button variant="link" className="text-muted-foreground hover:text-primary" asChild>
+          <Button
+            variant="link"
+            className="text-muted-foreground hover:text-primary"
+            asChild
+          >
             <a href="#">
               Show the other 10 reminders <ArrowRight className="size-4" />
             </a>

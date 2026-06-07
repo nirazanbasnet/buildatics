@@ -11,10 +11,17 @@ export function DetailHeader({ property }: { property: Property }) {
     <Card className="gap-1 p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold tracking-tight">{property.title}</h2>
+          <h2 className="text-xl font-semibold tracking-tight">
+            {property.title}
+          </h2>
           <p className="text-muted-foreground text-sm">{detailDescription}</p>
         </div>
-        <Button size="icon" variant="outline" aria-label="More actions" className="size-8 shrink-0">
+        <Button
+          size="icon"
+          variant="outline"
+          aria-label="More actions"
+          className="size-8 shrink-0"
+        >
           <MoreVertical className="size-4" />
         </Button>
       </div>

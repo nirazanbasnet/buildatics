@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,18 +21,21 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { createUser } from "../actions/create-user";
-import { createUserSchema, type CreateUserInput } from "../lib/users-form-schema";
+import {
+  createUserSchema,
+  type CreateUserInput,
+} from "../lib/users-form-schema";
 
 type CreateUserSheetProps = {
   open: boolean;
@@ -40,13 +43,21 @@ type CreateUserSheetProps = {
   onCreated: () => void;
 };
 
-const DEFAULTS: CreateUserInput = { email: "", password: "", role: "DesignAdmin" };
+const DEFAULTS: CreateUserInput = {
+  email: "",
+  password: "",
+  role: "DesignAdmin",
+};
 
-export function CreateUserSheet({ open, onOpenChange, onCreated }: CreateUserSheetProps) {
+export function CreateUserSheet({
+  open,
+  onOpenChange,
+  onCreated,
+}: CreateUserSheetProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<CreateUserInput>({
     resolver: zodResolver(createUserSchema),
-    defaultValues: DEFAULTS
+    defaultValues: DEFAULTS,
   });
 
   useEffect(() => {
@@ -62,24 +73,33 @@ export function CreateUserSheet({ open, onOpenChange, onCreated }: CreateUserShe
         onCreated();
         return;
       }
-      if (res.fieldErrors?.email) form.setError("email", { message: res.fieldErrors.email });
-      if (res.fieldErrors?.password) form.setError("password", { message: res.fieldErrors.password });
+      if (res.fieldErrors?.email)
+        form.setError("email", { message: res.fieldErrors.email });
+      if (res.fieldErrors?.password)
+        form.setError("password", { message: res.fieldErrors.password });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Create user</SheetTitle>
           <SheetDescription className="sr-only">
-            Create a new Admin or DesignAdmin user. Their email must be confirmed before they can log in.
+            Create a new Admin or DesignAdmin user. Their email must be
+            confirmed before they can log in.
           </SheetDescription>
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5">
               <FormField
                 control={form.control}
@@ -94,7 +114,9 @@ export function CreateUserSheet({ open, onOpenChange, onCreated }: CreateUserShe
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="DesignAdmin">Design Admin</SelectItem>
+                        <SelectItem value="DesignAdmin">
+                          Design Admin
+                        </SelectItem>
                         <SelectItem value="Admin">Admin</SelectItem>
                       </SelectContent>
                     </Select>
@@ -112,7 +134,11 @@ export function CreateUserSheet({ open, onOpenChange, onCreated }: CreateUserShe
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="name@example.com" {...field} />
+                      <Input
+                        type="email"
+                        placeholder="name@example.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -125,10 +151,15 @@ export function CreateUserSheet({ open, onOpenChange, onCreated }: CreateUserShe
                   <FormItem>
                     <FormLabel>Temporary password</FormLabel>
                     <FormControl>
-                      <Input type="password" autoComplete="new-password" {...field} />
+                      <Input
+                        type="password"
+                        autoComplete="new-password"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>
-                      The new user&apos;s email must be confirmed before they can sign in.
+                      The new user&apos;s email must be confirmed before they
+                      can sign in.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

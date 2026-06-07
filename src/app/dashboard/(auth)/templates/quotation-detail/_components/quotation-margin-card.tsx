@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils";
 
-import { formatCurrency, grossMargin, quotedCost, type QuotationDetail } from "../_data";
+import {
+  formatCurrency,
+  grossMargin,
+  quotedCost,
+  type QuotationDetail,
+} from "../_data";
 
 type Props = {
   detail: QuotationDetail;
@@ -12,7 +17,7 @@ export function QuotationMarginCard({ detail, className }: Props) {
     <section
       className={cn(
         "bg-card rounded-2xl border p-5 transition duration-300 hover:-translate-y-1 hover:shadow-lg",
-        className
+        className,
       )}
       data-slot="quotation-margin"
     >
@@ -37,7 +42,9 @@ export function QuotationMarginCard({ detail, className }: Props) {
         </div>
       </div>
       <div className="border-border mt-4 flex items-center justify-between gap-3 border-t pt-4">
-        <span className="text-foreground text-sm font-semibold">Gross Margin</span>
+        <span className="text-foreground text-sm font-semibold">
+          Gross Margin
+        </span>
         <span className="bg-muted text-foreground rounded-md px-3 py-1 text-sm font-semibold">
           {formatCurrency(grossMargin(detail))}
         </span>

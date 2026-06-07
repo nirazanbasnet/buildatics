@@ -18,7 +18,7 @@ type Props = {
 
 const VIEW_ITEMS = [
   { value: "list" as const, label: "List View", icon: List },
-  { value: "card" as const, label: "Card View", icon: LayoutGrid }
+  { value: "card" as const, label: "Card View", icon: LayoutGrid },
 ];
 
 export function PreconstructionListToolbar({ view, onViewChange }: Props) {
@@ -30,7 +30,10 @@ export function PreconstructionListToolbar({ view, onViewChange }: Props) {
       <div className="flex items-center gap-2">
         <span className="text-muted-foreground text-sm">Status</span>
         {statusActive ? (
-          <Badge variant="default" className="h-7 gap-1 rounded-full py-1 pr-1 pl-3">
+          <Badge
+            variant="default"
+            className="h-7 gap-1 rounded-full py-1 pr-1 pl-3"
+          >
             In Progress
             <Button
               variant="ghost"
@@ -46,7 +49,12 @@ export function PreconstructionListToolbar({ view, onViewChange }: Props) {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="outline" size="sm" className="h-9" onClick={() => setFilterOpen(true)}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9"
+          onClick={() => setFilterOpen(true)}
+        >
           <ListFilter className="size-4" />
           Filter
         </Button>

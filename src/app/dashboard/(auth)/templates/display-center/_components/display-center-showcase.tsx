@@ -15,7 +15,13 @@ type Props = {
   className?: string;
 };
 
-export function DisplayCenterShowcase({ style, font, theme, view = "facade", className }: Props) {
+export function DisplayCenterShowcase({
+  style,
+  font,
+  theme,
+  view = "facade",
+  className,
+}: Props) {
   const Layout = VARIANT_LAYOUTS[style];
 
   return (

@@ -9,7 +9,11 @@ import { DesignToolbar } from "./toolbar/design-toolbar";
 import { DesignGrid } from "./grid/design-grid";
 import { DesignEmptyState } from "./grid/design-empty-state";
 import { queryDesigns } from "../actions/query-designs";
-import { makeDefaultFilters, type AreaBounds, type DesignFilterState } from "../lib/filter";
+import {
+  makeDefaultFilters,
+  type AreaBounds,
+  type DesignFilterState,
+} from "../lib/filter";
 import type { DesignProperty, DesignView } from "../types";
 
 type DesignLibraryProps = {
@@ -25,10 +29,12 @@ export function DesignLibrary({
   initialItems,
   initialTotal,
   areaBounds,
-  pageSize
+  pageSize,
 }: DesignLibraryProps) {
   const [view, setView] = useState<DesignView>("facade");
-  const [filters, setFilters] = useState<DesignFilterState>(() => makeDefaultFilters(areaBounds));
+  const [filters, setFilters] = useState<DesignFilterState>(() =>
+    makeDefaultFilters(areaBounds),
+  );
   const [page, setPage] = useState(1);
 
   const [items, setItems] = useState(initialItems);
@@ -41,7 +47,11 @@ export function DesignLibrary({
 
   function runQuery(nextFilters: DesignFilterState, nextPage: number) {
     startTransition(async () => {
-      const res = await queryDesigns({ filters: nextFilters, page: nextPage, pageSize });
+      const res = await queryDesigns({
+        filters: nextFilters,
+        page: nextPage,
+        pageSize,
+      });
       setItems(res.items);
       setTotal(res.total);
     });
@@ -87,13 +97,17 @@ export function DesignLibrary({
           <div
             className={cn(
               "transition-opacity duration-200",
-              isPending && "pointer-events-none opacity-50"
+              isPending && "pointer-events-none opacity-50",
             )}
           >
             <DesignGrid designs={items} view={view} detailEnabled />
           </div>
           {totalPages > 1 ? (
-            <PaginationNav totalPages={totalPages} page={page} onPageChange={goToPage} />
+            <PaginationNav
+              totalPages={totalPages}
+              page={page}
+              onPageChange={goToPage}
+            />
           ) : null}
         </>
       )}

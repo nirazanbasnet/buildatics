@@ -1,14 +1,25 @@
-import { Mic, Paperclip, PlusCircleIcon, SendIcon, SmileIcon } from "lucide-react";
+import {
+  Mic,
+  Paperclip,
+  PlusCircleIcon,
+  SendIcon,
+  SmileIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function ChatFooter() {
   return (
@@ -63,7 +74,8 @@ export function ChatFooter() {
             </TooltipProvider>
           </div>
           <Button variant="outline" className="ms-3">
-            <span className="hidden lg:inline">Send</span> <SendIcon className="inline lg:hidden" />
+            <span className="hidden lg:inline">Send</span>{" "}
+            <SendIcon className="inline lg:hidden" />
           </Button>
         </div>
       </div>

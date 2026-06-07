@@ -1,4 +1,9 @@
-export { getAllQuotes, getQuote, getLineItems, getQuoteLeadContext } from "./lib/get-quotes";
+export {
+  getAllQuotes,
+  getQuote,
+  getLineItems,
+  getQuoteLeadContext,
+} from "./lib/get-quotes";
 export { getQuoteLeadOptions } from "./lib/lead-options";
 export { mapToDetail } from "./lib/map-detail";
 export { QuotationList } from "./components/quotation-list";

@@ -8,7 +8,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -19,35 +19,35 @@ const features = [
   "Progress tracking and analytics",
   "Offline viewing on mobile app",
   "Certificate of completion",
-  "24/7 customer support"
+  "24/7 customer support",
 ];
 
 const faqs = [
   {
     question: "What payment methods do you accept?",
     answer:
-      "We accept all major credit components, including Visa, MasterCard, American Express, and Discover. We also support PayPal for your convenience."
+      "We accept all major credit components, including Visa, MasterCard, American Express, and Discover. We also support PayPal for your convenience.",
   },
   {
     question: "Can I cancel my subscription at any time?",
     answer:
-      "Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to the platform until the end of your current billing period."
+      "Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to the platform until the end of your current billing period.",
   },
   {
     question: "Is there a limit to how many courses I can take?",
     answer:
-      "No, there's no limit. With our Premium Plan, you have unlimited access to all courses on our platform. You can take as many courses as you like, at your own pace."
+      "No, there's no limit. With our Premium Plan, you have unlimited access to all courses on our platform. You can take as many courses as you like, at your own pace.",
   },
   {
     question: "Do you offer a free trial?",
     answer:
-      "We offer a 7-day free trial for new users. This allows you to explore our platform and content before committing to a subscription. No credit card is required for the trial."
+      "We offer a 7-day free trial for new users. This allows you to explore our platform and content before committing to a subscription. No credit card is required for the trial.",
   },
   {
     question: "Are the courses downloadable for offline viewing?",
     answer:
-      "Yes, our mobile app allows you to download courses for offline viewing. This feature is available for both iOS and Android devices."
-  }
+      "Yes, our mobile app allows you to download courses for offline viewing. This feature is available for both iOS and Android devices.",
+  },
 ];
 
 export default function Page() {
@@ -57,7 +57,10 @@ export default function Page() {
   const annualPrice = 149.99;
 
   const currentPrice = isAnnual ? annualPrice : monthlyPrice;
-  const savings = (((monthlyPrice * 12 - annualPrice) / (monthlyPrice * 12)) * 100).toFixed(0);
+  const savings = (
+    ((monthlyPrice * 12 - annualPrice) / (monthlyPrice * 12)) *
+    100
+  ).toFixed(0);
 
   return (
     <div className="lg:py-16">
@@ -67,7 +70,8 @@ export default function Page() {
             Choose Your Learning Journey
           </h1>
           <p className="text-muted-foreground">
-            Unlock a world of knowledge with our comprehensive e-learning platform
+            Unlock a world of knowledge with our comprehensive e-learning
+            platform
           </p>
         </div>
         <Card>
@@ -116,14 +120,17 @@ export default function Page() {
                   ))}
                 </ul>
                 <p className="text-muted-foreground text-sm">
-                  All subscriptions come with a 30-day money-back guarantee. Cancel anytime.
+                  All subscriptions come with a 30-day money-back guarantee.
+                  Cancel anytime.
                 </p>
               </div>
 
               <div className="flex flex-col justify-center space-y-6 md:w-1/3 lg:relative lg:border-s lg:ps-6">
                 <div className="hidden space-y-4 lg:block">
                   <div className="text-center">
-                    <span className="font-display text-4xl">${currentPrice}</span>
+                    <span className="font-display text-4xl">
+                      ${currentPrice}
+                    </span>
                     <span className="text-muted-foreground ml-2">
                       /{isAnnual ? "year" : "month"}
                     </span>
@@ -163,11 +170,15 @@ export default function Page() {
         </Card>
 
         <div className="my-6 lg:my-12">
-          <h2 className="mb-4 text-xl font-semibold">Why Choose Our Platform?</h2>
+          <h2 className="mb-4 text-xl font-semibold">
+            Why Choose Our Platform?
+          </h2>
           <div className="grid gap-4 md:grid-cols-3">
             <Card className="gap-2">
               <CardHeader>
-                <CardTitle className="lg:text-xl">Comprehensive Library</CardTitle>
+                <CardTitle className="lg:text-xl">
+                  Comprehensive Library
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
@@ -206,7 +217,9 @@ export default function Page() {
             <Accordion type="single" collapsible className="w-full">
               {faqs.map((faq, index) => (
                 <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="text-start">{faq.question}</AccordionTrigger>
+                  <AccordionTrigger className="text-start">
+                    {faq.question}
+                  </AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
               ))}

@@ -9,7 +9,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   ChartConfig,
@@ -17,7 +17,7 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -32,18 +32,18 @@ const chartData = [
   { month: "September", desktop: 175, mobile: 150 },
   { month: "October", desktop: 290, mobile: 180 },
   { month: "November", desktop: 220, mobile: 160 },
-  { month: "December", desktop: 310, mobile: 200 }
+  { month: "December", desktop: 310, mobile: 200 },
 ];
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   mobile: {
     label: "Mobile",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function ChartFileTransfer() {
@@ -71,8 +71,18 @@ export function ChartFileTransfer() {
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
             <ChartLegend content={<ChartLegendContent />} />
-            <Bar dataKey="desktop" stackId="a" fill="var(--color-desktop)" radius={[0, 0, 5, 5]} />
-            <Bar dataKey="mobile" stackId="a" fill="var(--color-mobile)" radius={[5, 5, 0, 0]} />
+            <Bar
+              dataKey="desktop"
+              stackId="a"
+              fill="var(--color-desktop)"
+              radius={[0, 0, 5, 5]}
+            />
+            <Bar
+              dataKey="mobile"
+              stackId="a"
+              fill="var(--color-mobile)"
+              radius={[5, 5, 0, 0]}
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>

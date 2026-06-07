@@ -26,10 +26,18 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         <Button onClick={toggleSidebar} size="icon" variant="ghost">
           {open ? <PanelLeftClose /> : <PanelLeftOpen />}
         </Button>
-        <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
+        <Separator
+          orientation="vertical"
+          className="mx-2 data-[orientation=vertical]:h-4"
+        />
         <Search />
 
-        <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+        <Button
+          asChild
+          variant="ghost"
+          size="sm"
+          className="hidden md:inline-flex"
+        >
           <Link href="/dashboard/default">
             <LayoutDashboard className="size-4" />
             All Pages
@@ -40,7 +48,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
           <Notifications />
           <ThemeSwitch />
           <ThemeCustomizerPanel />
-          <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
+          <Separator
+            orientation="vertical"
+            className="mx-2 data-[orientation=vertical]:h-4"
+          />
           <UserMenu user={user} />
         </div>
       </div>

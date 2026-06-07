@@ -13,7 +13,7 @@ export async function generateMetadata() {
     title: "Crypto Admin Dashboard Template",
     description:
       "Manage crypto portfolios, digital wallets, and market trends. A professional admin dashboard page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/crypto"
+    canonical: "/crypto",
   });
 }
 
@@ -21,7 +21,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Crypto Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Crypto Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <Button>Download</Button>
         </div>

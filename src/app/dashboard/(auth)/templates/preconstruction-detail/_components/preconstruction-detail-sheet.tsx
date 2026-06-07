@@ -7,7 +7,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
 
@@ -24,8 +24,16 @@ type Props = {
   variant?: PreconstructionDetailVariantId;
 };
 
-export function PreconstructionDetailSheet({ open, onOpenChange, project, variant = "v1" }: Props) {
-  const Layout = variant === "v2" ? PreconstructionDetailLayoutV2 : PreconstructionDetailLayout;
+export function PreconstructionDetailSheet({
+  open,
+  onOpenChange,
+  project,
+  variant = "v1",
+}: Props) {
+  const Layout =
+    variant === "v2"
+      ? PreconstructionDetailLayoutV2
+      : PreconstructionDetailLayout;
   const close = () => onOpenChange(false);
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -36,11 +44,16 @@ export function PreconstructionDetailSheet({ open, onOpenChange, project, varian
       >
         <VisuallyHidden>
           <SheetHeader>
-            <SheetTitle>Preconstruction Detail — {project.projectNo}</SheetTitle>
+            <SheetTitle>
+              Preconstruction Detail — {project.projectNo}
+            </SheetTitle>
             <SheetDescription>Project detail view</SheetDescription>
           </SheetHeader>
         </VisuallyHidden>
-        <SheetMobileBar onClose={close} title={`Project ${project.projectNo}`} />
+        <SheetMobileBar
+          onClose={close}
+          title={`Project ${project.projectNo}`}
+        />
         <div className="p-4 sm:p-6">
           <Layout project={project} />
         </div>

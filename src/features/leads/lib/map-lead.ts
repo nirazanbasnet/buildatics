@@ -31,28 +31,36 @@ const STATUS_LABELS: Record<number, string> = {
   3: "Won",
   4: "Lost",
   5: "On Hold",
-  6: "Archived"
+  6: "Archived",
 };
 
 export function statusLabel(value: number | null | undefined): string {
   return STATUS_LABELS[value ?? 0] ?? `Status ${value}`;
 }
 
-function composeAddress(addr: AddressRes | null | undefined, lotNo?: string | null): string {
+function composeAddress(
+  addr: AddressRes | null | undefined,
+  lotNo?: string | null,
+): string {
   if (!addr && !lotNo) return "—";
-  const parts = [lotNo, addr?.street, addr?.suburb, addr?.city, addr?.areaCode].filter(
-    (p): p is string => Boolean(p && p.trim())
-  );
+  const parts = [
+    lotNo,
+    addr?.street,
+    addr?.suburb,
+    addr?.city,
+    addr?.areaCode,
+  ].filter((p): p is string => Boolean(p && p.trim()));
   return parts.length ? parts.join(", ") : "—";
 }
 
 export function mapLeadToRow(
   lead: LeadRes,
   stageNames: Map<string, string>,
-  staffNames: Map<string, string>
+  staffNames: Map<string, string>,
 ): LeadRow {
   const contact = lead.leadContacts?.[0]?.contact;
-  const client = [contact?.firstName, contact?.lastName].filter(Boolean).join(" ") || "—";
+  const client =
+    [contact?.firstName, contact?.lastName].filter(Boolean).join(" ") || "—";
   const stageId = lead.leadStageId ?? "";
   const assignedUserId = lead.assignedUserId ?? "";
   const statusValue = lead.status ?? 0;
@@ -70,6 +78,6 @@ export function mapLeadToRow(
     phone: contact?.primaryPhone ?? "—",
     progress: 0, // GAP #1
     assignedUserId,
-    assignee: staffNames.get(assignedUserId) ?? "—"
+    assignee: staffNames.get(assignedUserId) ?? "—",
   };
 }

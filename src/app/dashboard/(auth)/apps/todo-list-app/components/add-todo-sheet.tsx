@@ -11,11 +11,16 @@ import {
   statusDotColors,
   EnumTodoStatus,
   todoStatusNamed,
-  EnumTodoPriority
+  EnumTodoPriority,
 } from "../enum";
 import { toast } from "sonner";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,10 +29,14 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
 import {
   Form,
@@ -35,7 +44,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 
 interface AddTodoSheetProps {
@@ -44,7 +53,11 @@ interface AddTodoSheetProps {
   editTodoId?: string | null;
 }
 
-const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId }) => {
+const AddTodoSheet: React.FC<AddTodoSheetProps> = ({
+  isOpen,
+  onClose,
+  editTodoId,
+}) => {
   const { addTodo, updateTodo, todos } = useTodoStore();
 
   const [assignedUsers, setAssignedUsers] = React.useState<string[]>([]);
@@ -57,12 +70,12 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
     status: EnumTodoStatus.Pending,
     priority: EnumTodoPriority.Medium,
     dueDate: undefined,
-    reminderDate: undefined
+    reminderDate: undefined,
   };
 
   const form = useForm<TodoFormValues>({
     resolver: zodResolver(todoFormSchema),
-    defaultValues
+    defaultValues,
   });
 
   // If editTodoId is provided, load that todos data
@@ -77,7 +90,7 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
           status: todoToEdit.status as TodoFormValues["status"],
           priority: todoToEdit.priority as TodoFormValues["priority"],
           dueDate: todoToEdit.dueDate,
-          reminderDate: todoToEdit.reminderDate
+          reminderDate: todoToEdit.reminderDate,
         });
         setAssignedUsers(todoToEdit.assignedTo);
       }
@@ -128,7 +141,10 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-4 pt-0">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 p-4 pt-0"
+          >
             <FormField
               control={form.control}
               name="title"
@@ -189,7 +205,12 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                     }
                   }}
                 />
-                <Button type="button" variant="outline" size="icon" onClick={addAssignedUser}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={addAssignedUser}
+                >
                   <Plus />
                 </Button>
               </div>
@@ -213,11 +234,13 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                           variant="outline"
                           className={cn(
                             "w-full justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground"
+                            !field.value && "text-muted-foreground",
                           )}
                         >
                           <CalendarIcon />
-                          {field.value ? format(field.value, "PPP") : "Select a date"}
+                          {field.value
+                            ? format(field.value, "PPP")
+                            : "Select a date"}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0" align="start">
@@ -248,11 +271,13 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                           variant="outline"
                           className={cn(
                             "w-full justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground"
+                            !field.value && "text-muted-foreground",
                           )}
                         >
                           <CalendarIcon />
-                          {field.value ? format(field.value, "PPP") : "Select a date"}
+                          {field.value
+                            ? format(field.value, "PPP")
+                            : "Select a date"}
                         </Button>
                       </PopoverTrigger>
                       <PopoverContent className="w-auto p-0" align="start">
@@ -278,7 +303,10 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                   <FormItem>
                     <FormLabel>Status</FormLabel>
                     <FormControl>
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <SelectTrigger className="w-full">
                           <SelectValue placeholder="Select status" />
                         </SelectTrigger>
@@ -286,7 +314,10 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                           {Object.values(EnumTodoStatus).map((status) => (
                             <SelectItem key={status} value={status}>
                               <span
-                                className={cn("size-2 rounded-full", statusDotColors[status])}
+                                className={cn(
+                                  "size-2 rounded-full",
+                                  statusDotColors[status],
+                                )}
                               ></span>
                               {todoStatusNamed[status]}
                             </SelectItem>
@@ -306,15 +337,25 @@ const AddTodoSheet: React.FC<AddTodoSheetProps> = ({ isOpen, onClose, editTodoId
                   <FormItem>
                     <FormLabel>Priority</FormLabel>
                     <FormControl>
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
                         <SelectTrigger className="w-full capitalize">
                           <SelectValue placeholder="Select priority" />
                         </SelectTrigger>
                         <SelectContent>
                           {Object.values(EnumTodoPriority).map((priority) => (
-                            <SelectItem className="capitalize" key={priority} value={priority}>
+                            <SelectItem
+                              className="capitalize"
+                              key={priority}
+                              value={priority}
+                            >
                               <span
-                                className={cn("size-2 rounded-full", priorityDotColors[priority])}
+                                className={cn(
+                                  "size-2 rounded-full",
+                                  priorityDotColors[priority],
+                                )}
                               ></span>
                               {priority}
                             </SelectItem>

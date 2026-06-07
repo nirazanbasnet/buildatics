@@ -8,7 +8,7 @@ import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import { ArrowDown, ArrowUp, ChevronsUpDown } from "lucide-react";
 
@@ -17,7 +17,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -25,7 +25,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ import { DocumentActionsMenu } from "./document-actions-menu";
 function SortableHeader<TData>({
   column,
   title,
-  className
+  className,
 }: {
   column: Column<TData, unknown>;
   title: string;
@@ -56,11 +56,17 @@ function SortableHeader<TData>({
           size="sm"
           className={cn(
             "data-[state=open]:bg-accent text-foreground -ml-3 h-8 font-semibold",
-            className
+            className,
           )}
         >
           <span>{title}</span>
-          {sorted === "desc" ? <ArrowDown /> : sorted === "asc" ? <ArrowUp /> : <ChevronsUpDown />}
+          {sorted === "desc" ? (
+            <ArrowDown />
+          ) : sorted === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
@@ -80,24 +86,38 @@ function SortableHeader<TData>({
 const columns: ColumnDef<PreconstructionDocument>[] = [
   {
     accessorKey: "name",
-    header: ({ column }) => <SortableHeader column={column} title="File Name" />,
-    cell: ({ row }) => <span className="text-foreground font-medium">{row.original.name}</span>
+    header: ({ column }) => (
+      <SortableHeader column={column} title="File Name" />
+    ),
+    cell: ({ row }) => (
+      <span className="text-foreground font-medium">{row.original.name}</span>
+    ),
   },
   {
     accessorKey: "size",
-    header: ({ column }) => <SortableHeader column={column} title="File Size" />,
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.size}</span>
+    header: ({ column }) => (
+      <SortableHeader column={column} title="File Size" />
+    ),
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.original.size}</span>
+    ),
   },
   {
     accessorKey: "uploadedBy",
     header: "Uploaded by",
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.uploadedBy}</span>,
-    enableSorting: false
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.original.uploadedBy}</span>
+    ),
+    enableSorting: false,
   },
   {
     accessorKey: "uploadedOn",
-    header: ({ column }) => <SortableHeader column={column} title="Uploaded on" />,
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.uploadedOn}</span>
+    header: ({ column }) => (
+      <SortableHeader column={column} title="Uploaded on" />
+    ),
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.original.uploadedOn}</span>
+    ),
   },
   {
     id: "actions",
@@ -106,11 +126,15 @@ const columns: ColumnDef<PreconstructionDocument>[] = [
       <div className="flex justify-end">
         <DocumentActionsMenu />
       </div>
-    )
-  }
+    ),
+  },
 ];
 
-export function AttachedFilesTable({ data }: { data: PreconstructionDocument[] }) {
+export function AttachedFilesTable({
+  data,
+}: {
+  data: PreconstructionDocument[];
+}) {
   const [sorting, setSorting] = useState<SortingState>([]);
 
   const table = useReactTable({
@@ -119,7 +143,7 @@ export function AttachedFilesTable({ data }: { data: PreconstructionDocument[] }
     state: { sorting },
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -127,12 +151,21 @@ export function AttachedFilesTable({ data }: { data: PreconstructionDocument[] }
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="bg-muted/50 hover:bg-muted/50">
+            <TableRow
+              key={headerGroup.id}
+              className="bg-muted/50 hover:bg-muted/50"
+            >
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id} className="text-foreground font-semibold">
+                <TableHead
+                  key={header.id}
+                  className="text-foreground font-semibold"
+                >
                   {header.isPlaceholder
                     ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </TableHead>
               ))}
             </TableRow>

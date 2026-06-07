@@ -13,19 +13,22 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import { updateProfile } from "../actions/update-profile";
 import type { UserProfileRes } from "../lib/dto";
-import { profileDetailsSchema, type ProfileDetailsInput } from "../lib/profile-form-schema";
+import {
+  profileDetailsSchema,
+  type ProfileDetailsInput,
+} from "../lib/profile-form-schema";
 import { STATE_OPTIONS, STATE_UNSET } from "../lib/state-options";
 
 type ProfileDetailsFormProps = {
@@ -45,15 +48,18 @@ function toDefaults(profile: UserProfileRes): ProfileDetailsInput {
     suburb: address?.suburb ?? "",
     city: address?.city ?? "",
     areaCode: address?.areaCode ?? "",
-    state: address?.state != null ? String(address.state) : STATE_UNSET
+    state: address?.state != null ? String(address.state) : STATE_UNSET,
   };
 }
 
-export function ProfileDetailsForm({ profile, emailOtp2FAEnabled }: ProfileDetailsFormProps) {
+export function ProfileDetailsForm({
+  profile,
+  emailOtp2FAEnabled,
+}: ProfileDetailsFormProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<ProfileDetailsInput>({
     resolver: zodResolver(profileDetailsSchema),
-    defaultValues: toDefaults(profile)
+    defaultValues: toDefaults(profile),
   });
 
   function onSubmit(values: ProfileDetailsInput) {

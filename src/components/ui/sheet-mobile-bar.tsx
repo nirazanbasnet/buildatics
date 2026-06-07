@@ -16,15 +16,22 @@ export function SheetMobileBar({ onClose, title, className }: Props) {
     <div
       className={cn(
         "bg-background sticky top-0 z-20 flex items-center justify-between gap-2 border-b px-4 py-3 md:hidden",
-        className
+        className,
       )}
       data-slot="sheet-mobile-bar"
     >
-      <Button variant="ghost" size="sm" onClick={onClose} className="-ml-2 gap-1">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={onClose}
+        className="-ml-2 gap-1"
+      >
         <ChevronLeft className="size-5" />
         Back
       </Button>
-      {title ? <span className="text-foreground text-base font-semibold">{title}</span> : null}
+      {title ? (
+        <span className="text-foreground text-base font-semibold">{title}</span>
+      ) : null}
       <Button variant="ghost" size="icon" onClick={onClose} aria-label="Close">
         <X className="size-5" />
       </Button>

@@ -1,26 +1,40 @@
 "use client";
 
-import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
+import {
+  Label,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadialBar,
+  RadialBarChart,
+} from "recharts";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 
 const macros = [
   { label: "Carbs", amount: "178g", color: "bg-red-400" },
   { label: "Protein", amount: "92g", color: "bg-blue-400" },
-  { label: "Fats", amount: "38g", color: "bg-yellow-400" }
+  { label: "Fats", amount: "38g", color: "bg-yellow-400" },
 ];
 
-const chartData = [{ browser: "safari", visitors: 1300, fill: "var(--color-safari)" }];
+const chartData = [
+  { browser: "safari", visitors: 1300, fill: "var(--color-safari)" },
+];
 
 const chartConfig = {
   visitors: {
-    label: "Visitors"
+    label: "Visitors",
   },
   safari: {
     label: "Safari",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export function NutritionCard() {
@@ -31,7 +45,10 @@ export function NutritionCard() {
         <CardDescription>Today&#39;s intake</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square h-44 w-full">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square h-44 w-full"
+        >
           <RadialBarChart
             data={chartData}
             startAngle={0}
@@ -80,12 +97,21 @@ export function NutritionCard() {
             </PolarRadiusAxis>
           </RadialBarChart>
         </ChartContainer>
-        <p className="text-muted-foreground text-center text-sm">680 kcal remaining</p>
+        <p className="text-muted-foreground text-center text-sm">
+          680 kcal remaining
+        </p>
         <div className="grid grid-cols-3 gap-3">
           {macros.map((macro) => (
-            <div key={macro.label} className="bg-muted rounded-xl p-4 text-center">
-              <div className={`h-1 w-8 ${macro.color} mx-auto mb-2 rounded-full`} />
-              <p className="text-muted-foreground mb-1 text-xs">{macro.label}</p>
+            <div
+              key={macro.label}
+              className="bg-muted rounded-xl p-4 text-center"
+            >
+              <div
+                className={`h-1 w-8 ${macro.color} mx-auto mb-2 rounded-full`}
+              />
+              <p className="text-muted-foreground mb-1 text-xs">
+                {macro.label}
+              </p>
               <p className="text-lg font-bold">{macro.amount}</p>
             </div>
           ))}

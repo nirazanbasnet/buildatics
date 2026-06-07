@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { DisplayCenterShowcase } from "../../dashboard/(auth)/templates/display-center/_components/display-center-showcase";
 import {
   VARIANT_LAYOUTS,
-  type VariantId
+  type VariantId,
 } from "../../dashboard/(auth)/templates/display-center/_components/variant-layouts";
 
 type EmbedSearchParams = {
@@ -19,7 +19,7 @@ function resolveStyle(layout: string | undefined): VariantId {
 }
 
 export default async function DisplayCenterEmbedPage({
-  searchParams
+  searchParams,
 }: {
   searchParams: Promise<EmbedSearchParams>;
 }) {
@@ -28,7 +28,9 @@ export default async function DisplayCenterEmbedPage({
 
   return (
     <main className="bg-background min-h-screen p-4">
-      <Suspense fallback={<div className="bg-card min-h-96 rounded-2xl border" />}>
+      <Suspense
+        fallback={<div className="bg-card min-h-96 rounded-2xl border" />}
+      >
         <DisplayCenterShowcase
           style={resolveStyle(params.layout)}
           font={params.font}

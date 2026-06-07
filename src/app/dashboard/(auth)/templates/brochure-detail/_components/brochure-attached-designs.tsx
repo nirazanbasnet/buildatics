@@ -3,13 +3,18 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ZoomIn } from "lucide-react";
 
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
@@ -22,14 +27,21 @@ type Props = {
   className?: string;
 };
 
-export function BrochureAttachedDesigns({ designs, design, onDesignChange, className }: Props) {
+export function BrochureAttachedDesigns({
+  designs,
+  design,
+  onDesignChange,
+  className,
+}: Props) {
   return (
     <section
       className={cn("bg-card rounded-2xl border p-5", className)}
       data-slot="brochure-designs"
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-foreground text-base font-semibold">Attached Designs</h3>
+        <h3 className="text-foreground text-base font-semibold">
+          Attached Designs
+        </h3>
         <Select value={design} onValueChange={onDesignChange}>
           <SelectTrigger className="w-52" size="sm">
             <SelectValue placeholder="Choose New Design" />
@@ -48,7 +60,11 @@ export function BrochureAttachedDesigns({ designs, design, onDesignChange, class
         {designs.map((item) => (
           <Dialog key={item.id}>
             <div className="bg-muted/30 relative overflow-hidden rounded-lg border">
-              <img src={item.image} alt={item.alt} className="h-52 w-full object-cover" />
+              <img
+                src={item.image}
+                alt={item.alt}
+                className="h-52 w-full object-cover"
+              />
               <DialogTrigger asChild>
                 <button
                   type="button"

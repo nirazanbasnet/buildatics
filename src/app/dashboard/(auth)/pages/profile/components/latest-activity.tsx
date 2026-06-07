@@ -5,7 +5,13 @@ import Link from "next/link";
 import { BadgeCheckIcon, BriefcaseBusinessIcon, ClockIcon } from "lucide-react";
 import { DownloadIcon } from "@radix-ui/react-icons";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -39,8 +45,9 @@ export function LatestActivity() {
               <ClockIcon className="size-3" /> Released on December 2nd, 2025
             </time>
             <p className="text-muted-foreground text-sm">
-              Get access to over 20+ pages including a dashboard layout, charts, kanban board,
-              calendar, and pre-order E-commerce & Marketing pages.
+              Get access to over 20+ pages including a dashboard layout, charts,
+              kanban board, calendar, and pre-order E-commerce & Marketing
+              pages.
             </p>
             <Button variant="outline" asChild>
               <Link href="#">
@@ -57,8 +64,9 @@ export function LatestActivity() {
               <ClockIcon className="size-3" /> Released on December 2nd, 2025
             </time>
             <p className="text-muted-foreground text-sm">
-              All of the pages and components are first designed in Figma and we keep a parity
-              between the two versions even as we update the project.
+              All of the pages and components are first designed in Figma and we
+              keep a parity between the two versions even as we update the
+              project.
             </p>
           </li>
           <li className="ms-6 space-y-2">
@@ -70,8 +78,8 @@ export function LatestActivity() {
               <ClockIcon className="size-3" /> Released on December 2nd, 2025
             </time>
             <p className="text-muted-foreground text-sm">
-              Get started with dozens of web components and interactive elements built on top of
-              Tailwind CSS.
+              Get started with dozens of web components and interactive elements
+              built on top of Tailwind CSS.
             </p>
           </li>
         </ol>

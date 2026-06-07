@@ -9,29 +9,36 @@ export const brochureDetailStatusConfig: Record<
   draft: {
     label: "Draft",
     trigger: "bg-blue-600 text-white hover:bg-blue-600/90",
-    dot: "bg-blue-500"
+    dot: "bg-blue-500",
   },
   sent: {
     label: "Sent",
     trigger: "bg-green-600 text-white hover:bg-green-600/90",
-    dot: "bg-green-500"
-  }
+    dot: "bg-green-500",
+  },
 };
 
-export const brochureDetailStatusOrder: BrochureDetailStatus[] = ["draft", "sent"];
+export const brochureDetailStatusOrder: BrochureDetailStatus[] = [
+  "draft",
+  "sent",
+];
 
-export const brochureDetailTabs = ["Brochure Builder", "Preview", "History"] as const;
+export const brochureDetailTabs = [
+  "Brochure Builder",
+  "Preview",
+  "History",
+] as const;
 export type BrochureDetailTab = (typeof brochureDetailTabs)[number];
 
 const brochureDetailTabIcons: Record<BrochureDetailTab, LucideIcon> = {
   "Brochure Builder": LayoutTemplate,
   Preview: Eye,
-  History: History
+  History: History,
 };
 
 export const brochureDetailTabItems = brochureDetailTabs.map((value) => ({
   value,
-  icon: brochureDetailTabIcons[value]
+  icon: brochureDetailTabIcons[value],
 }));
 
 export type BrochureOwner = {
@@ -78,13 +85,13 @@ export type BrochureDetail = {
 export const brochureTemplateOptions = [
   { value: "modern", label: "Modern" },
   { value: "classic", label: "Classic" },
-  { value: "minimal", label: "Minimal" }
+  { value: "minimal", label: "Minimal" },
 ];
 
 export const brochureDesignOptions = [
   { value: "double-storey", label: "Double Storey" },
   { value: "single-storey", label: "Single Storey" },
-  { value: "duplex", label: "Duplex" }
+  { value: "duplex", label: "Duplex" },
 ];
 
 const facade = (file: string) => `/images/display-center/facade/${file}`;
@@ -103,31 +110,31 @@ export const brochureDetailMock: BrochureDetail = {
       name: "owner_name",
       address: "lotNo, streetNo streetName, suburb postCode",
       email: "placeholder@gmail.com",
-      contact: "+61 5626262626"
-    }
+      contact: "+61 5626262626",
+    },
   ],
   property: {
     landWidth: "500",
     landDepth: "500",
     landArea: "500",
-    driveway: "left"
+    driveway: "left",
   },
   attachedDesigns: [
     {
       id: "design-plan",
       image: plan("PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png"),
-      alt: "Floor plan"
+      alt: "Floor plan",
     },
     {
       id: "design-facade",
       image: facade("RENDER_DF01_12.5M_RIGHT_VN01.jpg"),
-      alt: "Facade render"
-    }
+      alt: "Facade render",
+    },
   ],
   history: Array.from({ length: 9 }, (_, i) => ({
     id: `history-${i + 1}`,
     message: "Uh oh! Something went wrong.",
     by: "Staff_name",
-    time: "1 hour ago"
-  }))
+    time: "1 hour ago",
+  })),
 };

@@ -3,11 +3,16 @@ import { cookies } from "next/headers";
 import { VariantHeader } from "../../_shared/variant-header";
 import { ShareToSiteLayout } from "../_components/share-to-site-layout";
 import { UseThisButton } from "../_components/use-this-button";
-import { parseShareToSiteVariant, shareToSiteVariantLinks } from "../_components/variants";
+import {
+  parseShareToSiteVariant,
+  shareToSiteVariantLinks,
+} from "../_components/variants";
 
 export default async function ShareToSiteVariant2Page() {
   const cookieStore = await cookies();
-  const promoted = parseShareToSiteVariant(cookieStore.get("share_to_site_variant")?.value);
+  const promoted = parseShareToSiteVariant(
+    cookieStore.get("share_to_site_variant")?.value,
+  );
 
   return (
     <div>

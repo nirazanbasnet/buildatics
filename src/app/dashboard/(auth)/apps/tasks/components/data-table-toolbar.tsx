@@ -14,22 +14,30 @@ interface DataTableToolbarProps<TData> {
   table: Table<TData>;
 }
 
-export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({
+  table,
+}: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between lg:hidden">
-        <h1 className="me-4 text-xl font-bold tracking-tight lg:text-2xl">Tasks</h1>
+        <h1 className="me-4 text-xl font-bold tracking-tight lg:text-2xl">
+          Tasks
+        </h1>
         <Button size="sm">Add Task</Button>
       </div>
       <div className="flex flex-col justify-between md:flex-row lg:items-center">
-        <h1 className="me-4 hidden text-xl font-bold tracking-tight lg:flex lg:text-2xl">Tasks</h1>
+        <h1 className="me-4 hidden text-xl font-bold tracking-tight lg:flex lg:text-2xl">
+          Tasks
+        </h1>
         <div className="flex flex-1 flex-wrap items-center gap-2">
           <Input
             placeholder="Filter tasks..."
             value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("title")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("title")?.setFilterValue(event.target.value)
+            }
             className="h-8 w-[150px] lg:w-[250px]"
           />
           {table.getColumn("status") && (
@@ -47,7 +55,11 @@ export function DataTableToolbar<TData>({ table }: DataTableToolbarProps<TData>)
             />
           )}
           {isFiltered && (
-            <Button variant="ghost" size="sm" onClick={() => table.resetColumnFilters()}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => table.resetColumnFilters()}
+            >
               Reset
               <X />
             </Button>

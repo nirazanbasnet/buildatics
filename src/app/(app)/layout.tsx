@@ -12,7 +12,7 @@ import { getProfile } from "@/features/profile";
 // Shell for the real product (top-level routes), separate from the /dashboard reference kit.
 // Mirrors the dashboard (auth) layout: SSR auth guard + sidebar/header/footer wired to the session.
 export default async function AppLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -44,7 +44,7 @@ export default async function AppLayout({
           "--content-padding": "calc(var(--spacing) * 4)",
           "--content-margin": "calc(var(--spacing) * 1.5)",
           "--content-full-height":
-            "calc(100vh - var(--header-height) - (var(--content-padding) * 2) - (var(--content-margin) * 2))"
+            "calc(100vh - var(--header-height) - (var(--content-padding) * 2) - (var(--content-margin) * 2))",
         } as React.CSSProperties
       }
     >

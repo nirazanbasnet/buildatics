@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { FolderUp } from "lucide-react";
@@ -25,7 +25,7 @@ export async function generateMetadata() {
     title: "Project Management Admin Dashboard",
     description:
       "Track tasks, deadlines, and team efficiency with interactive charts. A professional dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/project-management"
+    canonical: "/project-management",
   });
 }
 

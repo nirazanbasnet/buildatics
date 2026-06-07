@@ -8,5 +8,5 @@ type MailStore = {
 
 export const useMailStore = create<MailStore>((set) => ({
   selectedMail: null,
-  setSelectedMail: (mail) => set({ selectedMail: mail })
+  setSelectedMail: (mail) => set({ selectedMail: mail }),
 }));

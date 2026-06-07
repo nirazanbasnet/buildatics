@@ -23,7 +23,7 @@ function StatCard({
   caption,
   icon: Icon,
   index,
-  reduceMotion
+  reduceMotion,
 }: StatCardProps) {
   return (
     <motion.article
@@ -34,7 +34,11 @@ function StatCard({
           : {
               opacity: 1,
               y: 0,
-              transition: { duration: 0.25, delay: index * 0.05, ease: "easeOut" }
+              transition: {
+                duration: 0.25,
+                delay: index * 0.05,
+                ease: "easeOut",
+              },
             }
       }
       whileHover={reduceMotion ? undefined : { y: -4 }}
@@ -50,10 +54,14 @@ function StatCard({
       <p className="text-foreground text-3xl font-bold tracking-tight">
         {value}
         {valueSuffix ? (
-          <span className="text-foreground/80 ml-1 text-lg font-semibold">{valueSuffix}</span>
+          <span className="text-foreground/80 ml-1 text-lg font-semibold">
+            {valueSuffix}
+          </span>
         ) : null}
       </p>
-      {caption ? <div className="text-muted-foreground text-sm">{caption}</div> : null}
+      {caption ? (
+        <div className="text-muted-foreground text-sm">{caption}</div>
+      ) : null}
     </motion.article>
   );
 }

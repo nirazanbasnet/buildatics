@@ -7,7 +7,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 
 import type { UserRow } from "../types";
@@ -20,7 +20,10 @@ type UsersTableProps = {
 
 export function UsersTable({ users, onChanged }: UsersTableProps) {
   return (
-    <div className="bg-card overflow-hidden rounded-lg border" data-slot="users-table">
+    <div
+      className="bg-card overflow-hidden rounded-lg border"
+      data-slot="users-table"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -34,7 +37,10 @@ export function UsersTable({ users, onChanged }: UsersTableProps) {
         </TableHeader>
         <TableBody>
           {users.map((user) => (
-            <TableRow key={user.id} className={user.isDeleted ? "opacity-60" : undefined}>
+            <TableRow
+              key={user.id}
+              className={user.isDeleted ? "opacity-60" : undefined}
+            >
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">

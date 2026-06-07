@@ -12,26 +12,29 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { createQuote } from "../../actions/create-quote";
 import type { QuoteLeadOption } from "../../lib/lead-options";
-import { addQuoteSchema, type AddQuoteInput } from "../../lib/quote-form-schema";
+import {
+  addQuoteSchema,
+  type AddQuoteInput,
+} from "../../lib/quote-form-schema";
 import { QuoteFormFields } from "./quote-form-fields";
 
 type AddQuoteSheetProps = {
@@ -42,13 +45,23 @@ type AddQuoteSheetProps = {
   onCreated: (created?: { leadId: string; id: string }) => void;
 };
 
-const DEFAULTS: AddQuoteInput = { leadId: "", title: "", description: "", validUntil: "" };
+const DEFAULTS: AddQuoteInput = {
+  leadId: "",
+  title: "",
+  description: "",
+  validUntil: "",
+};
 
-export function AddQuoteSheet({ open, onOpenChange, leads, onCreated }: AddQuoteSheetProps) {
+export function AddQuoteSheet({
+  open,
+  onOpenChange,
+  leads,
+  onCreated,
+}: AddQuoteSheetProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<AddQuoteInput>({
     resolver: zodResolver(addQuoteSchema),
-    defaultValues: DEFAULTS
+    defaultValues: DEFAULTS,
   });
 
   useEffect(() => {
@@ -61,27 +74,38 @@ export function AddQuoteSheet({ open, onOpenChange, leads, onCreated }: AddQuote
       if (res.ok) {
         toast.success("Quotation created");
         onOpenChange(false);
-        onCreated(res.leadId && res.id ? { leadId: res.leadId, id: res.id } : undefined);
+        onCreated(
+          res.leadId && res.id ? { leadId: res.leadId, id: res.id } : undefined,
+        );
         return;
       }
-      if (res.fieldErrors?.leadId) form.setError("leadId", { message: res.fieldErrors.leadId });
-      if (res.fieldErrors?.title) form.setError("title", { message: res.fieldErrors.title });
+      if (res.fieldErrors?.leadId)
+        form.setError("leadId", { message: res.fieldErrors.leadId });
+      if (res.fieldErrors?.title)
+        form.setError("title", { message: res.fieldErrors.title });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Add quotation</SheetTitle>
           <SheetDescription className="sr-only">
-            Create a quotation against a lead. Line items are added on the detail page.
+            Create a quotation against a lead. Line items are added on the
+            detail page.
           </SheetDescription>
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5">
               <FormField
                 control={form.control}

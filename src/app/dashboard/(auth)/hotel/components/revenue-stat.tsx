@@ -1,19 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-  type ChartConfig
+  type ChartConfig,
 } from "@/components/ui/chart";
 import { Bar, BarChart, XAxis, YAxis, ReferenceLine } from "recharts";
 import { Calendar, TrendingUp } from "lucide-react";
@@ -39,20 +45,20 @@ const items = {
       { day: "Tue", revenue: 6500, projected: 1500 },
       { day: "Wed", revenue: 4200, projected: 1800 },
       { day: "Thu", revenue: 5500, projected: 2000 },
-      { day: "Fri", revenue: 3800, projected: 1700 }
+      { day: "Fri", revenue: 3800, projected: 1700 },
     ],
     total: 12480,
-    percentageChange: 16
+    percentageChange: 16,
   },
   monthly: {
     data: [
       { day: "Week 1", revenue: 8500, projected: 3500 },
       { day: "Week 2", revenue: 12000, projected: 4000 },
       { day: "Week 3", revenue: 9500, projected: 4500 },
-      { day: "Week 4", revenue: 14000, projected: 3000 }
+      { day: "Week 4", revenue: 14000, projected: 3000 },
     ],
     total: 59000,
-    percentageChange: 22
+    percentageChange: 22,
   },
   yearly: {
     data: [
@@ -67,23 +73,23 @@ const items = {
       { day: "Sep", revenue: 48000, projected: 10000 },
       { day: "Oct", revenue: 38000, projected: 18000 },
       { day: "Nov", revenue: 52000, projected: 12000 },
-      { day: "Dec", revenue: 58000, projected: 15000 }
+      { day: "Dec", revenue: 58000, projected: 15000 },
     ],
     total: 643000,
-    percentageChange: 35
+    percentageChange: 35,
   },
-  selectedPeriod: "weekly"
+  selectedPeriod: "weekly",
 };
 
 const chartConfig = {
   revenue: {
     label: "Revenue",
-    color: "var(--color-chart-1)"
+    color: "var(--color-chart-1)",
   },
   projected: {
     label: "Projected",
-    color: "#d1d5db"
-  }
+    color: "#d1d5db",
+  },
 } satisfies ChartConfig;
 
 const formatYAxisTick = (value: number) => {
@@ -97,7 +103,7 @@ const formatCurrency = (value: number) => {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    minimumFractionDigits: 2
+    minimumFractionDigits: 2,
   }).format(value);
 };
 
@@ -117,11 +123,23 @@ const StripePattern = () => (
 const getYAxisConfig = (period: string) => {
   switch (period) {
     case "yearly":
-      return { ticks: [0, 20000, 40000, 60000, 80000], domain: [0, 80000], refLine: 50000 };
+      return {
+        ticks: [0, 20000, 40000, 60000, 80000],
+        domain: [0, 80000],
+        refLine: 50000,
+      };
     case "monthly":
-      return { ticks: [0, 5000, 10000, 15000, 20000], domain: [0, 20000], refLine: 12000 };
+      return {
+        ticks: [0, 5000, 10000, 15000, 20000],
+        domain: [0, 20000],
+        refLine: 12000,
+      };
     default:
-      return { ticks: [0, 2000, 4000, 6000, 8000, 10000], domain: [0, 10000], refLine: 6000 };
+      return {
+        ticks: [0, 2000, 4000, 6000, 8000, 10000],
+        domain: [0, 10000],
+        refLine: 6000,
+      };
   }
 };
 
@@ -157,13 +175,18 @@ export function RevenueStat() {
           </span>
           <div className="flex items-center gap-1 text-sm">
             <TrendingUp className="size-4 text-green-600" />
-            <span className="text-success font-medium">{percentageChange}%</span>
+            <span className="text-success font-medium">
+              {percentageChange}%
+            </span>
             <span className="text-muted-foreground">from last month</span>
           </div>
         </div>
 
         <ChartContainer config={chartConfig} className="h-[240px] w-full">
-          <BarChart data={data} margin={{ top: 20, right: 0, left: -30, bottom: 0 }}>
+          <BarChart
+            data={data}
+            margin={{ top: 20, right: 0, left: -30, bottom: 0 }}
+          >
             <defs>
               <StripePattern />
             </defs>
@@ -191,13 +214,16 @@ export function RevenueStat() {
                       <div
                         className="h-2.5 w-2.5 rounded-full"
                         style={{
-                          backgroundColor: name === "revenue" ? "hsl(142 71% 45%)" : "#d1d5db"
+                          backgroundColor:
+                            name === "revenue" ? "hsl(142 71% 45%)" : "#d1d5db",
                         }}
                       />
                       <span className="text-muted-foreground capitalize">
                         {name === "revenue" ? "Revenue" : "Projected"}:
                       </span>
-                      <span className="font-medium">{formatCurrency(Number(value))}</span>
+                      <span className="font-medium">
+                        {formatCurrency(Number(value))}
+                      </span>
                     </div>
                   )}
                 />

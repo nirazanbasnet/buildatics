@@ -7,7 +7,7 @@ const socialLinks = [
   { label: "Facebook", href: "https://facebook.com", icon: Facebook },
   { label: "Instagram", href: "https://instagram.com", icon: Instagram },
   { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "Twitter", href: "https://twitter.com", icon: Twitter }
+  { label: "Twitter", href: "https://twitter.com", icon: Twitter },
 ] as const;
 
 export function SiteFooter({ className }: { className?: string }) {
@@ -17,7 +17,7 @@ export function SiteFooter({ className }: { className?: string }) {
     <footer
       className={cn(
         "text-muted-foreground flex flex-wrap items-center justify-between gap-3 px-(--content-padding) py-4 text-xs",
-        className
+        className,
       )}
     >
       <p>&copy;{year} Buildatics</p>

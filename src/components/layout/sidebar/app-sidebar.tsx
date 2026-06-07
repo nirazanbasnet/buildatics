@@ -16,7 +16,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { NavMain } from "@src/components/layout/sidebar/nav-main";
 import { NavUser } from "@src/components/layout/sidebar/nav-user";
@@ -30,9 +30,15 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export function AppSidebar({
@@ -40,12 +46,16 @@ export function AppSidebar({
   isAdmin = false,
   variant: variantProp,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { user: SessionUser; isAdmin?: boolean }) {
+}: React.ComponentProps<typeof Sidebar> & {
+  user: SessionUser;
+  isAdmin?: boolean;
+}) {
   const pathname = usePathname();
   const { setOpen, setOpenMobile, isMobile } = useSidebar();
   const isTablet = useIsTablet();
   const { theme } = useThemeConfig();
-  const variant = variantProp ?? (theme.sidebarMode === "floating" ? "floating" : "inset");
+  const variant =
+    variantProp ?? (theme.sidebarMode === "floating" ? "floating" : "inset");
 
   useEffect(() => {
     if (isMobile) setOpenMobile(false);
@@ -70,7 +80,9 @@ export function AppSidebar({
             >
               <Link href="/design-library">
                 <Logo />
-                <span className="text-foreground text-xl font-semibold">Buildatics.</span>
+                <span className="text-foreground text-xl font-semibold">
+                  Buildatics.
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

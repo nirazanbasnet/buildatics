@@ -9,7 +9,7 @@ export async function generateMetadata() {
     title: "Payment Admin Dashboard",
     description:
       "Track balances, transaction history, and exchange rates. A professional payment admin page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/payment"
+    canonical: "/payment",
   });
 }
 

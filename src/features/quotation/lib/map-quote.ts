@@ -22,7 +22,10 @@ import type { LeadQuoteRes } from "./dto";
 import type { LeadRow } from "@/features/leads";
 import type { QuotationRow } from "../types";
 
-export function mapQuoteToRow(quote: LeadQuoteRes, lead: LeadRow | undefined): QuotationRow {
+export function mapQuoteToRow(
+  quote: LeadQuoteRes,
+  lead: LeadRow | undefined,
+): QuotationRow {
   const meta = statusMeta(quote.status);
   return {
     id: quote.id ?? "",
@@ -36,6 +39,6 @@ export function mapQuoteToRow(quote: LeadQuoteRes, lead: LeadRow | undefined): Q
     quoteDate: formatDate(quote.createdOnUtc),
     expiryDate: formatDate(quote.validUntilUtc),
     statusValue: meta.value,
-    statusLabel: meta.label
+    statusLabel: meta.label,
   };
 }

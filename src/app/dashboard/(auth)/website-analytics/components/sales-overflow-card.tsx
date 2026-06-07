@@ -1,6 +1,12 @@
 import { TrendingUp } from "lucide-react";
 
-import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export function SaleOverviewCard() {

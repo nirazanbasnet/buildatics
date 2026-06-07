@@ -11,9 +11,12 @@ import { parseQuotationVariant } from "../templates/quotation/_components/varian
 
 export default async function QuotationPage() {
   const cookieStore = await cookies();
-  const quotationVariant = parseQuotationVariant(cookieStore.get("quotation_variant")?.value);
+  const quotationVariant = parseQuotationVariant(
+    cookieStore.get("quotation_variant")?.value,
+  );
 
-  const Layout = quotationVariant === "v2" ? QuotationLayoutV2 : QuotationLayout;
+  const Layout =
+    quotationVariant === "v2" ? QuotationLayoutV2 : QuotationLayout;
 
   return <Layout quotations={quotations} detailEnabled />;
 }

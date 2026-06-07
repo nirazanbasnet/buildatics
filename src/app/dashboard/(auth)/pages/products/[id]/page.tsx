@@ -9,11 +9,17 @@ import {
   ShoppingCart,
   StarIcon,
   Trash2Icon,
-  TruckIcon
+  TruckIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import ProductReviewList from "./reviews";
 import SubmitReviewForm from "./submit-review-form";
 import { Progress } from "@/components/ui/progress";
@@ -26,7 +32,7 @@ export async function generateMetadata() {
     title: "Product Detail Page",
     description:
       "Use this shadcn/ui and Tailwind CSS product page template to create great looking pages for each product, with detailed descriptions, images, pricing, and customer reviews.",
-    canonical: "/pages/products/detail"
+    canonical: "/pages/products/detail",
   });
 }
 
@@ -35,16 +41,21 @@ export default function Page() {
     <div className="space-y-4">
       <div className="flex flex-row items-start justify-between">
         <div className="space-y-2">
-          <h1 className="font-display text-xl tracking-tight lg:text-2xl">Acme Prism T-Shirt</h1>
+          <h1 className="font-display text-xl tracking-tight lg:text-2xl">
+            Acme Prism T-Shirt
+          </h1>
           <div className="text-muted-foreground inline-flex flex-col gap-2 text-sm lg:flex-row lg:gap-4">
             <div>
-              <span className="text-foreground font-semibold">Seller :</span> Poetic Fashion
+              <span className="text-foreground font-semibold">Seller :</span>{" "}
+              Poetic Fashion
             </div>
             <div>
-              <span className="text-foreground font-semibold">Published :</span> 20 Oct, 2024
+              <span className="text-foreground font-semibold">Published :</span>{" "}
+              20 Oct, 2024
             </div>
             <div>
-              <span className="text-foreground font-semibold">SKU :</span> WH1000XM4
+              <span className="text-foreground font-semibold">SKU :</span>{" "}
+              WH1000XM4
             </div>
           </div>
         </div>
@@ -74,21 +85,27 @@ export default function Page() {
             <div className="hover:border-primary/30 bg-muted grid auto-cols-max grid-flow-col gap-4 rounded-lg border p-4">
               <TruckIcon className="size-6 opacity-40" />
               <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-sm">No. of Orders</span>
+                <span className="text-muted-foreground text-sm">
+                  No. of Orders
+                </span>
                 <span className="text-lg font-semibold">250</span>
               </div>
             </div>
             <div className="hover:border-primary/30 bg-muted grid auto-cols-max grid-flow-col gap-4 rounded-lg border p-4">
               <Layers2Icon className="size-6 opacity-40" />
               <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-sm">Available Stocks</span>
+                <span className="text-muted-foreground text-sm">
+                  Available Stocks
+                </span>
                 <span className="text-lg font-semibold">2,550</span>
               </div>
             </div>
             <div className="hover:border-primary/30 bg-muted grid auto-cols-max grid-flow-col gap-4 rounded-lg border p-4">
               <HandCoinsIcon className="size-6 opacity-40" />
               <div className="flex flex-col gap-1">
-                <span className="text-muted-foreground text-sm">Total Revenue</span>
+                <span className="text-muted-foreground text-sm">
+                  Total Revenue
+                </span>
                 <span className="text-lg font-semibold">$45,938</span>
               </div>
             </div>
@@ -100,8 +117,8 @@ export default function Page() {
                   <div>
                     <h3 className="mb-2 font-semibold">Description:</h3>
                     <p className="text-muted-foreground">
-                      Tommy Hilfiger men striped pink sweatshirt. Crafted with cotton. Material
-                      composition is 100% organic cotton.
+                      Tommy Hilfiger men striped pink sweatshirt. Crafted with
+                      cotton. Material composition is 100% organic cotton.
                     </p>
                   </div>
                   <div>
@@ -118,12 +135,16 @@ export default function Page() {
                   <Table>
                     <TableBody>
                       <TableRow>
-                        <TableCell className="font-semibold">Category</TableCell>
+                        <TableCell className="font-semibold">
+                          Category
+                        </TableCell>
                         <TableCell className="text-right">T-Shirt</TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell className="font-semibold">Brand</TableCell>
-                        <TableCell className="text-right">Tommy Hilfiger</TableCell>
+                        <TableCell className="text-right">
+                          Tommy Hilfiger
+                        </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell className="font-semibold">Color</TableCell>
@@ -239,7 +260,9 @@ export default function Page() {
                         <StarIcon className="size-4 stroke-orange-400" />
                         <StarIcon className="size-4 stroke-orange-400" />
                       </div>
-                      <span className="text-muted-foreground text-sm">4.3 (12 reviews)</span>
+                      <span className="text-muted-foreground text-sm">
+                        4.3 (12 reviews)
+                      </span>
                     </div>
                     <div className="space-y-4 p-4">
                       <div className="flex items-center gap-4 text-sm">

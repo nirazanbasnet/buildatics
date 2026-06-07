@@ -6,7 +6,7 @@ import { NotificationBanner } from "./notification-banner";
 const balances = [
   { currency: "USD", amount: "1,240.30", flag: "🇺🇸" },
   { currency: "EUR", amount: "500.00", flag: "🇪🇺" },
-  { currency: "GBP", amount: "0.00", flag: "🇬🇧" }
+  { currency: "GBP", amount: "0.00", flag: "🇬🇧" },
 ];
 
 export function BalanceOverview() {
@@ -14,7 +14,9 @@ export function BalanceOverview() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="space-y-2">
-          <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Balances</h1>
+          <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+            Balances
+          </h1>
           <div className="text-muted-foreground flex items-center space-x-2 text-sm">
             Total funds in all balances: 1.740,30 USD
           </div>

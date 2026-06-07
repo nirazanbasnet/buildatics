@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Engage with advanced AI models through a feature-rich chat interface featuring history tracking and contextual quick actions. A professional AI assistant page built with React, TypeScript, Next.js, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/ai-chat-v2"
+    canonical: "/apps/ai-chat-v2",
   });
 }
 

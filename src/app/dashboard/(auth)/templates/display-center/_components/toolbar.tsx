@@ -17,7 +17,7 @@ import type { VariantId } from "./variant-layouts";
 
 const VIEW_ITEMS = [
   { value: "facade" as const, label: "Facade View", icon: Home },
-  { value: "floor" as const, label: "Floor Plan View", icon: LayoutGrid }
+  { value: "floor" as const, label: "Floor Plan View", icon: LayoutGrid },
 ];
 
 type Props = {
@@ -33,18 +33,19 @@ const variantLabels: Record<number, string> = {
   1: "3-col grid",
   5: "Compact list",
   6: "Showcase",
-  7: "Spec grid"
+  7: "Spec grid",
 };
 
 export function Toolbar({
   activeVariant,
   mode = "iteration",
   filterEnabled,
-  filterVariant
+  filterVariant,
 }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const view: PropertyView = searchParams.get("view") === "floor" ? "floor" : "facade";
+  const view: PropertyView =
+    searchParams.get("view") === "floor" ? "floor" : "facade";
   const [filterOpen, setFilterOpen] = useState(false);
 
   const showFilter = mode === "iteration" || filterEnabled;
@@ -61,9 +62,16 @@ export function Toolbar({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="text-muted-foreground text-sm">Beds</span>
-          <Badge variant="default" className="h-7 gap-1 rounded-full py-1 pr-1 pl-3">
+          <Badge
+            variant="default"
+            className="h-7 gap-1 rounded-full py-1 pr-1 pl-3"
+          >
             2 Beds
-            <Button variant="ghost" size="icon" className="size-5 rounded-full hover:bg-white/20">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-5 rounded-full hover:bg-white/20"
+            >
               <X className="size-3" />
             </Button>
           </Badge>
@@ -81,7 +89,11 @@ export function Toolbar({
                 <ListFilter className="size-4" />
                 Filter
               </Button>
-              <FilterSheet open={filterOpen} onOpenChange={setFilterOpen} variant={filterVariant} />
+              <FilterSheet
+                open={filterOpen}
+                onOpenChange={setFilterOpen}
+                variant={filterVariant}
+              />
             </>
           ) : null}
           <SegmentedNav<PropertyView>
@@ -96,14 +108,19 @@ export function Toolbar({
 
       {mode === "iteration" && activeVariant ? (
         <div className="border-border bg-muted/40 flex flex-wrap items-center gap-1 rounded-md border p-1">
-          <span className="text-muted-foreground px-2 text-xs font-medium uppercase">Layout</span>
+          <span className="text-muted-foreground px-2 text-xs font-medium uppercase">
+            Layout
+          </span>
           {([1, 5, 6, 7] as const).map((n) => (
             <Button
               key={n}
               asChild
               variant={n === activeVariant ? "default" : "ghost"}
               size="sm"
-              className={cn("h-7", n !== activeVariant && "text-muted-foreground")}
+              className={cn(
+                "h-7",
+                n !== activeVariant && "text-muted-foreground",
+              )}
             >
               <Link href={`/dashboard/templates/display-center/variant-${n}`}>
                 V{n} · {variantLabels[n]}

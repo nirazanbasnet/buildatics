@@ -1,17 +1,23 @@
 "use client";
 
-import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { FolderUp } from "lucide-react";
@@ -22,12 +28,12 @@ export function EcommerceReturnRateCard() {
   const chartConfig = {
     desktop: {
       label: "Desktop",
-      color: "var(--chart-1)"
+      color: "var(--chart-1)",
     },
     mobile: {
       label: "Mobile",
-      color: "var(--chart-2)"
-    }
+      color: "var(--chart-2)",
+    },
   } satisfies ChartConfig;
 
   const chartData = [
@@ -42,7 +48,7 @@ export function EcommerceReturnRateCard() {
     { month: "September", desktop: 409, mobile: 130 },
     { month: "October", desktop: 514, mobile: 300 },
     { month: "November", desktop: 390, mobile: 240 },
-    { month: "December", desktop: 700, mobile: 460 }
+    { month: "December", desktop: 700, mobile: 460 },
   ];
 
   return (
@@ -70,13 +76,16 @@ export function EcommerceReturnRateCard() {
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer className="mt-0 aspect-21/9! w-full md:mt-6" config={chartConfig}>
+        <ChartContainer
+          className="mt-0 aspect-21/9! w-full md:mt-6"
+          config={chartConfig}
+        >
           <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
               left: 12,
-              right: 12
+              right: 12,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -88,13 +97,18 @@ export function EcommerceReturnRateCard() {
               tickFormatter={(value) => value}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Line dataKey="desktop" stroke="var(--color-desktop)" strokeWidth={2} dot={false} />
+            <Line
+              dataKey="desktop"
+              stroke="var(--color-desktop)"
+              strokeWidth={2}
+              dot={false}
+            />
             <Line
               dataKey="mobile"
               stroke="var(--color-mobile)"
               style={
                 {
-                  opacity: 0.35
+                  opacity: 0.35,
                 } as React.CSSProperties
               }
               strokeWidth={2}

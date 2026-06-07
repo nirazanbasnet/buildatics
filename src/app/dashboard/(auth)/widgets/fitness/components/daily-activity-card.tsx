@@ -1,4 +1,10 @@
-import { MoreHorizontal, Footprints, Flame, Droplet, Sparkles } from "lucide-react";
+import {
+  MoreHorizontal,
+  Footprints,
+  Flame,
+  Droplet,
+  Sparkles,
+} from "lucide-react";
 
 import {
   Card,
@@ -6,7 +12,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -15,7 +21,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 const days = [
@@ -25,7 +31,7 @@ const days = [
   { day: "Thu", date: "20", active: false },
   { day: "Fri", date: "21", active: false },
   { day: "Sat", date: "22", active: false },
-  { day: "Sun", date: "23", active: false }
+  { day: "Sun", date: "23", active: false },
 ];
 
 const activities = [
@@ -37,7 +43,7 @@ const activities = [
     status: "Completed",
     percentage: 100,
     color: "bg-orange-500",
-    bgColor: "bg-orange-100 dark:bg-orange-950"
+    bgColor: "bg-orange-100 dark:bg-orange-950",
   },
   {
     icon: Flame,
@@ -47,7 +53,7 @@ const activities = [
     status: "In Progress",
     percentage: 85,
     color: "bg-pink-500",
-    bgColor: "bg-pink-100  dark:bg-pink-950"
+    bgColor: "bg-pink-100  dark:bg-pink-950",
   },
   {
     icon: Droplet,
@@ -58,7 +64,7 @@ const activities = [
     status: "In Progress",
     percentage: 50,
     color: "bg-blue-500",
-    bgColor: "bg-blue-100  dark:bg-blue-950"
+    bgColor: "bg-blue-100  dark:bg-blue-950",
   },
   {
     icon: Sparkles,
@@ -69,8 +75,8 @@ const activities = [
     status: "Pending",
     percentage: 72,
     color: "bg-purple-500",
-    bgColor: "bg-purple-100  dark:bg-purple-950"
-  }
+    bgColor: "bg-purple-100  dark:bg-purple-950",
+  },
 ];
 
 export function DailyActivityCard() {
@@ -100,7 +106,9 @@ export function DailyActivityCard() {
             <button
               key={day.date}
               className={`flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-3 transition-colors ${
-                day.active ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-secondary/80"
+                day.active
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted hover:bg-secondary/80"
               }`}
             >
               <span className="text-xs font-medium">{day.day}</span>
@@ -125,11 +133,18 @@ export function DailyActivityCard() {
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-muted-foreground mb-2 text-xs">{activity.status}</p>
-                <p className="text-muted-foreground text-sm">{activity.percentage}%</p>
+                <p className="text-muted-foreground mb-2 text-xs">
+                  {activity.status}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  {activity.percentage}%
+                </p>
               </div>
             </div>
-            <Progress value={activity.percentage} indicatorColor={activity.color} />
+            <Progress
+              value={activity.percentage}
+              indicatorColor={activity.color}
+            />
           </div>
         ))}
       </div>

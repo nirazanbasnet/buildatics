@@ -9,7 +9,11 @@ interface StarRatingProps {
   maxStars?: number;
 }
 
-export function StarRating({ rating, onRatingChangeAction, maxStars = 5 }: StarRatingProps) {
+export function StarRating({
+  rating,
+  onRatingChangeAction,
+  maxStars = 5,
+}: StarRatingProps) {
   const handleStarClick = (index: number) => {
     if (onRatingChangeAction) {
       onRatingChangeAction(index);
@@ -31,7 +35,7 @@ export function StarRating({ rating, onRatingChangeAction, maxStars = 5 }: StarR
               "size-8 cursor-pointer transition-all",
               index < rating
                 ? "fill-yellow-400 text-yellow-400"
-                : "fill-transparent text-gray-300 hover:text-gray-400"
+                : "fill-transparent text-gray-300 hover:text-gray-400",
             )}
           />
         </button>

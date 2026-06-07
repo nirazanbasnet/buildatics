@@ -8,7 +8,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   getFilteredRowModel,
-  type RowSelectionState
+  type RowSelectionState,
 } from "@tanstack/react-table";
 import {
   MoreHorizontal,
@@ -18,7 +18,7 @@ import {
   Download,
   Mail,
   Tag,
-  ChevronDown
+  ChevronDown,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -36,7 +36,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -45,7 +45,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 
 interface Payment {
@@ -66,7 +66,7 @@ export function LatestPayments() {
         email: "ken99@yahoo.com",
         firstName: "Kenneth",
         lastName: "Thompson",
-        amount: 316.0
+        amount: 316.0,
       },
       {
         id: "2",
@@ -74,7 +74,7 @@ export function LatestPayments() {
         email: "abe45@gmail.com",
         firstName: "Abraham",
         lastName: "Lincoln",
-        amount: 242.0
+        amount: 242.0,
       },
       {
         id: "3",
@@ -82,7 +82,7 @@ export function LatestPayments() {
         email: "monserrat44@gmail.com",
         firstName: "Monserrat",
         lastName: "Rodriguez",
-        amount: 837.0
+        amount: 837.0,
       },
       {
         id: "4",
@@ -90,7 +90,7 @@ export function LatestPayments() {
         email: "silas22@gmail.com",
         firstName: "Silas",
         lastName: "Johnson",
-        amount: 874.0
+        amount: 874.0,
       },
       {
         id: "5",
@@ -98,7 +98,7 @@ export function LatestPayments() {
         email: "carmella@hotmail.com",
         firstName: "Carmella",
         lastName: "DeVito",
-        amount: 721.0
+        amount: 721.0,
       },
       {
         id: "6",
@@ -106,7 +106,7 @@ export function LatestPayments() {
         email: "maria@gmail.com",
         firstName: "Maria",
         lastName: "Garcia",
-        amount: 529.0
+        amount: 529.0,
       },
       {
         id: "7",
@@ -114,7 +114,7 @@ export function LatestPayments() {
         email: "james34@outlook.com",
         firstName: "James",
         lastName: "Wilson",
-        amount: 438.0
+        amount: 438.0,
       },
       {
         id: "8",
@@ -122,7 +122,7 @@ export function LatestPayments() {
         email: "sarah.j@yahoo.com",
         firstName: "Sarah",
         lastName: "Jones",
-        amount: 692.0
+        amount: 692.0,
       },
       {
         id: "9",
@@ -130,7 +130,7 @@ export function LatestPayments() {
         email: "robert55@gmail.com",
         firstName: "Robert",
         lastName: "Brown",
-        amount: 512.0
+        amount: 512.0,
       },
       {
         id: "10",
@@ -138,7 +138,7 @@ export function LatestPayments() {
         email: "emily.p@hotmail.com",
         firstName: "Emily",
         lastName: "Parker",
-        amount: 375.0
+        amount: 375.0,
       },
       {
         id: "11",
@@ -146,7 +146,7 @@ export function LatestPayments() {
         email: "david87@gmail.com",
         firstName: "David",
         lastName: "Miller",
-        amount: 623.0
+        amount: 623.0,
       },
       {
         id: "12",
@@ -154,7 +154,7 @@ export function LatestPayments() {
         email: "jennifer@yahoo.com",
         firstName: "Jennifer",
         lastName: "Davis",
-        amount: 459.0
+        amount: 459.0,
       },
       {
         id: "13",
@@ -162,7 +162,7 @@ export function LatestPayments() {
         email: "michael.s@hotmail.com",
         firstName: "Michael",
         lastName: "Smith",
-        amount: 782.0
+        amount: 782.0,
       },
       {
         id: "14",
@@ -170,7 +170,7 @@ export function LatestPayments() {
         email: "lisa.w@gmail.com",
         firstName: "Lisa",
         lastName: "Wilson",
-        amount: 347.0
+        amount: 347.0,
       },
       {
         id: "15",
@@ -178,7 +178,7 @@ export function LatestPayments() {
         email: "john.doe@outlook.com",
         firstName: "John",
         lastName: "Doe",
-        amount: 594.0
+        amount: 594.0,
       },
       {
         id: "16",
@@ -186,10 +186,10 @@ export function LatestPayments() {
         email: "emma.j@gmail.com",
         firstName: "Emma",
         lastName: "Johnson",
-        amount: 428.0
-      }
+        amount: 428.0,
+      },
     ],
-    []
+    [],
   );
 
   const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
@@ -220,7 +220,9 @@ export function LatestPayments() {
               table.getIsAllPageRowsSelected() ||
               (table.getIsSomePageRowsSelected() && "indeterminate")
             }
-            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            onCheckedChange={(value) =>
+              table.toggleAllPageRowsSelected(!!value)
+            }
             aria-label="Select all"
           />
         ),
@@ -232,7 +234,7 @@ export function LatestPayments() {
           />
         ),
         enableSorting: false,
-        enableHiding: false
+        enableHiding: false,
       },
       {
         accessorKey: "name",
@@ -241,12 +243,12 @@ export function LatestPayments() {
           <div>
             {row.original.firstName} {row.original.lastName}
           </div>
-        )
+        ),
       },
       {
         accessorKey: "email",
         header: "Email",
-        cell: ({ row }) => <div>{row.original.email}</div>
+        cell: ({ row }) => <div>{row.original.email}</div>,
       },
       {
         accessorKey: "amount",
@@ -254,7 +256,7 @@ export function LatestPayments() {
         cell: ({ row }) => {
           const amount = Number.parseFloat(row.original.amount.toString());
           return <div className="font-medium">${amount.toFixed(2)}</div>;
-        }
+        },
       },
       {
         accessorKey: "status",
@@ -265,7 +267,7 @@ export function LatestPayments() {
           const statusMap = {
             success: "success",
             processing: "info",
-            failed: "destructive"
+            failed: "destructive",
           } as const;
 
           const statusClass = statusMap[status] ?? "default";
@@ -275,7 +277,7 @@ export function LatestPayments() {
               {status.replace("-", " ")}
             </Badge>
           );
-        }
+        },
       },
       {
         id: "actions",
@@ -297,10 +299,10 @@ export function LatestPayments() {
               </DropdownMenu>
             </div>
           );
-        }
-      }
+        },
+      },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -308,7 +310,7 @@ export function LatestPayments() {
     columns,
     state: {
       rowSelection,
-      globalFilter
+      globalFilter,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -318,9 +320,9 @@ export function LatestPayments() {
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
-        pageSize: 8
-      }
-    }
+        pageSize: 8,
+      },
+    },
   });
 
   const selectedRowsCount = Object.keys(rowSelection).length;
@@ -329,7 +331,9 @@ export function LatestPayments() {
     <Card className="h-full">
       <CardHeader>
         <CardTitle>Latest Payments</CardTitle>
-        <CardDescription>See recent payments from your customers here.</CardDescription>
+        <CardDescription>
+          See recent payments from your customers here.
+        </CardDescription>
         <CardAction>
           <div className="flex gap-2">
             <Input
@@ -342,7 +346,9 @@ export function LatestPayments() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline">
-                    <Badge variant="outline">{selectedRowsCount} selected</Badge>
+                    <Badge variant="outline">
+                      {selectedRowsCount} selected
+                    </Badge>
                     <ChevronDown />
                   </Button>
                 </DropdownMenuTrigger>
@@ -382,7 +388,10 @@ export function LatestPayments() {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -391,17 +400,26 @@ export function LatestPayments() {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

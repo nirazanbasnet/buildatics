@@ -2,7 +2,14 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Plus, Share2, Trash2, ZoomIn } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Plus,
+  Share2,
+  Trash2,
+  ZoomIn,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,7 +20,7 @@ import type { Property } from "../../display-center/_data";
 export function AvailableFacades({
   property,
   className,
-  cardClassName
+  cardClassName,
 }: {
   property: Property;
   className?: string;
@@ -67,7 +74,7 @@ export function AvailableFacades({
             key={facade.id}
             className={cn(
               "group bg-card relative w-72 shrink-0 snap-start overflow-hidden rounded-xl border transition-shadow hover:shadow-md",
-              cardClassName
+              cardClassName,
             )}
           >
             <div className="relative aspect-[4/3] overflow-hidden">

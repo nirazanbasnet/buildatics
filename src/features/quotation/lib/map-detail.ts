@@ -22,7 +22,9 @@ function toDateInput(iso: string | null | undefined): string {
   return new Date(ms).toISOString().slice(0, 10);
 }
 
-function toLineItem(li: NonNullable<LeadQuoteRes["lineItems"]>[number]): QuoteLineItem {
+function toLineItem(
+  li: NonNullable<LeadQuoteRes["lineItems"]>[number],
+): QuoteLineItem {
   return {
     id: li.id ?? "",
     category: li.category?.trim() || "Uncategorised",
@@ -30,14 +32,14 @@ function toLineItem(li: NonNullable<LeadQuoteRes["lineItems"]>[number]): QuoteLi
     qty: li.qty ?? 0,
     unitPrice: li.unitPrice ?? 0,
     isVisible: li.isVisible ?? true,
-    sortOrder: li.sortOrder ?? 0
+    sortOrder: li.sortOrder ?? 0,
   };
 }
 
 export function mapToDetail(
   quote: LeadQuoteRes,
   lineItems: LeadQuoteRes["lineItems"],
-  lead: { client: string; address: string } | undefined
+  lead: { client: string; address: string } | undefined,
 ): QuoteDetailModel {
   const items = (lineItems ?? quote.lineItems ?? [])
     .map(toLineItem)
@@ -54,6 +56,6 @@ export function mapToDetail(
     createdOn: formatDate(quote.createdOnUtc),
     client: lead?.client ?? "—",
     siteAddress: lead?.address ?? "—",
-    lineItems: items
+    lineItems: items,
   };
 }

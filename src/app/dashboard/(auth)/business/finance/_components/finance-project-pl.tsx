@@ -6,7 +6,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionProgress } from "@src/components/ui/motion-progress";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
@@ -38,7 +38,9 @@ export function FinanceProjectPL() {
               <MotionTableRow key={project.id} index={index}>
                 <TableCell className="py-3 pl-4">
                   <div className="transition-transform motion-safe:group-hover:translate-x-0.5">
-                    <p className="text-foreground text-sm font-semibold">{project.project}</p>
+                    <p className="text-foreground text-sm font-semibold">
+                      {project.project}
+                    </p>
                     <p className="text-muted-foreground group-hover:text-foreground text-xs transition-colors">
                       {project.clientAddress}
                     </p>
@@ -54,7 +56,9 @@ export function FinanceProjectPL() {
                     trackClassName="h-1.5 w-24"
                   />
                 </TableCell>
-                <TableCell className="text-muted-foreground">{project.stage}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {project.stage}
+                </TableCell>
                 <TableCell className="text-foreground font-semibold whitespace-nowrap">
                   {project.contract}
                 </TableCell>

@@ -33,9 +33,20 @@ export function DesignCardSkeleton() {
   );
 }
 
-export function DesignGridSkeleton({ count = 9, className }: { count?: number; className?: string }) {
+export function DesignGridSkeleton({
+  count = 9,
+  className,
+}: {
+  count?: number;
+  className?: string;
+}) {
   return (
-    <div className={cn("grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-3", className)}>
+    <div
+      className={cn(
+        "grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-3",
+        className,
+      )}
+    >
       {Array.from({ length: count }).map((_, i) => (
         <DesignCardSkeleton key={i} />
       ))}

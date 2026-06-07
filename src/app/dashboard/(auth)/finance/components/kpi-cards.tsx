@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   ArrowDownIcon,
@@ -9,7 +15,7 @@ import {
   TrendingDownIcon,
   WalletIcon,
   FileTextIcon,
-  DollarSignIcon
+  DollarSignIcon,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Bar, BarChart } from "recharts";
@@ -17,7 +23,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -68,14 +74,14 @@ const chartData = [
   { date: "2024-05-15", desktop: 473, mobile: 380 },
   { date: "2024-05-16", desktop: 338, mobile: 400 },
   { date: "2024-05-17", desktop: 499, mobile: 420 },
-  { date: "2024-05-18", desktop: 315, mobile: 350 }
+  { date: "2024-05-18", desktop: 315, mobile: 350 },
 ];
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export default function KPICards() {
@@ -96,7 +102,9 @@ export default function KPICards() {
                 <TrendingUpIcon className="size-4" />
                 12.5%
               </span>
-              <span className="text-muted-foreground ml-1">compared to last month</span>
+              <span className="text-muted-foreground ml-1">
+                compared to last month
+              </span>
             </div>
           </div>
           <div className="flex gap-2">
@@ -124,7 +132,9 @@ export default function KPICards() {
           <div className="flex items-center text-sm text-green-600">
             <TrendingUpIcon className="mr-1 h-4 w-4" />
             8.5%
-            <span className="text-muted-foreground ml-1">compared to last month</span>
+            <span className="text-muted-foreground ml-1">
+              compared to last month
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -141,7 +151,9 @@ export default function KPICards() {
           <div className="flex items-center text-sm text-red-600">
             <TrendingDownIcon className="mr-1 h-4 w-4" />
             5.5%
-            <span className="text-muted-foreground ml-1">compared to last month</span>
+            <span className="text-muted-foreground ml-1">
+              compared to last month
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -166,8 +178,15 @@ export default function KPICards() {
         <div className="-mb-1.5">
           <ChartContainer config={chartConfig} className="h-14 w-full">
             <BarChart accessibilityLayer data={chartData}>
-              <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={[7, 7, 0, 0]} />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
+              <Bar
+                dataKey="desktop"
+                fill="var(--color-desktop)"
+                radius={[7, 7, 0, 0]}
+              />
             </BarChart>
           </ChartContainer>
         </div>

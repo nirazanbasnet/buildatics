@@ -9,7 +9,7 @@ import {
   flexRender,
   getCoreRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import {
   ArrowDown,
@@ -18,7 +18,7 @@ import {
   ChevronsUpDown,
   Circle,
   type LucideIcon,
-  Timer
+  Timer,
 } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 
@@ -28,7 +28,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -36,14 +36,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
 import type {
   PreconstructionDetailProject,
   PreconstructionTaskRow,
-  PreconstructionTaskStatus
+  PreconstructionTaskStatus,
 } from "../_data";
 
 import { PreconstructionTabLayout } from "./preconstruction-tab-layout";
@@ -54,16 +54,19 @@ type Props = {
   className?: string;
 };
 
-const statusConfig: Record<PreconstructionTaskStatus, { label: string; icon: LucideIcon }> = {
+const statusConfig: Record<
+  PreconstructionTaskStatus,
+  { label: string; icon: LucideIcon }
+> = {
   completed: { label: "Completed", icon: CheckCircle },
   "in-progress": { label: "In Progress", icon: Timer },
-  pending: { label: "Pending", icon: Circle }
+  pending: { label: "Pending", icon: Circle },
 };
 
 function TaskColumnHeader({
   column,
   title,
-  className
+  className,
 }: {
   column: Column<PreconstructionTaskRow, unknown>;
   title: string;
@@ -83,11 +86,17 @@ function TaskColumnHeader({
           size="sm"
           className={cn(
             "data-[state=open]:bg-accent text-foreground -ml-3 h-8 font-semibold",
-            className
+            className,
           )}
         >
           <span>{title}</span>
-          {sorted === "desc" ? <ArrowDown /> : sorted === "asc" ? <ArrowUp /> : <ChevronsUpDown />}
+          {sorted === "desc" ? (
+            <ArrowDown />
+          ) : sorted === "asc" ? (
+            <ArrowUp />
+          ) : (
+            <ChevronsUpDown />
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
@@ -110,7 +119,8 @@ const columns: ColumnDef<PreconstructionTaskRow>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -123,12 +133,14 @@ const columns: ColumnDef<PreconstructionTaskRow>[] = [
         aria-label="Select row"
       />
     ),
-    enableSorting: false
+    enableSorting: false,
   },
   {
     accessorKey: "label",
     header: ({ column }) => <TaskColumnHeader column={column} title="Task" />,
-    cell: ({ row }) => <span className="text-foreground font-medium">{row.original.label}</span>
+    cell: ({ row }) => (
+      <span className="text-foreground font-medium">{row.original.label}</span>
+    ),
   },
   {
     accessorKey: "status",
@@ -141,18 +153,24 @@ const columns: ColumnDef<PreconstructionTaskRow>[] = [
           <span>{label}</span>
         </div>
       );
-    }
+    },
   },
   {
     accessorKey: "startDate",
-    header: ({ column }) => <TaskColumnHeader column={column} title="Start Date" />,
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.startDate}</span>
+    header: ({ column }) => (
+      <TaskColumnHeader column={column} title="Start Date" />
+    ),
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.original.startDate}</span>
+    ),
   },
   {
     accessorKey: "dueDate",
     header: "Due Date",
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.dueDate}</span>,
-    enableSorting: false
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.original.dueDate}</span>
+    ),
+    enableSorting: false,
   },
   {
     id: "actions",
@@ -161,8 +179,8 @@ const columns: ColumnDef<PreconstructionTaskRow>[] = [
       <div className="flex justify-end">
         <TaskActionsMenu />
       </div>
-    )
-  }
+    ),
+  },
 ];
 
 function TasksTable({ data }: { data: PreconstructionTaskRow[] }) {
@@ -178,7 +196,7 @@ function TasksTable({ data }: { data: PreconstructionTaskRow[] }) {
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel()
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (
@@ -186,12 +204,21 @@ function TasksTable({ data }: { data: PreconstructionTaskRow[] }) {
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className="bg-muted/50 hover:bg-muted/50">
+            <TableRow
+              key={headerGroup.id}
+              className="bg-muted/50 hover:bg-muted/50"
+            >
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id} className="text-foreground font-semibold">
+                <TableHead
+                  key={header.id}
+                  className="text-foreground font-semibold"
+                >
                   {header.isPlaceholder
                     ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                 </TableHead>
               ))}
             </TableRow>
@@ -209,7 +236,11 @@ function TasksTable({ data }: { data: PreconstructionTaskRow[] }) {
                   : {
                       initial: { opacity: 0, y: 4 },
                       animate: { opacity: 1, y: 0 },
-                      transition: { duration: 0.25, delay: index * 0.03, ease: "easeOut" as const }
+                      transition: {
+                        duration: 0.25,
+                        delay: index * 0.03,
+                        ease: "easeOut" as const,
+                      },
                     })}
                 className="hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors"
               >
@@ -235,8 +266,14 @@ function TasksTable({ data }: { data: PreconstructionTaskRow[] }) {
 
 export function PreconstructionTasks({ project, className }: Props) {
   return (
-    <PreconstructionTabLayout categories={project.categories} className={className}>
-      <section className="bg-card rounded-2xl border p-5" data-slot="tasks-card">
+    <PreconstructionTabLayout
+      categories={project.categories}
+      className={className}
+    >
+      <section
+        className="bg-card rounded-2xl border p-5"
+        data-slot="tasks-card"
+      >
         <header className="flex flex-wrap items-center justify-between gap-3 pb-4">
           <h3 className="text-foreground text-lg font-semibold">Tasks</h3>
           <div className="flex items-center gap-2">

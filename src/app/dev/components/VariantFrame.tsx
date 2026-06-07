@@ -16,15 +16,17 @@ export function VariantFrame({ feature, variant }: Props) {
             <div className="text-destructive text-sm">
               Could not load templates/{feature}/{variant}.tsx
             </div>
-          )
-        }))
+          ),
+        })),
       ),
-    [feature, variant]
+    [feature, variant],
   );
 
   return (
     <div className="bg-background rounded-md border p-6">
-      <Suspense fallback={<div className="text-muted-foreground text-sm">Loading…</div>}>
+      <Suspense
+        fallback={<div className="text-muted-foreground text-sm">Loading…</div>}
+      >
         <Lazy />
       </Suspense>
     </div>

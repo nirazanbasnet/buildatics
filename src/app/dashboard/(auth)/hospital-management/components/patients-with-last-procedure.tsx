@@ -2,7 +2,13 @@ import { ChevronRight } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const patients = [
   {
@@ -11,7 +17,7 @@ const patients = [
     avatar: `https://i.pravatar.cc/150?img=1`,
     email: "olivia.martin@email.com",
     lastProcedure: "Appendectomy",
-    date: "2025-05-20"
+    date: "2025-05-20",
   },
   {
     id: 2,
@@ -19,7 +25,7 @@ const patients = [
     avatar: `https://i.pravatar.cc/150?img=2`,
     email: "jackson.lee@email.com",
     lastProcedure: "Knee Arthroscopy",
-    date: "2025-05-18"
+    date: "2025-05-18",
   },
   {
     id: 3,
@@ -27,7 +33,7 @@ const patients = [
     avatar: `/imageshttps://i.pravatar.cc/150?img=3`,
     email: "isabella.nguyen@email.com",
     lastProcedure: "Cataract Surgery",
-    date: "2025-05-15"
+    date: "2025-05-15",
   },
   {
     id: 4,
@@ -35,7 +41,7 @@ const patients = [
     avatar: `https://i.pravatar.cc/150?img=4`,
     email: "william.chen@email.com",
     lastProcedure: "Colonoscopy",
-    date: "2025-05-12"
+    date: "2025-05-12",
   },
   {
     id: 5,
@@ -43,8 +49,8 @@ const patients = [
     avatar: `https://i.pravatar.cc/150?img=5`,
     email: "can.jackson@email.com",
     lastProcedure: "Colonoscopy",
-    date: "2025-08-12"
-  }
+    date: "2025-08-12",
+  },
 ];
 
 export function PatientsWithLastProcedure() {

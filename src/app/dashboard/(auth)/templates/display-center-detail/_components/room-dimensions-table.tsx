@@ -8,7 +8,7 @@ import { detailRooms } from "../_data";
 
 export function RoomDimensionsTable({
   className,
-  headerClassName
+  headerClassName,
 }: {
   className?: string;
   headerClassName?: string;
@@ -18,7 +18,7 @@ export function RoomDimensionsTable({
       <div
         className={cn(
           "bg-muted/40 flex items-center justify-between border-b px-4 py-2.5",
-          headerClassName
+          headerClassName,
         )}
       >
         <h3 className="font-display text-base">Room Dimensions</h3>
@@ -37,7 +37,9 @@ export function RoomDimensionsTable({
             className="hover:bg-accent/30 flex items-center justify-between px-4 py-2 text-sm transition-colors"
           >
             <span>{room.name}</span>
-            <span className="text-muted-foreground font-display text-sm">{room.size}</span>
+            <span className="text-muted-foreground font-display text-sm">
+              {room.size}
+            </span>
           </div>
         ))}
       </div>

@@ -51,11 +51,15 @@ export default function CartListItem({ product }: CartListItem) {
             <span className="sr-only">Decrease</span>
             <span>-</span>
           </Button>
-          <div className="flex w-8 items-center justify-center text-sm">{product.quantity}</div>
+          <div className="flex w-8 items-center justify-center text-sm">
+            {product.quantity}
+          </div>
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => updateQuantity(product.product.id, product.quantity + 1)}
+            onClick={() =>
+              updateQuantity(product.product.id, product.quantity + 1)
+            }
           >
             <span className="sr-only">Increase</span>
             <span>+</span>

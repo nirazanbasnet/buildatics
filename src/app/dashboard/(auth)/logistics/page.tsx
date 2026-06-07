@@ -6,7 +6,7 @@ export async function generateMetadata() {
     title: "Logistics Admin Dashboard Template",
     description:
       "Manage shipments, fleet operations, and logistics tracking. A professional admin dashboard page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/logistics"
+    canonical: "/logistics",
   });
 }
 
@@ -37,7 +37,9 @@ export default function Page() {
           </svg>
           Logistics Dashboard
         </h1>
-        <div className="lg:text-lg">Logistics admin dashboard template coming soon.</div>
+        <div className="lg:text-lg">
+          Logistics admin dashboard template coming soon.
+        </div>
         <div className="text-muted-foreground flex items-center justify-center gap-2">
           <AlertCircleIcon className="h-4 w-4 text-orange-400" />
           This page is currently under construction.

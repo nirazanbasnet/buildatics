@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import type {
   PreconstructionDetailProject,
   PreconstructionStage,
-  PreconstructionTaskStatus
+  PreconstructionTaskStatus,
 } from "../_data";
 
 import { PreconstructionTabLayout } from "./preconstruction-tab-layout";
@@ -26,7 +26,7 @@ type StageTone = "done" | "in-progress" | "pending";
 const countToneStyles: Record<StageTone, string> = {
   done: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-400",
   "in-progress": "bg-blue-500/15 text-blue-700 dark:text-blue-400",
-  pending: "bg-orange-500/15 text-orange-700 dark:text-orange-400"
+  pending: "bg-orange-500/15 text-orange-700 dark:text-orange-400",
 };
 
 function stageTone(completed: number, total: number): StageTone {
@@ -38,22 +38,34 @@ function stageTone(completed: number, total: number): StageTone {
 export function ItiPreconstructionV1({ project, className }: Props) {
   const [stages, setStages] = useState<PreconstructionStage[]>(project.stages);
 
-  function updateStatus(stageId: string, taskId: string, status: PreconstructionTaskStatus) {
+  function updateStatus(
+    stageId: string,
+    taskId: string,
+    status: PreconstructionTaskStatus,
+  ) {
     setStages((prev) =>
       prev.map((stage) =>
         stage.id === stageId
           ? {
               ...stage,
-              tasks: stage.tasks.map((task) => (task.id === taskId ? { ...task, status } : task))
+              tasks: stage.tasks.map((task) =>
+                task.id === taskId ? { ...task, status } : task,
+              ),
             }
-          : stage
-      )
+          : stage,
+      ),
     );
   }
 
   return (
-    <PreconstructionTabLayout categories={project.categories} className={className}>
-      <section className="bg-card overflow-hidden rounded-2xl border" data-slot="stage-list">
+    <PreconstructionTabLayout
+      categories={project.categories}
+      className={className}
+    >
+      <section
+        className="bg-card overflow-hidden rounded-2xl border"
+        data-slot="stage-list"
+      >
         {stages.map((stage, index) => (
           <StageCard
             key={stage.id}
@@ -72,18 +84,32 @@ type StageCardProps = {
   stage: PreconstructionStage;
   defaultOpen: boolean;
   isLast: boolean;
-  onStatusChange: (stageId: string, taskId: string, status: PreconstructionTaskStatus) => void;
+  onStatusChange: (
+    stageId: string,
+    taskId: string,
+    status: PreconstructionTaskStatus,
+  ) => void;
 };
 
-function StageCard({ stage, defaultOpen, isLast, onStatusChange }: StageCardProps) {
+function StageCard({
+  stage,
+  defaultOpen,
+  isLast,
+  onStatusChange,
+}: StageCardProps) {
   const [open, setOpen] = useState(defaultOpen);
   const reduceMotion = useReducedMotion() ?? false;
-  const completed = stage.tasks.filter((task) => task.status === "completed").length;
+  const completed = stage.tasks.filter(
+    (task) => task.status === "completed",
+  ).length;
   const total = stage.tasks.length;
   const tone = stageTone(completed, total);
 
   return (
-    <div className={cn(!isLast && "border-border border-b")} data-slot="stage-card">
+    <div
+      className={cn(!isLast && "border-border border-b")}
+      data-slot="stage-card"
+    >
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -93,14 +119,16 @@ function StageCard({ stage, defaultOpen, isLast, onStatusChange }: StageCardProp
         <ChevronDown
           className={cn(
             "text-muted-foreground size-4 shrink-0 transition-transform duration-200",
-            !open && "-rotate-90"
+            !open && "-rotate-90",
           )}
         />
-        <span className="text-foreground flex-1 text-base font-semibold">{stage.label}</span>
+        <span className="text-foreground flex-1 text-base font-semibold">
+          {stage.label}
+        </span>
         <span
           className={cn(
             "rounded-md px-2.5 py-1 text-sm font-semibold tabular-nums",
-            countToneStyles[tone]
+            countToneStyles[tone],
           )}
         >
           {completed}/{total}
@@ -126,7 +154,12 @@ function StageCard({ stage, defaultOpen, isLast, onStatusChange }: StageCardProp
                   ? undefined
                   : {
                       hidden: {},
-                      show: { transition: { staggerChildren: 0.04, delayChildren: 0.08 } }
+                      show: {
+                        transition: {
+                          staggerChildren: 0.04,
+                          delayChildren: 0.08,
+                        },
+                      },
                     }
               }
             >
@@ -141,8 +174,8 @@ function StageCard({ stage, defaultOpen, isLast, onStatusChange }: StageCardProp
                           show: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.25, ease: "easeOut" }
-                          }
+                            transition: { duration: 0.25, ease: "easeOut" },
+                          },
                         }
                   }
                   className="group hover:bg-background px-5 py-3 transition-colors"
@@ -156,7 +189,9 @@ function StageCard({ stage, defaultOpen, isLast, onStatusChange }: StageCardProp
                     </span>
                     <TaskStatusDropdown
                       status={task.status}
-                      onStatusChange={(status) => onStatusChange(stage.id, task.id, status)}
+                      onStatusChange={(status) =>
+                        onStatusChange(stage.id, task.id, status)
+                      }
                     />
                     <span className="text-muted-foreground group-hover:text-foreground hidden w-28 shrink-0 text-right text-sm tabular-nums transition-colors sm:block">
                       {task.date}

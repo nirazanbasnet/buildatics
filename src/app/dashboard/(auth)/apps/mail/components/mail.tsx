@@ -6,8 +6,16 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { type Layout } from "react-resizable-panels";
 import { useMailStore } from "../use-mail";
 
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,7 +31,7 @@ import { cn } from "@/lib/utils";
 const DEFAULT_LAYOUT: Layout = {
   "left-panel": 16,
   "middle-panel": 30,
-  "right-panel": 54
+  "right-panel": 54,
 };
 
 export function Mail({
@@ -31,7 +39,7 @@ export function Mail({
   defaultLayout = DEFAULT_LAYOUT,
   cookieID,
   defaultCollapsed,
-  collapsedCookieID
+  collapsedCookieID,
 }: {
   mails: Mail[];
   defaultLayout?: Layout;
@@ -71,7 +79,10 @@ export function Mail({
               document.cookie = `${collapsedCookieID}=${JSON.stringify(false)}`;
             }
           }}
-          className={cn(isCollapsed && "max-w-[50px] transition-all duration-1000 ease-in-out")}
+          className={cn(
+            isCollapsed &&
+              "max-w-[50px] transition-all duration-1000 ease-in-out",
+          )}
         >
           <NavDesktop isCollapsed={isCollapsed} />
         </ResizablePanel>
@@ -106,7 +117,9 @@ export function Mail({
             <div className="min-h-0">
               <MailList
                 items={
-                  tab === "all" ? mails : mails.filter((item) => item.read === (tab === "read"))
+                  tab === "all"
+                    ? mails
+                    : mails.filter((item) => item.read === (tab === "read"))
                 }
               />
             </div>
@@ -115,9 +128,13 @@ export function Mail({
         <ResizableHandle hidden={isMobile} withHandle />
         <ResizablePanel id="right-panel" hidden={isMobile} minSize="30%">
           {isMobile ? (
-            <MailDisplayMobile mail={mails.find((item) => item.id === selectedMail?.id) || null} />
+            <MailDisplayMobile
+              mail={mails.find((item) => item.id === selectedMail?.id) || null}
+            />
           ) : (
-            <MailDisplay mail={mails.find((item) => item.id === selectedMail?.id) || null} />
+            <MailDisplay
+              mail={mails.find((item) => item.id === selectedMail?.id) || null}
+            />
           )}
         </ResizablePanel>
       </ResizablePanelGroup>

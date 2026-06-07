@@ -13,7 +13,7 @@ import { DEFAULT_THEME } from "@/lib/themes";
 import { Toaster } from "@/components/ui/sonner";
 
 export default async function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -22,15 +22,21 @@ export default async function RootLayout({
     preset: cookieStore.get("theme_preset")?.value ?? DEFAULT_THEME.preset,
     scale: cookieStore.get("theme_scale")?.value ?? DEFAULT_THEME.scale,
     radius: cookieStore.get("theme_radius")?.value ?? DEFAULT_THEME.radius,
-    contentLayout: cookieStore.get("theme_content_layout")?.value ?? DEFAULT_THEME.contentLayout,
+    contentLayout:
+      cookieStore.get("theme_content_layout")?.value ??
+      DEFAULT_THEME.contentLayout,
     font: cookieStore.get("theme_font")?.value ?? DEFAULT_THEME.font,
-    sidebarMode: cookieStore.get("theme_sidebar_mode")?.value ?? DEFAULT_THEME.sidebarMode
+    sidebarMode:
+      cookieStore.get("theme_sidebar_mode")?.value ?? DEFAULT_THEME.sidebarMode,
   };
 
   const bodyAttributes = Object.fromEntries(
     Object.entries(themeSettings)
       .filter(([_, value]) => value)
-      .map(([key, value]) => [`data-theme-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`, value])
+      .map(([key, value]) => [
+        `data-theme-${key.replace(/([A-Z])/g, "-$1").toLowerCase()}`,
+        value,
+      ]),
   );
 
   return (
@@ -49,8 +55,15 @@ export default async function RootLayout({
           <ActiveThemeProvider initialTheme={themeSettings}>
             {children}
             <Toaster position="top-center" richColors />
-            <NextTopLoader color="var(--primary)" showSpinner={false} height={2} shadow-sm="none" />
-            {process.env.NODE_ENV === "production" ? <GoogleAnalyticsInit /> : null}
+            <NextTopLoader
+              color="var(--primary)"
+              showSpinner={false}
+              height={2}
+              shadow-sm="none"
+            />
+            {process.env.NODE_ENV === "production" ? (
+              <GoogleAnalyticsInit />
+            ) : null}
           </ActiveThemeProvider>
         </ThemeProvider>
       </body>

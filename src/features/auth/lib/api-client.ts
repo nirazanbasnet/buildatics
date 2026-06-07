@@ -22,7 +22,7 @@ function getBaseUrl(): string {
 
 type ApiFetchOptions = {
   method?: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
-  // Plain object serialised as JSON. Omit for GET.
+  // Plain object serialised as JSON, or a FormData for multipart uploads. Omit for GET.
   body?: unknown;
   // When true, attaches the caller's Bearer token from the session cookie.
   auth?: boolean;
@@ -36,7 +36,11 @@ function messageFromBody(body: unknown, status: number): string {
   if (body && typeof body === "object") {
     const record = body as Record<string, unknown>;
     const messages = record.messages;
-    if (Array.isArray(messages) && typeof messages[0] === "string" && messages[0].trim()) {
+    if (
+      Array.isArray(messages) &&
+      typeof messages[0] === "string" &&
+      messages[0].trim()
+    ) {
       return messages[0];
     }
     const candidate = record.message ?? record.error ?? record.title;
@@ -47,11 +51,20 @@ function messageFromBody(body: unknown, status: number): string {
   return `Request failed with status ${status}.`;
 }
 
-export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): Promise<T> {
+export async function apiFetch<T>(
+  path: string,
+  options: ApiFetchOptions = {},
+): Promise<T> {
   const { method = "GET", body, auth = false, cache = "no-store" } = options;
 
+  // FormData (multipart uploads) must NOT be JSON-serialised, and the browser/runtime sets the
+  // Content-Type (with the multipart boundary) itself — so we leave it unset in that case.
+  const isFormData =
+    typeof FormData !== "undefined" && body instanceof FormData;
+
   const headers: Record<string, string> = { Accept: "application/json" };
-  if (body !== undefined) headers["Content-Type"] = "application/json";
+  if (body !== undefined && !isFormData)
+    headers["Content-Type"] = "application/json";
 
   if (auth) {
     const token = await getAccessToken();
@@ -66,8 +79,13 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
     res = await fetch(url, {
       method,
       headers,
-      body: body === undefined ? undefined : JSON.stringify(body),
-      cache
+      body:
+        body === undefined
+          ? undefined
+          : isFormData
+            ? (body as FormData)
+            : JSON.stringify(body),
+      cache,
     });
   } catch {
     throw new ApiError(0, "Could not reach the server. Please try again.");

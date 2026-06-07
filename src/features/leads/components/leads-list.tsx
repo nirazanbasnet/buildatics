@@ -13,7 +13,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
 import { LeadsToolbar } from "./toolbar/leads-toolbar";
@@ -22,7 +22,7 @@ import { LeadsEmptyState } from "./table/leads-empty-state";
 import { LeadsFilterSheet } from "./filter/leads-filter-sheet";
 import { AddLeadSheet } from "./add-lead/add-lead-sheet";
 import { EditLeadSheet } from "./add-lead/edit-lead-sheet";
-import { LeadDetailSheet } from "./add-lead/lead-detail-sheet";
+import { LeadDetailSheet } from "./detail/lead-detail-sheet";
 import { queryLeads } from "../actions/query-leads";
 import { deleteLead } from "../actions/delete-lead";
 import { LEADS_FILTER_DEFAULTS, countActiveLeadFilters } from "../lib/filter";
@@ -36,8 +36,15 @@ type LeadsListProps = {
   pageSize: number;
 };
 
-export function LeadsList({ initialItems, initialTotal, options, pageSize }: LeadsListProps) {
-  const [filters, setFilters] = useState<LeadsFilterState>(LEADS_FILTER_DEFAULTS);
+export function LeadsList({
+  initialItems,
+  initialTotal,
+  options,
+  pageSize,
+}: LeadsListProps) {
+  const [filters, setFilters] = useState<LeadsFilterState>(
+    LEADS_FILTER_DEFAULTS,
+  );
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(initialItems);
   const [total, setTotal] = useState(initialTotal);
@@ -54,7 +61,11 @@ export function LeadsList({ initialItems, initialTotal, options, pageSize }: Lea
 
   function runQuery(nextFilters: LeadsFilterState, nextPage: number) {
     startTransition(async () => {
-      const res = await queryLeads({ filters: nextFilters, page: nextPage, pageSize });
+      const res = await queryLeads({
+        filters: nextFilters,
+        page: nextPage,
+        pageSize,
+      });
       setItems(res.items);
       setTotal(res.total);
     });
@@ -113,20 +124,32 @@ export function LeadsList({ initialItems, initialTotal, options, pageSize }: Lea
       {items.length === 0 ? (
         <LeadsEmptyState
           filtered={hasAnyLeads}
-          onClearFilters={countActiveLeadFilters(filters) > 0 ? clearFilters : undefined}
+          onClearFilters={
+            countActiveLeadFilters(filters) > 0 ? clearFilters : undefined
+          }
         />
       ) : (
         <>
-          <div className={cn("transition-opacity duration-200", isPending && "pointer-events-none opacity-50")}>
+          <div
+            className={cn(
+              "transition-opacity duration-200",
+              isPending && "pointer-events-none opacity-50",
+            )}
+          >
             <LeadsTable
               leads={items}
+              onLeadClick={setViewLead}
               onView={setViewLead}
               onEdit={(lead) => setEditLeadId(lead.id)}
               onDelete={setDeleteTarget}
             />
           </div>
           {totalPages > 1 ? (
-            <PaginationNav totalPages={totalPages} page={page} onPageChange={goToPage} />
+            <PaginationNav
+              totalPages={totalPages}
+              page={page}
+              onPageChange={goToPage}
+            />
           ) : null}
         </>
       )}
@@ -138,16 +161,30 @@ export function LeadsList({ initialItems, initialTotal, options, pageSize }: Lea
         onApply={applyFilters}
         options={options}
       />
-      <AddLeadSheet open={addOpen} onOpenChange={setAddOpen} options={options} onCreated={refresh} />
+      <AddLeadSheet
+        open={addOpen}
+        onOpenChange={setAddOpen}
+        options={options}
+        onCreated={refresh}
+      />
       <EditLeadSheet
         leadId={editLeadId}
         onOpenChange={() => setEditLeadId(null)}
         options={options}
         onSaved={refresh}
       />
-      <LeadDetailSheet lead={viewLead} onOpenChange={() => setViewLead(null)} />
+      <LeadDetailSheet
+        leadId={viewLead?.id ?? null}
+        leadNo={viewLead?.leadNo}
+        options={options}
+        onOpenChange={() => setViewLead(null)}
+        onChanged={refresh}
+      />
 
-      <AlertDialog open={deleteTarget !== null} onOpenChange={(o) => !o && setDeleteTarget(null)}>
+      <AlertDialog
+        open={deleteTarget !== null}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this lead?</AlertDialogTitle>

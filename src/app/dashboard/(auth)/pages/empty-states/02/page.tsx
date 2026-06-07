@@ -1,4 +1,10 @@
-import { ArrowRight, CalendarDays, ChevronRight, Megaphone, SquareTerminal } from "lucide-react";
+import {
+  ArrowRight,
+  CalendarDays,
+  ChevronRight,
+  Megaphone,
+  SquareTerminal,
+} from "lucide-react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { generateMeta } from "@/lib/utils";
@@ -10,7 +16,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Empty states show placeholder content when no data is available. Built with shadcn/ui, Tailwind CSS, Next.js and React.",
-    canonical: "/pages/empty-states/02"
+    canonical: "/pages/empty-states/02",
   });
 }
 
@@ -19,20 +25,22 @@ const templates = [
     icon: Megaphone,
     iconBg: "bg-pink-500",
     title: "Marketing Campaign",
-    description: "Plan and launch engaging campaigns to reach your audience."
+    description: "Plan and launch engaging campaigns to reach your audience.",
   },
   {
     icon: SquareTerminal,
     iconBg: "bg-purple-500",
     title: "Engineering Project",
-    description: "Manage complex builds and bring your technical ideas to life."
+    description:
+      "Manage complex builds and bring your technical ideas to life.",
   },
   {
     icon: CalendarDays,
     iconBg: "bg-orange-500",
     title: "Event",
-    description: "Organize and track events that matter — from meetups to conferences."
-  }
+    description:
+      "Organize and track events that matter — from meetups to conferences.",
+  },
 ] as const;
 
 export default function Page() {

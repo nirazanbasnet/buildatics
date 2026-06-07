@@ -9,9 +9,15 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
-  InputGroupInput
+  InputGroupInput,
 } from "@/components/ui/input-group";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 interface Note {
@@ -22,13 +28,17 @@ interface Note {
 
 export function Notes() {
   const [notes, setNotes] = React.useState<Note[]>([
-    { id: 1, date: new Date(2025, 10, 15), text: "Dr. Smith's surgery at 10 AM" },
+    {
+      id: 1,
+      date: new Date(2025, 10, 15),
+      text: "Dr. Smith's surgery at 10 AM",
+    },
     { id: 2, date: new Date(2025, 4, 15), text: "Staff meeting at 2 PM" },
     { id: 3, date: new Date(2025, 2, 16), text: "New patient orientation" },
     { id: 4, date: new Date(2025, 1, 16), text: "Inventory check" },
     { id: 5, date: new Date(2025, 2, 15), text: "Staff meeting at 2 PM" },
     { id: 6, date: new Date(2025, 3, 15), text: "Staff meeting at 2 PM" },
-    { id: 7, date: new Date(2025, 5, 20), text: "Annual health checkup" }
+    { id: 7, date: new Date(2025, 5, 20), text: "Annual health checkup" },
   ]);
   const [newNote, setNewNote] = React.useState("");
 
@@ -37,7 +47,7 @@ export function Notes() {
       const newNoteObj: Note = {
         id: Date.now(),
         date: new Date(),
-        text: newNote.trim()
+        text: newNote.trim(),
       };
       setNotes([...notes, newNoteObj]);
       setNewNote("");
@@ -60,7 +70,8 @@ export function Notes() {
               <span>{note.text}</span>
               <div className="flex items-center gap-3">
                 <span className="text-muted-foreground flex items-center gap-1.5 text-xs lg:group-hover:hidden">
-                  <Clock className="size-3" /> {format(note.date, "MMM d, yyyy")}
+                  <Clock className="size-3" />{" "}
+                  {format(note.date, "MMM d, yyyy")}
                 </span>
                 <Button
                   variant="outline"
@@ -80,7 +91,9 @@ export function Notes() {
             placeholder="Add a new note"
             value={newNote}
             onChange={(e) => setNewNote(e.target.value)}
-            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === "Enter" && addNote()}
+            onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+              e.key === "Enter" && addNote()
+            }
           />
           <InputGroupAddon align="inline-end">
             <InputGroupButton variant="secondary" onClick={addNote}>

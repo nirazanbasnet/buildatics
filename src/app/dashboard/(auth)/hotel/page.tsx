@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Hotel Admin Dashboard Template",
     description:
       "Manage hotel reservations, revenue, and guest bookings. A professional hospitality dashboard built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/hotel"
+    canonical: "/hotel",
   });
 }
 
@@ -26,13 +26,16 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Hotel Management</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Hotel Management
+        </h1>
         <div className="flex gap-2">
           <Button>
             <PlusIcon /> <span className="hidden md:flex">Add New</span>
           </Button>
           <Button variant="outline">
-            <ClipboardMinusIcon /> <span className="hidden md:flex">Reports</span>
+            <ClipboardMinusIcon />{" "}
+            <span className="hidden md:flex">Reports</span>
           </Button>
         </div>
       </div>

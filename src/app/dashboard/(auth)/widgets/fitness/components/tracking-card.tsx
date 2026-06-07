@@ -1,18 +1,26 @@
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Pause, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const history = [
   { label: "5d ago", distance: "10.37km" },
   { label: "8d ago", distance: "8.21km" },
-  { label: "14d ago", distance: "9.54km" }
+  { label: "14d ago", distance: "9.54km" },
 ];
 
 export function TrackingCard() {
   return (
     <Card className="pb-0">
       <CardHeader>
-        <CardTitle className="text-muted-foreground font-medium">Tracking Now</CardTitle>
+        <CardTitle className="text-muted-foreground font-medium">
+          Tracking Now
+        </CardTitle>
         <CardAction>
           <div className="flex gap-2">
             <Button variant="outline" size="icon-sm">

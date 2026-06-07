@@ -5,7 +5,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -34,8 +34,8 @@ const recentReviews: Review[] = [
     title: "Exceeded my expectations!",
     content:
       "I was skeptical at first, but this product has completely changed my daily routine. The quality is outstanding and it's so easy to use.",
-    verified: true
-  }
+    verified: true,
+  },
 ];
 
 export function EcommerceCustomerReviewsCard() {
@@ -47,13 +47,13 @@ export function EcommerceCustomerReviewsCard() {
     { stars: 4, count: 2100, color: "bg-lime-500" },
     { stars: 3, count: 800, color: "bg-yellow-400" },
     { stars: 2, count: 631, color: "bg-orange-400" },
-    { stars: 1, count: 344, color: "bg-red-400" }
+    { stars: 1, count: 344, color: "bg-red-400" },
   ];
 
   // Calculate percentages for progress bars
   const reviewStatsWithPercentage = reviewStats.map((stat) => ({
     ...stat,
-    percentage: (stat.count / totalReviews) * 100
+    percentage: (stat.count / totalReviews) * 100,
   }));
 
   return (
@@ -74,7 +74,10 @@ export function EcommerceCustomerReviewsCard() {
           <div className="flex flex-col items-center justify-center gap-2 lg:col-span-1">
             <div className="flex items-center gap-1">
               {[1, 2, 3, 4].map((i) => (
-                <Star key={i} className="size-6 fill-yellow-400 text-yellow-400" />
+                <Star
+                  key={i}
+                  className="size-6 fill-yellow-400 text-yellow-400"
+                />
               ))}
               <Star
                 className="size-6 fill-yellow-400 text-yellow-400"
@@ -119,9 +122,13 @@ export function EcommerceCustomerReviewsCard() {
                   </div>
                   <h4 className="font-medium">{review.title}</h4>
                 </div>
-                <div className="text-muted-foreground text-xs">{review.date}</div>
+                <div className="text-muted-foreground text-xs">
+                  {review.date}
+                </div>
               </div>
-              <p className="text-muted-foreground mb-3 text-sm">{review.content}</p>
+              <p className="text-muted-foreground mb-3 text-sm">
+                {review.content}
+              </p>
               <div className="flex items-center text-xs">
                 <span className="font-medium">{review.author}</span>
                 {review.verified && (

@@ -18,7 +18,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Manage user profiles, skills, and activity feeds. A comprehensive admin dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui components.",
-    canonical: "/pages/profile"
+    canonical: "/pages/profile",
   });
 }
 
@@ -26,7 +26,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Profile Page</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Profile Page
+        </h1>
         <div className="flex items-center space-x-2">
           <Button asChild>
             <Link href="/dashboard/pages/settings">

@@ -4,7 +4,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
-import { Compass, Library, History, Search, Menu, Plus, Sparkles, Ellipsis } from "lucide-react";
+import {
+  Compass,
+  Library,
+  History,
+  Search,
+  Menu,
+  Plus,
+  Sparkles,
+  Ellipsis,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,7 +23,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import conversations from "../data.json";
@@ -28,17 +37,20 @@ interface SidebarItem {
 const sidebarItems: SidebarItem[] = [
   { icon: Compass, label: "Explore" },
   { icon: Library, label: "Library" },
-  { icon: History, label: "History" }
+  { icon: History, label: "History" },
 ];
 
 export type Conversation = (typeof conversations)[number];
 
 const groupConversationsByCategory = (conversations: Conversation[]) => {
-  const groups: Record<string, { title: string; conversations: Conversation[] }> = {
+  const groups: Record<
+    string,
+    { title: string; conversations: Conversation[] }
+  > = {
     today: { title: "Today", conversations: [] },
     yesterday: { title: "Yesterday", conversations: [] },
     "7days": { title: "7 Days Ago", conversations: [] },
-    older: { title: "Older", conversations: [] }
+    older: { title: "Older", conversations: [] },
   };
 
   conversations.forEach((conv) => {
@@ -52,7 +64,8 @@ const groupConversationsByCategory = (conversations: Conversation[]) => {
 
 const SidebarContent = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredConversations, setFilteredConversations] = useState(conversations);
+  const [filteredConversations, setFilteredConversations] =
+    useState(conversations);
 
   const params = useParams<{ id: string }>();
 
@@ -60,7 +73,9 @@ const SidebarContent = () => {
     setSearchQuery(query);
   };
 
-  const conversationGroups = groupConversationsByCategory(filteredConversations);
+  const conversationGroups = groupConversationsByCategory(
+    filteredConversations,
+  );
 
   return (
     <div className="flex h-full flex-col border-e lg:w-72">
@@ -80,7 +95,9 @@ const SidebarContent = () => {
       <div className="grow space-y-4 overflow-y-auto p-4 lg:space-y-8">
         {conversationGroups.map((group) => (
           <div key={group.key}>
-            <h3 className="text-muted-foreground mb-4 text-xs">{group.title}</h3>
+            <h3 className="text-muted-foreground mb-4 text-xs">
+              {group.title}
+            </h3>
             <div className="space-y-0.5">
               {group.conversations.map((conversation) => (
                 <div className="group flex items-center" key={conversation.id}>
@@ -88,7 +105,7 @@ const SidebarContent = () => {
                     href={`/dashboard/apps/ai-chat-v2/${conversation.id}`}
                     className={cn(
                       "hover:bg-muted block w-full min-w-0 justify-start truncate rounded-lg p-2 px-3 text-start text-sm",
-                      params.id === conversation.id && "bg-muted"
+                      params.id === conversation.id && "bg-muted",
                     )}
                   >
                     {conversation.title}
@@ -108,7 +125,9 @@ const SidebarContent = () => {
                       <DropdownMenuItem>Rename</DropdownMenuItem>
                       <DropdownMenuItem>Share</DropdownMenuItem>
                       <DropdownMenuItem>Pin the chat</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-500!">Delete</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-500!">
+                        Delete
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -129,7 +148,10 @@ const SidebarContent = () => {
             <Button
               key={item.label}
               variant="ghost"
-              className={cn("hover:bg-muted w-full justify-start", item.isActive && "bg-muted")}
+              className={cn(
+                "hover:bg-muted w-full justify-start",
+                item.isActive && "bg-muted",
+              )}
             >
               <item.icon />
               {item.label}
@@ -137,7 +159,10 @@ const SidebarContent = () => {
           ))}
 
           <AIUpgradePricingModal>
-            <Button variant="ghost" className="hover:bg-muted w-full justify-start">
+            <Button
+              variant="ghost"
+              className="hover:bg-muted w-full justify-start"
+            >
               <Sparkles /> Upgrade
             </Button>
           </AIUpgradePricingModal>
@@ -167,7 +192,11 @@ export default function AIChatSidebar() {
       {/* Mobile Sidebar */}
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="absolute end-0 top-0 z-10 md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute end-0 top-0 z-10 md:hidden"
+          >
             <Menu />
           </Button>
         </SheetTrigger>

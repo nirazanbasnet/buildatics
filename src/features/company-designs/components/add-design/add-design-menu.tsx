@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { CreateDesignSheet } from "./create-design-sheet";
@@ -44,8 +44,16 @@ export function AddDesignMenu({ onSaved }: AddDesignMenuProps) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <CreateDesignSheet open={createOpen} onOpenChange={setCreateOpen} onSaved={onSaved} />
-      <ImportDesignSheet open={importOpen} onOpenChange={setImportOpen} onSaved={onSaved} />
+      <CreateDesignSheet
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        onSaved={onSaved}
+      />
+      <ImportDesignSheet
+        open={importOpen}
+        onOpenChange={setImportOpen}
+        onSaved={onSaved}
+      />
     </>
   );
 }

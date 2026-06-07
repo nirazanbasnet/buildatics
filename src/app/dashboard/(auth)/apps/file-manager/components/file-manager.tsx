@@ -13,7 +13,7 @@ import {
   ChevronDownIcon,
   FileTextIcon,
   MoreHorizontalIcon,
-  XIcon
+  XIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -24,18 +24,23 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbSeparator
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 import { FileUploadDialog } from "./file-upload-dialog";
 import allFileItems from "../data.json";
@@ -108,7 +113,9 @@ export function FileManager() {
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
   const currentPath = searchParams.get("path") || "";
-  const pathSegments = currentPath ? currentPath.split("/").filter(Boolean) : [];
+  const pathSegments = currentPath
+    ? currentPath.split("/").filter(Boolean)
+    : [];
 
   const isMobile = useIsMobile();
 
@@ -125,7 +132,7 @@ export function FileManager() {
     return new Date(
       2000 + Number.parseInt(year),
       Number.parseInt(month) - 1,
-      Number.parseInt(day)
+      Number.parseInt(day),
     ).getTime();
   };
 
@@ -155,14 +162,14 @@ export function FileManager() {
     }
 
     const parentFolder = allFileItems.find(
-      (item) => item.name === pathSegments[pathSegments.length - 1]
+      (item) => item.name === pathSegments[pathSegments.length - 1],
     );
     return parentFolder?.children || [];
   };
 
   const currentItems = getCurrentFolderItems();
   const filteredItems = currentItems.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );
   const sortedAndFilteredItems = sortItems(filteredItems);
 
@@ -247,11 +254,15 @@ export function FileManager() {
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-muted-foreground text-sm">Type</span>
-              <span className="text-foreground text-sm capitalize">{selectedItem.type}</span>
+              <span className="text-foreground text-sm capitalize">
+                {selectedItem.type}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground text-sm">Size</span>
-              <span className="text-foreground text-sm">{selectedItem.size}</span>
+              <span className="text-foreground text-sm">
+                {selectedItem.size}
+              </span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground text-sm">Owner</span>
@@ -329,7 +340,9 @@ export function FileManager() {
                           >
                             {segment}
                           </BreadcrumbItem>
-                          {i < pathSegments.length - 1 && <BreadcrumbSeparator />}
+                          {i < pathSegments.length - 1 && (
+                            <BreadcrumbSeparator />
+                          )}
                         </>
                       ))}
                     </BreadcrumbList>
@@ -370,7 +383,9 @@ export function FileManager() {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Move</DropdownMenuItem>
                       <DropdownMenuItem>Copy</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600!">Send to Trash</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-600!">
+                        Send to Trash
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
@@ -392,7 +407,9 @@ export function FileManager() {
                     <div className="flex w-full items-center justify-between">
                       <span>Name</span>
                       {sortBy === "name" && (
-                        <span className="text-xs">{sortDirection === "asc" ? "↑" : "↓"}</span>
+                        <span className="text-xs">
+                          {sortDirection === "asc" ? "↑" : "↓"}
+                        </span>
                       )}
                     </div>
                   </DropdownMenuItem>
@@ -400,7 +417,9 @@ export function FileManager() {
                     <div className="flex w-full items-center justify-between">
                       <span>Date</span>
                       {sortBy === "date" && (
-                        <span className="text-xs">{sortDirection === "asc" ? "↑" : "↓"}</span>
+                        <span className="text-xs">
+                          {sortDirection === "asc" ? "↑" : "↓"}
+                        </span>
                       )}
                     </div>
                   </DropdownMenuItem>
@@ -408,7 +427,9 @@ export function FileManager() {
                     <div className="flex w-full items-center justify-between">
                       <span>Size</span>
                       {sortBy === "size" && (
-                        <span className="text-xs">{sortDirection === "asc" ? "↑" : "↓"}</span>
+                        <span className="text-xs">
+                          {sortDirection === "asc" ? "↑" : "↓"}
+                        </span>
                       )}
                     </div>
                   </DropdownMenuItem>
@@ -421,7 +442,7 @@ export function FileManager() {
                 key={item.id}
                 className={cn(
                   "hover:bg-muted flex cursor-pointer items-center justify-between border-b p-2 lg:p-4",
-                  selectedItem?.id === item.id && "bg-muted"
+                  selectedItem?.id === item.id && "bg-muted",
                 )}
                 onClick={() => handleItemClick(item)}
               >
@@ -436,11 +457,19 @@ export function FileManager() {
                 </div>
 
                 <div className="text-muted-foreground flex items-center space-x-4 text-sm">
-                  <span className="hidden w-16 text-right lg:inline">{item.date}</span>
-                  <span className="hidden w-16 text-right lg:inline">{item.size}</span>
+                  <span className="hidden w-16 text-right lg:inline">
+                    {item.date}
+                  </span>
+                  <span className="hidden w-16 text-right lg:inline">
+                    {item.size}
+                  </span>
                   <Avatar className="h-6 w-6">
-                    <AvatarImage src={item.owner.avatar || "/placeholder.svg"} />
-                    <AvatarFallback className="text-xs">{item.owner.name.charAt(0)}</AvatarFallback>
+                    <AvatarImage
+                      src={item.owner.avatar || "/placeholder.svg"}
+                    />
+                    <AvatarFallback className="text-xs">
+                      {item.owner.name.charAt(0)}
+                    </AvatarFallback>
                   </Avatar>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -455,7 +484,9 @@ export function FileManager() {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>Move</DropdownMenuItem>
                       <DropdownMenuItem>Copy</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-600!">Delete</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-600!">
+                        Delete
+                      </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </div>
@@ -468,20 +499,24 @@ export function FileManager() {
               </div>
             )}
 
-            {sortedAndFilteredItems.length === 0 && !searchQuery && currentPath && (
-              <div className="flex h-[calc(100vh-var(--header-height)-3rem)] flex-col items-center justify-center">
-                <div className="mx-auto max-w-md space-y-4 text-center">
-                  <FolderPlus className="mx-auto size-14 opacity-50" />
-                  <h2 className="text-muted-foreground">This folder is empty.</h2>
-                  <div>
-                    <Button>
-                      <UploadIcon />
-                      Upload
-                    </Button>
+            {sortedAndFilteredItems.length === 0 &&
+              !searchQuery &&
+              currentPath && (
+                <div className="flex h-[calc(100vh-var(--header-height)-3rem)] flex-col items-center justify-center">
+                  <div className="mx-auto max-w-md space-y-4 text-center">
+                    <FolderPlus className="mx-auto size-14 opacity-50" />
+                    <h2 className="text-muted-foreground">
+                      This folder is empty.
+                    </h2>
+                    <div>
+                      <Button>
+                        <UploadIcon />
+                        Upload
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
 
             {pathSegments.length == 0 && (
               <div className="mt-4">

@@ -4,12 +4,16 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function BestSellingProducts() {
   const products = [
@@ -19,7 +23,7 @@ export function BestSellingProducts() {
       name: "Sports Shoes",
       price: 316,
       sold: 316,
-      sales: 10
+      sales: 10,
     },
     {
       id: 2,
@@ -27,7 +31,7 @@ export function BestSellingProducts() {
       name: "Black T-Shirt",
       price: 274,
       sold: 274,
-      sales: 20
+      sales: 20,
     },
     {
       id: 3,
@@ -35,7 +39,7 @@ export function BestSellingProducts() {
       name: "Jeans",
       price: 195,
       sold: 195,
-      sales: 15
+      sales: 15,
     },
     {
       id: 4,
@@ -43,7 +47,7 @@ export function BestSellingProducts() {
       name: "Red Sneakers",
       price: 402,
       sold: 402,
-      sales: 40
+      sales: 40,
     },
     {
       id: 5,
@@ -51,7 +55,7 @@ export function BestSellingProducts() {
       name: "Red Scarf",
       price: 280,
       sold: 280,
-      sales: 37
+      sales: 37,
     },
     {
       id: 6,
@@ -59,8 +63,8 @@ export function BestSellingProducts() {
       name: "Kitchen Accessory",
       price: 150,
       sold: 150,
-      sales: 18
-    }
+      sales: 18,
+    },
   ];
 
   return (
@@ -98,7 +102,9 @@ export function BestSellingProducts() {
                 <div className="font-medium">{product.name}</div>
               </div>
             </div>
-            <div className="text-sm text-green-600">{product.sold} items sold</div>
+            <div className="text-sm text-green-600">
+              {product.sold} items sold
+            </div>
           </Link>
         ))}
       </CardContent>

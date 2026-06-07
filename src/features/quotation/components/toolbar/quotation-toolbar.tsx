@@ -9,7 +9,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import { QUOTE_STATUSES } from "../../lib/status";
@@ -28,16 +28,21 @@ export function QuotationToolbar({
   filters,
   onFiltersChange,
   onExportCsv,
-  onAddQuotation
+  onAddQuotation,
 }: QuotationToolbarProps) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 pb-4" data-slot="quotation-toolbar">
+    <div
+      className="flex flex-wrap items-center justify-between gap-3 pb-4"
+      data-slot="quotation-toolbar"
+    >
       <div className="flex flex-wrap items-center gap-2">
         <div className="relative">
           <Search className="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
           <Input
             value={filters.search}
-            onChange={(e) => onFiltersChange({ ...filters, search: e.target.value })}
+            onChange={(e) =>
+              onFiltersChange({ ...filters, search: e.target.value })
+            }
             placeholder="Search quotes, client, address"
             className="h-9 w-64 pl-8"
             aria-label="Search quotations"
@@ -65,7 +70,12 @@ export function QuotationToolbar({
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="outline" size="sm" className="h-9" onClick={onExportCsv}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="h-9"
+          onClick={onExportCsv}
+        >
           <Download className="size-4" />
           Export CSV
         </Button>

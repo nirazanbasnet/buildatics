@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -27,11 +27,19 @@ const Notifications = () => {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align={isMobile ? "center" : "end"} className="ms-4 w-80 p-0">
+      <DropdownMenuContent
+        align={isMobile ? "center" : "end"}
+        className="ms-4 w-80 p-0"
+      >
         <DropdownMenuLabel className="bg-background dark:bg-muted sticky top-0 z-10 p-0">
           <div className="flex justify-between border-b px-6 py-4">
             <div className="font-medium">Notifications</div>
-            <Button variant="link" className="h-auto p-0 text-xs" size="icon-sm" asChild>
+            <Button
+              variant="link"
+              className="h-auto p-0 text-xs"
+              size="icon-sm"
+              asChild
+            >
               <Link href="/dashboard/pages/notifications">View all</Link>
             </Button>
           </div>

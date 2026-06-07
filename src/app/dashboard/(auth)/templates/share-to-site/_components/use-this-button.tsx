@@ -15,7 +15,7 @@ export function UseThisButton({ variant }: { variant: ShareToSiteVariantId }) {
     document.cookie = `share_to_site_enabled=true; path=/; max-age=31536000; SameSite=Lax`;
     document.cookie = `share_to_site_variant=${variant}; path=/; max-age=31536000; SameSite=Lax`;
     toast.success(`Share to Site ${variant.toUpperCase()} promoted`, {
-      description: "It is now active on /dashboard/share-to-site."
+      description: "It is now active on /dashboard/share-to-site.",
     });
     router.push("/dashboard/share-to-site");
     router.refresh();

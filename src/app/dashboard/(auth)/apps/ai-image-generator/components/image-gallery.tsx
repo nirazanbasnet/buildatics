@@ -22,7 +22,7 @@ interface ImageGalleryProps {
 export const ImageGallery: React.FC<ImageGalleryProps> = ({
   images,
   isGenerating,
-  onDeleteImage
+  onDeleteImage,
 }) => {
   if (images.length === 0 && !isGenerating) {
     return (
@@ -32,10 +32,12 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
             <ImageIcon className="text-muted-foreground h-8 w-8" />
           </div>
           <div className="space-y-2">
-            <h3 className="text-muted-foreground text-lg font-medium">No Images Generated Yet</h3>
+            <h3 className="text-muted-foreground text-lg font-medium">
+              No Images Generated Yet
+            </h3>
             <p className="text-muted-foreground mx-auto max-w-sm text-sm">
-              Start by entering a prompt and clicking &#34;Generate Image&#34; to create your first
-              AI-generated image.
+              Start by entering a prompt and clicking &#34;Generate Image&#34;
+              to create your first AI-generated image.
             </p>
           </div>
         </div>
@@ -58,7 +60,9 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
                 <p className="text-muted-foreground text-sm font-medium">
                   Generating your image...
                 </p>
-                <p className="text-muted-foreground text-xs">This may take a few moments</p>
+                <p className="text-muted-foreground text-xs">
+                  This may take a few moments
+                </p>
               </div>
             </div>
           )}
@@ -66,7 +70,11 @@ export const ImageGallery: React.FC<ImageGalleryProps> = ({
           {images.length > 0 && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {images.map((image, key) => (
-                <ImageItem key={key} image={image} onDeleteImage={onDeleteImage} />
+                <ImageItem
+                  key={key}
+                  image={image}
+                  onDeleteImage={onDeleteImage}
+                />
               ))}
             </div>
           )}

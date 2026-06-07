@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Manage detailed user profiles, activity streams, and projects. A professional dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui components.",
-    canonical: "/pages/profile-v2"
+    canonical: "/pages/profile-v2",
   });
 }
 

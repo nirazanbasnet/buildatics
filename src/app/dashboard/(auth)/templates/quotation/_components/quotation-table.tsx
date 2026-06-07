@@ -10,10 +10,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
 import { quotationStatusConfig, type Quotation } from "../_data";
@@ -43,16 +47,28 @@ const ACCESSORS: Record<SortField, (q: Quotation) => string | number> = {
   amount: (q) => q.amount,
   quoteDate: (q) => q.quoteDate,
   expiryDate: (q) => q.expiryDate,
-  status: (q) => q.status
+  status: (q) => q.status,
 };
 
-export function QuotationTable({ quotations, className, onQuotationClick }: Props) {
+export function QuotationTable({
+  quotations,
+  className,
+  onQuotationClick,
+}: Props) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [sort, setSort] = useSortState<SortField>({ field: "ref", direction: "asc" });
-  const sortedQuotations = useMemo(() => sortBy(quotations, sort, ACCESSORS), [quotations, sort]);
+  const [sort, setSort] = useSortState<SortField>({
+    field: "ref",
+    direction: "asc",
+  });
+  const sortedQuotations = useMemo(
+    () => sortBy(quotations, sort, ACCESSORS),
+    [quotations, sort],
+  );
 
-  const allSelected = sortedQuotations.length > 0 && selected.size === sortedQuotations.length;
-  const someSelected = selected.size > 0 && selected.size < sortedQuotations.length;
+  const allSelected =
+    sortedQuotations.length > 0 && selected.size === sortedQuotations.length;
+  const someSelected =
+    selected.size > 0 && selected.size < sortedQuotations.length;
 
   function toggleAll(value: boolean) {
     setSelected(value ? new Set(sortedQuotations.map((q) => q.id)) : new Set());
@@ -68,13 +84,20 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
   }
 
   return (
-    <div className={cn("bg-card h-full overflow-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "bg-card h-full overflow-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="w-12 pl-4">
               <Checkbox
-                checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
                 onCheckedChange={(v) => toggleAll(v === true)}
                 aria-label="Select all quotations"
               />
@@ -88,7 +111,11 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
             <SortableTableHead field="siteAddress" sort={sort} onSort={setSort}>
               Site Address
             </SortableTableHead>
-            <SortableTableHead field="attachedDesign" sort={sort} onSort={setSort}>
+            <SortableTableHead
+              field="attachedDesign"
+              sort={sort}
+              onSort={setSort}
+            >
               Attached Design
             </SortableTableHead>
             <SortableTableHead field="amount" sort={sort} onSort={setSort}>
@@ -103,7 +130,9 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
             <SortableTableHead field="status" sort={sort} onSort={setSort}>
               Status
             </SortableTableHead>
-            <TableHead className="pr-4 text-right font-semibold">Actions</TableHead>
+            <TableHead className="pr-4 text-right font-semibold">
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -114,10 +143,17 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
               <MotionTableRow
                 key={quotation.id}
                 index={index}
-                onClick={onQuotationClick ? () => onQuotationClick(quotation) : undefined}
+                onClick={
+                  onQuotationClick
+                    ? () => onQuotationClick(quotation)
+                    : undefined
+                }
                 className={onQuotationClick ? "cursor-pointer" : undefined}
               >
-                <TableCell className="py-3 pl-4" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="py-3 pl-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Checkbox
                     checked={isChecked}
                     onCheckedChange={(v) => toggleOne(quotation.id, v === true)}
@@ -129,7 +165,9 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
                     {quotation.ref}
                   </span>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{quotation.client}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {quotation.client}
+                </TableCell>
                 <TableCell className="text-muted-foreground">
                   <span className="group-hover:text-foreground inline-flex items-center gap-1.5 transition-all motion-safe:group-hover:translate-x-0.5">
                     <MapPin className="size-4 shrink-0" />
@@ -152,16 +190,23 @@ export function QuotationTable({ quotations, className, onQuotationClick }: Prop
                   <span
                     className={cn(
                       "inline-flex min-w-24 items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                      status.solid
+                      status.solid,
                     )}
                   >
                     {status.label}
                   </span>
                 </TableCell>
-                <TableCell className="pr-4 text-right" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="pr-4 text-right"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <QuotationActionsMenu
                     quotationRef={quotation.ref}
-                    onView={onQuotationClick ? () => onQuotationClick(quotation) : undefined}
+                    onView={
+                      onQuotationClick
+                        ? () => onQuotationClick(quotation)
+                        : undefined
+                    }
                   />
                 </TableCell>
               </MotionTableRow>

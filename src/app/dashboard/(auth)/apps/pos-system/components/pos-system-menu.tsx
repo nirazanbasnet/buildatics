@@ -16,7 +16,11 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import POStSystemCart from "./cart";
 import AssignOrderToTable from "./assign-order-to-table";
 import POStSystemCartSheet from "./cart-sheet";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 type PosSystemMenu = {
   productCategories: ProductCategory[];
@@ -29,15 +33,20 @@ export default function PosSystemMenu({
   productCategories,
   products,
   tableCategories,
-  tables
+  tables,
 }: PosSystemMenu) {
   const [searchTerm, setSearchTerm] = React.useState<string>("");
-  const [showAssignOrderDialog, setShowAssignOrderDialog] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
+  const [showAssignOrderDialog, setShowAssignOrderDialog] =
+    React.useState(false);
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
+    null,
+  );
 
   const filteredBySearchTerm = React.useMemo(() => {
     if (!searchTerm) return null;
-    return products.filter((p) => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    return products.filter((p) =>
+      p.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
   }, [searchTerm]);
 
   const filteredByCategory = React.useMemo(() => {
@@ -53,7 +62,9 @@ export default function PosSystemMenu({
         <div className="flex flex-col gap-4 group-data-[theme-content-layout=centered]/layout:h-[calc(100vh-8rem)] group-data-[theme-content-layout=full]/layout:h-[calc(100vh-6rem)] lg:col-span-6">
           {/* Header */}
           <div className="flex justify-between lg:mb-4">
-            <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Pos System</h1>
+            <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+              Pos System
+            </h1>
             <div className="flex gap-2">
               <AddProductDialog categories={productCategories} />
               <Button variant="outline" asChild>
@@ -65,7 +76,11 @@ export default function PosSystemMenu({
 
               <Popover>
                 <PopoverTrigger asChild>
-                  <Button variant="outline" size="icon" className="flex lg:hidden">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="flex lg:hidden"
+                  >
                     <SearchIcon />
                   </Button>
                 </PopoverTrigger>
@@ -110,11 +125,14 @@ export default function PosSystemMenu({
                 category={{
                   id: "all",
                   name: "All",
-                  icon: "🍱"
+                  icon: "🍱",
                 }}
               />
               {productCategories.map((category) => (
-                <ProductCategoryListItem key={category.id} category={category} />
+                <ProductCategoryListItem
+                  key={category.id}
+                  category={category}
+                />
               ))}
             </RadioGroup>
             <ScrollBar orientation="horizontal" />
@@ -131,7 +149,9 @@ export default function PosSystemMenu({
               </div>
             ) : (
               <div className="flex h-full flex-col items-center justify-center gap-4">
-                <div className="text-muted-foreground">There are no products here.</div>
+                <div className="text-muted-foreground">
+                  There are no products here.
+                </div>
                 <AddProductDialog categories={productCategories} />
               </div>
             )}
@@ -139,8 +159,12 @@ export default function PosSystemMenu({
         </div>
 
         {/* Cart */}
-        <POStSystemCart setShowAssignOrderDialogAction={setShowAssignOrderDialog} />
-        <POStSystemCartSheet setShowAssignOrderDialogAction={setShowAssignOrderDialog} />
+        <POStSystemCart
+          setShowAssignOrderDialogAction={setShowAssignOrderDialog}
+        />
+        <POStSystemCartSheet
+          setShowAssignOrderDialogAction={setShowAssignOrderDialog}
+        />
       </div>
 
       <AssignOrderToTable

@@ -7,7 +7,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Capture ideas, create checklists, and organize your thoughts with a flexible masonry layout and custom labels. A professional note-taking application built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/notes"
+    canonical: "/apps/notes",
   });
 }
 

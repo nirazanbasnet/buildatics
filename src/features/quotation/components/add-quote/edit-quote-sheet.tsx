@@ -12,11 +12,14 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { updateQuote } from "../../actions/update-quote";
-import { addQuoteSchema, type AddQuoteInput } from "../../lib/quote-form-schema";
+import {
+  addQuoteSchema,
+  type AddQuoteInput,
+} from "../../lib/quote-form-schema";
 import type { QuotationRow } from "../../types";
 import { QuoteFormFields } from "./quote-form-fields";
 
@@ -29,11 +32,15 @@ type EditQuoteSheetProps = {
 };
 
 // Edit reuses the Add schema (leadId is prefilled from the row and not shown; updateQuote ignores it).
-export function EditQuoteSheet({ quote, onOpenChange, onSaved }: EditQuoteSheetProps) {
+export function EditQuoteSheet({
+  quote,
+  onOpenChange,
+  onSaved,
+}: EditQuoteSheetProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<AddQuoteInput>({
     resolver: zodResolver(addQuoteSchema),
-    defaultValues: { leadId: "", title: "", description: "", validUntil: "" }
+    defaultValues: { leadId: "", title: "", description: "", validUntil: "" },
   });
 
   useEffect(() => {
@@ -42,7 +49,7 @@ export function EditQuoteSheet({ quote, onOpenChange, onSaved }: EditQuoteSheetP
         leadId: quote.leadId,
         title: quote.ref === "Untitled quote" ? "" : quote.ref,
         description: "",
-        validUntil: ""
+        validUntil: "",
       });
     }
   }, [quote]);
@@ -57,14 +64,18 @@ export function EditQuoteSheet({ quote, onOpenChange, onSaved }: EditQuoteSheetP
         onSaved();
         return;
       }
-      if (res.fieldErrors?.title) form.setError("title", { message: res.fieldErrors.title });
+      if (res.fieldErrors?.title)
+        form.setError("title", { message: res.fieldErrors.title });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={quote !== null} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Edit quotation</SheetTitle>
           <SheetDescription className="sr-only">
@@ -73,7 +84,10 @@ export function EditQuoteSheet({ quote, onOpenChange, onSaved }: EditQuoteSheetP
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5">
               <QuoteFormFields control={form.control} />
             </div>

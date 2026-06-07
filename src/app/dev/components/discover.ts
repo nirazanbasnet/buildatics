@@ -2,7 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 
 export type Variant = { name: string; file: string };
-export type Feature = { name: string; variants: Variant[]; notes: string | null };
+export type Feature = {
+  name: string;
+  variants: Variant[];
+  notes: string | null;
+};
 
 const TEMPLATES_DIR = path.join(process.cwd(), "templates");
 
@@ -19,7 +23,9 @@ export function discoverTemplates(): Feature[] {
         .sort()
         .map((f) => ({ name: f.replace(/\.tsx$/, ""), file: f }));
       const notesPath = path.join(featureDir, "notes.md");
-      const notes = fs.existsSync(notesPath) ? fs.readFileSync(notesPath, "utf8") : null;
+      const notes = fs.existsSync(notesPath)
+        ? fs.readFileSync(notesPath, "utf8")
+        : null;
       return { name: d.name, variants, notes };
     })
     .filter((f) => f.variants.length > 0);

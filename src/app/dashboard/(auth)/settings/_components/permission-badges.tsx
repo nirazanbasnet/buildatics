@@ -1,5 +1,9 @@
 import { Badge, badgeVariants } from "@/components/ui/badge";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -27,7 +31,7 @@ export function PermissionBadges({ permissions, max = 3, className }: Props) {
               aria-label={`Show ${overflow.length} more permission${overflow.length > 1 ? "s" : ""}`}
               className={cn(
                 badgeVariants({ variant: "secondary" }),
-                "text-muted-foreground hover:bg-secondary/80 focus-visible:ring-ring cursor-pointer font-normal focus-visible:ring-2 focus-visible:outline-none"
+                "text-muted-foreground hover:bg-secondary/80 focus-visible:ring-ring cursor-pointer font-normal focus-visible:ring-2 focus-visible:outline-none",
               )}
             >
               +{overflow.length}
@@ -39,7 +43,11 @@ export function PermissionBadges({ permissions, max = 3, className }: Props) {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {permissions.map((permission) => (
-                <Badge key={permission} variant="secondary" className="font-normal">
+                <Badge
+                  key={permission}
+                  variant="secondary"
+                  className="font-normal"
+                >
                   {permission}
                 </Badge>
               ))}

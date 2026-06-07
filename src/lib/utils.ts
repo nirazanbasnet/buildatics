@@ -22,7 +22,7 @@ const OG_IMAGE = "/images/seo.jpg";
 export function generateMeta({
   title,
   description,
-  canonical
+  canonical,
 }: {
   title: string;
   description: string;
@@ -43,14 +43,14 @@ export function generateMeta({
       siteName: SITE_NAME,
       type: "website",
       ...(canonical ? { url: canonical } : {}),
-      images: [OG_IMAGE]
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [OG_IMAGE]
-    }
+      images: [OG_IMAGE],
+    },
   };
 }
 

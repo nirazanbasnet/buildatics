@@ -3,7 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 interface User {
   id: string;
@@ -18,39 +24,39 @@ const suggestedUsers: User[] = [
     id: "1",
     name: "Azunyan Senpai",
     username: "@nyancat221b",
-    avatar: "https://i.pravatar.cc/150?img=11"
+    avatar: "https://i.pravatar.cc/150?img=11",
   },
   {
     id: "2",
     name: "Oarack Babama",
     username: "@oarackbabama",
-    avatar: "https://i.pravatar.cc/150?img=12"
+    avatar: "https://i.pravatar.cc/150?img=12",
   },
   {
     id: "3",
     name: "David Gilmore",
     username: "@davidgilmore",
-    avatar: "https://i.pravatar.cc/150?img=13"
+    avatar: "https://i.pravatar.cc/150?img=13",
   },
   {
     id: "4",
     name: "Gerard Way",
     username: "@gerardway",
     avatar: "https://i.pravatar.cc/150?img=14",
-    isFollowed: true
+    isFollowed: true,
   },
   {
     id: "5",
     name: "Mary Suez",
     username: "@marysuez821",
-    avatar: "https://i.pravatar.cc/150?img=15"
+    avatar: "https://i.pravatar.cc/150?img=15",
   },
   {
     id: "6",
     name: "Edgar Wright",
     username: "@davidgilmore",
-    avatar: "https://i.pravatar.cc/150?img=16"
-  }
+    avatar: "https://i.pravatar.cc/150?img=16",
+  },
 ];
 
 const trendingArtists: User[] = [
@@ -58,26 +64,26 @@ const trendingArtists: User[] = [
     id: "1",
     name: "Saylor Twift",
     username: "@saylortwiftofficial",
-    avatar: "https://i.pravatar.cc/150?img=20"
+    avatar: "https://i.pravatar.cc/150?img=20",
   },
   {
     id: "2",
     name: "Frank Iero",
     username: "@frankieroofficial",
-    avatar: "https://i.pravatar.cc/150?img=21"
+    avatar: "https://i.pravatar.cc/150?img=21",
   },
   {
     id: "3",
     name: "Charlie XXX",
     username: "@clarliexx",
-    avatar: "https://i.pravatar.cc/150?img=22"
+    avatar: "https://i.pravatar.cc/150?img=22",
   },
   {
     id: "4",
     name: "Star Warz",
     username: "@starwarzofficial",
-    avatar: "https://i.pravatar.cc/150?img=23"
-  }
+    avatar: "https://i.pravatar.cc/150?img=23",
+  },
 ];
 
 export function AsideRight() {
@@ -102,7 +108,9 @@ export function AsideRight() {
                 </Avatar>
                 <div>
                   <p className="text-sm font-medium">{user.name}</p>
-                  <p className="text-muted-foreground text-xs">{user.username}</p>
+                  <p className="text-muted-foreground text-xs">
+                    {user.username}
+                  </p>
                 </div>
               </div>
               <Button
@@ -136,7 +144,9 @@ export function AsideRight() {
                 </Avatar>
                 <div>
                   <p className="text-sm font-medium">{artist.name}</p>
-                  <p className="text-muted-foreground text-xs">{artist.username}</p>
+                  <p className="text-muted-foreground text-xs">
+                    {artist.username}
+                  </p>
                 </div>
               </div>
               <Button variant="link" size="sm">

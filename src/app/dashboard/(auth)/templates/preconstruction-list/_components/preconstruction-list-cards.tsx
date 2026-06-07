@@ -10,7 +10,11 @@ type Props = {
   onProjectClick?: (project: PreconstructionListProject) => void;
 };
 
-export function PreconstructionListCards({ projects, className, onProjectClick }: Props) {
+export function PreconstructionListCards({
+  projects,
+  className,
+  onProjectClick,
+}: Props) {
   return (
     <div className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-3", className)}>
       {projects.map((project, index) => (

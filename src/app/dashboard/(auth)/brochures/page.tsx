@@ -11,9 +11,12 @@ import { parseBrochuresVariant } from "../templates/brochures/_components/varian
 
 export default async function BrochuresPage() {
   const cookieStore = await cookies();
-  const brochuresVariant = parseBrochuresVariant(cookieStore.get("brochures_variant")?.value);
+  const brochuresVariant = parseBrochuresVariant(
+    cookieStore.get("brochures_variant")?.value,
+  );
 
-  const Layout = brochuresVariant === "v2" ? BrochuresLayoutV2 : BrochuresLayout;
+  const Layout =
+    brochuresVariant === "v2" ? BrochuresLayoutV2 : BrochuresLayout;
 
   return <Layout brochures={brochures} detailEnabled />;
 }

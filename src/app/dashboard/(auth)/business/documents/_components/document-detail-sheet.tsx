@@ -10,12 +10,16 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
 import { cn } from "@/lib/utils";
 
-import { documentStatusConfig, formatFileSize, type BusinessDocument } from "../_data";
+import {
+  documentStatusConfig,
+  formatFileSize,
+  type BusinessDocument,
+} from "../_data";
 import { getDocumentTypeIcon } from "./document-type-icon";
 
 type Props = {
@@ -53,16 +57,21 @@ export function DocumentDetailSheet({ open, onOpenChange, document }: Props) {
         </VisuallyHidden>
         <SheetMobileBar onClose={close} title="File details" />
 
-        <div className="flex flex-col gap-6 p-4 sm:p-6" data-slot="document-detail">
+        <div
+          className="flex flex-col gap-6 p-4 sm:p-6"
+          data-slot="document-detail"
+        >
           <header className="flex flex-col items-center gap-3 text-center">
             <span className="bg-muted text-foreground flex size-16 items-center justify-center rounded-2xl">
               <Icon className="size-7" />
             </span>
-            <h3 className="text-foreground text-lg font-semibold">{document.fileName}</h3>
+            <h3 className="text-foreground text-lg font-semibold">
+              {document.fileName}
+            </h3>
             <span
               className={cn(
                 "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                status.badge
+                status.badge,
               )}
             >
               {status.label}
@@ -73,7 +82,10 @@ export function DocumentDetailSheet({ open, onOpenChange, document }: Props) {
             <Row label="Uploaded by" value={document.uploadedBy} />
             <Row label="Uploaded on" value={document.uploadedOn} />
             <Row label="Size" value={formatFileSize(document.size)} />
-            <Row label="Type" value={<span className="capitalize">{document.type}</span>} />
+            <Row
+              label="Type"
+              value={<span className="capitalize">{document.type}</span>}
+            />
           </section>
 
           <div className="flex flex-col gap-2">

@@ -1,11 +1,18 @@
-import { Download, Folder, MoreVertical, Share2, Star, Trash2 } from "lucide-react";
+import {
+  Download,
+  Folder,
+  MoreVertical,
+  Share2,
+  Star,
+  Trash2,
+} from "lucide-react";
 import {
   Card,
   CardAction,
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +21,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 
@@ -27,9 +34,27 @@ interface Folder {
 }
 
 const folders: Folder[] = [
-  { id: "1", name: "Documents", items: 120, starred: true, lastModified: "10 days ago" },
-  { id: "2", name: "Images", items: 250, starred: false, lastModified: "2 days ago" },
-  { id: "4", name: "Downloads", items: 80, starred: false, lastModified: "Yesterday" }
+  {
+    id: "1",
+    name: "Documents",
+    items: 120,
+    starred: true,
+    lastModified: "10 days ago",
+  },
+  {
+    id: "2",
+    name: "Images",
+    items: 250,
+    starred: false,
+    lastModified: "2 days ago",
+  },
+  {
+    id: "4",
+    name: "Downloads",
+    items: 80,
+    starred: false,
+    lastModified: "Yesterday",
+  },
 ];
 
 export function FolderListCards() {
@@ -40,7 +65,9 @@ export function FolderListCards() {
           <CardHeader>
             <CardTitle className="flex gap-2">
               <Folder className="size-4 text-yellow-600" />
-              <h3 className="leading-none font-semibold tracking-tight">{folder.name}</h3>
+              <h3 className="leading-none font-semibold tracking-tight">
+                {folder.name}
+              </h3>
             </CardTitle>
             <CardAction>
               <DropdownMenu>
@@ -69,7 +96,9 @@ export function FolderListCards() {
             </CardAction>
           </CardHeader>
           <CardContent className="spcae-y-4">
-            <div className="bg-muted rounded-md border px-4 py-2 text-sm">{folder.items} items</div>
+            <div className="bg-muted rounded-md border px-4 py-2 text-sm">
+              {folder.items} items
+            </div>
             <div className="flex items-center justify-between">
               <div className="text-muted-foreground text-xs">
                 Last update: {folder.lastModified}
@@ -80,7 +109,9 @@ export function FolderListCards() {
                 ) : (
                   <Star className="text-muted-foreground size-4" />
                 )}
-                <span className="sr-only">{folder.starred ? "Unstar" : "Star"} folder</span>
+                <span className="sr-only">
+                  {folder.starred ? "Unstar" : "Star"} folder
+                </span>
               </Button>
             </div>
           </CardContent>

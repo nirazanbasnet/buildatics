@@ -11,16 +11,22 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronLeft, ChevronRight, FolderUp, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  ChevronLeft,
+  ChevronRight,
+  FolderUp,
+  MoreHorizontal,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -29,9 +35,15 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export type Product = {
   id: number;
@@ -49,7 +61,7 @@ const data: Product[] = [
     name: "Sports Shoes",
     price: 316,
     sold: 316,
-    sales: 10
+    sales: 10,
   },
   {
     id: 2,
@@ -57,7 +69,7 @@ const data: Product[] = [
     name: "Black T-Shirt",
     price: 274,
     sold: 274,
-    sales: 20
+    sales: 20,
   },
   {
     id: 3,
@@ -65,7 +77,7 @@ const data: Product[] = [
     name: "Jeans",
     price: 195,
     sold: 195,
-    sales: 15
+    sales: 15,
   },
   {
     id: 4,
@@ -73,7 +85,7 @@ const data: Product[] = [
     name: "Red Sneakers",
     price: 402,
     sold: 402,
-    sales: 40
+    sales: 40,
   },
   {
     id: 5,
@@ -81,7 +93,7 @@ const data: Product[] = [
     name: "Red Scarf",
     price: 280,
     sold: 280,
-    sales: 37
+    sales: 37,
   },
   {
     id: 6,
@@ -89,7 +101,7 @@ const data: Product[] = [
     name: "Kitchen Accessory",
     price: 150,
     sold: 150,
-    sales: 18
+    sales: 18,
   },
   {
     id: 7,
@@ -97,7 +109,7 @@ const data: Product[] = [
     name: "Bicycle",
     price: 316,
     sold: 316,
-    sales: 25
+    sales: 25,
   },
   {
     id: 8,
@@ -105,8 +117,8 @@ const data: Product[] = [
     name: "Sports Shoes",
     price: 290,
     sold: 290,
-    sales: 12
-  }
+    sales: 12,
+  },
 ];
 
 export const columns: ColumnDef<Product>[] = [
@@ -118,7 +130,7 @@ export const columns: ColumnDef<Product>[] = [
         <img className="size-8" src={row.original.image} alt="..." />
         <div className="capitalize">{row.getValue("name")}</div>
       </div>
-    )
+    ),
   },
   {
     accessorKey: "sold",
@@ -140,11 +152,11 @@ export const columns: ColumnDef<Product>[] = [
       // Format the amount as a dollar amount
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
       }).format(amount);
 
       return <div className="font-medium">{formatted}</div>;
-    }
+    },
   },
   {
     accessorKey: "sales",
@@ -160,7 +172,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div>{row.getValue("sales")}</div>
+    cell: ({ row }) => <div>{row.getValue("sales")}</div>,
   },
   {
     id: "actions",
@@ -178,7 +190,11 @@ export const columns: ColumnDef<Product>[] = [
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => navigator.clipboard.writeText(String(product.id))}>
+              <DropdownMenuItem
+                onClick={() =>
+                  navigator.clipboard.writeText(String(product.id))
+                }
+              >
                 Copy product ID
               </DropdownMenuItem>
               <DropdownMenuItem>View customer</DropdownMenuItem>
@@ -187,14 +203,17 @@ export const columns: ColumnDef<Product>[] = [
           </DropdownMenu>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function EcommerceBestSellingProductsCard() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -212,13 +231,13 @@ export function EcommerceBestSellingProductsCard() {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
+      rowSelection,
     },
     initialState: {
       pagination: {
-        pageSize: 8
-      }
-    }
+        pageSize: 8,
+      },
+    },
   });
 
   return (
@@ -243,7 +262,9 @@ export function EcommerceBestSellingProductsCard() {
         <Input
           placeholder="Filter products..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+          onChange={(event) =>
+            table.getColumn("name")?.setFilterValue(event.target.value)
+          }
           className="max-w-xs"
         />
         <div className="rounded-md border">
@@ -256,7 +277,10 @@ export function EcommerceBestSellingProductsCard() {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -266,17 +290,26 @@ export function EcommerceBestSellingProductsCard() {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

@@ -7,14 +7,20 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 import { getLeadForEdit } from "../../actions/get-lead";
 import { updateLead } from "../../actions/update-lead";
 import {
   createLeadSchema,
   normalizeLeadInput,
-  type CreateLeadInput
+  type CreateLeadInput,
 } from "../../lib/lead-form-schema";
 import type { LeadOptions } from "../../types";
 import { LeadFormFields } from "./lead-form-fields";
@@ -26,13 +32,20 @@ type EditLeadSheetProps = {
   onSaved?: () => void;
 };
 
-export function EditLeadSheet({ leadId, onOpenChange, options, onSaved }: EditLeadSheetProps) {
+export function EditLeadSheet({
+  leadId,
+  onOpenChange,
+  options,
+  onSaved,
+}: EditLeadSheetProps) {
   const open = leadId !== null;
   const [loading, setLoading] = useState(false);
   const [contactId, setContactId] = useState("");
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<CreateLeadInput>({ resolver: zodResolver(createLeadSchema) });
+  const form = useForm<CreateLeadInput>({
+    resolver: zodResolver(createLeadSchema),
+  });
 
   // Load the lead's current values whenever the sheet opens for a lead.
   useEffect(() => {
@@ -58,22 +71,31 @@ export function EditLeadSheet({ leadId, onOpenChange, options, onSaved }: EditLe
   function onSubmit(values: CreateLeadInput) {
     if (!leadId) return;
     startTransition(async () => {
-      const res = await updateLead(leadId, contactId, normalizeLeadInput(values));
+      const res = await updateLead(
+        leadId,
+        contactId,
+        normalizeLeadInput(values),
+      );
       if (res.ok) {
         toast.success("Lead updated");
         onOpenChange(false);
         onSaved?.();
         return;
       }
-      if (res.fieldErrors?.firstName) form.setError("firstName", { message: res.fieldErrors.firstName });
-      if (res.fieldErrors?.email) form.setError("email", { message: res.fieldErrors.email });
+      if (res.fieldErrors?.firstName)
+        form.setError("firstName", { message: res.fieldErrors.firstName });
+      if (res.fieldErrors?.email)
+        form.setError("email", { message: res.fieldErrors.email });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onOpenChange(false)}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Edit lead</SheetTitle>
           <SheetDescription className="sr-only">
@@ -87,10 +109,18 @@ export function EditLeadSheet({ leadId, onOpenChange, options, onSaved }: EditLe
           </div>
         ) : (
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex min-h-0 flex-1 flex-col"
+            >
               <LeadFormFields control={form.control} options={options} />
               <div className="flex items-center justify-end gap-2 border-t px-4 py-4">
-                <Button type="button" variant="outline" onClick={() => onOpenChange(false)} disabled={isPending}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => onOpenChange(false)}
+                  disabled={isPending}
+                >
                   Cancel
                 </Button>
                 <Button type="submit" disabled={isPending}>

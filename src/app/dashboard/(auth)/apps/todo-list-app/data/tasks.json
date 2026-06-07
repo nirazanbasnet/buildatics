@@ -18,7 +18,11 @@
     "reminderDate": "2023-05-30T00:00:00.000Z",
     "subTasks": [
       { "id": "st4", "title": "Sketch wireframe", "completed": true },
-      { "id": "st5", "title": "Create high-fidelity mockup", "completed": false }
+      {
+        "id": "st5",
+        "title": "Create high-fidelity mockup",
+        "completed": false
+      }
     ],
     "starred": true
   },
@@ -34,7 +38,11 @@
     "dueDate": "2023-06-12T00:00:00.000Z",
     "reminderDate": "2023-06-10T00:00:00.000Z",
     "subTasks": [
-      { "id": "st6", "title": "Prepare interview questions", "completed": true },
+      {
+        "id": "st6",
+        "title": "Prepare interview questions",
+        "completed": true
+      },
       { "id": "st7", "title": "Send invites", "completed": false }
     ],
     "starred": false
@@ -72,7 +80,9 @@
     "priority": "low",
     "createdAt": "2023-05-27T00:00:00.000Z",
     "dueDate": "2023-06-20T00:00:00.000Z",
-    "subTasks": [{ "id": "st10", "title": "Domain verification", "completed": false }],
+    "subTasks": [
+      { "id": "st10", "title": "Domain verification", "completed": false }
+    ],
     "starred": false
   },
   {

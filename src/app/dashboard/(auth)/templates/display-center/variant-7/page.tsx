@@ -2,7 +2,7 @@ import { Toolbar } from "../_components/toolbar";
 import { Variant7Layout } from "../_components/variant-layouts";
 
 export default async function DisplayCenterVariant7({
-  searchParams
+  searchParams,
 }: {
   searchParams: Promise<{ view?: string }>;
 }) {

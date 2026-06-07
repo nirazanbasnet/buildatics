@@ -7,11 +7,17 @@ import {
   BadgeDollarSignIcon,
   ContainerIcon,
   PaletteIcon,
-  UserCheck
+  UserCheck,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const connections = [
   {
@@ -20,7 +26,7 @@ const connections = [
     initials: "R",
     connections: 25,
     status: "connected",
-    online: true
+    online: true,
   },
   {
     id: "2",
@@ -29,7 +35,7 @@ const connections = [
       "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
     connections: 79,
     status: "pending",
-    online: true
+    online: true,
   },
   {
     id: "3",
@@ -37,7 +43,7 @@ const connections = [
     avatar:
       "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=200",
     connections: 0,
-    status: "connected"
+    status: "connected",
   },
   {
     id: "4",
@@ -46,15 +52,15 @@ const connections = [
       "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200",
     connections: 9,
     status: "pending",
-    online: false
-  }
+    online: false,
+  },
 ];
 
 const teams = [
   { id: "1", icon: UsersIcon, name: "#digitalmarketing", members: 8 },
   { id: "2", icon: BadgeDollarSignIcon, name: "#ethereum", members: 14 },
   { id: "3", icon: ContainerIcon, name: "#conference", members: 3 },
-  { id: "4", icon: PaletteIcon, name: "#supportteam", members: 3 }
+  { id: "4", icon: PaletteIcon, name: "#supportteam", members: 3 },
 ];
 
 export function ConnectionsTeams() {
@@ -70,7 +76,10 @@ export function ConnectionsTeams() {
               <div className="relative">
                 <Avatar className="size-10">
                   {connection.avatar ? (
-                    <AvatarImage src={connection.avatar} alt={connection.name} />
+                    <AvatarImage
+                      src={connection.avatar}
+                      alt={connection.name}
+                    />
                   ) : (
                     <AvatarFallback className="bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
                       {connection.initials}
@@ -97,7 +106,11 @@ export function ConnectionsTeams() {
                   <UserCheck />
                 </Button>
               ) : (
-                <Button size="icon-sm" variant="outline" className="shrink-0 rounded-full">
+                <Button
+                  size="icon-sm"
+                  variant="outline"
+                  className="shrink-0 rounded-full"
+                >
                   <UserPlus />
                 </Button>
               )}
@@ -106,7 +119,10 @@ export function ConnectionsTeams() {
         </CardContent>
 
         <CardFooter className="border-t p-0!">
-          <Button variant="link" className="flex w-full justify-between rounded-none lg:px-6!">
+          <Button
+            variant="link"
+            className="flex w-full justify-between rounded-none lg:px-6!"
+          >
             View all connections
             <ChevronRight />
           </Button>
@@ -126,13 +142,18 @@ export function ConnectionsTeams() {
 
               <div className="flex-1">
                 <p className="font-medium">{team.name}</p>
-                <p className="text-muted-foreground text-sm">{team.members} members</p>
+                <p className="text-muted-foreground text-sm">
+                  {team.members} members
+                </p>
               </div>
             </div>
           ))}
         </CardContent>
         <CardFooter className="border-t p-0!">
-          <Button variant="link" className="flex w-full justify-between rounded-none lg:px-6!">
+          <Button
+            variant="link"
+            className="flex w-full justify-between rounded-none lg:px-6!"
+          >
             View all teams
             <ChevronRight />
           </Button>

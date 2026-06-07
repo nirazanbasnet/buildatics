@@ -14,7 +14,7 @@ export async function generateMetadata() {
     title: "Academy Admin Dashboard Template",
     description:
       "Manage courses, student success, and learning paths with analytics. A professional academy admin page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/academy"
+    canonical: "/academy",
   });
 }
 

@@ -7,7 +7,11 @@ import { PaginationNav } from "@src/components/pagination-nav";
 import { DesignToolbar } from "@/features/designs/components/toolbar/design-toolbar";
 import { DesignGrid } from "@/features/designs/components/grid/design-grid";
 import { DesignEmptyState } from "@/features/designs/components/grid/design-empty-state";
-import { makeDefaultFilters, type AreaBounds, type DesignFilterState } from "@/features/designs/lib/filter";
+import {
+  makeDefaultFilters,
+  type AreaBounds,
+  type DesignFilterState,
+} from "@/features/designs/lib/filter";
 import type { DesignProperty, DesignView } from "@/features/designs";
 
 import { queryCompanyDesigns } from "../actions/query-company-designs";
@@ -26,10 +30,12 @@ export function CompanyLibrary({
   initialItems,
   initialTotal,
   areaBounds,
-  pageSize
+  pageSize,
 }: CompanyLibraryProps) {
   const [view, setView] = useState<DesignView>("facade");
-  const [filters, setFilters] = useState<DesignFilterState>(() => makeDefaultFilters(areaBounds));
+  const [filters, setFilters] = useState<DesignFilterState>(() =>
+    makeDefaultFilters(areaBounds),
+  );
   const [page, setPage] = useState(1);
 
   const [items, setItems] = useState(initialItems);
@@ -41,7 +47,11 @@ export function CompanyLibrary({
 
   function runQuery(nextFilters: DesignFilterState, nextPage: number) {
     startTransition(async () => {
-      const res = await queryCompanyDesigns({ filters: nextFilters, page: nextPage, pageSize });
+      const res = await queryCompanyDesigns({
+        filters: nextFilters,
+        page: nextPage,
+        pageSize,
+      });
       setItems(res.items);
       setTotal(res.total);
     });
@@ -101,13 +111,17 @@ export function CompanyLibrary({
           <div
             className={cn(
               "transition-opacity duration-200",
-              isPending && "pointer-events-none opacity-50"
+              isPending && "pointer-events-none opacity-50",
             )}
           >
             <DesignGrid designs={items} view={view} detailEnabled />
           </div>
           {totalPages > 1 ? (
-            <PaginationNav totalPages={totalPages} page={page} onPageChange={goToPage} />
+            <PaginationNav
+              totalPages={totalPages}
+              page={page}
+              onPageChange={goToPage}
+            />
           ) : null}
         </>
       )}

@@ -6,38 +6,48 @@ import { Check, ChevronsDownIcon } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const roles = [
   {
     id: 1,
     name: "Viewer",
-    description: "Can view and comment."
+    description: "Can view and comment.",
   },
   {
     id: 2,
     name: "Developer",
-    description: "Can view, comment and edit."
+    description: "Can view, comment and edit.",
   },
   {
     id: 3,
     name: "Billing",
-    description: "Can view, comment and manage billing."
+    description: "Can view, comment and manage billing.",
   },
   {
     id: 4,
     name: "Owner",
-    description: "Admin-level access to all resources."
-  }
+    description: "Admin-level access to all resources.",
+  },
 ];
 
 const members = [
@@ -46,22 +56,22 @@ const members = [
     name: "Toby Belhome",
     email: "contact@bundui.io",
     avatar: `https://i.pravatar.cc/150?img=1`,
-    role_id: 1
+    role_id: 1,
   },
   {
     id: 2,
     name: "Jackson Lee",
     email: "pre@example.com",
     avatar: `https://i.pravatar.cc/150?img=2`,
-    role_id: 2
+    role_id: 2,
   },
   {
     id: 3,
     name: "Hally Gray",
     email: "hally@site.com",
     avatar: `/imageshttps://i.pravatar.cc/150?img=3`,
-    role_id: 1
-  }
+    role_id: 1,
+  },
 ];
 
 export function TeamMembersCard() {
@@ -72,19 +82,28 @@ export function TeamMembersCard() {
     <Card>
       <CardHeader>
         <CardTitle>Team Members</CardTitle>
-        <CardDescription>Invite your team members to collaborate.</CardDescription>
+        <CardDescription>
+          Invite your team members to collaborate.
+        </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-6">
         {data.map((member, key) => (
-          <div key={key} className="flex min-w-0 items-center justify-between gap-4">
+          <div
+            key={key}
+            className="flex min-w-0 items-center justify-between gap-4"
+          >
             <div className="flex min-w-0 flex-1 items-center gap-4">
               <Avatar className="shrink-0">
                 <AvatarImage src={member.avatar} />
                 <AvatarFallback>OM</AvatarFallback>
               </Avatar>
               <div className="min-w-0 flex-1 overflow-hidden">
-                <p className="truncate text-sm leading-none font-medium">{member.name}</p>
-                <p className="text-muted-foreground truncate text-sm">{member.email}</p>
+                <p className="truncate text-sm leading-none font-medium">
+                  {member.name}
+                </p>
+                <p className="text-muted-foreground truncate text-sm">
+                  {member.email}
+                </p>
               </div>
             </div>
             <Popover
@@ -109,8 +128,10 @@ export function TeamMembersCard() {
                           onSelect={(currentValue) => {
                             setData((prevData) =>
                               prevData.map((m) =>
-                                m.id === member.id ? { ...m, role_id: role.id } : m
-                              )
+                                m.id === member.id
+                                  ? { ...m, role_id: role.id }
+                                  : m,
+                              ),
                             );
                             setOpenIndex(null);
                           }}
@@ -118,7 +139,9 @@ export function TeamMembersCard() {
                         >
                           <div>
                             <p>{role.name}</p>
-                            <p className="text-muted-foreground text-sm">{role.description}</p>
+                            <p className="text-muted-foreground text-sm">
+                              {role.description}
+                            </p>
                           </div>
                           {member.role_id === role.id ? (
                             <Check className="text-primary ml-auto flex size-4" />

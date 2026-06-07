@@ -10,20 +10,22 @@ import { noteLabels } from "../data";
 import { Checkbox } from "@/components/ui/checkbox";
 
 export default function NoteListItem({ note }: { note: Note }) {
-  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>(() => {
-    const initial: Record<number, boolean> = {};
-    if (note.type === "checklist" && note.items) {
-      note.items.forEach((item, index) => {
-        initial[index] = item.checked;
-      });
-    }
-    return initial;
-  });
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>(
+    () => {
+      const initial: Record<number, boolean> = {};
+      if (note.type === "checklist" && note.items) {
+        note.items.forEach((item, index) => {
+          initial[index] = item.checked;
+        });
+      }
+      return initial;
+    },
+  );
 
   const handleCheckChange = (index: number, checked: boolean) => {
     setCheckedItems((prev) => ({
       ...prev,
-      [index]: checked
+      [index]: checked,
     }));
   };
 
@@ -53,13 +55,15 @@ export default function NoteListItem({ note }: { note: Note }) {
                     <Checkbox
                       id={`checklist_${note.id}_${key}`}
                       checked={isChecked}
-                      onCheckedChange={(checked) => handleCheckChange(key, checked === true)}
+                      onCheckedChange={(checked) =>
+                        handleCheckChange(key, checked === true)
+                      }
                     />
                     <label
                       htmlFor={`checklist_${note.id}_${key}`}
                       className={cn(
                         "cursor-pointer text-sm leading-none font-medium",
-                        isChecked && "text-muted-foreground line-through"
+                        isChecked && "text-muted-foreground line-through",
                       )}
                     >
                       {item.text}
@@ -70,7 +74,9 @@ export default function NoteListItem({ note }: { note: Note }) {
             </ul>
           )}
           {note.type === "text" && note.content && (
-            <p className="text-muted-foreground whitespace-pre-line">{note.content}</p>
+            <p className="text-muted-foreground whitespace-pre-line">
+              {note.content}
+            </p>
           )}
           <div className="mt-4 flex flex-wrap gap-2">
             {note.labels.map((id, key) => {
@@ -78,7 +84,12 @@ export default function NoteListItem({ note }: { note: Note }) {
               if (label)
                 return (
                   <Badge key={key} variant="outline">
-                    <span className={cn("me-1 size-2 shrink-0 rounded-full", label.color)}></span>
+                    <span
+                      className={cn(
+                        "me-1 size-2 shrink-0 rounded-full",
+                        label.color,
+                      )}
+                    ></span>
                     {label.title}
                   </Badge>
                 );

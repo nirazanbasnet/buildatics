@@ -3,14 +3,20 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Form,
@@ -18,7 +24,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,38 +33,38 @@ const coins = [
   {
     name: "Bitcoin",
     short_name: "BTC",
-    icon: "bitcoin"
+    icon: "bitcoin",
   },
   {
     name: "Avalanche",
     short_name: "AVAX",
-    icon: "avalanche"
+    icon: "avalanche",
   },
   {
     name: "Ethereum",
     short_name: "ETH",
-    icon: "ethereum"
+    icon: "ethereum",
   },
   {
     name: "Solana",
     short_name: "SOL",
-    icon: "solana"
+    icon: "solana",
   },
   {
     name: "Tether",
     short_name: "USDT",
-    icon: "tether"
+    icon: "tether",
   },
   {
     name: "XRP",
     short_name: "XRP",
-    icon: "xrp"
+    icon: "xrp",
   },
   {
     name: "Dogecoin",
     short_name: "DOGE",
-    icon: "dogecoin"
-  }
+    icon: "dogecoin",
+  },
 ];
 
 export function TradingCard() {
@@ -93,7 +99,10 @@ export function TradingCard() {
                       <FormItem>
                         <FormLabel>Coin</FormLabel>
                         <FormControl>
-                          <Select defaultValue={selectedCoin} onValueChange={setSelectedCoin}>
+                          <Select
+                            defaultValue={selectedCoin}
+                            onValueChange={setSelectedCoin}
+                          >
                             <SelectTrigger className="w-full">
                               <SelectValue>
                                 <div className="flex items-center gap-2">
@@ -102,8 +111,17 @@ export function TradingCard() {
                                     src={`/images/crypto-icons/${coins.find((coin) => coin.name === selectedCoin)?.icon}.svg`}
                                     alt="..."
                                   />
-                                  {coins.find((coin) => coin.name === selectedCoin)?.name}/
-                                  {coins.find((coin) => coin.name === selectedCoin)?.short_name}
+                                  {
+                                    coins.find(
+                                      (coin) => coin.name === selectedCoin,
+                                    )?.name
+                                  }
+                                  /
+                                  {
+                                    coins.find(
+                                      (coin) => coin.name === selectedCoin,
+                                    )?.short_name
+                                  }
                                 </div>
                               </SelectValue>
                             </SelectTrigger>
@@ -134,7 +152,12 @@ export function TradingCard() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            Amount ({coins.find((c) => c.name === selectedCoin)?.short_name})
+                            Amount (
+                            {
+                              coins.find((c) => c.name === selectedCoin)
+                                ?.short_name
+                            }
+                            )
                           </FormLabel>
                           <FormControl>
                             <Input defaultValue="$0,0000005" />
@@ -171,7 +194,10 @@ export function TradingCard() {
                       <FormItem>
                         <FormLabel>Coin</FormLabel>
                         <FormControl>
-                          <Select defaultValue={selectedCoin} onValueChange={setSelectedCoin}>
+                          <Select
+                            defaultValue={selectedCoin}
+                            onValueChange={setSelectedCoin}
+                          >
                             <SelectTrigger className="w-full">
                               <SelectValue>
                                 <div className="flex items-center gap-2">
@@ -180,8 +206,17 @@ export function TradingCard() {
                                     src={`/images/crypto-icons/${coins.find((coin) => coin.name === selectedCoin)?.icon}.svg`}
                                     alt="..."
                                   />
-                                  {coins.find((coin) => coin.name === selectedCoin)?.name}/
-                                  {coins.find((coin) => coin.name === selectedCoin)?.short_name}
+                                  {
+                                    coins.find(
+                                      (coin) => coin.name === selectedCoin,
+                                    )?.name
+                                  }
+                                  /
+                                  {
+                                    coins.find(
+                                      (coin) => coin.name === selectedCoin,
+                                    )?.short_name
+                                  }
                                 </div>
                               </SelectValue>
                             </SelectTrigger>

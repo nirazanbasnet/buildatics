@@ -8,7 +8,7 @@ const COLUMNS: Array<{ header: string; value: (r: LeadRow) => string }> = [
   { header: "Stage", value: (r) => r.stage },
   { header: "Status", value: (r) => r.status },
   { header: "Assigned", value: (r) => r.assignee },
-  { header: "Budget", value: (r) => r.budget }
+  { header: "Budget", value: (r) => r.budget },
 ];
 
 function escapeCell(value: string): string {
@@ -18,13 +18,20 @@ function escapeCell(value: string): string {
 
 export function leadsToCsv(rows: LeadRow[]): string {
   const header = COLUMNS.map((c) => c.header).join(",");
-  const body = rows.map((r) => COLUMNS.map((c) => escapeCell(c.value(r))).join(",")).join("\n");
+  const body = rows
+    .map((r) => COLUMNS.map((c) => escapeCell(c.value(r))).join(","))
+    .join("\n");
   return `${header}\n${body}`;
 }
 
 // Triggers a client-side download of the rows as a CSV file.
-export function downloadLeadsCsv(rows: LeadRow[], filename = "leads.csv"): void {
-  const blob = new Blob([leadsToCsv(rows)], { type: "text/csv;charset=utf-8;" });
+export function downloadLeadsCsv(
+  rows: LeadRow[],
+  filename = "leads.csv",
+): void {
+  const blob = new Blob([leadsToCsv(rows)], {
+    type: "text/csv;charset=utf-8;",
+  });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

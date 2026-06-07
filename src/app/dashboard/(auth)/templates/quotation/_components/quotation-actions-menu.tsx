@@ -1,6 +1,14 @@
 "use client";
 
-import { Copy, Download, MoreVertical, Pencil, Send, Trash2, Eye } from "lucide-react";
+import {
+  Copy,
+  Download,
+  MoreVertical,
+  Pencil,
+  Send,
+  Trash2,
+  Eye,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 type Props = {
@@ -25,7 +33,9 @@ export function QuotationActionsMenu({ quotationRef, onView }: Props) {
           variant="ghost"
           size="icon"
           className="size-8"
-          aria-label={quotationRef ? `Actions for ${quotationRef}` : "Quotation actions"}
+          aria-label={
+            quotationRef ? `Actions for ${quotationRef}` : "Quotation actions"
+          }
         >
           <MoreVertical className="size-4" />
         </Button>

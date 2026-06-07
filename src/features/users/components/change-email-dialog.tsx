@@ -12,7 +12,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -20,12 +20,15 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 import { changeEmail } from "../actions/change-email";
-import { changeEmailSchema, type ChangeEmailInput } from "../lib/users-form-schema";
+import {
+  changeEmailSchema,
+  type ChangeEmailInput,
+} from "../lib/users-form-schema";
 import type { UserRow } from "../types";
 
 type ChangeEmailDialogProps = {
@@ -34,11 +37,15 @@ type ChangeEmailDialogProps = {
   onChanged: () => void;
 };
 
-export function ChangeEmailDialog({ user, onOpenChange, onChanged }: ChangeEmailDialogProps) {
+export function ChangeEmailDialog({
+  user,
+  onOpenChange,
+  onChanged,
+}: ChangeEmailDialogProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<ChangeEmailInput>({
     resolver: zodResolver(changeEmailSchema),
-    defaultValues: { email: "" }
+    defaultValues: { email: "" },
   });
 
   useEffect(() => {
@@ -55,7 +62,8 @@ export function ChangeEmailDialog({ user, onOpenChange, onChanged }: ChangeEmail
         onChanged();
         return;
       }
-      if (res.fieldErrors?.email) form.setError("email", { message: res.fieldErrors.email });
+      if (res.fieldErrors?.email)
+        form.setError("email", { message: res.fieldErrors.email });
       if (res.error) toast.error(res.error);
     });
   }
@@ -66,7 +74,8 @@ export function ChangeEmailDialog({ user, onOpenChange, onChanged }: ChangeEmail
         <DialogHeader>
           <DialogTitle>Change email</DialogTitle>
           <DialogDescription>
-            Set a new email address for {user?.name}. They may need to confirm it before signing in.
+            Set a new email address for {user?.name}. They may need to confirm
+            it before signing in.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -78,7 +87,11 @@ export function ChangeEmailDialog({ user, onOpenChange, onChanged }: ChangeEmail
                 <FormItem>
                   <FormLabel>New email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="name@example.com" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="name@example.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

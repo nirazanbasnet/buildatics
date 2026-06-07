@@ -9,7 +9,7 @@ import {
   Search,
   CheckIcon,
   SlidersHorizontalIcon,
-  SearchIcon
+  SearchIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,8 +17,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import * as Kanban from "@/components/ui/kanban";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import {
@@ -28,16 +38,20 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
 } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 
@@ -69,7 +83,8 @@ export default function KanbanBoard() {
       {
         id: "1",
         title: "Integrate Stripe payment gateway",
-        description: "Set up and configure Stripe API for handling credit card transactions.",
+        description:
+          "Set up and configure Stripe API for handling credit card transactions.",
         priority: "high",
         assignee: "Emma Johnson",
         dueDate: "2024-09-20",
@@ -78,23 +93,24 @@ export default function KanbanBoard() {
             name: "Emma",
             src: "https://i.pravatar.cc/150?img=1",
             alt: "Emma Avatar",
-            fallback: "EJ"
+            fallback: "EJ",
           },
           {
             name: "Daniel",
             src: "https://i.pravatar.cc/150?img=2",
             alt: "Daniel Avatar",
-            fallback: "DS"
-          }
+            fallback: "DS",
+          },
         ],
         progress: 10,
         attachments: 2,
-        comments: 4
+        comments: 4,
       },
       {
         id: "2",
         title: "Redesign marketing homepage",
-        description: "Update the homepage with the new brand colors, typography, and hero section.",
+        description:
+          "Update the homepage with the new brand colors, typography, and hero section.",
         priority: "medium",
         assignee: "Lucas Brown",
         dueDate: "2024-09-25",
@@ -103,23 +119,24 @@ export default function KanbanBoard() {
             name: "Lucas",
             src: "/imageshttps://i.pravatar.cc/150?img=3",
             alt: "Lucas Avatar",
-            fallback: "LB"
+            fallback: "LB",
           },
           {
             name: "Sophia",
             src: "https://i.pravatar.cc/150?img=4",
             alt: "Sophia Avatar",
-            fallback: "SR"
-          }
+            fallback: "SR",
+          },
         ],
         progress: 0,
         attachments: 1,
-        comments: 1
+        comments: 1,
       },
       {
         id: "3",
         title: "Set up automated backups",
-        description: "Implement daily database backups with secure cloud storage.",
+        description:
+          "Implement daily database backups with secure cloud storage.",
         priority: "low",
         assignee: "Mia Williams",
         dueDate: "2024-09-28",
@@ -128,18 +145,18 @@ export default function KanbanBoard() {
             name: "Mia",
             src: "https://i.pravatar.cc/150?img=5",
             alt: "Mia Avatar",
-            fallback: "MW"
+            fallback: "MW",
           },
           {
             name: "Jack",
             src: "https://i.pravatar.cc/150?img=6",
             alt: "Jack Avatar",
-            fallback: "JL"
-          }
+            fallback: "JL",
+          },
         ],
         progress: 5,
         attachments: 0,
-        comments: 3
+        comments: 3,
       },
       {
         id: "4",
@@ -153,25 +170,26 @@ export default function KanbanBoard() {
             name: "Olivia",
             src: "https://i.pravatar.cc/150?img=7",
             alt: "Olivia Avatar",
-            fallback: "OD"
+            fallback: "OD",
           },
           {
             name: "Henry",
             src: "https://i.pravatar.cc/150?img=8",
             alt: "Henry Avatar",
-            fallback: "HT"
-          }
+            fallback: "HT",
+          },
         ],
         progress: 0,
         attachments: 1,
-        comments: 0
-      }
+        comments: 0,
+      },
     ],
     inProgress: [
       {
         id: "5",
         title: "Dark mode toggle implementation",
-        description: "Allow users to switch between light and dark themes in settings.",
+        description:
+          "Allow users to switch between light and dark themes in settings.",
         priority: "high",
         assignee: "Charlie Wilson",
         dueDate: "2024-09-18",
@@ -180,23 +198,24 @@ export default function KanbanBoard() {
             name: "Charlie",
             src: "https://i.pravatar.cc/150?img=9",
             alt: "Charlie Avatar",
-            fallback: "CW"
+            fallback: "CW",
           },
           {
             name: "Ava",
             src: "https://i.pravatar.cc/150?img=10",
             alt: "Ava Avatar",
-            fallback: "AR"
-          }
+            fallback: "AR",
+          },
         ],
         progress: 40,
         attachments: 2,
-        comments: 6
+        comments: 6,
       },
       {
         id: "6",
         title: "Database schema refactoring",
-        description: "Normalize tables and improve query performance for large datasets.",
+        description:
+          "Normalize tables and improve query performance for large datasets.",
         priority: "medium",
         assignee: "Liam Martinez",
         dueDate: "2024-09-19",
@@ -205,23 +224,24 @@ export default function KanbanBoard() {
             name: "Liam",
             src: "https://i.pravatar.cc/150?img=11",
             alt: "Liam Avatar",
-            fallback: "LM"
+            fallback: "LM",
           },
           {
             name: "Isabella",
             src: "https://i.pravatar.cc/150?img=12",
             alt: "Isabella Avatar",
-            fallback: "IN"
-          }
+            fallback: "IN",
+          },
         ],
         progress: 55,
         attachments: 3,
-        comments: 2
+        comments: 2,
       },
       {
         id: "7",
         title: "Accessibility improvements",
-        description: "Ensure the platform meets WCAG 2.1 AA accessibility standards.",
+        description:
+          "Ensure the platform meets WCAG 2.1 AA accessibility standards.",
         priority: "low",
         assignee: "Noah Taylor",
         dueDate: "2024-09-22",
@@ -230,25 +250,26 @@ export default function KanbanBoard() {
             name: "Noah",
             src: "https://i.pravatar.cc/150?img=13",
             alt: "Noah Avatar",
-            fallback: "NT"
+            fallback: "NT",
           },
           {
             name: "Ella",
             src: "https://i.pravatar.cc/150?img=14",
             alt: "Ella Avatar",
-            fallback: "EL"
-          }
+            fallback: "EL",
+          },
         ],
         progress: 35,
         attachments: 1,
-        comments: 1
-      }
+        comments: 1,
+      },
     ],
     done: [
       {
         id: "8",
         title: "Set up CI/CD pipeline",
-        description: "Automate deployment process using GitHub Actions and Vercel.",
+        description:
+          "Automate deployment process using GitHub Actions and Vercel.",
         priority: "high",
         assignee: "Ethan Clark",
         dueDate: "2024-09-12",
@@ -257,18 +278,18 @@ export default function KanbanBoard() {
             name: "Ethan",
             src: "https://i.pravatar.cc/150?img=15",
             alt: "Ethan Avatar",
-            fallback: "EC"
+            fallback: "EC",
           },
           {
             name: "Grace",
             src: "https://i.pravatar.cc/150?img=16",
             alt: "Grace Avatar",
-            fallback: "GR"
-          }
+            fallback: "GR",
+          },
         ],
         progress: 100,
         attachments: 2,
-        comments: 4
+        comments: 4,
       },
       {
         id: "9",
@@ -283,32 +304,36 @@ export default function KanbanBoard() {
             name: "Harper",
             src: "https://i.pravatar.cc/150?img=17",
             alt: "Harper Avatar",
-            fallback: "HL"
+            fallback: "HL",
           },
           {
             name: "Benjamin",
             src: "https://i.pravatar.cc/150?img=18",
             alt: "Benjamin Avatar",
-            fallback: "BM"
-          }
+            fallback: "BM",
+          },
         ],
         progress: 100,
         attachments: 1,
-        comments: 2
-      }
-    ]
+        comments: 2,
+      },
+    ],
   });
 
-  const [columnTitles, setColumnTitles] = React.useState<Record<string, string>>({
+  const [columnTitles, setColumnTitles] = React.useState<
+    Record<string, string>
+  >({
     backlog: "Backlog",
     inProgress: "In Progress",
-    done: "Done"
+    done: "Done",
   });
 
   const [filteredColumns, setFilteredColumns] = React.useState(columns);
 
   const [filterStatus, setFilterStatus] = React.useState<string | null>(null);
-  const [filterPriority, setFilterPriority] = React.useState<string | null>(null);
+  const [filterPriority, setFilterPriority] = React.useState<string | null>(
+    null,
+  );
   const [filterUser, setFilterUser] = React.useState<string | null>(null);
   const [open, setOpen] = React.useState(false);
 
@@ -333,7 +358,10 @@ export default function KanbanBoard() {
         const searchMatch =
           searchQuery === "" ||
           task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (task.description?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
+          (task.description
+            ?.toLowerCase()
+            .includes(searchQuery.toLowerCase()) ??
+            false) ||
           task.assignee?.toLowerCase().includes(searchQuery.toLowerCase());
 
         const statusMatch =
@@ -346,9 +374,11 @@ export default function KanbanBoard() {
                 ? task.progress === 0
                 : true);
 
-        const priorityMatch = !filterPriority || task.priority === filterPriority;
+        const priorityMatch =
+          !filterPriority || task.priority === filterPriority;
 
-        const userMatch = !filterUser || task.users.some((user) => user.name === filterUser);
+        const userMatch =
+          !filterUser || task.users.some((user) => user.name === filterUser);
 
         return searchMatch && statusMatch && priorityMatch && userMatch;
       });
@@ -447,9 +477,11 @@ export default function KanbanBoard() {
                 {Array.from(
                   new Set(
                     Object.values(columns).flatMap((tasks) =>
-                      tasks.flatMap((task) => task.users.map((user) => user.name))
-                    )
-                  )
+                      tasks.flatMap((task) =>
+                        task.users.map((user) => user.name),
+                      ),
+                    ),
+                  ),
                 ).map((userName) => (
                   <CommandItem
                     key={userName}
@@ -462,7 +494,9 @@ export default function KanbanBoard() {
                       <AvatarImage
                         src={
                           columns.backlog
-                            .find((task) => task.users.some((user) => user.name === userName))
+                            .find((task) =>
+                              task.users.some((user) => user.name === userName),
+                            )
                             ?.users.find((user) => user.name === userName)?.src
                         }
                         alt={userName}
@@ -501,11 +535,11 @@ export default function KanbanBoard() {
     const id = `col-${Date.now()}`;
     setColumns((prev) => ({
       ...prev,
-      [id]: []
+      [id]: [],
     }));
     setColumnTitles((prev) => ({
       ...prev,
-      [id]: title
+      [id]: title,
     }));
     setNewColumnTitle("");
     setIsNewColumnModalOpen(false);
@@ -514,7 +548,9 @@ export default function KanbanBoard() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Kanban Board</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Kanban Board
+        </h1>
         <div className="flex items-center space-x-2">
           <div className="flex -space-x-2 overflow-hidden">
             <Avatar className="border-background border-2">
@@ -526,7 +562,10 @@ export default function KanbanBoard() {
               <AvatarFallback>AT</AvatarFallback>
             </Avatar>
             <Avatar className="border-background border-2">
-              <AvatarImage src="/imageshttps://i.pravatar.cc/150?img=3" alt="..." />
+              <AvatarImage
+                src="/imageshttps://i.pravatar.cc/150?img=3"
+                alt="..."
+              />
               <AvatarFallback>AT</AvatarFallback>
             </Avatar>
             <Avatar className="border-background border-2">
@@ -573,7 +612,10 @@ export default function KanbanBoard() {
 
             <FilterDropdown />
 
-            <Dialog open={isNewColumnModalOpen} onOpenChange={setIsNewColumnModalOpen}>
+            <Dialog
+              open={isNewColumnModalOpen}
+              onOpenChange={setIsNewColumnModalOpen}
+            >
               <DialogTrigger asChild>
                 <Button>
                   <PlusCircleIcon />
@@ -626,7 +668,9 @@ export default function KanbanBoard() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold">{columnTitles[columnValue]}</span>
+                      <span className="text-sm font-semibold">
+                        {columnTitles[columnValue]}
+                      </span>
                       <Badge variant="outline">{tasks.length}</Badge>
                     </div>
                     <div className="flex">
@@ -650,26 +694,37 @@ export default function KanbanBoard() {
                   {tasks.length > 0 ? (
                     <div className="flex flex-col gap-2 p-0.5">
                       {tasks.map((task) => (
-                        <Kanban.Item key={task.id} value={task.id} asHandle asChild>
+                        <Kanban.Item
+                          key={task.id}
+                          value={task.id}
+                          asHandle
+                          asChild
+                        >
                           <Card className="border-0">
                             <CardHeader>
                               <CardTitle className="text-base font-semibold">
                                 {task.title}
                               </CardTitle>
                               <CardDescription>
-                                Compile competitor landing page designs for inspiration. G..
+                                Compile competitor landing page designs for
+                                inspiration. G..
                               </CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-4">
                               <div className="text-muted-foreground flex items-center justify-between text-sm">
                                 <div className="flex -space-x-2 overflow-hidden">
                                   {task.users.map((user, index) => (
-                                    <Avatar key={index} className="border-background border-2">
+                                    <Avatar
+                                      key={index}
+                                      className="border-background border-2"
+                                    >
                                       <AvatarImage
                                         src={user.src || "/placeholder.svg"}
                                         alt={user.alt}
                                       />
-                                      <AvatarFallback>{user.fallback}</AvatarFallback>
+                                      <AvatarFallback>
+                                        {user.fallback}
+                                      </AvatarFallback>
                                     </Avatar>
                                   ))}
                                 </div>
@@ -694,15 +749,18 @@ export default function KanbanBoard() {
                                         r="16"
                                         fill="none"
                                         className={cn("stroke-current", {
-                                          "text-green-600!": task.progress === 100,
+                                          "text-green-600!":
+                                            task.progress === 100,
                                           "text-orange-500!":
-                                            task.progress > 50 && task.progress < 100
+                                            task.progress > 50 &&
+                                            task.progress < 100,
                                         })}
                                         strokeWidth="2"
                                         strokeDasharray={2 * Math.PI * 16}
                                         strokeDashoffset={
                                           2 * Math.PI * 16 -
-                                          (2 * Math.PI * 16 * task.progress) / 100
+                                          (2 * Math.PI * 16 * task.progress) /
+                                            100
                                         }
                                         strokeLinecap="round"
                                       ></circle>
@@ -734,7 +792,9 @@ export default function KanbanBoard() {
                     </div>
                   ) : (
                     <div className="flex flex-col justify-center gap-4 pt-4">
-                      <div className="text-muted-foreground text-sm">No task added here.</div>
+                      <div className="text-muted-foreground text-sm">
+                        No task added here.
+                      </div>
                       <Button variant="outline">Add Task</Button>
                     </div>
                   )}

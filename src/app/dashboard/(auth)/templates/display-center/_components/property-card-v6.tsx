@@ -2,7 +2,16 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowRight, Bath, BedDouble, Car, Maximize2, Share2, Sofa, ZoomIn } from "lucide-react";
+import {
+  ArrowRight,
+  Bath,
+  BedDouble,
+  Car,
+  Maximize2,
+  Share2,
+  Sofa,
+  ZoomIn,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -17,7 +26,11 @@ type Props = {
   index?: number;
 };
 
-export function PropertyCardV6({ property, view = "facade", index = 0 }: Props) {
+export function PropertyCardV6({
+  property,
+  view = "facade",
+  index = 0,
+}: Props) {
   const src = view === "floor" ? property.floorPlan : property.facade;
   const brandTag = property.brand.slice(0, 3).toUpperCase();
   return (
@@ -35,7 +48,7 @@ export function PropertyCardV6({ property, view = "facade", index = 0 }: Props) 
             height={560}
             className={cn(
               "h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105",
-              view === "floor" && "bg-muted dark:bg-stone-100"
+              view === "floor" && "bg-muted dark:bg-stone-100",
             )}
           />
           <span
@@ -82,11 +95,20 @@ export function PropertyCardV6({ property, view = "facade", index = 0 }: Props) 
 
           <div className="border-border flex items-center rounded-md border px-1 py-1.5">
             <SpecChip icon={BedDouble} value={property.beds} label="bed" />
-            <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
+            <Separator
+              orientation="vertical"
+              className="data-[orientation=vertical]:h-4"
+            />
             <SpecChip icon={Bath} value={property.baths} label="bath" />
-            <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
+            <Separator
+              orientation="vertical"
+              className="data-[orientation=vertical]:h-4"
+            />
             <SpecChip icon={Sofa} value={property.living} />
-            <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
+            <Separator
+              orientation="vertical"
+              className="data-[orientation=vertical]:h-4"
+            />
             <SpecChip icon={Car} value={property.garage} />
           </div>
 
@@ -103,7 +125,7 @@ export function PropertyCardV6({ property, view = "facade", index = 0 }: Props) 
 function SpecChip({
   icon: Icon,
   value,
-  label
+  label,
 }: {
   icon: typeof BedDouble;
   value: number;

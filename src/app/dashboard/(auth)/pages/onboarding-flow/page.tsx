@@ -7,7 +7,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Streamline user registration with step-by-step questions and personalized flows. A professional onboarding page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/pages/onboarding-flow"
+    canonical: "/pages/onboarding-flow",
   });
 }
 

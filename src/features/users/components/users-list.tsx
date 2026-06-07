@@ -9,7 +9,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { cn } from "@/lib/utils";
 import { PaginationNav } from "@src/components/pagination-nav";
@@ -69,7 +69,9 @@ export function UsersList({ initial, pageSize }: UsersListProps) {
               <Users />
             </EmptyMedia>
             <EmptyTitle>No users yet</EmptyTitle>
-            <EmptyDescription>Create an Admin or DesignAdmin to get started.</EmptyDescription>
+            <EmptyDescription>
+              Create an Admin or DesignAdmin to get started.
+            </EmptyDescription>
           </EmptyHeader>
         </Empty>
       ) : (
@@ -77,18 +79,26 @@ export function UsersList({ initial, pageSize }: UsersListProps) {
           <div
             className={cn(
               "transition-opacity duration-200",
-              isPending && "pointer-events-none opacity-50"
+              isPending && "pointer-events-none opacity-50",
             )}
           >
             <UsersTable users={items} onChanged={refresh} />
           </div>
           {totalPages > 1 ? (
-            <PaginationNav totalPages={totalPages} page={page} onPageChange={goToPage} />
+            <PaginationNav
+              totalPages={totalPages}
+              page={page}
+              onPageChange={goToPage}
+            />
           ) : null}
         </>
       )}
 
-      <CreateUserSheet open={createOpen} onOpenChange={setCreateOpen} onCreated={refresh} />
+      <CreateUserSheet
+        open={createOpen}
+        onOpenChange={setCreateOpen}
+        onCreated={refresh}
+      />
     </div>
   );
 }

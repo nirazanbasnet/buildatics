@@ -11,12 +11,19 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
-import { preconstructionListStatusLabels, type PreconstructionListProject } from "../_data";
+import {
+  preconstructionListStatusLabels,
+  type PreconstructionListProject,
+} from "../_data";
 
 type Props = {
   projects: PreconstructionListProject[];
@@ -33,23 +40,38 @@ type SortField =
   | "developer"
   | "progress";
 
-const ACCESSORS: Record<SortField, (project: PreconstructionListProject) => string | number> = {
+const ACCESSORS: Record<
+  SortField,
+  (project: PreconstructionListProject) => string | number
+> = {
   projectNo: (p) => p.projectNo,
   address: (p) => p.address,
   status: (p) => preconstructionListStatusLabels[p.status],
   stage: (p) => p.stage,
   council: (p) => p.council,
   developer: (p) => p.developer,
-  progress: (p) => p.progress
+  progress: (p) => p.progress,
 };
 
-export function PreconstructionListTable({ projects, className, onProjectClick }: Props) {
+export function PreconstructionListTable({
+  projects,
+  className,
+  onProjectClick,
+}: Props) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [sort, toggleSort] = useSortState<SortField>({ field: "projectNo", direction: "asc" });
-  const sortedProjects = useMemo(() => sortBy(projects, sort, ACCESSORS), [projects, sort]);
+  const [sort, toggleSort] = useSortState<SortField>({
+    field: "projectNo",
+    direction: "asc",
+  });
+  const sortedProjects = useMemo(
+    () => sortBy(projects, sort, ACCESSORS),
+    [projects, sort],
+  );
 
-  const allSelected = sortedProjects.length > 0 && selected.size === sortedProjects.length;
-  const someSelected = selected.size > 0 && selected.size < sortedProjects.length;
+  const allSelected =
+    sortedProjects.length > 0 && selected.size === sortedProjects.length;
+  const someSelected =
+    selected.size > 0 && selected.size < sortedProjects.length;
 
   function toggleAll(value: boolean) {
     setSelected(value ? new Set(sortedProjects.map((p) => p.id)) : new Set());
@@ -65,18 +87,29 @@ export function PreconstructionListTable({ projects, className, onProjectClick }
   }
 
   return (
-    <div className={cn("bg-card h-full overflow-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "bg-card h-full overflow-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="w-12 pl-4">
               <Checkbox
-                checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
                 onCheckedChange={(v) => toggleAll(v === true)}
                 aria-label="Select all projects"
               />
             </TableHead>
-            <SortableTableHead field="projectNo" sort={sort} onSort={toggleSort}>
+            <SortableTableHead
+              field="projectNo"
+              sort={sort}
+              onSort={toggleSort}
+            >
               Project No
             </SortableTableHead>
             <SortableTableHead field="address" sort={sort} onSort={toggleSort}>
@@ -91,10 +124,19 @@ export function PreconstructionListTable({ projects, className, onProjectClick }
             <SortableTableHead field="council" sort={sort} onSort={toggleSort}>
               Council
             </SortableTableHead>
-            <SortableTableHead field="developer" sort={sort} onSort={toggleSort}>
+            <SortableTableHead
+              field="developer"
+              sort={sort}
+              onSort={toggleSort}
+            >
               Developer
             </SortableTableHead>
-            <SortableTableHead field="progress" sort={sort} onSort={toggleSort} className="pr-4">
+            <SortableTableHead
+              field="progress"
+              sort={sort}
+              onSort={toggleSort}
+              className="pr-4"
+            >
               Progress
             </SortableTableHead>
           </TableRow>
@@ -108,14 +150,23 @@ export function PreconstructionListTable({ projects, className, onProjectClick }
                 data-slot="table-row"
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: index * 0.03, ease: "easeOut" }}
-                onClick={onProjectClick ? () => onProjectClick(project) : undefined}
+                transition={{
+                  duration: 0.25,
+                  delay: index * 0.03,
+                  ease: "easeOut",
+                }}
+                onClick={
+                  onProjectClick ? () => onProjectClick(project) : undefined
+                }
                 className={cn(
                   "group hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
-                  onProjectClick && "cursor-pointer"
+                  onProjectClick && "cursor-pointer",
                 )}
               >
-                <TableCell className="py-3 pl-4" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="py-3 pl-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Checkbox
                     checked={isChecked}
                     onCheckedChange={(v) => toggleOne(project.id, v === true)}
@@ -138,9 +189,15 @@ export function PreconstructionListTable({ projects, className, onProjectClick }
                     {preconstructionListStatusLabels[project.status]}
                   </span>
                 </TableCell>
-                <TableCell className="text-foreground font-medium">{project.stage}</TableCell>
-                <TableCell className="text-muted-foreground">{project.council}</TableCell>
-                <TableCell className="text-muted-foreground">{project.developer}</TableCell>
+                <TableCell className="text-foreground font-medium">
+                  {project.stage}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {project.council}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {project.developer}
+                </TableCell>
                 <TableCell className="pr-4">
                   <div className="flex items-center gap-3">
                     <div className="bg-muted h-1 w-32 overflow-hidden rounded-full">
@@ -151,11 +208,13 @@ export function PreconstructionListTable({ projects, className, onProjectClick }
                         transition={{
                           duration: 0.5,
                           delay: index * 0.03 + 0.15,
-                          ease: "easeOut"
+                          ease: "easeOut",
                         }}
                       />
                     </div>
-                    <span className="text-muted-foreground w-10 text-sm">{project.progress}%</span>
+                    <span className="text-muted-foreground w-10 text-sm">
+                      {project.progress}%
+                    </span>
                   </div>
                 </TableCell>
               </motion.tr>

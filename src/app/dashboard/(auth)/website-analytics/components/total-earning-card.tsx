@@ -5,12 +5,18 @@ import { Bar, BarChart, XAxis } from "recharts";
 import { ChevronUpIcon, DollarSignIcon, HandCoinsIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
-import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Badge } from "@/components/ui/badge";
 
@@ -20,18 +26,18 @@ const chartData = [
   { month: "March", desktop: 237, mobile: 120 },
   { month: "April", desktop: 73, mobile: 190 },
   { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 }
+  { month: "June", desktop: 214, mobile: 140 },
 ];
 
 const chartConfig = {
   desktop: {
     label: "Revenue",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   mobile: {
     label: "Sales",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function TotalEarningCard() {
@@ -57,7 +63,7 @@ export function TotalEarningCard() {
             data={chartData}
             margin={{
               left: -8,
-              right: -8
+              right: -8,
             }}
           >
             <Bar
@@ -81,7 +87,10 @@ export function TotalEarningCard() {
               axisLine={false}
               tickFormatter={(value) => value.slice(0, 3)}
             />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <defs>
               <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="var(--color)" />
@@ -97,7 +106,9 @@ export function TotalEarningCard() {
             </div>
             <div>
               <div className="font-medium">Total Revenue</div>
-              <div className="text-muted-foreground text-xs">Client Payment</div>
+              <div className="text-muted-foreground text-xs">
+                Client Payment
+              </div>
             </div>
             <div className="ms-auto text-sm text-green-600">+$126</div>
           </div>

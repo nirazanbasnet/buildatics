@@ -61,14 +61,18 @@ export const useStore = create<Store>((set, get) => ({
   addToCart: (product, quantity = 1) => {
     set((state) => {
       // Check if product already exists in cart
-      const existingItem = state.cart.find((item) => item.product.id === product.id);
+      const existingItem = state.cart.find(
+        (item) => item.product.id === product.id,
+      );
 
       if (existingItem) {
         // Increase quantity if product already in cart
         return {
           cart: state.cart.map((item) =>
-            item.product.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
-          )
+            item.product.id === product.id
+              ? { ...item, quantity: item.quantity + quantity }
+              : item,
+          ),
         };
       } else {
         // Add new product to cart with specified quantity
@@ -81,13 +85,15 @@ export const useStore = create<Store>((set, get) => ({
     set((state) => {
       if (quantity <= 0) {
         // Remove item if quantity is 0 or negative
-        return { cart: state.cart.filter((item) => item.product.id !== productId) };
+        return {
+          cart: state.cart.filter((item) => item.product.id !== productId),
+        };
       } else {
         // Update quantity
         return {
           cart: state.cart.map((item) =>
-            item.product.id === productId ? { ...item, quantity } : item
-          )
+            item.product.id === productId ? { ...item, quantity } : item,
+          ),
         };
       }
     });
@@ -95,7 +101,7 @@ export const useStore = create<Store>((set, get) => ({
 
   removeFromCart: (productId) => {
     set((state) => ({
-      cart: state.cart.filter((item) => item.product.id !== productId)
+      cart: state.cart.filter((item) => item.product.id !== productId),
     }));
   },
 
@@ -105,7 +111,10 @@ export const useStore = create<Store>((set, get) => ({
     if (cart.length === 0) return;
 
     // Calculate total
-    const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const subtotal = cart.reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0,
+    );
     const tax = subtotal * 0.05;
     const total = subtotal + tax;
 
@@ -114,12 +123,12 @@ export const useStore = create<Store>((set, get) => ({
       items: [...cart],
       status: "active",
       total: total,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
 
     set((state) => ({
       orders: [...state.orders, newOrder],
-      showAssignOrderDialog: true
+      showAssignOrderDialog: true,
     }));
   },
 
@@ -140,7 +149,7 @@ export const useStore = create<Store>((set, get) => ({
 
       // Clear cart and close dialog
       cart: [],
-      showAssignOrderDialog: false
+      showAssignOrderDialog: false,
     }));
-  }
+  },
 }));

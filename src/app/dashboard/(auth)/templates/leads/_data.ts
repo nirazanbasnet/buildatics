@@ -25,19 +25,19 @@ export type LeadStage = {
 };
 
 export const leadStatusLabels: Record<LeadStatus, string> = {
-  "in-progress": "In Progress"
+  "in-progress": "In Progress",
 };
 
 export const leadStages: LeadStage[] = [
   { id: "stage-1", name: "stage_name" },
   { id: "stage-2", name: "stage_name" },
   { id: "stage-3", name: "stage_name" },
-  { id: "stage-4", name: "stage_name" }
+  { id: "stage-4", name: "stage_name" },
 ];
 
 const sharedAssignees: LeadAssignee[] = [
   { initials: "VB", name: "Vihaan Banerjee" },
-  { initials: "AN", name: "Aarav Nair" }
+  { initials: "AN", name: "Aarav Nair" },
 ];
 
 export const leads: Lead[] = leadStages.flatMap((stage, stageIndex) =>
@@ -54,14 +54,14 @@ export const leads: Lead[] = leadStages.flatMap((stage, stageIndex) =>
       client: "client_name",
       phone: "+61 400 000 000",
       assignees: sharedAssignees,
-      progress: 70
+      progress: 70,
     };
-  })
+  }),
 );
 
 export function groupLeadsByStage(
   source: Lead[],
-  stages: LeadStage[] = leadStages
+  stages: LeadStage[] = leadStages,
 ): Record<string, Lead[]> {
   const grouped: Record<string, Lead[]> = {};
   for (const stage of stages) grouped[stage.id] = [];

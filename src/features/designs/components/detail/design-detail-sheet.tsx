@@ -10,7 +10,7 @@ import {
   Plus,
   Share2,
   Trash2,
-  ZoomIn
+  ZoomIn,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { AnimatedSection } from "@src/components/animated-section";
@@ -35,7 +35,7 @@ import {
   detailSpecs,
   detailTabItems,
   detailTabs,
-  type DetailTab
+  type DetailTab,
 } from "../../lib/detail-static-data";
 
 type DesignDetailSheetProps = {
@@ -44,7 +44,11 @@ type DesignDetailSheetProps = {
   design: DesignProperty;
 };
 
-export function DesignDetailSheet({ open, onOpenChange, design }: DesignDetailSheetProps) {
+export function DesignDetailSheet({
+  open,
+  onOpenChange,
+  design,
+}: DesignDetailSheetProps) {
   const close = () => onOpenChange(false);
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -68,7 +72,13 @@ export function DesignDetailSheet({ open, onOpenChange, design }: DesignDetailSh
   );
 }
 
-function DetailLayout({ design, className }: { design: DesignProperty; className?: string }) {
+function DetailLayout({
+  design,
+  className,
+}: {
+  design: DesignProperty;
+  className?: string;
+}) {
   const [activeTab, setActiveTab] = useState<DetailTab>(detailTabs[0]);
 
   return (
@@ -105,10 +115,17 @@ function DetailHeader({ design }: { design: DesignProperty }) {
     <Card className="gap-1 p-5">
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1">
-          <h2 className="text-xl font-semibold tracking-tight">{design.title}</h2>
+          <h2 className="text-xl font-semibold tracking-tight">
+            {design.title}
+          </h2>
           <p className="text-muted-foreground text-sm">{detailDescription}</p>
         </div>
-        <Button size="icon" variant="outline" aria-label="More actions" className="size-8 shrink-0">
+        <Button
+          size="icon"
+          variant="outline"
+          aria-label="More actions"
+          className="size-8 shrink-0"
+        >
           <MoreVertical className="size-4" />
         </Button>
       </div>
@@ -119,7 +136,7 @@ function DetailHeader({ design }: { design: DesignProperty }) {
 function FloorPlanPanel({
   design,
   className,
-  children
+  children,
 }: {
   design: DesignProperty;
   className?: string;
@@ -129,7 +146,10 @@ function FloorPlanPanel({
 
   return (
     <div
-      className={cn("group bg-card relative min-h-72 overflow-hidden rounded-xl border", className)}
+      className={cn(
+        "group bg-card relative min-h-72 overflow-hidden rounded-xl border",
+        className,
+      )}
     >
       <Image
         src={design.floorPlan}
@@ -181,7 +201,7 @@ function FloorPlanPanel({
 
 function SpecificationsTable({
   className,
-  headerClassName
+  headerClassName,
 }: {
   className?: string;
   headerClassName?: string;
@@ -191,7 +211,7 @@ function SpecificationsTable({
       <div
         className={cn(
           "bg-muted/40 flex items-center justify-between border-b px-4 py-2.5",
-          headerClassName
+          headerClassName,
         )}
       >
         <h3 className="font-display text-base">Specifications</h3>
@@ -203,7 +223,9 @@ function SpecificationsTable({
             className="hover:bg-accent/30 flex items-center justify-between px-4 py-2 text-sm transition-colors"
           >
             <span>{spec.label}</span>
-            <span className="text-muted-foreground font-display text-sm">{spec.value}</span>
+            <span className="text-muted-foreground font-display text-sm">
+              {spec.value}
+            </span>
           </div>
         ))}
       </div>
@@ -213,7 +235,7 @@ function SpecificationsTable({
 
 function RoomDimensionsTable({
   className,
-  headerClassName
+  headerClassName,
 }: {
   className?: string;
   headerClassName?: string;
@@ -223,7 +245,7 @@ function RoomDimensionsTable({
       <div
         className={cn(
           "bg-muted/40 flex items-center justify-between border-b px-4 py-2.5",
-          headerClassName
+          headerClassName,
         )}
       >
         <h3 className="font-display text-base">Room Dimensions</h3>
@@ -242,7 +264,9 @@ function RoomDimensionsTable({
             className="hover:bg-accent/30 flex items-center justify-between px-4 py-2 text-sm transition-colors"
           >
             <span>{room.name}</span>
-            <span className="text-muted-foreground font-display text-sm">{room.size}</span>
+            <span className="text-muted-foreground font-display text-sm">
+              {room.size}
+            </span>
           </div>
         ))}
       </div>
@@ -253,7 +277,7 @@ function RoomDimensionsTable({
 function AvailableFacades({
   design,
   className,
-  cardClassName
+  cardClassName,
 }: {
   design: DesignProperty;
   className?: string;
@@ -307,7 +331,7 @@ function AvailableFacades({
             key={facade.id}
             className={cn(
               "group bg-card relative w-72 shrink-0 snap-start overflow-hidden rounded-xl border transition-shadow hover:shadow-md",
-              cardClassName
+              cardClassName,
             )}
           >
             <div className="relative aspect-[4/3] overflow-hidden">

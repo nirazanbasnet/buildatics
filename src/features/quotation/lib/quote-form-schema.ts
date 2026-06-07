@@ -5,14 +5,14 @@ export const editQuoteSchema = z.object({
   title: z.string().trim().min(1, "Title is required."),
   description: z.string().trim().optional(),
   // <input type="date"> value (yyyy-mm-dd) or empty.
-  validUntil: z.string().trim().optional()
+  validUntil: z.string().trim().optional(),
 });
 
 export type EditQuoteInput = z.infer<typeof editQuoteSchema>;
 
 // Add form additionally requires the lead the quote belongs to (the API creates quotes per-lead).
 export const addQuoteSchema = editQuoteSchema.extend({
-  leadId: z.string().min(1, "Select a lead.")
+  leadId: z.string().min(1, "Select a lead."),
 });
 
 export type AddQuoteInput = z.infer<typeof addQuoteSchema>;

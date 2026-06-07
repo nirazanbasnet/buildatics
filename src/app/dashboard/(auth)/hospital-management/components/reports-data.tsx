@@ -17,7 +17,7 @@ export const reportsData: ReportsData[] = [
     department: "Emergency",
     amount: 1500,
     paymentMethod: "Credit Card",
-    status: "Paid"
+    status: "Paid",
   },
   {
     id: "2",
@@ -25,7 +25,7 @@ export const reportsData: ReportsData[] = [
     department: "Cardiology",
     amount: 2200,
     paymentMethod: "Insurance",
-    status: "Pending"
+    status: "Pending",
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ export const reportsData: ReportsData[] = [
     department: "Pediatrics",
     amount: 800,
     paymentMethod: "Cash",
-    status: "Paid"
+    status: "Paid",
   },
   {
     id: "4",
@@ -41,7 +41,7 @@ export const reportsData: ReportsData[] = [
     department: "Orthopedics",
     amount: 3000,
     paymentMethod: "Insurance",
-    status: "Overdue"
+    status: "Overdue",
   },
   {
     id: "5",
@@ -49,7 +49,7 @@ export const reportsData: ReportsData[] = [
     department: "Neurology",
     amount: 2500,
     paymentMethod: "Credit Card",
-    status: "Paid"
+    status: "Paid",
   },
   {
     id: "6",
@@ -57,7 +57,7 @@ export const reportsData: ReportsData[] = [
     department: "Oncology",
     amount: 4000,
     paymentMethod: "Insurance",
-    status: "Pending"
+    status: "Pending",
   },
   {
     id: "7",
@@ -65,7 +65,7 @@ export const reportsData: ReportsData[] = [
     department: "Radiology",
     amount: 1800,
     paymentMethod: "Cash",
-    status: "Paid"
+    status: "Paid",
   },
   {
     id: "8",
@@ -73,7 +73,7 @@ export const reportsData: ReportsData[] = [
     department: "Surgery",
     amount: 5500,
     paymentMethod: "Insurance",
-    status: "Overdue"
+    status: "Overdue",
   },
   {
     id: "9",
@@ -81,7 +81,7 @@ export const reportsData: ReportsData[] = [
     department: "Dermatology",
     amount: 1200,
     paymentMethod: "Credit Card",
-    status: "Paid"
+    status: "Paid",
   },
   {
     id: "10",
@@ -89,19 +89,19 @@ export const reportsData: ReportsData[] = [
     department: "Psychiatry",
     amount: 950,
     paymentMethod: "Cash",
-    status: "Pending"
-  }
+    status: "Pending",
+  },
 ];
 
 // Define table columns
 export const columns: ColumnDef<ReportsData>[] = [
   {
     accessorKey: "date",
-    header: "Date"
+    header: "Date",
   },
   {
     accessorKey: "department",
-    header: "Department"
+    header: "Department",
   },
   {
     accessorKey: "amount",
@@ -110,14 +110,14 @@ export const columns: ColumnDef<ReportsData>[] = [
       const amount = parseFloat(row.getValue("amount"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
       }).format(amount);
       return <div>{formatted}</div>;
-    }
+    },
   },
   {
     accessorKey: "paymentMethod",
-    header: "Payment Method"
+    header: "Payment Method",
   },
   {
     accessorKey: "status",
@@ -137,6 +137,6 @@ export const columns: ColumnDef<ReportsData>[] = [
           {status}
         </div>
       );
-    }
-  }
+    },
+  },
 ];

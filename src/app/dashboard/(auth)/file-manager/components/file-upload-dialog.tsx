@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -68,7 +68,9 @@ export function FileUploadDialog() {
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
           <DialogTitle>Upload Files</DialogTitle>
-          <DialogDescription>Drag and drop files here or click to select files</DialogDescription>
+          <DialogDescription>
+            Drag and drop files here or click to select files
+          </DialogDescription>
         </DialogHeader>
         <div
           className={`mt-2 flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 ${
@@ -95,7 +97,9 @@ export function FileUploadDialog() {
               </Label>
               <p className="pl-1">or drag and drop</p>
             </div>
-            <p className="text-muted-foreground text-xs leading-5">PNG, JPG, GIF up to 10MB</p>
+            <p className="text-muted-foreground text-xs leading-5">
+              PNG, JPG, GIF up to 10MB
+            </p>
           </div>
         </div>
         {files.length > 0 && (
@@ -116,7 +120,11 @@ export function FileUploadDialog() {
                     </div>
                   </div>
                   <div className="shrink-0">
-                    <Button variant="ghost" size="icon" onClick={() => removeFile(index)}>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => removeFile(index)}
+                    >
                       <XIcon />
                       <span className="sr-only">Remove file</span>
                     </Button>

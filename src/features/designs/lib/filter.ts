@@ -42,7 +42,7 @@ export function makeDefaultFilters(areaBounds: AreaBounds): DesignFilterState {
     minBlockWidth: "all",
     bedrooms: "all",
     baths: "all",
-    garage: "all"
+    garage: "all",
   };
 }
 
@@ -50,7 +50,7 @@ export const blockOptions = [
   { value: "all", label: "All" },
   { value: "8.5", label: "8.5m" },
   { value: "10.5", label: "10.5m" },
-  { value: "12.5", label: "12.5m" }
+  { value: "12.5", label: "12.5m" },
 ];
 
 export const countOptions = [
@@ -58,57 +58,81 @@ export const countOptions = [
   { value: "1", label: "1" },
   { value: "2", label: "2" },
   { value: "3", label: "3" },
-  { value: "4+", label: "4+" }
+  { value: "4+", label: "4+" },
 ];
 
 export const garageOptions = [
   { value: "all", label: "All" },
   { value: "single", label: "Single" },
-  { value: "double", label: "Double" }
+  { value: "double", label: "Double" },
 ];
 
 // Resets a single filter back to its default (so a toolbar chip's ✕ can clear just that one).
 export function clearFilterKey(
   state: DesignFilterState,
   key: keyof DesignFilterState,
-  areaBounds: AreaBounds
+  areaBounds: AreaBounds,
 ): DesignFilterState {
-  if (key === "houseArea") return { ...state, houseArea: [areaBounds[0], areaBounds[1]] };
+  if (key === "houseArea")
+    return { ...state, houseArea: [areaBounds[0], areaBounds[1]] };
   return { ...state, [key]: "all" };
 }
 
 // Human-readable chips for the active filters (shown in the toolbar with their actual values).
 export function describeActiveFilters(
   state: DesignFilterState,
-  areaBounds: AreaBounds
+  areaBounds: AreaBounds,
 ): Array<{ key: keyof DesignFilterState; label: string }> {
   const chips: Array<{ key: keyof DesignFilterState; label: string }> = [];
   const fmt = (n: number) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 
-  if (state.houseArea[0] !== areaBounds[0] || state.houseArea[1] !== areaBounds[1]) {
+  if (
+    state.houseArea[0] !== areaBounds[0] ||
+    state.houseArea[1] !== areaBounds[1]
+  ) {
     chips.push({
       key: "houseArea",
-      label: `Area: ${fmt(state.houseArea[0])}–${fmt(state.houseArea[1])} sq`
+      label: `Area: ${fmt(state.houseArea[0])}–${fmt(state.houseArea[1])} sq`,
     });
   }
   if (state.minBlockDepth !== "all") {
-    chips.push({ key: "minBlockDepth", label: `Depth: ≥${state.minBlockDepth}m` });
+    chips.push({
+      key: "minBlockDepth",
+      label: `Depth: ≥${state.minBlockDepth}m`,
+    });
   }
   if (state.minBlockWidth !== "all") {
-    chips.push({ key: "minBlockWidth", label: `Width: ≥${state.minBlockWidth}m` });
+    chips.push({
+      key: "minBlockWidth",
+      label: `Width: ≥${state.minBlockWidth}m`,
+    });
   }
-  if (state.bedrooms !== "all") chips.push({ key: "bedrooms", label: `${state.bedrooms} Beds` });
-  if (state.baths !== "all") chips.push({ key: "baths", label: `${state.baths} Baths` });
+  if (state.bedrooms !== "all")
+    chips.push({ key: "bedrooms", label: `${state.bedrooms} Beds` });
+  if (state.baths !== "all")
+    chips.push({ key: "baths", label: `${state.baths} Baths` });
   if (state.garage !== "all") {
-    const g = state.garage === "single" ? "Single" : state.garage === "double" ? "Double" : state.garage;
+    const g =
+      state.garage === "single"
+        ? "Single"
+        : state.garage === "double"
+          ? "Double"
+          : state.garage;
     chips.push({ key: "garage", label: `Garage: ${g}` });
   }
   return chips;
 }
 
-export function countActiveFilters(state: DesignFilterState, areaBounds: AreaBounds): number {
+export function countActiveFilters(
+  state: DesignFilterState,
+  areaBounds: AreaBounds,
+): number {
   let n = 0;
-  if (state.houseArea[0] !== areaBounds[0] || state.houseArea[1] !== areaBounds[1]) n++;
+  if (
+    state.houseArea[0] !== areaBounds[0] ||
+    state.houseArea[1] !== areaBounds[1]
+  )
+    n++;
   if (state.minBlockDepth !== "all") n++;
   if (state.minBlockWidth !== "all") n++;
   if (state.bedrooms !== "all") n++;
@@ -140,7 +164,7 @@ function matchesMinBlock(selected: string, actual: number): boolean {
 
 export function applyDesignFilters(
   designs: DesignProperty[],
-  f: DesignFilterState
+  f: DesignFilterState,
 ): DesignProperty[] {
   return designs.filter(
     (d) =>
@@ -150,6 +174,6 @@ export function applyDesignFilters(
       matchesMinBlock(f.minBlockWidth, d.width) &&
       matchesCount(f.bedrooms, d.beds) &&
       matchesCount(f.baths, d.baths) &&
-      matchesGarage(f.garage, d.garage)
+      matchesGarage(f.garage, d.garage),
   );
 }

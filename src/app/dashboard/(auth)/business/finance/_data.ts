@@ -4,10 +4,16 @@ import {
   Receipt,
   TrendingUp,
   Wallet,
-  type LucideIcon
+  type LucideIcon,
 } from "lucide-react";
 
-export const financeTabs = ["Overview", "Claims", "Payables", "Project P & L", "Cashflow"] as const;
+export const financeTabs = [
+  "Overview",
+  "Claims",
+  "Payables",
+  "Project P & L",
+  "Cashflow",
+] as const;
 export type FinanceTab = (typeof financeTabs)[number];
 
 const financeTabIcons: Record<FinanceTab, LucideIcon> = {
@@ -15,12 +21,12 @@ const financeTabIcons: Record<FinanceTab, LucideIcon> = {
   Claims: Receipt,
   Payables: Wallet,
   "Project P & L": TrendingUp,
-  Cashflow: ArrowLeftRight
+  Cashflow: ArrowLeftRight,
 };
 
 export const financeTabItems = financeTabs.map((value) => ({
   value,
-  icon: financeTabIcons[value]
+  icon: financeTabIcons[value],
 }));
 
 export type FinanceStat = {
@@ -39,14 +45,14 @@ export const financeStats: FinanceStat[] = [
     value: "$ 492,250",
     valueClass: "text-blue-600",
     accentClass: "text-blue-600 border-blue-300",
-    subtext: "4 sent Claims"
+    subtext: "4 sent Claims",
   },
   {
     id: "payable",
     label: "Total Payable",
     value: "$ 215,998",
     valueClass: "text-orange-500",
-    accentClass: "text-orange-500 border-orange-300"
+    accentClass: "text-orange-500 border-orange-300",
   },
   {
     id: "revenue",
@@ -54,28 +60,32 @@ export const financeStats: FinanceStat[] = [
     value: "$ 547,256",
     valueClass: "text-green-600",
     accentClass: "text-green-600 border-green-300",
-    subtext: "Month - April"
+    subtext: "Month - April",
   },
   {
     id: "overdue",
     label: "Overdue to Trades",
     value: "$ 16,544",
     valueClass: "text-red-500",
-    accentClass: "text-red-500 border-red-300"
-  }
+    accentClass: "text-red-500 border-red-300",
+  },
 ];
 
 export type ClaimStatus = "sent" | "paid";
 
-export const claimStatusConfig: Record<ClaimStatus, { label: string; badge: string }> = {
+export const claimStatusConfig: Record<
+  ClaimStatus,
+  { label: string; badge: string }
+> = {
   sent: {
     label: "Sent",
-    badge: "bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300"
+    badge: "bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300",
   },
   paid: {
     label: "Paid",
-    badge: "bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-300"
-  }
+    badge:
+      "bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-300",
+  },
 };
 
 export type Claim = {
@@ -99,7 +109,7 @@ export const claims: Claim[] = Array.from({ length: 10 }, (_, i) => ({
   status: i % 2 === 0 ? "sent" : "paid",
   issuedDate: "issued_date",
   dueDate: "due_date",
-  amount: "$ 16,544"
+  amount: "$ 16,544",
 }));
 
 export type ClaimDetailStep = {
@@ -142,13 +152,13 @@ export const claimDetailMock: ClaimDetail = {
     bank: "bank_name",
     accountNo: "8520256321111",
     bsb: "5642",
-    reference: "CLM25456"
+    reference: "CLM25456",
   },
   steps: [
     { label: "Created", date: "10 April 2026", done: true },
     { label: "Sent", date: "15 April 2026", done: true },
-    { label: "Paid", date: "20 April 2026", done: false }
-  ]
+    { label: "Paid", date: "20 April 2026", done: false },
+  ],
 };
 
 export type PayableStatus = "sent";
@@ -170,7 +180,7 @@ export const payables: Payable[] = Array.from({ length: 10 }, (_, i) => ({
   project: "project_name",
   stage: "stage_name",
   status: "sent",
-  dueDate: "May 20 2026"
+  dueDate: "May 20 2026",
 }));
 
 export type ProjectPL = {
@@ -196,7 +206,7 @@ export const projectPL: ProjectPL[] = Array.from({ length: 10 }, (_, i) => ({
   contract: "$ 16,544",
   estCost: "$ 16,544",
   received: "$ 16,544",
-  outstanding: "$ 16,544"
+  outstanding: "$ 16,544",
 }));
 
 export type OutstandingClaim = {
@@ -214,9 +224,9 @@ export const outstandingClaims: OutstandingClaim[] = [
     meta: "CLM-2026-014 · Due 14 May 2026",
     warning: {
       text: "4 days past due. Pay immediately to maintain trade relationship.",
-      tone: "danger"
+      tone: "danger",
     },
-    amount: "$ 16,544"
+    amount: "$ 16,544",
   },
   {
     id: "oc-2",
@@ -224,9 +234,9 @@ export const outstandingClaims: OutstandingClaim[] = [
     meta: "CLM-2026-014 · Due 14 May 2026",
     warning: {
       text: "4 days past due. Pay immediately to maintain trade relationship.",
-      tone: "danger"
+      tone: "danger",
     },
-    amount: "$ 16,544"
+    amount: "$ 16,544",
   },
   {
     id: "oc-3",
@@ -234,22 +244,22 @@ export const outstandingClaims: OutstandingClaim[] = [
     meta: "CLM-2026-014 · Due 14 May 2026",
     warning: {
       text: "2 days for due date. Pay asap to maintain trade relationship.",
-      tone: "warning"
+      tone: "warning",
     },
-    amount: "$ 16,544"
+    amount: "$ 16,544",
   },
   {
     id: "oc-4",
     client: "Sarah Johnson - Frame",
     meta: "CLM-2026-014 · Due 14 May 2026",
-    amount: "$ 16,544"
+    amount: "$ 16,544",
   },
   {
     id: "oc-5",
     client: "Sarah Johnson - Frame",
     meta: "CLM-2026-014 · Due 14 May 2026",
-    amount: "$ 16,544"
-  }
+    amount: "$ 16,544",
+  },
 ];
 
 export type CashflowPoint = {
@@ -270,5 +280,5 @@ export const cashflowData: CashflowPoint[] = [
   { month: "Sep", revenue: 380, tradeCost: 240 },
   { month: "Oct", revenue: 160, tradeCost: 320 },
   { month: "Nov", revenue: 320, tradeCost: 240 },
-  { month: "Dec", revenue: 320, tradeCost: 280 }
+  { month: "Dec", revenue: 320, tradeCost: 280 },
 ];

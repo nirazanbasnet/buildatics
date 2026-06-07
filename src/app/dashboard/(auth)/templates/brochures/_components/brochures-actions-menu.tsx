@@ -1,6 +1,14 @@
 "use client";
 
-import { Copy, Download, Eye, MoreVertical, Pencil, Share2, Trash2 } from "lucide-react";
+import {
+  Copy,
+  Download,
+  Eye,
+  MoreVertical,
+  Pencil,
+  Share2,
+  Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 type Props = {
@@ -25,7 +33,9 @@ export function BrochuresActionsMenu({ brochureRef, onView }: Props) {
           variant="ghost"
           size="icon"
           className="size-8"
-          aria-label={brochureRef ? `Actions for ${brochureRef}` : "Brochure actions"}
+          aria-label={
+            brochureRef ? `Actions for ${brochureRef}` : "Brochure actions"
+          }
         >
           <MoreVertical className="size-4" />
         </Button>

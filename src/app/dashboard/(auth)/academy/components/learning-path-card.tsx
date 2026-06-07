@@ -2,7 +2,13 @@ import { ChevronRight, GitBranch } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
 export function LearningPathCard() {
@@ -19,7 +25,10 @@ export function LearningPathCard() {
         </CardAction>
       </CardHeader>
       <CardContent className="space-y-4">
-        <Link href="#" className="hover:bg-muted block rounded-md border p-4 transition-colors">
+        <Link
+          href="#"
+          className="hover:bg-muted block rounded-md border p-4 transition-colors"
+        >
           <div className="space-y-2">
             <div className="text-xl font-semibold">Full-Stack Developer</div>
             <Progress value={pathProgress} indicatorColor="bg-green-600" />

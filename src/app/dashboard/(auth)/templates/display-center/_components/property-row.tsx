@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 
 export function PropertyRow({
   property,
-  view = "facade"
+  view = "facade",
 }: {
   property: Property;
   view?: PropertyView;
@@ -27,7 +27,10 @@ export function PropertyRow({
             alt={`${property.title} ${view === "floor" ? "floor plan" : "facade"}`}
             width={900}
             height={560}
-            className={cn("h-full min-h-56 w-full object-cover", view === "floor" && "bg-muted")}
+            className={cn(
+              "h-full min-h-56 w-full object-cover",
+              view === "floor" && "bg-muted",
+            )}
           />
           <div className="absolute top-3 right-3 flex gap-2">
             <Button

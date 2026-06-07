@@ -17,7 +17,7 @@ export async function generateMetadata() {
     title: "Sales Admin Dashboard",
     description:
       "Analyze sales metrics, track revenue, and monitor order status. A professional admin dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/sales"
+    canonical: "/sales",
   });
 }
 
@@ -25,7 +25,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Sales Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Sales Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <div className="grow">
             <CalendarDateRangePicker />

@@ -8,15 +8,20 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { BellIcon, CreditCardIcon, LogOutIcon, UserCircle2Icon } from "lucide-react";
+import {
+  BellIcon,
+  CreditCardIcon,
+  LogOutIcon,
+  UserCircle2Icon,
+} from "lucide-react";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
 
 import { generateAvatarFallback } from "@/lib/utils";
@@ -30,8 +35,10 @@ type NavUserProps = {
 export function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar();
 
-  const name = [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;
-  const initials = generateAvatarFallback(name) || user.email.charAt(0).toUpperCase();
+  const name =
+    [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;
+  const initials =
+    generateAvatarFallback(name) || user.email.charAt(0).toUpperCase();
 
   return (
     <SidebarMenu>
@@ -43,7 +50,9 @@ export function NavUser({ user }: NavUserProps) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="rounded-full">
-                <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                <AvatarFallback className="rounded-lg">
+                  {initials}
+                </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{name}</span>
@@ -63,11 +72,15 @@ export function NavUser({ user }: NavUserProps) {
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">
+                    {initials}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{name}</span>
-                  <span className="text-muted-foreground truncate text-xs">{user.email}</span>
+                  <span className="text-muted-foreground truncate text-xs">
+                    {user.email}
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>

@@ -27,7 +27,11 @@ export function LeadsLayoutV2({ leads, className }: Props) {
         <LeadsToolbar view={view} onViewChange={setView} />
       </AnimatedSection>
       <AnimatedSection delay={0.04}>
-        {view === "list" ? <LeadsTableV2 leads={leads} /> : <LeadsKanbanV2 leads={leads} />}
+        {view === "list" ? (
+          <LeadsTableV2 leads={leads} />
+        ) : (
+          <LeadsKanbanV2 leads={leads} />
+        )}
       </AnimatedSection>
       {view === "list" ? (
         <AnimatedSection delay={0.08}>

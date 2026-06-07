@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 export function PaymentMethodCard() {
@@ -23,12 +23,19 @@ export function PaymentMethodCard() {
     <Card>
       <CardHeader>
         <CardTitle>Payment Method</CardTitle>
-        <CardDescription>Add a new payment method to your account.</CardDescription>
+        <CardDescription>
+          Add a new payment method to your account.
+        </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-6">
         <RadioGroup defaultValue="card" className="grid grid-cols-3 gap-4">
           <div>
-            <RadioGroupItem value="card" id="card" className="peer sr-only" aria-label="Card" />
+            <RadioGroupItem
+              value="card"
+              id="card"
+              className="peer sr-only"
+              aria-label="Card"
+            />
             <Label
               htmlFor="card"
               className="border-muted hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"
@@ -72,7 +79,12 @@ export function PaymentMethodCard() {
           </div>
 
           <div>
-            <RadioGroupItem value="apple" id="apple" className="peer sr-only" aria-label="Apple" />
+            <RadioGroupItem
+              value="apple"
+              id="apple"
+              className="peer sr-only"
+              aria-label="Apple"
+            />
             <Label
               htmlFor="apple"
               className="border-muted hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 bg-transparent p-4"

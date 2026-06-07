@@ -2,7 +2,17 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { Bath, BedDouble, Car, Clock, Maximize2, Plus, Share2, Sofa, ZoomIn } from "lucide-react";
+import {
+  Bath,
+  BedDouble,
+  Car,
+  Clock,
+  Maximize2,
+  Plus,
+  Share2,
+  Sofa,
+  ZoomIn,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +29,12 @@ type Props = {
   index?: number;
 };
 
-export function PropertyCard({ property, view = "facade", imageClassName, index = 0 }: Props) {
+export function PropertyCard({
+  property,
+  view = "facade",
+  imageClassName,
+  index = 0,
+}: Props) {
   const src = view === "floor" ? property.floorPlan : property.facade;
   return (
     <motion.div
@@ -37,7 +52,7 @@ export function PropertyCard({ property, view = "facade", imageClassName, index 
             className={cn(
               "h-82.5 w-full object-cover transition-transform duration-500 group-hover:scale-105",
               view === "floor" && "bg-muted dark:bg-stone-100",
-              imageClassName
+              imageClassName,
             )}
           />
           <div className="absolute top-3 right-3 flex flex-col gap-2">
@@ -105,17 +120,32 @@ export function PropertyStats({ property }: { property: Property }) {
   return (
     <div className="text-foreground flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
       <Stat icon={BedDouble} value={`${property.beds} Beds`} />
-      <Separator orientation="vertical" className="h-4 data-[orientation=vertical]:h-4" />
+      <Separator
+        orientation="vertical"
+        className="h-4 data-[orientation=vertical]:h-4"
+      />
       <Stat icon={Bath} value={`${property.baths} Baths`} />
-      <Separator orientation="vertical" className="h-4 data-[orientation=vertical]:h-4" />
+      <Separator
+        orientation="vertical"
+        className="h-4 data-[orientation=vertical]:h-4"
+      />
       <Stat icon={Sofa} value={`${property.living} Living`} />
-      <Separator orientation="vertical" className="h-4 data-[orientation=vertical]:h-4" />
+      <Separator
+        orientation="vertical"
+        className="h-4 data-[orientation=vertical]:h-4"
+      />
       <Stat icon={Car} value={`${property.garage} Garage`} />
     </div>
   );
 }
 
-function Stat({ icon: Icon, value }: { icon: typeof BedDouble; value: string }) {
+function Stat({
+  icon: Icon,
+  value,
+}: {
+  icon: typeof BedDouble;
+  value: string;
+}) {
   return (
     <div className="flex items-center gap-1.5">
       <Icon className="size-4" />

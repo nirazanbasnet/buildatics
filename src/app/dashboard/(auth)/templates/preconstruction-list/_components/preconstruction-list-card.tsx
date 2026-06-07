@@ -5,7 +5,10 @@ import { ChevronDown, MapPin, Settings, User, UserCog } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import { preconstructionListStatusLabels, type PreconstructionListProject } from "../_data";
+import {
+  preconstructionListStatusLabels,
+  type PreconstructionListProject,
+} from "../_data";
 
 type Props = {
   project: PreconstructionListProject;
@@ -14,7 +17,15 @@ type Props = {
   index?: number;
 };
 
-function Row({ icon: Icon, label, value }: { icon: typeof MapPin; label?: string; value: string }) {
+function Row({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: typeof MapPin;
+  label?: string;
+  value: string;
+}) {
   return (
     <li className="flex items-start gap-3">
       <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
@@ -22,17 +33,28 @@ function Row({ icon: Icon, label, value }: { icon: typeof MapPin; label?: string
       </span>
       {label ? (
         <>
-          <span className="text-foreground flex-1 self-center text-sm font-medium">{label}</span>
-          <span className="text-muted-foreground self-center text-sm">{value}</span>
+          <span className="text-foreground flex-1 self-center text-sm font-medium">
+            {label}
+          </span>
+          <span className="text-muted-foreground self-center text-sm">
+            {value}
+          </span>
         </>
       ) : (
-        <span className="text-foreground flex-1 self-center text-sm leading-snug">{value}</span>
+        <span className="text-foreground flex-1 self-center text-sm leading-snug">
+          {value}
+        </span>
       )}
     </li>
   );
 }
 
-export function PreconstructionListCard({ project, className, onClick, index = 0 }: Props) {
+export function PreconstructionListCard({
+  project,
+  className,
+  onClick,
+  index = 0,
+}: Props) {
   const interactive = Boolean(onClick);
   const reduceMotion = useReducedMotion() ?? false;
   return (
@@ -57,11 +79,13 @@ export function PreconstructionListCard({ project, className, onClick, index = 0
         "bg-card flex flex-col gap-5 rounded-2xl border p-5 shadow-sm",
         interactive &&
           "focus-visible:ring-ring cursor-pointer transition duration-300 hover:-translate-y-1.5 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none",
-        className
+        className,
       )}
     >
       <header className="flex items-start justify-between gap-3">
-        <h3 className="text-foreground text-xl font-bold tracking-tight">{project.projectNo}</h3>
+        <h3 className="text-foreground text-xl font-bold tracking-tight">
+          {project.projectNo}
+        </h3>
         <button
           type="button"
           className="inline-flex min-w-28 items-center justify-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500"
@@ -83,7 +107,11 @@ export function PreconstructionListCard({ project, className, onClick, index = 0
           className="bg-primary h-full rounded-full"
           initial={reduceMotion ? false : { width: 0 }}
           animate={{ width: `${project.progress}%` }}
-          transition={{ duration: 0.5, delay: index * 0.06 + 0.15, ease: "easeOut" }}
+          transition={{
+            duration: 0.5,
+            delay: index * 0.06 + 0.15,
+            ease: "easeOut",
+          }}
         />
       </div>
     </motion.article>

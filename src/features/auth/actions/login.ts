@@ -14,12 +14,15 @@ const DASHBOARD_HOME = "/design-library";
 // through the BFF gateway, persists the session as httpOnly cookies, then redirects.
 export async function loginAction(
   _prevState: LoginFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<LoginFormState> {
   const parsed = loginSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
-    rememberMe: formData.get("rememberMe") === null ? true : formData.get("rememberMe") === "on"
+    rememberMe:
+      formData.get("rememberMe") === null
+        ? true
+        : formData.get("rememberMe") === "on",
   });
 
   if (!parsed.success) {
@@ -28,8 +31,8 @@ export async function loginAction(
       ok: false,
       fieldErrors: {
         email: flat.email?.[0],
-        password: flat.password?.[0]
-      }
+        password: flat.password?.[0],
+      },
     };
   }
 
@@ -38,9 +41,15 @@ export async function loginAction(
 
   let res: ResourceOwnerTokenRes;
   try {
-    res = await apiFetch<ResourceOwnerTokenRes>("/api/Token/Login", { method: "POST", body });
+    res = await apiFetch<ResourceOwnerTokenRes>("/api/Token/Login", {
+      method: "POST",
+      body,
+    });
   } catch (error) {
-    const message = error instanceof ApiError ? error.message : "Something went wrong. Please try again.";
+    const message =
+      error instanceof ApiError
+        ? error.message
+        : "Something went wrong. Please try again.";
     return { ok: false, error: message };
   }
 
@@ -49,12 +58,17 @@ export async function loginAction(
     return {
       ok: false,
       requiresTwoFactor: true,
-      error: res.message ?? "Two-factor authentication is required but not yet supported here."
+      error:
+        res.message ??
+        "Two-factor authentication is required but not yet supported here.",
     };
   }
 
   if (!res.accessToken) {
-    return { ok: false, error: res.message ?? "Login failed. Please try again." };
+    return {
+      ok: false,
+      error: res.message ?? "Login failed. Please try again.",
+    };
   }
 
   await setSession(res, rememberMe);

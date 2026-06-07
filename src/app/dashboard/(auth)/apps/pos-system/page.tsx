@@ -13,7 +13,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Manage table reservations, product orders, and checkout processes with a real-time status tracker and integrated payment options. A professional POS system application built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/pos-system-app"
+    canonical: "/apps/pos-system-app",
   });
 }
 

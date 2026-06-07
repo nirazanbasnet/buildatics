@@ -6,14 +6,19 @@ import { Check, Plus, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import {
   Dialog,
@@ -21,37 +26,42 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const users = [
   {
     name: "Olivia Martin",
     email: "m@example.com",
-    avatar: `https://i.pravatar.cc/150?img=1`
+    avatar: `https://i.pravatar.cc/150?img=1`,
   },
   {
     name: "Isabella Nguyen",
     email: "isabella.nguyen@email.com",
-    avatar: `https://i.pravatar.cc/150?img=7`
+    avatar: `https://i.pravatar.cc/150?img=7`,
   },
   {
     name: "Emma Wilson",
     email: "emma@example.com",
-    avatar: `https://i.pravatar.cc/150?img=2`
+    avatar: `https://i.pravatar.cc/150?img=2`,
   },
   {
     name: "Jackson Lee",
     email: "lee@example.com",
-    avatar: `https://i.pravatar.cc/150?img=9`
+    avatar: `https://i.pravatar.cc/150?img=9`,
   },
   {
     name: "William Kim",
     email: "will@email.com",
-    avatar: `https://i.pravatar.cc/150?img=6`
-  }
+    avatar: `https://i.pravatar.cc/150?img=6`,
+  },
 ] as const;
 
 type User = (typeof users)[number];
@@ -63,20 +73,20 @@ export function ChatWidget() {
   const [messages, setMessages] = React.useState([
     {
       role: "agent",
-      content: "Hi, how can I help you today?"
+      content: "Hi, how can I help you today?",
     },
     {
       role: "user",
-      content: "Hey, I'm having trouble with my account."
+      content: "Hey, I'm having trouble with my account.",
     },
     {
       role: "agent",
-      content: "What seems to be the problem?"
+      content: "What seems to be the problem?",
     },
     {
       role: "user",
-      content: "I can't log in."
-    }
+      content: "I can't log in.",
+    },
   ]);
   const [input, setInput] = React.useState("");
   const inputLength = input.trim().length;
@@ -121,7 +131,7 @@ export function ChatWidget() {
                   "flex w-max max-w-[75%] flex-col gap-2 rounded-lg px-3 py-2 text-sm",
                   message.role === "user"
                     ? "bg-primary text-primary-foreground ml-auto"
-                    : "bg-muted"
+                    : "bg-muted",
                 )}
               >
                 {message.content}
@@ -138,8 +148,8 @@ export function ChatWidget() {
                 ...messages,
                 {
                   role: "user",
-                  content: input
-                }
+                  content: input,
+                },
               ]);
               setInput("");
             }}
@@ -165,7 +175,8 @@ export function ChatWidget() {
           <DialogHeader className="px-4 pt-5 pb-4">
             <DialogTitle>New message</DialogTitle>
             <DialogDescription>
-              Invite a user to this thread. This will create a new group message.
+              Invite a user to this thread. This will create a new group
+              message.
             </DialogDescription>
           </DialogHeader>
           <Command className="overflow-hidden rounded-t-none border-t">
@@ -180,12 +191,16 @@ export function ChatWidget() {
                     onSelect={() => {
                       if (selectedUsers.includes(user)) {
                         return setSelectedUsers(
-                          selectedUsers.filter((selectedUser) => selectedUser !== user)
+                          selectedUsers.filter(
+                            (selectedUser) => selectedUser !== user,
+                          ),
                         );
                       }
 
                       return setSelectedUsers(
-                        [...users].filter((u) => [...selectedUsers, user].includes(u))
+                        [...users].filter((u) =>
+                          [...selectedUsers, user].includes(u),
+                        ),
                       );
                     }}
                   >
@@ -194,8 +209,12 @@ export function ChatWidget() {
                       <AvatarFallback>{user.name[0]}</AvatarFallback>
                     </Avatar>
                     <div className="ml-2">
-                      <p className="text-sm leading-none font-medium">{user.name}</p>
-                      <p className="text-muted-foreground text-sm">{user.email}</p>
+                      <p className="text-sm leading-none font-medium">
+                        {user.name}
+                      </p>
+                      <p className="text-muted-foreground text-sm">
+                        {user.email}
+                      </p>
                     </div>
                     {selectedUsers.includes(user) ? (
                       <Check className="text-primary ml-auto flex h-5 w-5" />
@@ -209,14 +228,19 @@ export function ChatWidget() {
             {selectedUsers.length > 0 ? (
               <div className="flex -space-x-2 overflow-hidden">
                 {selectedUsers.map((user) => (
-                  <Avatar key={user.email} className="border-background inline-block border-2">
+                  <Avatar
+                    key={user.email}
+                    className="border-background inline-block border-2"
+                  >
                     <AvatarImage src={user.avatar} />
                     <AvatarFallback>{user.name[0]}</AvatarFallback>
                   </Avatar>
                 ))}
               </div>
             ) : (
-              <p className="text-muted-foreground text-sm">Select users to add to this thread.</p>
+              <p className="text-muted-foreground text-sm">
+                Select users to add to this thread.
+              </p>
             )}
             <Button
               disabled={selectedUsers.length < 2}

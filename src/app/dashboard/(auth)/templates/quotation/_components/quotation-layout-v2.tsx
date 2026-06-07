@@ -6,7 +6,10 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { quotationDetailMock, type QuotationDetail } from "../../quotation-detail/_data";
+import {
+  quotationDetailMock,
+  type QuotationDetail,
+} from "../../quotation-detail/_data";
 import { QuotationDetailSheet } from "../../quotation-detail/_components/quotation-detail-sheet";
 import type { Quotation } from "../_data";
 
@@ -21,7 +24,7 @@ function toDetail(quotation: Quotation): QuotationDetail {
     client: quotation.client,
     design: quotation.attachedDesign,
     siteAddress: quotation.siteAddress,
-    status: quotation.status === "signed" ? "signed" : "draft"
+    status: quotation.status === "signed" ? "signed" : "draft",
   };
 }
 
@@ -31,7 +34,11 @@ type Props = {
   detailEnabled?: boolean;
 };
 
-export function QuotationLayoutV2({ quotations, className, detailEnabled }: Props) {
+export function QuotationLayoutV2({
+  quotations,
+  className,
+  detailEnabled,
+}: Props) {
   const [selected, setSelected] = useState<Quotation | null>(null);
   const handleQuotationClick = detailEnabled ? setSelected : undefined;
 
@@ -42,7 +49,10 @@ export function QuotationLayoutV2({ quotations, className, detailEnabled }: Prop
           <QuotationToolbar />
         </AnimatedSection>
         <AnimatedSection delay={0.04}>
-          <QuotationTableV2 quotations={quotations} onQuotationClick={handleQuotationClick} />
+          <QuotationTableV2
+            quotations={quotations}
+            onQuotationClick={handleQuotationClick}
+          />
         </AnimatedSection>
         <AnimatedSection delay={0.08}>
           <PaginationNav />

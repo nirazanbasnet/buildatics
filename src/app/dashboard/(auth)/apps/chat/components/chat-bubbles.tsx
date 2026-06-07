@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { MessageStatusIcon } from "./message-status-icon";
@@ -16,13 +16,13 @@ function TextChatBubble({ message }: { message: ChatMessageProps }) {
   return (
     <div
       className={cn("max-w-(--breakpoint-sm) space-y-1", {
-        "self-end": message.own_message
+        "self-end": message.own_message,
       })}
     >
       <div className="flex items-center gap-2">
         <div
           className={cn("bg-muted inline-flex rounded-md border p-4", {
-            "order-1": message.own_message
+            "order-1": message.own_message,
           })}
         >
           {message.content}
@@ -38,7 +38,9 @@ function TextChatBubble({ message }: { message: ChatMessageProps }) {
               <DropdownMenuGroup>
                 <DropdownMenuItem>Forward</DropdownMenuItem>
                 <DropdownMenuItem>Star</DropdownMenuItem>
-                {message.own_message && <DropdownMenuItem>Edit</DropdownMenuItem>}
+                {message.own_message && (
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                )}
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -47,13 +49,16 @@ function TextChatBubble({ message }: { message: ChatMessageProps }) {
       </div>
       <div
         className={cn("flex items-center gap-2", {
-          "justify-end": message.own_message
+          "justify-end": message.own_message,
         })}
       >
         <time
-          className={cn("text-muted-foreground mt-1 flex items-center text-xs", {
-            "justify-end": message.own_message
-          })}
+          className={cn(
+            "text-muted-foreground mt-1 flex items-center text-xs",
+            {
+              "justify-end": message.own_message,
+            },
+          )}
         >
           05:23 PM
         </time>
@@ -67,20 +72,25 @@ function FileChatBubble({ message }: { message: ChatMessageProps }) {
   return (
     <div
       className={cn("max-w-(--breakpoint-sm) space-y-1", {
-        "self-end": message.own_message
+        "self-end": message.own_message,
       })}
     >
       <div className="flex items-center gap-2">
         <div
-          className={cn("bg-muted inline-flex items-start rounded-md border p-4", {
-            "order-1": message.own_message
-          })}
+          className={cn(
+            "bg-muted inline-flex items-start rounded-md border p-4",
+            {
+              "order-1": message.own_message,
+            },
+          )}
         >
           <FileIcon className="me-4 mt-1 size-8 opacity-50" strokeWidth={1.5} />
           <div className="flex flex-col gap-2">
             <div className="text-sm">
               {message.data?.file_name}
-              <span className="text-muted-foreground ms-2 text-sm">({message.data?.size})</span>
+              <span className="text-muted-foreground ms-2 text-sm">
+                ({message.data?.size})
+              </span>
             </div>
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
@@ -103,7 +113,9 @@ function FileChatBubble({ message }: { message: ChatMessageProps }) {
               <DropdownMenuGroup>
                 <DropdownMenuItem>Forward</DropdownMenuItem>
                 <DropdownMenuItem>Star</DropdownMenuItem>
-                {message.own_message && <DropdownMenuItem>Edit</DropdownMenuItem>}
+                {message.own_message && (
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                )}
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -112,13 +124,16 @@ function FileChatBubble({ message }: { message: ChatMessageProps }) {
       </div>
       <div
         className={cn("flex items-center gap-2", {
-          "justify-end": message.own_message
+          "justify-end": message.own_message,
         })}
       >
         <time
-          className={cn("text-muted-foreground mt-1 flex items-center text-xs", {
-            "justify-end": message.own_message
-          })}
+          className={cn(
+            "text-muted-foreground mt-1 flex items-center text-xs",
+            {
+              "justify-end": message.own_message,
+            },
+          )}
         >
           05:23 PM
         </time>
@@ -132,16 +147,16 @@ function VideoChatBubble({ message }: { message: ChatMessageProps }) {
   return (
     <div
       className={cn("max-w-(--breakpoint-sm) space-y-1", {
-        "self-end": message.own_message
+        "self-end": message.own_message,
       })}
     >
       <div className="flex items-center gap-4">
         <div
           style={{
-            backgroundImage: `url(${message?.data?.cover})`
+            backgroundImage: `url(${message?.data?.cover})`,
           }}
           className={cn(
-            "relative order-1 flex aspect-4/3 w-52 shrink-0 cursor-pointer items-center justify-center self-start rounded-lg bg-cover transition-opacity hover:opacity-90"
+            "relative order-1 flex aspect-4/3 w-52 shrink-0 cursor-pointer items-center justify-center self-start rounded-lg bg-cover transition-opacity hover:opacity-90",
           )}
         >
           <PlayIcon className="size-8 text-white/80" />
@@ -160,7 +175,9 @@ function VideoChatBubble({ message }: { message: ChatMessageProps }) {
               <DropdownMenuGroup>
                 <DropdownMenuItem>Forward</DropdownMenuItem>
                 <DropdownMenuItem>Star</DropdownMenuItem>
-                {message.own_message && <DropdownMenuItem>Edit</DropdownMenuItem>}
+                {message.own_message && (
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                )}
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -169,13 +186,16 @@ function VideoChatBubble({ message }: { message: ChatMessageProps }) {
       </div>
       <div
         className={cn("flex items-center gap-2", {
-          "justify-end": message.own_message
+          "justify-end": message.own_message,
         })}
       >
         <time
-          className={cn("text-muted-foreground mt-1 flex items-center text-xs", {
-            "justify-end": message.own_message
-          })}
+          className={cn(
+            "text-muted-foreground mt-1 flex items-center text-xs",
+            {
+              "justify-end": message.own_message,
+            },
+          )}
         >
           05:23 PM
         </time>
@@ -189,13 +209,14 @@ function SoundChatBubble({ message }: { message: ChatMessageProps }) {
   return (
     <div
       className={cn("max-w-(--breakpoint-sm)", {
-        "self-end": message.own_message
+        "self-end": message.own_message,
       })}
     >
       <div className="flex items-center gap-2">
         <div
           className={cn("bg-muted inline-flex gap-4 rounded-md p-4", {
-            "relative order-1 flex items-center justify-center": message.own_message
+            "relative order-1 flex items-center justify-center":
+              message.own_message,
           })}
         >
           {message.content}
@@ -214,7 +235,9 @@ function SoundChatBubble({ message }: { message: ChatMessageProps }) {
               <DropdownMenuGroup>
                 <DropdownMenuItem>Forward</DropdownMenuItem>
                 <DropdownMenuItem>Star</DropdownMenuItem>
-                {message.own_message && <DropdownMenuItem>Edit</DropdownMenuItem>}
+                {message.own_message && (
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                )}
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -223,13 +246,16 @@ function SoundChatBubble({ message }: { message: ChatMessageProps }) {
       </div>
       <div
         className={cn("flex items-center gap-2", {
-          "justify-end": message.own_message
+          "justify-end": message.own_message,
         })}
       >
         <time
-          className={cn("text-muted-foreground mt-1 flex items-center text-sm", {
-            "justify-end": message.own_message
-          })}
+          className={cn(
+            "text-muted-foreground mt-1 flex items-center text-sm",
+            {
+              "justify-end": message.own_message,
+            },
+          )}
         >
           05:23 PM
         </time>
@@ -247,13 +273,14 @@ function ImageChatBubble({ message }: { message: ChatMessageProps }) {
   return (
     <div
       className={cn("max-w-(--breakpoint-sm)", {
-        "self-end": message.own_message
+        "self-end": message.own_message,
       })}
     >
       <div className="flex items-center gap-2">
         <div
           className={cn("bg-muted inline-flex gap-4 rounded-md border p-4", {
-            "relative order-1 flex items-center justify-center": message.own_message
+            "relative order-1 flex items-center justify-center":
+              message.own_message,
           })}
         >
           {message.content}
@@ -261,7 +288,7 @@ function ImageChatBubble({ message }: { message: ChatMessageProps }) {
             <div
               className={cn("grid gap-2", {
                 "grid-cols-1": images.length === 1,
-                "grid-cols-2": images.length > 1
+                "grid-cols-2": images.length > 1,
               })}
             >
               {images_with_limit.map((image, key) => (
@@ -297,7 +324,9 @@ function ImageChatBubble({ message }: { message: ChatMessageProps }) {
               <DropdownMenuGroup>
                 <DropdownMenuItem>Forward</DropdownMenuItem>
                 <DropdownMenuItem>Star</DropdownMenuItem>
-                {message.own_message && <DropdownMenuItem>Edit</DropdownMenuItem>}
+                {message.own_message && (
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                )}
                 <DropdownMenuItem>Delete</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
@@ -306,13 +335,16 @@ function ImageChatBubble({ message }: { message: ChatMessageProps }) {
       </div>
       <div
         className={cn("mt-1 flex items-center gap-2", {
-          "justify-end": message.own_message
+          "justify-end": message.own_message,
         })}
       >
         <time
-          className={cn("text-muted-foreground mt-1 flex items-center text-xs", {
-            "justify-end": message.own_message
-          })}
+          className={cn(
+            "text-muted-foreground mt-1 flex items-center text-xs",
+            {
+              "justify-end": message.own_message,
+            },
+          )}
         >
           05:23 PM
         </time>
@@ -322,7 +354,13 @@ function ImageChatBubble({ message }: { message: ChatMessageProps }) {
   );
 }
 
-export function ChatBubble({ message, type }: { message: ChatMessageProps; type?: string }) {
+export function ChatBubble({
+  message,
+  type,
+}: {
+  message: ChatMessageProps;
+  type?: string;
+}) {
   switch (type) {
     case "text":
       return <TextChatBubble message={message} />;

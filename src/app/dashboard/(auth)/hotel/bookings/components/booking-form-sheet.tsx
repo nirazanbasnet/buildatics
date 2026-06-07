@@ -11,26 +11,30 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { timeSlots, rooms, statuses } from "../data";
@@ -40,37 +44,37 @@ const formSchema = z.object({
   name: z
     .string()
     .min(2, {
-      message: "Name must be at least 2 characters."
+      message: "Name must be at least 2 characters.",
     })
     .max(50, {
-      message: "Name must be less than 50 characters."
+      message: "Name must be less than 50 characters.",
     }),
   room: z.string({
-    required_error: "Please select a room."
+    required_error: "Please select a room.",
   }),
   date: z.string({
-    required_error: "Please select a date."
+    required_error: "Please select a date.",
   }),
   timeSlot: z.string({
-    required_error: "Please select a time slot."
+    required_error: "Please select a time slot.",
   }),
   startTime: z.string({
-    required_error: "Please select a start time."
+    required_error: "Please select a start time.",
   }),
   endTime: z.string({
-    required_error: "Please select an end time."
+    required_error: "Please select an end time.",
   }),
   phone: z
     .string()
     .min(10, {
-      message: "Phone number must be at least 10 digits."
+      message: "Phone number must be at least 10 digits.",
     })
     .max(15, {
-      message: "Phone number must be less than 15 digits."
+      message: "Phone number must be less than 15 digits.",
     }),
   status: z.string({
-    required_error: "Please select a status."
-  })
+    required_error: "Please select a status.",
+  }),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -82,12 +86,12 @@ const hours = Array.from({ length: 24 }, (_, i) => {
 
 export function BookingFormSheet() {
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   });
 
   function handleFormSubmit(values: FormValues) {
     toast.success("Booking created", {
-      description: `Booking for ${values.name} has been successfully added.`
+      description: `Booking for ${values.name} has been successfully added.`,
     });
   }
 
@@ -102,11 +106,16 @@ export function BookingFormSheet() {
       <SheetContent className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>New Booking</SheetTitle>
-          <SheetDescription>Fill out the form to create a new room booking.</SheetDescription>
+          <SheetDescription>
+            Fill out the form to create a new room booking.
+          </SheetDescription>
         </SheetHeader>
         <div className="px-4">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
+            <form
+              onSubmit={form.handleSubmit(handleFormSubmit)}
+              className="space-y-4"
+            >
               <FormField
                 control={form.control}
                 name="name"
@@ -134,7 +143,7 @@ export function BookingFormSheet() {
                             variant="outline"
                             className={cn(
                               "w-full pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
+                              !field.value && "text-muted-foreground",
                             )}
                           >
                             {field.value ? (
@@ -149,9 +158,13 @@ export function BookingFormSheet() {
                       <PopoverContent className="w-auto p-0" align="start">
                         <Calendar
                           mode="single"
-                          selected={field.value ? new Date(field.value) : undefined}
+                          selected={
+                            field.value ? new Date(field.value) : undefined
+                          }
                           onSelect={(date) =>
-                            field.onChange(date ? format(date, "yyyy-MM-dd") : "")
+                            field.onChange(
+                              date ? format(date, "yyyy-MM-dd") : "",
+                            )
                           }
                           className="pointer-events-auto p-3"
                         />
@@ -219,7 +232,10 @@ export function BookingFormSheet() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Start Time</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Start" />
@@ -244,7 +260,10 @@ export function BookingFormSheet() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>End Time</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value}
+                      >
                         <FormControl>
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="End" />

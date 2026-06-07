@@ -12,8 +12,12 @@ export function HeroCard() {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
       <div className="relative flex h-full flex-col justify-end space-y-2 px-4">
-        <h2 className="text-3xl font-bold text-balance text-white">Ignite Your Momentum</h2>
-        <p className="text-sm text-white/90">Daily habits that compound into lasting results.</p>
+        <h2 className="text-3xl font-bold text-balance text-white">
+          Ignite Your Momentum
+        </h2>
+        <p className="text-sm text-white/90">
+          Daily habits that compound into lasting results.
+        </p>
       </div>
       <Button
         size="icon"

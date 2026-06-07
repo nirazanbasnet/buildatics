@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import {
   ArrowUpDown,
@@ -23,7 +23,7 @@ import {
   Mail,
   MoreHorizontal,
   Tag,
-  Trash2
+  Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,7 +32,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -40,7 +40,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -64,7 +64,8 @@ export const columns: ColumnDef<ApiKey>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -78,7 +79,7 @@ export const columns: ColumnDef<ApiKey>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
     accessorKey: "name",
@@ -94,7 +95,7 @@ export const columns: ColumnDef<ApiKey>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("name")
+    cell: ({ row }) => row.getValue("name"),
   },
   {
     accessorKey: "api_key",
@@ -117,12 +118,16 @@ export const columns: ColumnDef<ApiKey>[] = [
           <span className="font-mono">
             {apiKey.slice(0, 8)}...{apiKey.slice(-4)}
           </span>
-          <Button variant="ghost" size="sm" onClick={() => copyToClipboard(apiKey)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => copyToClipboard(apiKey)}
+          >
             <Copy className="h-4 w-4" />
           </Button>
         </div>
       );
-    }
+    },
   },
   {
     accessorKey: "created_at",
@@ -138,7 +143,7 @@ export const columns: ColumnDef<ApiKey>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("created_at")
+    cell: ({ row }) => row.getValue("created_at"),
   },
   {
     accessorKey: "expired_at",
@@ -154,7 +159,7 @@ export const columns: ColumnDef<ApiKey>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("expired_at")
+    cell: ({ row }) => row.getValue("expired_at"),
   },
   {
     accessorKey: "status",
@@ -165,7 +170,7 @@ export const columns: ColumnDef<ApiKey>[] = [
       const statusMap = {
         active: "success",
         inactive: "destructive",
-        expired: "warning"
+        expired: "warning",
       } as const;
 
       const statusClass = statusMap[status] ?? "default";
@@ -175,7 +180,7 @@ export const columns: ColumnDef<ApiKey>[] = [
           {status.replace("-", " ")}
         </Badge>
       );
-    }
+    },
   },
   {
     id: "actions",
@@ -201,8 +206,8 @@ export const columns: ColumnDef<ApiKey>[] = [
           </DropdownMenu>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 const copyToClipboard = (text: string) => {
@@ -212,8 +217,11 @@ const copyToClipboard = (text: string) => {
 
 export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -231,8 +239,8 @@ export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   const selectedRowsCount = Object.keys(rowSelection).length;
@@ -244,7 +252,9 @@ export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
           <Input
             placeholder="Filter api keys..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
             className="max-w-xs"
           />
           {selectedRowsCount > 0 && (
@@ -253,7 +263,8 @@ export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
                 <Button variant="outline">
                   Actions{" "}
                   <Badge variant="outline">
-                    {selectedRowsCount} <span className="hidden lg:inline">selected</span>
+                    {selectedRowsCount}{" "}
+                    <span className="hidden lg:inline">selected</span>
                   </Badge>
                   <ChevronDown />
                 </Button>
@@ -292,7 +303,10 @@ export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -302,17 +316,26 @@ export function ApiKeysDataTable({ data }: { data: ApiKey[] }) {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

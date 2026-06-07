@@ -12,7 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Plus,
-  MoreHorizontal
+  MoreHorizontal,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   AlertDialog,
@@ -32,7 +32,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import {
   Table,
@@ -40,7 +40,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { toast } from "sonner";
 import {
@@ -49,7 +49,7 @@ import {
   getCoreRowModel,
   getSortedRowModel,
   SortingState,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 
 import { BookingFormSheet } from "./booking-form-sheet";
@@ -62,16 +62,24 @@ const timeSlots = [
   "10:00 AM",
   "11:00 AM",
   "12:00 AM",
-  "13:00 AM"
+  "13:00 AM",
 ];
 
-const rooms = ["Room 1", "Room 2", "Room 3", "Room 4", "Room 5", "Room 6", "Room 7"];
+const rooms = [
+  "Room 1",
+  "Room 2",
+  "Room 3",
+  "Room 4",
+  "Room 5",
+  "Room 6",
+  "Room 7",
+];
 
 const statusConfig: Record<BookingStatus, { label: string }> = {
   finished: { label: "Finished" },
   cancelled: { label: "Cancelled" },
   pending: { label: "Pending" },
-  approved: { label: "Approved" }
+  approved: { label: "Approved" },
 };
 
 const getCardStyle = (status: BookingStatus) => {
@@ -135,7 +143,9 @@ export function MeetingRoomSchedule() {
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
         ),
-        cell: ({ row }) => <span className="font-medium">{row.getValue("id")}</span>
+        cell: ({ row }) => (
+          <span className="font-medium">{row.getValue("id")}</span>
+        ),
       },
       {
         accessorKey: "name",
@@ -148,12 +158,12 @@ export function MeetingRoomSchedule() {
             Name
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </Button>
-        )
+        ),
       },
       {
         accessorKey: "room",
         header: "Room",
-        cell: ({ row }) => `Room ${row.getValue("room")}`
+        cell: ({ row }) => `Room ${row.getValue("room")}`,
       },
       {
         id: "time",
@@ -163,7 +173,7 @@ export function MeetingRoomSchedule() {
             <Clock className="text-muted-foreground h-3 w-3" />
             {row.original.startTime} → {row.original.endTime}
           </div>
-        )
+        ),
       },
       {
         accessorKey: "phone",
@@ -173,7 +183,7 @@ export function MeetingRoomSchedule() {
             <Phone className="text-muted-foreground h-3 w-3" />
             {row.getValue("phone")}
           </div>
-        )
+        ),
       },
       {
         accessorKey: "status",
@@ -181,9 +191,11 @@ export function MeetingRoomSchedule() {
         cell: ({ row }) => {
           const status = row.getValue("status") as BookingStatus;
           return (
-            <Badge className={getStatusBadgeStyle(status)}>{statusConfig[status].label}</Badge>
+            <Badge className={getStatusBadgeStyle(status)}>
+              {statusConfig[status].label}
+            </Badge>
           );
-        }
+        },
       },
       {
         id: "actions",
@@ -204,10 +216,10 @@ export function MeetingRoomSchedule() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        )
-      }
+        ),
+      },
     ],
-    []
+    [],
   );
 
   const table = useReactTable({
@@ -217,13 +229,14 @@ export function MeetingRoomSchedule() {
     getSortedRowModel: getSortedRowModel(),
     onSortingChange: setSorting,
     state: {
-      sorting
-    }
+      sorting,
+    },
   });
 
   const getBookingsForSlot = (timeSlot: string, roomIndex: number) => {
     return filteredBookings.filter(
-      (booking) => booking.timeSlot === timeSlot && booking.room === roomIndex + 1
+      (booking) =>
+        booking.timeSlot === timeSlot && booking.room === roomIndex + 1,
     );
   };
 
@@ -238,7 +251,9 @@ export function MeetingRoomSchedule() {
       <div className="space-y-4">
         <div className="flex items-end justify-between lg:items-center">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
-            <h1 className="me-6 text-xl font-bold tracking-tight lg:text-2xl">Bookings</h1>
+            <h1 className="me-6 text-xl font-bold tracking-tight lg:text-2xl">
+              Bookings
+            </h1>
             <div className="flex gap-2">
               <div className="flex items-center rounded-lg border">
                 <Button
@@ -262,7 +277,11 @@ export function MeetingRoomSchedule() {
                 </Button>
               </div>
               {!isToday(selectedDate) && (
-                <Button variant="outline" className="hidden md:flex" onClick={goToToday}>
+                <Button
+                  variant="outline"
+                  className="hidden md:flex"
+                  onClick={goToToday}
+                >
                   Today
                 </Button>
               )}
@@ -324,7 +343,10 @@ export function MeetingRoomSchedule() {
                       </div>
                       {/* Time Slots for this Room */}
                       {timeSlots.map((timeSlot, timeIndex) => {
-                        const slotBookings = getBookingsForSlot(timeSlot, roomIndex);
+                        const slotBookings = getBookingsForSlot(
+                          timeSlot,
+                          roomIndex,
+                        );
                         const isEmpty = slotBookings.length === 0;
 
                         return (
@@ -361,9 +383,13 @@ export function MeetingRoomSchedule() {
                                         </Button>
                                       </DropdownMenuTrigger>
                                       <DropdownMenuContent align="end">
-                                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                                        <DropdownMenuItem>
+                                          Edit
+                                        </DropdownMenuItem>
                                         <DropdownMenuItem
-                                          onClick={() => setBookingToDelete(booking)}
+                                          onClick={() =>
+                                            setBookingToDelete(booking)
+                                          }
                                           className="text-destructive focus:text-destructive"
                                         >
                                           Delete
@@ -405,7 +431,10 @@ export function MeetingRoomSchedule() {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     ))}
                   </TableRow>
@@ -417,14 +446,20 @@ export function MeetingRoomSchedule() {
                     <TableRow key={row.id}>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={columns.length} className="h-24 text-center">
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
                       No bookings found.
                     </TableCell>
                   </TableRow>
@@ -445,7 +480,8 @@ export function MeetingRoomSchedule() {
             <AlertDialogTitle>Delete Booking</AlertDialogTitle>
             <AlertDialogDescription>
               Are you sure you want to delete the booking for{" "}
-              <strong>{bookingToDelete?.name}</strong>? This action cannot be undone.
+              <strong>{bookingToDelete?.name}</strong>? This action cannot be
+              undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

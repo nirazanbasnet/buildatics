@@ -6,13 +6,20 @@ import { ShoppingCartIcon } from "lucide-react";
 import { Product, useStore } from "../store";
 
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 export default function ProductListItem({ product }: { product: Product }) {
   const { addToCart } = useStore();
 
-  const [productQuantities, setProductQuantities] = React.useState<Record<string, number>>({});
+  const [productQuantities, setProductQuantities] = React.useState<
+    Record<string, number>
+  >({});
 
   const getProductQuantity = (productId: string) => {
     return productQuantities[productId] || 1;
@@ -25,7 +32,7 @@ export default function ProductListItem({ product }: { product: Product }) {
     // Reset quantity after adding
     setProductQuantities((prev) => ({
       ...prev,
-      [product.id]: 1
+      [product.id]: 1,
     }));
     toast.success("Product added to cart.");
   };
@@ -47,7 +54,11 @@ export default function ProductListItem({ product }: { product: Product }) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="outline" size="icon" onClick={() => handleAddToCart(product)}>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => handleAddToCart(product)}
+                  >
                     <ShoppingCartIcon />
                   </Button>
                 </TooltipTrigger>

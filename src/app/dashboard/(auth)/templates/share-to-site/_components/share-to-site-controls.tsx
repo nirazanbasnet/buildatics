@@ -12,7 +12,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,7 +24,7 @@ import {
   STYLE_OPTIONS,
   buildEmbedSrc,
   buildIframeCode,
-  type ShareConfig
+  type ShareConfig,
 } from "./config";
 
 type Props = {
@@ -61,7 +61,10 @@ export function ShareToSiteControls({ config, onChange }: Props) {
           <Type className="size-3.5" />
           Font Setting
         </Label>
-        <Select value={config.font} onValueChange={(value) => onChange({ ...config, font: value })}>
+        <Select
+          value={config.font}
+          onValueChange={(value) => onChange({ ...config, font: value })}
+        >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="Select font" />
           </SelectTrigger>
@@ -83,7 +86,10 @@ export function ShareToSiteControls({ config, onChange }: Props) {
         <Select
           value={String(config.style)}
           onValueChange={(value) =>
-            onChange({ ...config, style: Number(value) as ShareConfig["style"] })
+            onChange({
+              ...config,
+              style: Number(value) as ShareConfig["style"],
+            })
           }
         >
           <SelectTrigger className="w-full">
@@ -126,7 +132,10 @@ export function ShareToSiteControls({ config, onChange }: Props) {
       </div>
 
       <div className="grid grid-cols-2 gap-2">
-        <Button variant="outline" onClick={() => onChange({ ...DEFAULT_SHARE_CONFIG })}>
+        <Button
+          variant="outline"
+          onClick={() => onChange({ ...DEFAULT_SHARE_CONFIG })}
+        >
           Reset All
         </Button>
         <Button onClick={() => toast.success("Changes saved")}>Save</Button>
@@ -150,20 +159,20 @@ export function ShareToSiteControls({ config, onChange }: Props) {
             aria-live="polite"
             className={cn(
               "h-7 transition-colors",
-              copied && "border-primary/40 bg-primary/10 text-primary"
+              copied && "border-primary/40 bg-primary/10 text-primary",
             )}
           >
             <span className="relative grid size-3.5 place-items-center">
               <Copy
                 className={cn(
                   "size-3.5 transition-all duration-200",
-                  copied ? "scale-50 opacity-0" : "scale-100 opacity-100"
+                  copied ? "scale-50 opacity-0" : "scale-100 opacity-100",
                 )}
               />
               <Check
                 className={cn(
                   "absolute size-3.5 transition-all duration-200",
-                  copied ? "scale-100 opacity-100" : "scale-50 opacity-0"
+                  copied ? "scale-100 opacity-100" : "scale-50 opacity-0",
                 )}
               />
             </span>

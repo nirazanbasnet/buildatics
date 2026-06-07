@@ -1,9 +1,20 @@
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
 import { getInitials } from "@/lib/utils";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const users = [
   { name: "Emma Smith", avatar: `https://i.pravatar.cc/150?img=8` },
@@ -11,7 +22,7 @@ const users = [
   { name: "Ava Brown", avatar: `/imageshttps://i.pravatar.cc/150?img=3` },
   { name: "Sophia Taylor", avatar: `https://i.pravatar.cc/150?img=4` },
   { name: "Isabella Anderson", avatar: `https://i.pravatar.cc/150?img=5` },
-  { name: "Mia Thomas", avatar: `https://i.pravatar.cc/150?img=6` }
+  { name: "Mia Thomas", avatar: `https://i.pravatar.cc/150?img=6` },
 ];
 
 export function SuccessMetrics() {

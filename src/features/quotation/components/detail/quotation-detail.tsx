@@ -16,7 +16,7 @@ import {
   type QuotationDetail as KitQuotationDetail,
   type QuotationDetailStatus,
   type QuotationDetailTab,
-  type QuotationLineItem
+  type QuotationLineItem,
 } from "./_data";
 import { QuotationBuilder } from "./kit/quotation-builder";
 import { QuotationDetailActions } from "./kit/quotation-detail-actions";
@@ -30,26 +30,30 @@ import {
   createLineItem,
   deleteLineItem,
   listLineItems,
-  updateLineItem
+  updateLineItem,
 } from "../../actions/line-items";
 import { incrementVersion } from "../../actions/increment-version";
 import { updateQuote } from "../../actions/update-quote";
 import { updateQuoteStatus } from "../../actions/update-quote-status";
 import type { LeadQuoteLineItemReq, LeadQuoteStatus } from "../../lib/dto";
-import { GST_RATE, type QuoteDetailModel, type QuoteLineItem } from "../../types";
+import {
+  GST_RATE,
+  type QuoteDetailModel,
+  type QuoteLineItem,
+} from "../../types";
 
 // ---- status mapping: kit string status <-> API LeadQuoteStatus enum (see status.ts gap) ----
 const KIT_BY_ENUM: Record<LeadQuoteStatus, QuotationDetailStatus> = {
   0: "draft",
   1: "sent",
   2: "signed",
-  3: "declined"
+  3: "declined",
 };
 const ENUM_BY_KIT: Record<QuotationDetailStatus, LeadQuoteStatus> = {
   draft: 0,
   sent: 1,
   signed: 2,
-  declined: 3
+  declined: 3,
 };
 
 function uid(prefix: string): string {
@@ -78,10 +82,15 @@ function toCategories(items: QuoteLineItem[]): QuotationCategory[] {
       id: li.id,
       name: li.description,
       cost: li.qty * li.unitPrice,
-      visible: li.isVisible
+      visible: li.isVisible,
     });
   }
-  return order.map((name) => ({ id: uid("cat"), name, collapsed: false, items: byName.get(name)! }));
+  return order.map((name) => ({
+    id: uid("cat"),
+    name,
+    collapsed: false,
+    items: byName.get(name)!,
+  }));
 }
 
 function toKitDetail(model: QuoteDetailModel): KitQuotationDetail {
@@ -100,7 +109,7 @@ function toKitDetail(model: QuoteDetailModel): KitQuotationDetail {
     categories: toCategories(model.lineItems),
     internalNotes: "",
     scope: model.description,
-    terms: ""
+    terms: "",
   };
 }
 
@@ -112,30 +121,41 @@ type QuotationDetailProps = {
 
 // Hardened + API-wired version of the kit QuotationDetailLayout. UI is unchanged; the builder handlers,
 // status, valid-until, scope and version now persist through the LeadQuotes/LeadQuoteLineItems APIs.
-export function QuotationDetail({ detail: model, onChanged }: QuotationDetailProps) {
+export function QuotationDetail({
+  detail: model,
+  onChanged,
+}: QuotationDetailProps) {
   const leadId = model.leadId;
   const quoteId = model.id;
 
-  const [detail, setDetail] = useState<KitQuotationDetail>(() => toKitDetail(model));
-  const [activeTab, setActiveTab] = useState<QuotationDetailTab>(quotationDetailTabs[0]);
+  const [detail, setDetail] = useState<KitQuotationDetail>(() =>
+    toKitDetail(model),
+  );
+  const [activeTab, setActiveTab] = useState<QuotationDetailTab>(
+    quotationDetailTabs[0],
+  );
 
   // Latest state for debounced/background persistence, and per-item edit debounce timers.
   const detailRef = useRef(detail);
   detailRef.current = detail;
   const timers = useRef(new Map<string, ReturnType<typeof setTimeout>>());
 
-  function patchCategories(updater: (categories: QuotationCategory[]) => QuotationCategory[]) {
+  function patchCategories(
+    updater: (categories: QuotationCategory[]) => QuotationCategory[],
+  ) {
     setDetail((prev) => ({ ...prev, categories: updater(prev.categories) }));
   }
 
   function patchItems(
     categoryId: string,
-    updater: (items: QuotationLineItem[]) => QuotationLineItem[]
+    updater: (items: QuotationLineItem[]) => QuotationLineItem[],
   ) {
     patchCategories((categories) =>
       categories.map((category) =>
-        category.id === categoryId ? { ...category, items: updater(category.items) } : category
-      )
+        category.id === categoryId
+          ? { ...category, items: updater(category.items) }
+          : category,
+      ),
     );
   }
 
@@ -148,7 +168,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
   function itemBody(
     categoryName: string,
     item: QuotationLineItem,
-    sortOrder: number
+    sortOrder: number,
   ): LeadQuoteLineItemReq {
     return {
       leadQuoteId: quoteId,
@@ -157,7 +177,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       qty: 1,
       unitPrice: item.cost,
       sortOrder,
-      isVisible: item.visible
+      isVisible: item.visible,
     };
   }
 
@@ -168,25 +188,34 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
         setDetail((prev) => {
           const rebuilt = toCategories(items);
           // Preserve collapse state + any local empty categories by name.
-          const collapsedByName = new Map(prev.categories.map((c) => [c.name, c.collapsed]));
+          const collapsedByName = new Map(
+            prev.categories.map((c) => [c.name, c.collapsed]),
+          );
           const present = new Set(rebuilt.map((c) => c.name));
           const empties = prev.categories.filter(
-            (c) => !present.has(c.name) && c.items.length === 0
+            (c) => !present.has(c.name) && c.items.length === 0,
           );
           return {
             ...prev,
             categories: [
-              ...rebuilt.map((c) => ({ ...c, collapsed: collapsedByName.get(c.name) ?? false })),
-              ...empties
-            ]
+              ...rebuilt.map((c) => ({
+                ...c,
+                collapsed: collapsedByName.get(c.name) ?? false,
+              })),
+              ...empties,
+            ],
           };
-        })
+        }),
       )
       .catch(() => undefined);
   }
 
   type ActionResult = { ok: boolean; error?: string };
-  function persist(p: Promise<ActionResult>, errMsg: string, resyncOnFail = true) {
+  function persist(
+    p: Promise<ActionResult>,
+    errMsg: string,
+    resyncOnFail = true,
+  ) {
     p.then((res) => {
       if (!res.ok) {
         toast.error(res.error ?? errMsg);
@@ -206,7 +235,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       persist(
         updateLineItem(leadId, item.id, itemBody(categoryName, item, index)),
         "Failed to reorder items.",
-        false
+        false,
       );
     });
   }
@@ -227,9 +256,9 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
         persist(
           updateLineItem(leadId, itemId, itemBody(category.name, item, index)),
           "Failed to save the line item.",
-          false
+          false,
         );
-      }, 600)
+      }, 600),
     );
   }
 
@@ -239,17 +268,19 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       ...prev,
       categories: prev.categories.map((c) => ({
         ...c,
-        items: c.items.map((i) => (i.id === tempId ? { ...i, id: realId } : i))
-      }))
+        items: c.items.map((i) => (i.id === tempId ? { ...i, id: realId } : i)),
+      })),
     }));
-    const category = detailRef.current.categories.find((c) => c.items.some((i) => i.id === tempId));
+    const category = detailRef.current.categories.find((c) =>
+      c.items.some((i) => i.id === tempId),
+    );
     const item = category?.items.find((i) => i.id === tempId);
     if (category && item) {
       const index = category.items.indexOf(item);
       persist(
         updateLineItem(leadId, realId, itemBody(category.name, item, index)),
         "Failed to save the line item.",
-        false
+        false,
       );
     }
   }
@@ -258,7 +289,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
     addCategory: () =>
       patchCategories((categories) => [
         ...categories,
-        { id: uid("cat"), name: "New Category", collapsed: false, items: [] }
+        { id: uid("cat"), name: "New Category", collapsed: false, items: [] },
       ]),
 
     // Category ordering is not a first-class API concept (only per-item sortOrder) — kept local.
@@ -270,14 +301,14 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
 
     renameCategory: (categoryId, name) => {
       patchCategories((categories) =>
-        categories.map((c) => (c.id === categoryId ? { ...c, name } : c))
+        categories.map((c) => (c.id === categoryId ? { ...c, name } : c)),
       );
       const category = findCategory(categoryId);
       category?.items.forEach((item, index) => {
         if (isTemp(item.id)) return;
         persist(
           updateLineItem(leadId, item.id, itemBody(name, item, index)),
-          "Failed to rename the category."
+          "Failed to rename the category.",
         );
       });
     },
@@ -286,11 +317,19 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       const source = findCategory(categoryId);
       if (!source) return;
       const name = `${source.name} (copy)`;
-      const clones: QuotationLineItem[] = source.items.map((item) => ({ ...item, id: uid("tmp") }));
+      const clones: QuotationLineItem[] = source.items.map((item) => ({
+        ...item,
+        id: uid("tmp"),
+      }));
       patchCategories((categories) => {
         const index = categories.findIndex((c) => c.id === categoryId);
         const next = [...categories];
-        next.splice(index + 1, 0, { id: uid("cat"), name, collapsed: false, items: clones });
+        next.splice(index + 1, 0, {
+          id: uid("cat"),
+          name,
+          collapsed: false,
+          items: clones,
+        });
         return next;
       });
       clones.forEach((clone, index) => {
@@ -303,15 +342,22 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
 
     toggleCategoryCollapsed: (categoryId) =>
       patchCategories((categories) =>
-        categories.map((c) => (c.id === categoryId ? { ...c, collapsed: !c.collapsed } : c))
+        categories.map((c) =>
+          c.id === categoryId ? { ...c, collapsed: !c.collapsed } : c,
+        ),
       ),
 
     deleteCategory: (categoryId) => {
       const category = findCategory(categoryId);
-      patchCategories((categories) => categories.filter((c) => c.id !== categoryId));
+      patchCategories((categories) =>
+        categories.filter((c) => c.id !== categoryId),
+      );
       category?.items.forEach((item) => {
         if (isTemp(item.id)) return;
-        persist(deleteLineItem(leadId, item.id), "Failed to delete the category.");
+        persist(
+          deleteLineItem(leadId, item.id),
+          "Failed to delete the category.",
+        );
       });
     },
 
@@ -319,28 +365,41 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       const category = findCategory(categoryId);
       if (!category) return;
       const tempId = uid("tmp");
-      const newItem: QuotationLineItem = { id: tempId, name: "New item", cost: 0, visible: true };
+      const newItem: QuotationLineItem = {
+        id: tempId,
+        name: "New item",
+        cost: 0,
+        visible: true,
+      };
       const index = category.items.length;
       patchItems(categoryId, (items) => [...items, newItem]);
-      createLineItem(leadId, itemBody(category.name, newItem, index)).then((res) => {
-        if (res.ok && res.item?.id) reconcileTempId(tempId, res.item.id);
-        else {
-          toast.error(res.error ?? "Failed to add the line item.");
-          patchItems(categoryId, (items) => items.filter((i) => i.id !== tempId));
-        }
-      });
+      createLineItem(leadId, itemBody(category.name, newItem, index)).then(
+        (res) => {
+          if (res.ok && res.item?.id) reconcileTempId(tempId, res.item.id);
+          else {
+            toast.error(res.error ?? "Failed to add the line item.");
+            patchItems(categoryId, (items) =>
+              items.filter((i) => i.id !== tempId),
+            );
+          }
+        },
+      );
     },
 
     updateLineItem: (categoryId, itemId, patch) => {
       patchItems(categoryId, (items) =>
-        items.map((item) => (item.id === itemId ? { ...item, ...patch } : item))
+        items.map((item) =>
+          item.id === itemId ? { ...item, ...patch } : item,
+        ),
       );
       scheduleItemPersist(categoryId, itemId);
     },
 
     toggleLineItemVisibility: (categoryId, itemId) => {
       patchItems(categoryId, (items) =>
-        items.map((item) => (item.id === itemId ? { ...item, visible: !item.visible } : item))
+        items.map((item) =>
+          item.id === itemId ? { ...item, visible: !item.visible } : item,
+        ),
       );
       if (isTemp(itemId)) return;
       const category = findCategory(categoryId);
@@ -350,7 +409,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       persist(
         updateLineItem(leadId, itemId, itemBody(category.name, item, index)),
         "Failed to update visibility.",
-        false
+        false,
       );
     },
 
@@ -387,11 +446,16 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
         next.splice(index + 1, 0, clone);
         return next;
       });
-      createLineItem(leadId, itemBody(category.name, clone, category.items.length)).then((res) => {
+      createLineItem(
+        leadId,
+        itemBody(category.name, clone, category.items.length),
+      ).then((res) => {
         if (res.ok && res.item?.id) reconcileTempId(tempId, res.item.id);
         else {
           toast.error(res.error ?? "Failed to duplicate the item.");
-          patchItems(categoryId, (items) => items.filter((i) => i.id !== tempId));
+          patchItems(categoryId, (items) =>
+            items.filter((i) => i.id !== tempId),
+          );
         }
       });
     },
@@ -400,7 +464,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       patchItems(categoryId, (items) => items.filter((i) => i.id !== itemId));
       if (isTemp(itemId)) return;
       persist(deleteLineItem(leadId, itemId), "Failed to delete the item.");
-    }
+    },
   };
 
   function setStatus(status: QuotationDetailStatus) {
@@ -421,10 +485,10 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       updateQuote(leadId, quoteId, {
         title: detailRef.current.title,
         description: detailRef.current.scope,
-        validUntil
+        validUntil,
       }),
       "Failed to update validity.",
-      false
+      false,
     );
   }
 
@@ -439,12 +503,12 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
           updateQuote(leadId, quoteId, {
             title: detailRef.current.title,
             description: detailRef.current.scope,
-            validUntil: detailRef.current.validUntil
+            validUntil: detailRef.current.validUntil,
           }),
           "Failed to save scope.",
-          false
+          false,
         );
-      }, 600)
+      }, 600),
     );
   }
 
@@ -453,7 +517,7 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
       if (res.ok) {
         setDetail((prev) => ({
           ...prev,
-          version: `V${res.version ?? Number(prev.version.replace(/\D/g, "")) + 1}`
+          version: `V${res.version ?? Number(prev.version.replace(/\D/g, "")) + 1}`,
         }));
         onChanged?.();
       } else {
@@ -483,7 +547,9 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
                 title="Internal Notes"
                 value={detail.internalNotes}
                 placeholder="Notes only visible to your team…"
-                onChange={(value) => setDetail((prev) => ({ ...prev, internalNotes: value }))}
+                onChange={(value) =>
+                  setDetail((prev) => ({ ...prev, internalNotes: value }))
+                }
               />
               <QuotationEditableSection
                 title="Scope and Description"
@@ -495,7 +561,9 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
                 title="Terms and Conditions"
                 value={detail.terms}
                 placeholder="Payment terms, validity, exclusions…"
-                onChange={(value) => setDetail((prev) => ({ ...prev, terms: value }))}
+                onChange={(value) =>
+                  setDetail((prev) => ({ ...prev, terms: value }))
+                }
               />
             </div>
 
@@ -507,7 +575,10 @@ export function QuotationDetail({ detail: model, onChanged }: QuotationDetailPro
                 onStatusChange={setStatus}
                 onValidUntilChange={setValidUntil}
               />
-              <QuotationDetailActions onStatusChange={setStatus} onCreateRevision={createRevision} />
+              <QuotationDetailActions
+                onStatusChange={setStatus}
+                onCreateRevision={createRevision}
+              />
             </aside>
           </div>
         </AnimatedSection>

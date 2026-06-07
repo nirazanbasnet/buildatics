@@ -14,7 +14,7 @@ const sampleEvents: CalendarEvent[] = [
     end: subDays(new Date(), 23), // 23 days before today
     allDay: true,
     color: "sky",
-    location: "Main Conference Hall"
+    location: "Main Conference Hall",
   },
   {
     id: "2",
@@ -23,7 +23,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(subDays(new Date(), 9), 13), 0), // 1:00 PM, 9 days before
     end: setMinutes(setHours(subDays(new Date(), 9), 15), 30), // 3:30 PM, 9 days before
     color: "amber",
-    location: "Office"
+    location: "Office",
   },
   {
     id: "3",
@@ -33,7 +33,7 @@ const sampleEvents: CalendarEvent[] = [
     end: subDays(new Date(), 13), // 13 days before today
     allDay: true,
     color: "orange",
-    location: "Main Conference Hall"
+    location: "Main Conference Hall",
   },
   {
     id: "4",
@@ -42,7 +42,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(new Date(), 10), 0), // 10:00 AM today
     end: setMinutes(setHours(new Date(), 11), 0), // 11:00 AM today
     color: "sky",
-    location: "Conference Room A"
+    location: "Conference Room A",
   },
   {
     id: "5",
@@ -51,7 +51,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 1), 12), 0), // 12:00 PM, 1 day from now
     end: setMinutes(setHours(addDays(new Date(), 1), 13), 15), // 1:15 PM, 1 day from now
     color: "emerald",
-    location: "Downtown Cafe"
+    location: "Downtown Cafe",
   },
   {
     id: "6",
@@ -60,7 +60,7 @@ const sampleEvents: CalendarEvent[] = [
     start: addDays(new Date(), 3), // 3 days from now
     end: addDays(new Date(), 6), // 6 days from now
     allDay: true,
-    color: "violet"
+    color: "violet",
   },
   {
     id: "7",
@@ -69,7 +69,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 4), 14), 30), // 2:30 PM, 4 days from now
     end: setMinutes(setHours(addDays(new Date(), 5), 14), 45), // 2:45 PM, 5 days from now
     color: "rose",
-    location: "Downtown Cafe"
+    location: "Downtown Cafe",
   },
   {
     id: "8",
@@ -78,7 +78,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 5), 9), 0), // 9:00 AM, 5 days from now
     end: setMinutes(setHours(addDays(new Date(), 5), 10), 30), // 10:30 AM, 5 days from now
     color: "orange",
-    location: "Conference Room A"
+    location: "Conference Room A",
   },
   {
     id: "9",
@@ -87,7 +87,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 5), 14), 0), // 2:00 PM, 5 days from now
     end: setMinutes(setHours(addDays(new Date(), 5), 15), 30), // 3:30 PM, 5 days from now
     color: "sky",
-    location: "Conference Room A"
+    location: "Conference Room A",
   },
   {
     id: "10",
@@ -96,7 +96,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 5), 9), 45), // 9:45 AM, 5 days from now
     end: setMinutes(setHours(addDays(new Date(), 5), 11), 0), // 11:00 AM, 5 days from now
     color: "amber",
-    location: "Conference Room A"
+    location: "Conference Room A",
   },
   {
     id: "11",
@@ -105,7 +105,7 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 9), 10), 0), // 10:00 AM, 9 days from now
     end: setMinutes(setHours(addDays(new Date(), 9), 15), 30), // 3:30 PM, 9 days from now
     color: "emerald",
-    location: "Marketing Department"
+    location: "Marketing Department",
   },
   {
     id: "12",
@@ -115,7 +115,7 @@ const sampleEvents: CalendarEvent[] = [
     end: addDays(new Date(), 17), // 17 days from now
     allDay: true,
     color: "sky",
-    location: "Grand Conference Center"
+    location: "Grand Conference Center",
   },
   {
     id: "13",
@@ -124,8 +124,8 @@ const sampleEvents: CalendarEvent[] = [
     start: setMinutes(setHours(addDays(new Date(), 26), 9), 0), // 9:00 AM, 26 days from now
     end: setMinutes(setHours(addDays(new Date(), 27), 17), 0), // 5:00 PM, 27 days from now
     color: "rose",
-    location: "Innovation Lab"
-  }
+    location: "Innovation Lab",
+  },
 ];
 
 export default function EventCalendarApp() {
@@ -136,7 +136,11 @@ export default function EventCalendarApp() {
   };
 
   const handleEventUpdate = (updatedEvent: CalendarEvent) => {
-    setEvents(events.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
+    setEvents(
+      events.map((event) =>
+        event.id === updatedEvent.id ? updatedEvent : event,
+      ),
+    );
   };
 
   const handleEventDelete = (eventId: string) => {

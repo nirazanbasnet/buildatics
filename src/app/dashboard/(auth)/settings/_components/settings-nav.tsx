@@ -2,7 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CreditCardIcon, DatabaseIcon, UserCheckIcon, UserCogIcon } from "lucide-react";
+import {
+  CreditCardIcon,
+  DatabaseIcon,
+  UserCheckIcon,
+  UserCogIcon,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -11,9 +16,21 @@ import { cn } from "@/lib/utils";
 
 const navItems: { title: string; href: string; icon: LucideIcon }[] = [
   { title: "Roles", href: "/dashboard/settings", icon: UserCogIcon },
-  { title: "User Permissions", href: "/dashboard/settings/user-permissions", icon: UserCheckIcon },
-  { title: "Data Setup", href: "/dashboard/settings/data-setup", icon: DatabaseIcon },
-  { title: "Subscription", href: "/dashboard/settings/subscription", icon: CreditCardIcon }
+  {
+    title: "User Permissions",
+    href: "/dashboard/settings/user-permissions",
+    icon: UserCheckIcon,
+  },
+  {
+    title: "Data Setup",
+    href: "/dashboard/settings/data-setup",
+    icon: DatabaseIcon,
+  },
+  {
+    title: "Subscription",
+    href: "/dashboard/settings/subscription",
+    icon: CreditCardIcon,
+  },
 ];
 
 export function SettingsNav() {
@@ -31,7 +48,7 @@ export function SettingsNav() {
                 variant="ghost"
                 className={cn(
                   "hover:bg-muted justify-start",
-                  isActive && "bg-muted hover:bg-muted"
+                  isActive && "bg-muted hover:bg-muted",
                 )}
                 asChild
               >

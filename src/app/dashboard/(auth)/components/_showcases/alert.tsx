@@ -11,7 +11,9 @@ export default function AlertShowcase() {
         <Alert>
           <Info />
           <AlertTitle>Heads up!</AlertTitle>
-          <AlertDescription>You can add components to your app using the cli.</AlertDescription>
+          <AlertDescription>
+            You can add components to your app using the cli.
+          </AlertDescription>
         </Alert>
       </ShowcaseSection>
 
@@ -19,7 +21,9 @@ export default function AlertShowcase() {
         <Alert variant="destructive">
           <AlertCircle />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>Your session expired. Please log in again.</AlertDescription>
+          <AlertDescription>
+            Your session expired. Please log in again.
+          </AlertDescription>
         </Alert>
       </ShowcaseSection>
 

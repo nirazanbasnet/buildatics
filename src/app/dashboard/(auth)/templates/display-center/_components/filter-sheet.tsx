@@ -5,7 +5,12 @@ import { ChevronLeft, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { cn } from "@/lib/utils";
@@ -31,14 +36,14 @@ const DEFAULTS: FilterState = {
   minBlockWidth: "12.5",
   bedrooms: "3",
   baths: "3",
-  garage: "all"
+  garage: "all",
 };
 
 const blockOptions = [
   { value: "all", label: "All" },
   { value: "8.5", label: "8.5m" },
   { value: "10.5", label: "10.5m" },
-  { value: "12.5", label: "12.5m" }
+  { value: "12.5", label: "12.5m" },
 ];
 
 const countOptions = [
@@ -46,13 +51,13 @@ const countOptions = [
   { value: "1", label: "1" },
   { value: "2", label: "2" },
   { value: "3", label: "3" },
-  { value: "4+", label: "4+" }
+  { value: "4+", label: "4+" },
 ];
 
 const garageOptions = [
   { value: "all", label: "All" },
   { value: "single", label: "Single" },
-  { value: "double", label: "Double" }
+  { value: "double", label: "Double" },
 ];
 
 function countActive(state: FilterState): number {
@@ -74,7 +79,12 @@ type FilterContentProps = {
   className?: string;
 };
 
-export function FilterContent({ onCancel, onApply, hideHeader, className }: FilterContentProps) {
+export function FilterContent({
+  onCancel,
+  onApply,
+  hideHeader,
+  className,
+}: FilterContentProps) {
   const [draft, setDraft] = useState<FilterState>(DEFAULTS);
   const activeCount = countActive(draft);
 
@@ -97,7 +107,11 @@ export function FilterContent({ onCancel, onApply, hideHeader, className }: Filt
       <div className="h-full flex-1 space-y-6 overflow-y-auto px-4 py-5 md:px-6">
         <Section label="House Area">
           <div className="relative pt-8">
-            <SliderTooltip value={draft.houseArea[1]} min={AREA_MIN} max={AREA_MAX} />
+            <SliderTooltip
+              value={draft.houseArea[1]}
+              min={AREA_MIN}
+              max={AREA_MAX}
+            />
             <Slider
               min={AREA_MIN}
               max={AREA_MAX}
@@ -190,7 +204,11 @@ type FilterSheetProps = {
   variant?: FilterVariantId;
 };
 
-export function FilterSheet({ open, onOpenChange, variant = "v1" }: FilterSheetProps) {
+export function FilterSheet({
+  open,
+  onOpenChange,
+  variant = "v1",
+}: FilterSheetProps) {
   const Content = variant === "v2" ? FilterContentV2 : FilterContent;
   const close = () => onOpenChange(false);
   return (
@@ -201,7 +219,12 @@ export function FilterSheet({ open, onOpenChange, variant = "v1" }: FilterSheetP
         className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
       >
         <SheetHeader className="flex flex-row items-center justify-between gap-2 border-b px-4 py-3 md:px-6 md:py-4">
-          <Button variant="ghost" size="sm" onClick={close} className="-ml-2 gap-1 p-0! md:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={close}
+            className="-ml-2 gap-1 p-0! md:hidden"
+          >
             <ChevronLeft className="size-5" />
             Back
           </Button>
@@ -222,7 +245,15 @@ export function FilterSheet({ open, onOpenChange, variant = "v1" }: FilterSheetP
   );
 }
 
-function SliderTooltip({ value, min, max }: { value: number; min: number; max: number }) {
+function SliderTooltip({
+  value,
+  min,
+  max,
+}: {
+  value: number;
+  min: number;
+  max: number;
+}) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
     <div
@@ -235,7 +266,13 @@ function SliderTooltip({ value, min, max }: { value: number; min: number; max: n
   );
 }
 
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
+function Section({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="space-y-3">
       <Label className="text-foreground text-sm font-medium">{label}</Label>
@@ -251,7 +288,7 @@ function Divider() {
 function PillToggleGroup({
   value,
   onValueChange,
-  options
+  options,
 }: {
   value: string;
   onValueChange: (value: string) => void;
@@ -270,7 +307,7 @@ function PillToggleGroup({
           value={opt.value}
           variant="outline"
           className={cn(
-            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors"
+            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors",
           )}
         >
           {opt.label}

@@ -8,7 +8,7 @@ import {
   Pencil,
   ShieldCheck,
   ShieldX,
-  Trash2
+  Trash2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -20,7 +20,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,7 +29,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { confirmEmail } from "../actions/confirm-email";
@@ -70,7 +70,12 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="size-8" disabled={isPending}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-8"
+            disabled={isPending}
+          >
             <MoreHorizontal className="size-4" />
             <span className="sr-only">User actions</span>
           </Button>
@@ -83,7 +88,12 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
           </DropdownMenuItem>
           {!user.emailConfirmed ? (
             <DropdownMenuItem
-              onClick={() => run(() => confirmEmail(user.email), "Failed to confirm the email.")}
+              onClick={() =>
+                run(
+                  () => confirmEmail(user.email),
+                  "Failed to confirm the email.",
+                )
+              }
             >
               <MailCheck className="size-4" />
               Confirm email
@@ -98,7 +108,7 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
             onClick={() =>
               run(
                 () => toggleUserTwoFactor(user.id, !user.twoFactorEnabled),
-                "Failed to update two-factor."
+                "Failed to update two-factor.",
               )
             }
           >
@@ -115,7 +125,10 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              run(() => resetTermsAcceptance(user.id), "Failed to reset terms acceptance.")
+              run(
+                () => resetTermsAcceptance(user.id),
+                "Failed to reset terms acceptance.",
+              )
             }
           >
             <ShieldX className="size-4" />
@@ -153,8 +166,8 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
           <AlertDialogHeader>
             <AlertDialogTitle>Delete {user.name}?</AlertDialogTitle>
             <AlertDialogDescription>
-              This soft-deletes the user and anonymizes their email. They will no longer be able to
-              sign in.
+              This soft-deletes the user and anonymizes their email. They will
+              no longer be able to sign in.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -162,7 +175,10 @@ export function UserRowActions({ user, onChanged }: UserRowActionsProps) {
             <AlertDialogAction
               onClick={(e) => {
                 e.preventDefault();
-                run(() => softDeleteUser(user.id), "Failed to delete the user.");
+                run(
+                  () => softDeleteUser(user.id),
+                  "Failed to delete the user.",
+                );
                 setDeleteOpen(false);
               }}
               disabled={isPending}

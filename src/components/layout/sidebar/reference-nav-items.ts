@@ -39,7 +39,7 @@ import {
   UserIcon,
   UsersIcon,
   WalletMinimalIcon,
-  type LucideIcon
+  type LucideIcon,
 } from "lucide-react";
 
 export type ReferenceNavItem = {
@@ -62,7 +62,11 @@ export const referenceNavItems: ReferenceNavGroup[] = [
   {
     title: "Dashboards",
     items: [
-      { title: "Classic Dashboard", href: "/dashboard/default", icon: ChartPieIcon },
+      {
+        title: "Classic Dashboard",
+        href: "/dashboard/default",
+        icon: ChartPieIcon,
+      },
       {
         title: "E-commerce",
         href: "#",
@@ -73,8 +77,8 @@ export const referenceNavItems: ReferenceNavGroup[] = [
           { title: "Product Detail", href: "/dashboard/pages/products/1" },
           { title: "Add Product", href: "/dashboard/pages/products/create" },
           { title: "Order List", href: "/dashboard/pages/orders" },
-          { title: "Order Detail", href: "/dashboard/pages/orders/detail" }
-        ]
+          { title: "Order Detail", href: "/dashboard/pages/orders/detail" },
+        ],
       },
       {
         title: "Payment Dashboard",
@@ -82,8 +86,8 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         icon: CreditCardIcon,
         items: [
           { title: "Dashboard", href: "/dashboard/payment" },
-          { title: "Transactions", href: "/dashboard/payment/transactions" }
-        ]
+          { title: "Transactions", href: "/dashboard/payment/transactions" },
+        ],
       },
       {
         title: "Hotel Dashboard",
@@ -91,8 +95,8 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         icon: Building2Icon,
         items: [
           { title: "Dashboard", href: "/dashboard/hotel" },
-          { title: "Bookings", href: "/dashboard/hotel/bookings" }
-        ]
+          { title: "Bookings", href: "/dashboard/hotel/bookings" },
+        ],
       },
       {
         title: "Project Management",
@@ -100,8 +104,8 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         icon: FolderDotIcon,
         items: [
           { title: "Dashboard", href: "/dashboard/project-management" },
-          { title: "Project List", href: "/dashboard/project-list" }
-        ]
+          { title: "Project List", href: "/dashboard/project-list" },
+        ],
       },
       {
         title: "Real Estate",
@@ -111,45 +115,100 @@ export const referenceNavItems: ReferenceNavGroup[] = [
           { title: "Dashboard", href: "/dashboard/real-estate" },
           { title: "Listings", href: "/dashboard/real-estate/list" },
           { title: "Detail Page", href: "/dashboard/real-estate/detail" },
-          { title: "Filter", href: "/dashboard/real-estate/filter" }
-        ]
+          { title: "Filter", href: "/dashboard/real-estate/filter" },
+        ],
       },
       { title: "Sales", href: "/dashboard/sales", icon: BadgeDollarSignIcon },
       { title: "CRM", href: "/dashboard/crm", icon: ChartBarDecreasingIcon },
-      { title: "Website Analytics", href: "/dashboard/website-analytics", icon: GaugeIcon },
-      { title: "File Manager", href: "/dashboard/file-manager", icon: FolderIcon },
+      {
+        title: "Website Analytics",
+        href: "/dashboard/website-analytics",
+        icon: GaugeIcon,
+      },
+      {
+        title: "File Manager",
+        href: "/dashboard/file-manager",
+        icon: FolderIcon,
+      },
       { title: "Crypto", href: "/dashboard/crypto", icon: WalletMinimalIcon },
-      { title: "Academy/School", href: "/dashboard/academy", icon: GraduationCapIcon },
-      { title: "Hospital Management", href: "/dashboard/hospital-management", icon: ActivityIcon },
-      { title: "Finance Dashboard", href: "/dashboard/finance", icon: WalletMinimalIcon }
-    ]
+      {
+        title: "Academy/School",
+        href: "/dashboard/academy",
+        icon: GraduationCapIcon,
+      },
+      {
+        title: "Hospital Management",
+        href: "/dashboard/hospital-management",
+        icon: ActivityIcon,
+      },
+      {
+        title: "Finance Dashboard",
+        href: "/dashboard/finance",
+        icon: WalletMinimalIcon,
+      },
+    ],
   },
   {
     title: "Apps",
     items: [
-      { title: "Kanban", href: "/dashboard/apps/kanban", icon: SquareKanbanIcon },
-      { title: "Notes", href: "/dashboard/apps/notes", icon: StickyNoteIcon, isDataBadge: "8" },
-      { title: "Chats", href: "/dashboard/apps/chat", icon: MessageSquareIcon, isDataBadge: "5" },
+      {
+        title: "Kanban",
+        href: "/dashboard/apps/kanban",
+        icon: SquareKanbanIcon,
+      },
+      {
+        title: "Notes",
+        href: "/dashboard/apps/notes",
+        icon: StickyNoteIcon,
+        isDataBadge: "8",
+      },
+      {
+        title: "Chats",
+        href: "/dashboard/apps/chat",
+        icon: MessageSquareIcon,
+        isDataBadge: "5",
+      },
       {
         title: "Social Media",
         href: "/dashboard/apps/social-media",
         icon: MessageSquareHeartIcon,
-        isNew: true
+        isNew: true,
       },
       { title: "Mail", href: "/dashboard/apps/mail", icon: MailIcon },
-      { title: "Todo List App", href: "/dashboard/apps/todo-list-app", icon: SquareCheckIcon },
-      { title: "Tasks", href: "/dashboard/apps/tasks", icon: ClipboardCheckIcon },
-      { title: "Calendar", href: "/dashboard/apps/calendar", icon: CalendarIcon },
+      {
+        title: "Todo List App",
+        href: "/dashboard/apps/todo-list-app",
+        icon: SquareCheckIcon,
+      },
+      {
+        title: "Tasks",
+        href: "/dashboard/apps/tasks",
+        icon: ClipboardCheckIcon,
+      },
+      {
+        title: "Calendar",
+        href: "/dashboard/apps/calendar",
+        icon: CalendarIcon,
+      },
       {
         title: "File Manager",
         href: "/dashboard/apps/file-manager",
         icon: ArchiveRestoreIcon,
-        isNew: true
+        isNew: true,
       },
       { title: "Api Keys", href: "/dashboard/apps/api-keys", icon: KeyIcon },
-      { title: "POS App", href: "/dashboard/apps/pos-system", icon: CookieIcon },
-      { title: "Courses", href: "/dashboard/apps/courses", icon: BookAIcon, isNew: true }
-    ]
+      {
+        title: "POS App",
+        href: "/dashboard/apps/pos-system",
+        icon: CookieIcon,
+      },
+      {
+        title: "Courses",
+        href: "/dashboard/apps/courses",
+        icon: BookAIcon,
+        isNew: true,
+      },
+    ],
   },
   {
     title: "AI Apps",
@@ -159,34 +218,58 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         title: "AI Chat V2",
         href: "/dashboard/apps/ai-chat-v2",
         icon: BrainCircuitIcon,
-        isNew: true
+        isNew: true,
       },
-      { title: "Image Generator", href: "/dashboard/apps/ai-image-generator", icon: ImagesIcon },
+      {
+        title: "Image Generator",
+        href: "/dashboard/apps/ai-image-generator",
+        icon: ImagesIcon,
+      },
       {
         title: "Text to Speech",
         href: "/dashboard/apps/text-to-speech",
         icon: SpeechIcon,
-        isComing: true
-      }
-    ]
+        isComing: true,
+      },
+    ],
   },
   {
     title: "Pages",
     items: [
       { title: "Users List", href: "/dashboard/pages/users", icon: UsersIcon },
       { title: "Profile V1", href: "/dashboard/pages/profile", icon: UserIcon },
-      { title: "Profile V2", href: "/dashboard/pages/user-profile", icon: UserIcon },
-      { title: "Onboarding Flow", href: "/dashboard/pages/onboarding-flow", icon: RedoDotIcon },
+      {
+        title: "Profile V2",
+        href: "/dashboard/pages/user-profile",
+        icon: UserIcon,
+      },
+      {
+        title: "Onboarding Flow",
+        href: "/dashboard/pages/onboarding-flow",
+        icon: RedoDotIcon,
+      },
       {
         title: "Empty States",
         href: "/dashboard/pages/empty-states/01",
         icon: BrushCleaningIcon,
         items: [
-          { title: "Empty States 01", href: "/dashboard/pages/empty-states/01" },
-          { title: "Empty States 02", href: "/dashboard/pages/empty-states/02" },
-          { title: "Empty States 03", href: "/dashboard/pages/empty-states/03" },
-          { title: "Empty States 04", href: "/dashboard/pages/empty-states/04" }
-        ]
+          {
+            title: "Empty States 01",
+            href: "/dashboard/pages/empty-states/01",
+          },
+          {
+            title: "Empty States 02",
+            href: "/dashboard/pages/empty-states/02",
+          },
+          {
+            title: "Empty States 03",
+            href: "/dashboard/pages/empty-states/03",
+          },
+          {
+            title: "Empty States 04",
+            href: "/dashboard/pages/empty-states/04",
+          },
+        ],
       },
       {
         title: "Settings",
@@ -197,9 +280,12 @@ export const referenceNavItems: ReferenceNavGroup[] = [
           { title: "Account", href: "/dashboard/pages/settings/account" },
           { title: "Billing", href: "/dashboard/pages/settings/billing" },
           { title: "Appearance", href: "/dashboard/pages/settings/appearance" },
-          { title: "Notifications", href: "/dashboard/pages/settings/notifications" },
-          { title: "Display", href: "/dashboard/pages/settings/display" }
-        ]
+          {
+            title: "Notifications",
+            href: "/dashboard/pages/settings/notifications",
+          },
+          { title: "Display", href: "/dashboard/pages/settings/display" },
+        ],
       },
       {
         title: "Pricing",
@@ -208,8 +294,8 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         items: [
           { title: "Column Pricing", href: "/dashboard/pages/pricing/column" },
           { title: "Table Pricing", href: "/dashboard/pages/pricing/table" },
-          { title: "Single Pricing", href: "/dashboard/pages/pricing/single" }
-        ]
+          { title: "Single Pricing", href: "/dashboard/pages/pricing/single" },
+        ],
       },
       {
         title: "Authentication",
@@ -220,10 +306,14 @@ export const referenceNavItems: ReferenceNavGroup[] = [
           { title: "Login v2", href: "/dashboard/login/v2" },
           { title: "Register v1", href: "/dashboard/register/v1" },
           { title: "Register v2", href: "/dashboard/register/v2" },
-          { title: "Forgot Password", href: "/dashboard/forgot-password" }
-        ]
+          { title: "Forgot Password", href: "/dashboard/forgot-password" },
+        ],
       },
-      { title: "Notifications Page", href: "/dashboard/pages/notifications", icon: BellIcon },
+      {
+        title: "Notifications Page",
+        href: "/dashboard/pages/notifications",
+        icon: BellIcon,
+      },
       {
         title: "Error Pages",
         href: "/",
@@ -231,10 +321,10 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         items: [
           { title: "404", href: "/dashboard/pages/error/404" },
           { title: "500", href: "/dashboard/pages/error/500" },
-          { title: "403", href: "/dashboard/pages/error/403" }
-        ]
-      }
-    ]
+          { title: "403", href: "/dashboard/pages/error/403" },
+        ],
+      },
+    ],
   },
   {
     title: "Others",
@@ -246,20 +336,40 @@ export const referenceNavItems: ReferenceNavGroup[] = [
         items: [
           { title: "Fitness", href: "/dashboard/widgets/fitness" },
           { title: "E-commerce", href: "/dashboard/widgets/ecommerce" },
-          { title: "Analytics", href: "/dashboard/widgets/analytics" }
-        ]
+          { title: "Analytics", href: "/dashboard/widgets/analytics" },
+        ],
       },
       {
         title: "Download Shadcn UI Kit",
         href: "/pricing",
         icon: ClipboardMinusIcon,
-        newTab: true
+        newTab: true,
       },
-      { title: "Components", href: "/components", icon: ComponentIcon, newTab: true },
+      {
+        title: "Components",
+        href: "/components",
+        icon: ComponentIcon,
+        newTab: true,
+      },
       { title: "Blocks", href: "/blocks", icon: ComponentIcon, newTab: true },
-      { title: "Examples", href: "/examples", icon: ComponentIcon, newTab: true },
-      { title: "WebsiteTemplates", href: "/templates", icon: ProportionsIcon, newTab: true },
-      { title: "Github", href: "https://github.com/bundui", icon: GithubIcon, newTab: true }
-    ]
-  }
+      {
+        title: "Examples",
+        href: "/examples",
+        icon: ComponentIcon,
+        newTab: true,
+      },
+      {
+        title: "WebsiteTemplates",
+        href: "/templates",
+        icon: ProportionsIcon,
+        newTab: true,
+      },
+      {
+        title: "Github",
+        href: "https://github.com/bundui",
+        icon: GithubIcon,
+        newTab: true,
+      },
+    ],
+  },
 ];

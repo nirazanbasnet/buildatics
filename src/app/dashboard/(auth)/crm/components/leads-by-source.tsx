@@ -3,18 +3,24 @@
 import * as React from "react";
 
 import { Label, Pie, PieChart } from "recharts";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { FolderUp } from "lucide-react";
@@ -23,26 +29,26 @@ const chartData = [
   { source: "social", leads: 275, fill: "var(--color-social)" },
   { source: "email", leads: 200, fill: "var(--color-email)" },
   { source: "call", leads: 287, fill: "var(--color-call)" },
-  { source: "others", leads: 173, fill: "var(--color-others)" }
+  { source: "others", leads: 173, fill: "var(--color-others)" },
 ];
 
 const chartConfig = {
   social: {
     label: "Social",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   email: {
     label: "Email",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   call: {
     label: "Call",
-    color: "var(--chart-3)"
+    color: "var(--chart-3)",
   },
   others: {
     label: "Others",
-    color: "var(--chart-4)"
-  }
+    color: "var(--chart-4)",
+  },
 } satisfies ChartConfig;
 
 type ChartConfigKeys = keyof typeof chartConfig;
@@ -71,10 +77,22 @@ export function LeadBySourceCard() {
         </CardAction>
       </CardHeader>
       <CardContent className="flex-1">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[250px]"
+        >
           <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="leads" nameKey="source" innerRadius={60} strokeWidth={5}>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={chartData}
+              dataKey="leads"
+              nameKey="source"
+              innerRadius={60}
+              strokeWidth={5}
+            >
               <Label
                 content={({ viewBox }) => {
                   if (viewBox && "cx" in viewBox && "cy" in viewBox) {
@@ -114,7 +132,8 @@ export function LeadBySourceCard() {
                 <span
                   className="block size-2 rounded-full"
                   style={{
-                    backgroundColor: chartConfig[item.source as ChartConfigKeys]?.color
+                    backgroundColor:
+                      chartConfig[item.source as ChartConfigKeys]?.color,
                   }}
                 ></span>
                 <div className="text-xs tracking-wide uppercase">

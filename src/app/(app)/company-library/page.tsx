@@ -1,4 +1,7 @@
-import { CompanyLibrary, getAllCompanyDesigns } from "@/features/company-designs";
+import {
+  CompanyLibrary,
+  getAllCompanyDesigns,
+} from "@/features/company-designs";
 import { getAreaBounds } from "@/features/designs/lib/filter";
 import { DESIGNS_PAGE_SIZE } from "@/features/designs/types";
 import { generateMeta } from "@/lib/utils";
@@ -7,7 +10,7 @@ export function generateMetadata() {
   return generateMeta({
     title: "Company Library",
     description: "Browse and manage your company's house designs and facades.",
-    canonical: "/company-library"
+    canonical: "/company-library",
   });
 }
 

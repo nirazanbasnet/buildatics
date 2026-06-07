@@ -14,10 +14,12 @@ export const createCompanyDesignFormSchema = z.object({
   livingRooms: z.string().trim().optional(),
   maximumCarsInGarage: z.string().trim().optional(),
   storeys: z.string().trim().optional(),
-  visibleOnWebsite: z.boolean()
+  visibleOnWebsite: z.boolean(),
 });
 
-export type CreateCompanyDesignInput = z.infer<typeof createCompanyDesignFormSchema>;
+export type CreateCompanyDesignInput = z.infer<
+  typeof createCompanyDesignFormSchema
+>;
 
 // Coerced output (what the API CompanyDesignReq expects). Empty strings → undefined.
 const optionalNumber = z
@@ -25,7 +27,10 @@ const optionalNumber = z
   .trim()
   .optional()
   .transform((v) => (v ? Number(v) : undefined))
-  .refine((v) => v === undefined || (Number.isFinite(v) && v >= 0), "Must be 0 or more.");
+  .refine(
+    (v) => v === undefined || (Number.isFinite(v) && v >= 0),
+    "Must be 0 or more.",
+  );
 
 const optionalInt = z
   .string()
@@ -34,7 +39,7 @@ const optionalInt = z
   .transform((v) => (v ? Number(v) : undefined))
   .refine(
     (v) => v === undefined || (Number.isInteger(v) && v >= 0),
-    "Must be a whole number, 0 or more."
+    "Must be a whole number, 0 or more.",
   );
 
 // Server-side parse: validates the raw form values and coerces numerics for the API request.
@@ -50,5 +55,5 @@ export const parseCompanyDesignForm = z.object({
   livingRooms: optionalInt,
   maximumCarsInGarage: optionalInt,
   storeys: optionalInt,
-  visibleOnWebsite: z.boolean()
+  visibleOnWebsite: z.boolean(),
 });

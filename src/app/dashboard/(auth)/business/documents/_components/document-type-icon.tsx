@@ -8,7 +8,7 @@ const iconMap: Record<DocumentType, LucideIcon> = {
   image: ImageIcon,
   video: Film,
   audio: Music,
-  archive: Archive
+  archive: Archive,
 };
 
 export function getDocumentTypeIcon(type: DocumentType): LucideIcon {

@@ -7,7 +7,7 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -15,14 +15,14 @@ const chartData = [
   { browser: "safari", visitors: 200, fill: "var(--color-visitors)" },
   { browser: "firefox", visitors: 150, fill: "var(--color-visitors)" },
   { browser: "edge", visitors: 250, fill: "var(--color-visitors)" },
-  { browser: "other", visitors: 110, fill: "var(--color-visitors)" }
+  { browser: "other", visitors: 110, fill: "var(--color-visitors)" },
 ];
 
 const chartConfig = {
   visitors: {
     label: "Revenue",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export function TotalRevenueCard() {
@@ -43,12 +43,18 @@ export function TotalRevenueCard() {
             margin={{
               top: 8,
               right: 8,
-              left: 8
+              left: 8,
             }}
           >
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="line" nameKey="visitors" hideLabel />}
+              content={
+                <ChartTooltipContent
+                  indicator="line"
+                  nameKey="visitors"
+                  hideLabel
+                />
+              }
             />
             <Line
               dataKey="visitors"

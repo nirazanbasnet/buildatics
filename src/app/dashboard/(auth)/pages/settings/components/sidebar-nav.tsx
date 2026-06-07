@@ -9,7 +9,7 @@ import {
   CreditCardIcon,
   PaletteIcon,
   ShieldIcon,
-  UserIcon
+  UserIcon,
 } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -19,33 +19,33 @@ const sidebarNavItems = [
   {
     title: "Profile",
     href: "/dashboard/pages/settings",
-    icon: UserIcon
+    icon: UserIcon,
   },
   {
     title: "Account",
     href: "/dashboard/pages/settings/account",
-    icon: ShieldIcon
+    icon: ShieldIcon,
   },
   {
     title: "Billing",
     href: "/dashboard/pages/settings/billing",
-    icon: CreditCardIcon
+    icon: CreditCardIcon,
   },
   {
     title: "Appearance",
     href: "/dashboard/pages/settings/appearance",
-    icon: PaletteIcon
+    icon: PaletteIcon,
   },
   {
     title: "Notifications",
     href: "/dashboard/pages/settings/notifications",
-    icon: BellIcon
+    icon: BellIcon,
   },
   {
     title: "Display",
     href: "/dashboard/pages/settings/display",
-    icon: ContrastIcon
-  }
+    icon: ContrastIcon,
+  },
 ];
 
 export function SidebarNav() {
@@ -61,7 +61,7 @@ export function SidebarNav() {
               variant="ghost"
               className={cn(
                 "hover:bg-muted justify-start",
-                pathname === item.href ? "bg-muted hover:bg-muted" : ""
+                pathname === item.href ? "bg-muted hover:bg-muted" : "",
               )}
               asChild
             >

@@ -13,12 +13,17 @@ export type CompanyDesignsPage = {
 
 // Server-only: fetches a page of the company's own designs (most-recently-updated first) through the
 // BFF gateway and maps each to the shared UI shape. SAS preview URLs expire ~15 min — fetch per request.
-export async function getCompanyDesignsPage(req: PagedReq): Promise<CompanyDesignsPage> {
-  const res = await apiFetch<CompanyDesignResPage>("/api/CompanyDesigns/PageDescending", {
-    method: "POST",
-    auth: true,
-    body: req
-  });
+export async function getCompanyDesignsPage(
+  req: PagedReq,
+): Promise<CompanyDesignsPage> {
+  const res = await apiFetch<CompanyDesignResPage>(
+    "/api/CompanyDesigns/PageDescending",
+    {
+      method: "POST",
+      auth: true,
+      body: req,
+    },
+  );
 
   const items = res.items ?? [];
 
@@ -26,7 +31,7 @@ export async function getCompanyDesignsPage(req: PagedReq): Promise<CompanyDesig
     designs: items.map((cd, index) => mapCompanyDesignToProperty(cd, index)),
     totalCount: res.totalCount ?? items.length,
     pageNumber: res.pageNumber ?? req.pageNumber,
-    pageSize: res.pageSize ?? req.pageSize
+    pageSize: res.pageSize ?? req.pageSize,
   };
 }
 
@@ -42,7 +47,7 @@ export async function getAllCompanyDesigns(): Promise<DesignProperty[]> {
   while (pageNumber <= ALL_MAX_PAGES) {
     const { designs, totalCount } = await getCompanyDesignsPage({
       pageNumber,
-      pageSize: ALL_PAGE_SIZE
+      pageSize: ALL_PAGE_SIZE,
     });
     all.push(...designs);
     if (all.length >= totalCount || designs.length < ALL_PAGE_SIZE) break;

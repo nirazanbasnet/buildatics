@@ -24,7 +24,7 @@ export function BrochureField({
   onChange,
   type = "text",
   placeholder,
-  className
+  className,
 }: Props) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +33,9 @@ export function BrochureField({
       <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
         <Icon className="size-4" />
       </span>
-      <span className="text-foreground flex-1 text-sm font-medium">{label}</span>
+      <span className="text-foreground flex-1 text-sm font-medium">
+        {label}
+      </span>
       <div className="relative w-56 max-w-[55%]">
         <Input
           ref={inputRef}

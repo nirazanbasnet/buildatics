@@ -8,7 +8,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-import type { QuotationBuilderHandlers, QuotationLineItem as LineItem } from "../_data";
+import type {
+  QuotationBuilderHandlers,
+  QuotationLineItem as LineItem,
+} from "../_data";
 import { QuotationLineItemActionsMenu } from "./quotation-line-item-actions-menu";
 
 type Props = {
@@ -28,7 +31,7 @@ export function QuotationLineItem({ categoryId, item, handlers }: Props) {
     listeners,
     transform,
     transition,
-    isDragging
+    isDragging,
   } = useSortable({ id: item.id });
 
   return (
@@ -38,7 +41,7 @@ export function QuotationLineItem({ categoryId, item, handlers }: Props) {
       className={cn(
         "group/item border-border/60 bg-card flex items-center gap-1 border-t px-2 py-1.5 first:border-t-0",
         !item.visible && "opacity-50",
-        isDragging && "relative z-10 rounded-md opacity-80 shadow-md"
+        isDragging && "relative z-10 rounded-md opacity-80 shadow-md",
       )}
       data-slot="quotation-line-item"
     >
@@ -56,9 +59,17 @@ export function QuotationLineItem({ categoryId, item, handlers }: Props) {
       <div className="flex flex-1 items-center gap-1 transition-transform motion-safe:group-hover/item:translate-x-1">
         <Input
           value={item.name}
-          onChange={(e) => handlers.updateLineItem(categoryId, item.id, { name: e.target.value })}
+          onChange={(e) =>
+            handlers.updateLineItem(categoryId, item.id, {
+              name: e.target.value,
+            })
+          }
           aria-label="Line item name"
-          className={cn(ghostInput, "flex-1 text-sm font-medium", !item.visible && "line-through")}
+          className={cn(
+            ghostInput,
+            "flex-1 text-sm font-medium",
+            !item.visible && "line-through",
+          )}
         />
 
         <div className="relative w-36 shrink-0">
@@ -70,7 +81,9 @@ export function QuotationLineItem({ categoryId, item, handlers }: Props) {
             min={0}
             value={item.cost}
             onChange={(e) =>
-              handlers.updateLineItem(categoryId, item.id, { cost: Number(e.target.value) || 0 })
+              handlers.updateLineItem(categoryId, item.id, {
+                cost: Number(e.target.value) || 0,
+              })
             }
             aria-label="Line item cost"
             className={cn(ghostInput, "pl-5 text-sm")}
@@ -85,16 +98,23 @@ export function QuotationLineItem({ categoryId, item, handlers }: Props) {
           aria-label={item.visible ? "Hide from quote" : "Show in quote"}
           aria-pressed={!item.visible}
         >
-          {item.visible ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
+          {item.visible ? (
+            <Eye className="size-4" />
+          ) : (
+            <EyeOff className="size-4" />
+          )}
         </Button>
 
         <QuotationLineItemActionsMenu
           visible={item.visible}
           onRename={() => {
             const next = window.prompt("Rename line item", item.name);
-            if (next !== null) handlers.updateLineItem(categoryId, item.id, { name: next });
+            if (next !== null)
+              handlers.updateLineItem(categoryId, item.id, { name: next });
           }}
-          onToggleVisibility={() => handlers.toggleLineItemVisibility(categoryId, item.id)}
+          onToggleVisibility={() =>
+            handlers.toggleLineItemVisibility(categoryId, item.id)
+          }
           onDuplicate={() => handlers.duplicateLineItem(categoryId, item.id)}
           onMoveUp={() => handlers.moveLineItem(categoryId, item.id, -1)}
           onMoveDown={() => handlers.moveLineItem(categoryId, item.id, 1)}

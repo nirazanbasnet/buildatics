@@ -15,7 +15,9 @@ export function NotificationBanner() {
     <Alert className="flex items-center justify-between border-yellow-200 bg-yellow-50 dark:border-yellow-800 dark:bg-yellow-800">
       <div className="flex gap-3">
         <CircleAlertIcon className="mt-0.5 size-4" />
-        <AlertTitle>You have information to submit in verification center</AlertTitle>
+        <AlertTitle>
+          You have information to submit in verification center
+        </AlertTitle>
       </div>
       <div className="flex items-center gap-2">
         <Button>Submit Now</Button>

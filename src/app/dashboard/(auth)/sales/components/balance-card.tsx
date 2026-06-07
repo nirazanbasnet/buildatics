@@ -1,5 +1,10 @@
 import { ArrowUpIcon } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 import * as React from "react";
 
 export function BalanceCard() {
@@ -11,7 +16,9 @@ export function BalanceCard() {
         <div className="flex items-center text-xs">
           <ArrowUpIcon className="mr-1 size-3 text-green-500" />
           <span className="font-medium text-green-500">3.6%</span>
-          <span className="text-muted-foreground ml-1">Compare from last month</span>
+          <span className="text-muted-foreground ml-1">
+            Compare from last month
+          </span>
         </div>
       </CardHeader>
     </Card>

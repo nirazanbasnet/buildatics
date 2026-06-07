@@ -9,7 +9,7 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import { ShowcaseSection } from "../_components/showcase-section";

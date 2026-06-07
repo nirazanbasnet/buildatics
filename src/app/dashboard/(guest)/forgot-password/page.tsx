@@ -11,16 +11,22 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Loader2Icon, MailIcon } from "lucide-react";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  email: z.string().email("Please enter a valid email address")
+  email: z.string().email("Please enter a valid email address"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -32,8 +38,8 @@ export default function Page() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: ""
-    }
+      email: "",
+    },
   });
 
   const onSubmit = async (data: FormValues) => {
@@ -52,7 +58,8 @@ export default function Page() {
         <CardHeader>
           <CardTitle className="text-2xl">Forgot Password</CardTitle>
           <CardDescription>
-            Enter your email address and we&#39;ll send you instructions to reset your password.
+            Enter your email address and we&#39;ll send you instructions to
+            reset your password.
           </CardDescription>
         </CardHeader>
         <CardContent>

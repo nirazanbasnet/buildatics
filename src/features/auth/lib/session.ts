@@ -17,7 +17,7 @@ function baseCookieOptions() {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax" as const,
-    path: "/"
+    path: "/",
   };
 }
 
@@ -28,26 +28,33 @@ function toSessionUser(res: ResourceOwnerTokenRes): SessionUser {
     firstName: res.user?.firstName ?? "",
     lastName: res.user?.lastName ?? "",
     companyId: res.company?.id ?? "",
-    companyName: res.company?.name ?? ""
+    companyName: res.company?.name ?? "",
   };
 }
 
 // Persists a successful login response as httpOnly cookies. The refresh cookie is only
 // written when the API returned one (i.e. rememberMe was requested).
-export async function setSession(res: ResourceOwnerTokenRes, rememberMe: boolean): Promise<void> {
+export async function setSession(
+  res: ResourceOwnerTokenRes,
+  rememberMe: boolean,
+): Promise<void> {
   const store = await cookies();
-  const accessMaxAge = res.expiresIn && res.expiresIn > 0 ? res.expiresIn : undefined;
+  const accessMaxAge =
+    res.expiresIn && res.expiresIn > 0 ? res.expiresIn : undefined;
 
-  store.set(ACCESS_COOKIE, res.accessToken ?? "", { ...baseCookieOptions(), maxAge: accessMaxAge });
+  store.set(ACCESS_COOKIE, res.accessToken ?? "", {
+    ...baseCookieOptions(),
+    maxAge: accessMaxAge,
+  });
   store.set(USER_COOKIE, JSON.stringify(toSessionUser(res)), {
     ...baseCookieOptions(),
-    maxAge: accessMaxAge
+    maxAge: accessMaxAge,
   });
 
   if (rememberMe && res.refreshToken) {
     store.set(REFRESH_COOKIE, res.refreshToken, {
       ...baseCookieOptions(),
-      maxAge: REFRESH_MAX_AGE_SECONDS
+      maxAge: REFRESH_MAX_AGE_SECONDS,
     });
   }
 }
@@ -58,7 +65,10 @@ export async function getAccessToken(): Promise<string | null> {
 }
 
 // Reads the current session for SSR. Returns null when not logged in.
-export async function getSession(): Promise<{ accessToken: string; user: SessionUser } | null> {
+export async function getSession(): Promise<{
+  accessToken: string;
+  user: SessionUser;
+} | null> {
   const store = await cookies();
   const accessToken = store.get(ACCESS_COOKIE)?.value;
   if (!accessToken) return null;

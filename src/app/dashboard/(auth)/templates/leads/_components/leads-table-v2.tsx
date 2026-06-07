@@ -13,11 +13,18 @@ type Props = {
 function ProgressRing({ value }: { value: number }) {
   const radius = 18;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (Math.min(100, Math.max(0, value)) / 100) * circumference;
+  const offset =
+    circumference - (Math.min(100, Math.max(0, value)) / 100) * circumference;
   return (
     <div className="relative size-12 shrink-0">
       <svg className="size-12 -rotate-90" viewBox="0 0 44 44">
-        <circle cx="22" cy="22" r={radius} className="stroke-muted fill-none" strokeWidth="4" />
+        <circle
+          cx="22"
+          cy="22"
+          r={radius}
+          className="stroke-muted fill-none"
+          strokeWidth="4"
+        />
         <circle
           cx="22"
           cy="22"
@@ -71,7 +78,7 @@ export function LeadsTableV2({ leads, className, onLeadClick }: Props) {
             className={cn(
               "bg-card flex items-stretch gap-4 rounded-lg border p-4 transition duration-300",
               interactive &&
-                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none"
+                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none",
             )}
           >
             <div className="flex min-w-fit flex-col items-start justify-between gap-2">

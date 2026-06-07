@@ -10,7 +10,7 @@ import type { Property } from "../../display-center/_data";
 export function FloorPlanPanel({
   property,
   className,
-  children
+  children,
 }: {
   property: Property;
   className?: string;
@@ -20,7 +20,10 @@ export function FloorPlanPanel({
 
   return (
     <div
-      className={cn("group bg-card relative min-h-72 overflow-hidden rounded-xl border", className)}
+      className={cn(
+        "group bg-card relative min-h-72 overflow-hidden rounded-xl border",
+        className,
+      )}
     >
       <Image
         src={property.floorPlan}

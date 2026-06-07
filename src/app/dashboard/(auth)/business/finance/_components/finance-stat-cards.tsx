@@ -7,7 +7,12 @@ import { financeStats } from "../_data";
 
 export function FinanceStatCards({ className }: { className?: string }) {
   return (
-    <div className={cn("grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4", className)}>
+    <div
+      className={cn(
+        "grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4",
+        className,
+      )}
+    >
       {financeStats.map((stat) => (
         <Card
           key={stat.id}
@@ -16,7 +21,12 @@ export function FinanceStatCards({ className }: { className?: string }) {
           <CardContent className="flex items-start justify-between gap-3 p-5">
             <div className="min-w-0 space-y-1">
               <p className="text-muted-foreground text-sm">{stat.label}</p>
-              <p className={cn("text-2xl font-bold tracking-tight", stat.valueClass)}>
+              <p
+                className={cn(
+                  "text-2xl font-bold tracking-tight",
+                  stat.valueClass,
+                )}
+              >
                 {stat.value}
               </p>
               {stat.subtext ? (
@@ -26,7 +36,7 @@ export function FinanceStatCards({ className }: { className?: string }) {
             <span
               className={cn(
                 "flex size-8 shrink-0 items-center justify-center rounded-full border",
-                stat.accentClass
+                stat.accentClass,
               )}
             >
               <DollarSign className="size-4" />

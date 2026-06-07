@@ -11,7 +11,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  useSidebar
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   BookOpenIcon,
@@ -27,10 +27,14 @@ import {
   UserIcon,
   UsersIcon,
   UsersRoundIcon,
-  type LucideIcon
+  type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { usePathname } from "next/navigation";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -38,10 +42,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { referenceNavItems } from "@src/components/layout/sidebar/reference-nav-items";
-import { componentRegistry } from "@/app/dashboard/(auth)/components/_registry";
 
 type NavItem = {
   title: string;
@@ -66,14 +69,29 @@ export const navItems: NavGroup[] = [
       {
         title: "Design Library",
         href: "/design-library",
-        icon: Building2Icon
+        icon: Building2Icon,
       },
       {
         title: "Company Library",
         href: "/company-library",
-        icon: LibraryBigIcon
-      }
-    ]
+        icon: LibraryBigIcon,
+      },
+      {
+        title: "Share to Site",
+        href: "/share-to-site",
+        icon: Share2Icon,
+      },
+    ],
+  },
+  {
+    title: "Construction",
+    items: [
+      {
+        title: "Preconstruction",
+        href: "/preconstruction",
+        icon: HardHatIcon,
+      },
+    ],
   },
   {
     title: "Sales",
@@ -81,14 +99,14 @@ export const navItems: NavGroup[] = [
       {
         title: "Leads",
         href: "/leads",
-        icon: UsersIcon
+        icon: UsersIcon,
       },
       {
         title: "Quotation",
         href: "/quotation",
-        icon: FileTextIcon
-      }
-    ]
+        icon: FileTextIcon,
+      },
+    ],
   },
   {
     title: "Workspace",
@@ -96,9 +114,9 @@ export const navItems: NavGroup[] = [
       {
         title: "Team & Roles",
         href: "/team",
-        icon: UsersRoundIcon
-      }
-    ]
+        icon: UsersRoundIcon,
+      },
+    ],
   },
   {
     title: "Account",
@@ -106,46 +124,21 @@ export const navItems: NavGroup[] = [
       {
         title: "Profile",
         href: "/profile",
-        icon: UserIcon
-      }
-    ]
+        icon: UserIcon,
+      },
+    ],
   },
   {
     items: [
       {
-        title: "Display Center",
-        href: "/dashboard/display-center",
-        icon: Building2Icon
-      },
-      {
-        title: "Preconstruction",
-        href: "/dashboard/preconstruction-list",
-        icon: HardHatIcon
-      },
-      {
-        title: "Leads",
-        href: "/dashboard/leads",
-        icon: UsersIcon
-      },
-      {
-        title: "Share to Site",
-        href: "/dashboard/share-to-site",
-        icon: Share2Icon
-      },
-      {
-        title: "Quotation",
-        href: "/dashboard/quotation",
-        icon: FileTextIcon
-      },
-      {
         title: "Brochures",
         href: "/dashboard/brochures",
-        icon: BookOpenIcon
+        icon: BookOpenIcon,
       },
       {
         title: "Settings",
         href: "/dashboard/settings",
-        icon: SettingsIcon
+        icon: SettingsIcon,
       },
       {
         title: "Business",
@@ -153,25 +146,11 @@ export const navItems: NavGroup[] = [
         icon: BriefcaseIcon,
         items: [
           { title: "Documents", href: "/dashboard/business/documents" },
-          { title: "Finance", href: "/dashboard/business/finance" }
-        ]
-      }
-    ]
+          { title: "Finance", href: "/dashboard/business/finance" },
+        ],
+      },
+    ],
   },
-  {
-    title: "Reference",
-    items: [
-      {
-        title: "Components",
-        href: "/dashboard/components",
-        icon: ComponentIcon,
-        items: componentRegistry.map((c) => ({
-          title: c.name,
-          href: `/dashboard/components/${c.slug}`
-        }))
-      }
-    ]
-  }
 ];
 
 // Admin-only product nav, injected into the minimal nav when the signed-in user has the Admin role.
@@ -181,9 +160,9 @@ const adminNavGroup: NavGroup = {
     {
       title: "Users",
       href: "/users",
-      icon: UsersIcon
-    }
-  ]
+      icon: UsersIcon,
+    },
+  ],
 };
 
 export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
@@ -205,7 +184,9 @@ export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
     pathname.startsWith("/dashboard/business") ||
     pathname.startsWith("/dashboard/templates/") ||
     pathname.startsWith("/dashboard/components");
-  const minimalItems: NavGroup[] = isAdmin ? [...navItems, adminNavGroup] : navItems;
+  const minimalItems: NavGroup[] = isAdmin
+    ? [...navItems, adminNavGroup]
+    : navItems;
   const items: NavGroup[] = useMinimal ? minimalItems : referenceNavItems;
 
   return (
@@ -248,7 +229,9 @@ export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
                       </div>
                       <Collapsible
                         className="group/collapsible block group-data-[collapsible=icon]:hidden"
-                        defaultOpen={!!item.items.find((s) => s.href === pathname)}
+                        defaultOpen={
+                          !!item.items.find((s) => s.href === pathname)
+                        }
                       >
                         <CollapsibleTrigger asChild>
                           <SidebarMenuButton
@@ -269,7 +252,10 @@ export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
                                   isActive={pathname === subItem.href}
                                   asChild
                                 >
-                                  <Link href={subItem.href} target={subItem.newTab ? "_blank" : ""}>
+                                  <Link
+                                    href={subItem.href}
+                                    target={subItem.newTab ? "_blank" : ""}
+                                  >
                                     <span>{subItem.title}</span>
                                   </Link>
                                 </SidebarMenuSubButton>
@@ -286,7 +272,10 @@ export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
                       tooltip={item.title}
                       asChild
                     >
-                      <Link href={item.href} target={item.newTab ? "_blank" : ""}>
+                      <Link
+                        href={item.href}
+                        target={item.newTab ? "_blank" : ""}
+                      >
                         {pathname === item.href ? (
                           reduceMotion ? (
                             <span
@@ -300,7 +289,7 @@ export function NavMain({ isAdmin = false }: { isAdmin?: boolean }) {
                               transition={{
                                 type: "tween",
                                 duration: 0.35,
-                                ease: [0.22, 1, 0.36, 1]
+                                ease: [0.22, 1, 0.36, 1],
                               }}
                               className="bg-sidebar-accent absolute inset-0 -z-10 rounded-md"
                             />

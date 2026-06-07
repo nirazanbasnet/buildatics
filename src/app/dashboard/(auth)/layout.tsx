@@ -9,7 +9,7 @@ import { SiteHeader } from "@src/components/layout/header";
 import { getSession } from "@/features/auth";
 
 export default async function AuthLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -32,7 +32,7 @@ export default async function AuthLayout({
           "--content-padding": "calc(var(--spacing) * 4)",
           "--content-margin": "calc(var(--spacing) * 1.5)",
           "--content-full-height":
-            "calc(100vh - var(--header-height) - (var(--content-padding) * 2) - (var(--content-margin) * 2))"
+            "calc(100vh - var(--header-height) - (var(--content-padding) * 2) - (var(--content-margin) * 2))",
         } as React.CSSProperties
       }
     >

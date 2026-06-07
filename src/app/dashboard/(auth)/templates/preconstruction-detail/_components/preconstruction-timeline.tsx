@@ -12,7 +12,7 @@ import {
   TimelineIndicator,
   TimelineItem,
   TimelineSeparator,
-  TimelineTitle
+  TimelineTitle,
 } from "@/components/ui/timeline";
 
 import type { PreconstructionDetailProject } from "../_data";
@@ -29,8 +29,14 @@ export function PreconstructionTimeline({ project, className }: Props) {
   const reduceMotion = useReducedMotion() ?? false;
 
   return (
-    <PreconstructionTabLayout categories={project.categories} className={className}>
-      <section className="bg-card rounded-2xl border p-5" data-slot="timeline-card">
+    <PreconstructionTabLayout
+      categories={project.categories}
+      className={className}
+    >
+      <section
+        className="bg-card rounded-2xl border p-5"
+        data-slot="timeline-card"
+      >
         <header className="flex items-center justify-between gap-3 pb-2">
           <h3 className="text-foreground text-lg font-semibold">Timeline</h3>
           <Button size="sm" className="h-9">
@@ -49,7 +55,11 @@ export function PreconstructionTimeline({ project, className }: Props) {
                   : {
                       initial: { opacity: 0 },
                       animate: { opacity: 1 },
-                      transition: { duration: 0.3, delay: index * 0.05, ease: "easeOut" as const }
+                      transition: {
+                        duration: 0.3,
+                        delay: index * 0.05,
+                        ease: "easeOut" as const,
+                      },
                     })}
               >
                 <TimelineHeader>
@@ -58,14 +68,18 @@ export function PreconstructionTimeline({ project, className }: Props) {
                     <TimelineTitle className="text-foreground text-base font-semibold">
                       {entry.title}
                     </TimelineTitle>
-                    <span className="text-muted-foreground shrink-0 text-sm">{entry.time}</span>
+                    <span className="text-muted-foreground shrink-0 text-sm">
+                      {entry.time}
+                    </span>
                   </div>
                   <TimelineIndicator className="flex size-6 items-center justify-center border-0 bg-emerald-500 text-white">
                     <Check className="size-3.5" strokeWidth={3} />
                   </TimelineIndicator>
                 </TimelineHeader>
                 <TimelineContent>
-                  <TimelineDate className="text-muted-foreground">{entry.date}</TimelineDate>
+                  <TimelineDate className="text-muted-foreground">
+                    {entry.date}
+                  </TimelineDate>
                 </TimelineContent>
               </motion.div>
             </TimelineItem>

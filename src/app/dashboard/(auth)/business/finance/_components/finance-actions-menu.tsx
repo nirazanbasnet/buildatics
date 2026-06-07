@@ -1,6 +1,13 @@
 "use client";
 
-import { Copy, Download, Eye, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import {
+  Copy,
+  Download,
+  Eye,
+  MoreVertical,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +15,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 type Props = {

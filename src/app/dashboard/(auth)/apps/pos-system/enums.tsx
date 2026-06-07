@@ -1,7 +1,7 @@
 export enum EnumTableStatus {
   AVAILABLE = "available",
   RESERVED = "reserved",
-  OCCUPIED = "occupied"
+  OCCUPIED = "occupied",
 }
 
 export const EnumTableStatusColor: Record<
@@ -15,16 +15,16 @@ export const EnumTableStatusColor: Record<
   [EnumTableStatus.AVAILABLE]: {
     badge: "success",
     card: "border-green-500 bg-green-50 dark:border-green-900 dark:bg-green-950/70",
-    text: "text-green-600"
+    text: "text-green-600",
   },
   [EnumTableStatus.RESERVED]: {
     badge: "info",
     card: "border-blue-500 bg-blue-50 dark:border-blue-900 dark:bg-blue-950/70",
-    text: "text-blue-600"
+    text: "text-blue-600",
   },
   [EnumTableStatus.OCCUPIED]: {
     badge: "destructive",
     card: "border-red-500 bg-red-50 dark:border-red-900 dark:bg-red-950/70",
-    text: "text-red-600"
-  }
+    text: "text-red-600",
+  },
 };

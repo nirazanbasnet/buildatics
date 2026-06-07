@@ -6,7 +6,7 @@ import {
   PlusIcon,
   ShipWheelIcon,
   TreePalmIcon,
-  UnlinkIcon
+  UnlinkIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -16,7 +16,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Table,
@@ -26,7 +26,7 @@ import {
   TableFooter,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 
 const projects = [
@@ -36,7 +36,7 @@ const projects = [
     icon: Package2Icon,
     progress: 0,
     hoursSpent: "4:25",
-    updated: "Updated 2 hours ago"
+    updated: "Updated 2 hours ago",
   },
   {
     id: "2",
@@ -44,7 +44,7 @@ const projects = [
     icon: ShipWheelIcon,
     progress: 45,
     hoursSpent: "18:42",
-    updated: "Updated 1 day ago"
+    updated: "Updated 1 day ago",
   },
   {
     id: "3",
@@ -52,7 +52,7 @@ const projects = [
     icon: TreePalmIcon,
     progress: 59,
     hoursSpent: "9:01",
-    updated: "Updated 2 days ago"
+    updated: "Updated 2 days ago",
   },
   {
     id: "4",
@@ -60,7 +60,7 @@ const projects = [
     icon: UnlinkIcon,
     progress: 57,
     hoursSpent: "0:37",
-    updated: "Updated 2 days ago"
+    updated: "Updated 2 days ago",
   },
   {
     id: "5",
@@ -68,7 +68,7 @@ const projects = [
     icon: AtomIcon,
     progress: 100,
     hoursSpent: "24:12",
-    updated: "Updated 1 week ago"
+    updated: "Updated 1 week ago",
   },
   {
     id: "6",
@@ -76,8 +76,8 @@ const projects = [
     icon: CatIcon,
     progress: 0,
     hoursSpent: "8:08",
-    updated: "Updated 1 week ago"
-  }
+    updated: "Updated 1 week ago",
+  },
 ];
 
 export function ProjectsTable() {
@@ -110,7 +110,9 @@ export function ProjectsTable() {
                     </div>
                     <div className="min-w-0">
                       <p className="truncate font-medium">{project.name}</p>
-                      <p className="text-muted-foreground text-xs">{project.updated}</p>
+                      <p className="text-muted-foreground text-xs">
+                        {project.updated}
+                      </p>
                     </div>
                   </div>
                 </TableCell>
@@ -122,14 +124,19 @@ export function ProjectsTable() {
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className="text-right">{project.hoursSpent}</TableCell>
+                <TableCell className="text-right">
+                  {project.hoursSpent}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </CardContent>
       <CardFooter className="border-t p-0!">
-        <Button variant="link" className="text-muted-foreground w-full justify-center">
+        <Button
+          variant="link"
+          className="text-muted-foreground w-full justify-center"
+        >
           View all projects
           <ChevronRight />
         </Button>

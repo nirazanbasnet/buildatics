@@ -4,7 +4,7 @@ import {
   HardHat,
   LayoutDashboard,
   ListChecks,
-  type LucideIcon
+  type LucideIcon,
 } from "lucide-react";
 
 export type PreconstructionCategoryStatus = "done" | "in-progress" | "pending";
@@ -97,38 +97,46 @@ export const preconstructionDetailTabs = [
   "ITI Preconstruction",
   "Tasks",
   "Documents",
-  "Timeline"
+  "Timeline",
 ] as const;
 
-export type PreconstructionDetailTab = (typeof preconstructionDetailTabs)[number];
+export type PreconstructionDetailTab =
+  (typeof preconstructionDetailTabs)[number];
 
-const preconstructionDetailTabIcons: Record<PreconstructionDetailTab, LucideIcon> = {
+const preconstructionDetailTabIcons: Record<
+  PreconstructionDetailTab,
+  LucideIcon
+> = {
   Overview: LayoutDashboard,
   "ITI Preconstruction": HardHat,
   Tasks: ListChecks,
   Documents: FileText,
-  Timeline: Calendar
+  Timeline: Calendar,
 };
 
-export const preconstructionDetailTabItems = preconstructionDetailTabs.map((value) => ({
-  value,
-  icon: preconstructionDetailTabIcons[value]
-}));
+export const preconstructionDetailTabItems = preconstructionDetailTabs.map(
+  (value) => ({
+    value,
+    icon: preconstructionDetailTabIcons[value],
+  }),
+);
 
 const dummyOwner = {
   name: "client_name",
   address: "lotNo, streetNo streetName, suburb postCode",
   email: "client_email@gmail.com",
-  contact: "+61 400 000 000"
+  contact: "+61 400 000 000",
 };
 
-function buildStageTasks(statuses: PreconstructionTaskStatus[]): PreconstructionTask[] {
+function buildStageTasks(
+  statuses: PreconstructionTaskStatus[],
+): PreconstructionTask[] {
   return statuses.map((status, i) => ({
     id: `t${i + 1}`,
     label: `Task ${i + 1}`,
     staff: "staff_name",
     status,
-    date: "25 Jan 2027"
+    date: "25 Jan 2027",
   }));
 }
 
@@ -136,28 +144,48 @@ const preconstructionStages: PreconstructionStage[] = [
   {
     id: "s1",
     label: "Concept Stage",
-    tasks: buildStageTasks(["completed", "completed", "completed", "completed"])
+    tasks: buildStageTasks([
+      "completed",
+      "completed",
+      "completed",
+      "completed",
+    ]),
   },
   {
     id: "s2",
     label: "Preliminary Drawing",
-    tasks: buildStageTasks(["completed", "completed", "completed", "completed"])
+    tasks: buildStageTasks([
+      "completed",
+      "completed",
+      "completed",
+      "completed",
+    ]),
   },
   {
     id: "s3",
     label: "Developer Approval",
-    tasks: buildStageTasks(["completed", "completed", "completed", "completed"])
+    tasks: buildStageTasks([
+      "completed",
+      "completed",
+      "completed",
+      "completed",
+    ]),
   },
   {
     id: "s4",
     label: "Construction Drawings",
-    tasks: buildStageTasks(["in-progress", "completed", "completed", "in-progress"])
+    tasks: buildStageTasks([
+      "in-progress",
+      "completed",
+      "completed",
+      "in-progress",
+    ]),
   },
   {
     id: "s5",
     label: "Building Permit",
-    tasks: buildStageTasks(["pending", "pending", "pending", "pending"])
-  }
+    tasks: buildStageTasks(["pending", "pending", "pending", "pending"]),
+  },
 ];
 
 const preconstructionTaskRows: PreconstructionTaskRow[] = [
@@ -166,22 +194,22 @@ const preconstructionTaskRows: PreconstructionTaskRow[] = [
     label: "Task 1",
     status: "in-progress",
     startDate: "25 Jan 2027",
-    dueDate: "25 Jan 2027"
+    dueDate: "25 Jan 2027",
   },
   {
     id: "task-2",
     label: "Task 2",
     status: "in-progress",
     startDate: "25 Jan 2027",
-    dueDate: "25 Jan 2027"
+    dueDate: "25 Jan 2027",
   },
   {
     id: "task-3",
     label: "Task 3",
     status: "in-progress",
     startDate: "25 Jan 2027",
-    dueDate: "25 Jan 2027"
-  }
+    dueDate: "25 Jan 2027",
+  },
 ];
 
 const preconstructionDocuments: PreconstructionDocument[] = [
@@ -190,22 +218,22 @@ const preconstructionDocuments: PreconstructionDocument[] = [
     name: "file_name",
     size: "file_size",
     uploadedBy: "staff_name",
-    uploadedOn: "uploaded_date"
+    uploadedOn: "uploaded_date",
   },
   {
     id: "doc-2",
     name: "file_name",
     size: "file_size",
     uploadedBy: "staff_name",
-    uploadedOn: "uploaded_date"
+    uploadedOn: "uploaded_date",
   },
   {
     id: "doc-3",
     name: "file_name",
     size: "file_size",
     uploadedBy: "staff_name",
-    uploadedOn: "uploaded_date"
-  }
+    uploadedOn: "uploaded_date",
+  },
 ];
 
 const preconstructionTimeline: PreconstructionTimelineEntry[] = [
@@ -213,16 +241,26 @@ const preconstructionTimeline: PreconstructionTimelineEntry[] = [
     id: "log-1",
     title: "Email was sent for site verification",
     date: "22 July, 2021",
-    time: "2:61 PM"
+    time: "2:61 PM",
   },
-  { id: "log-2", title: "Called for progress update", date: "23 July, 2021", time: "7:32 PM" },
+  {
+    id: "log-2",
+    title: "Called for progress update",
+    date: "23 July, 2021",
+    time: "7:32 PM",
+  },
   {
     id: "log-3",
     title: "Email was sent for site verification",
     date: "22 July, 2021",
-    time: "2:61 PM"
+    time: "2:61 PM",
   },
-  { id: "log-4", title: "Called for progress update", date: "23 July, 2021", time: "7:32 PM" }
+  {
+    id: "log-4",
+    title: "Called for progress update",
+    date: "23 July, 2021",
+    time: "7:32 PM",
+  },
 ];
 
 export const preconstructionDetailMock: PreconstructionDetailProject = {
@@ -240,7 +278,7 @@ export const preconstructionDetailMock: PreconstructionDetailProject = {
   owners: [
     { id: "o1", label: "Owner 1", ...dummyOwner },
     { id: "o2", label: "Owner 2", ...dummyOwner },
-    { id: "o3", label: "Owner 3", ...dummyOwner }
+    { id: "o3", label: "Owner 3", ...dummyOwner },
   ],
   contacts: [
     { id: "c1", role: "Geotech Engineer", value: "geotechEngineer_name" },
@@ -249,18 +287,54 @@ export const preconstructionDetailMock: PreconstructionDetailProject = {
     { id: "c4", role: "Building Surveyer", value: "buildingSurveyer_name" },
     { id: "c5", role: "Developer", value: "developer_name" },
     { id: "c6", role: "Council", value: "council_name" },
-    { id: "c7", role: "Water Authority", value: "waterAuthority_name" }
+    { id: "c7", role: "Water Authority", value: "waterAuthority_name" },
   ],
   categories: [
-    { id: "cat1", label: "Legal and Finance", status: "done", completed: 4, total: 4 },
-    { id: "cat2", label: "Design and Drafting", status: "done", completed: 4, total: 4 },
-    { id: "cat3", label: "Permits and Approval", status: "done", completed: 4, total: 4 },
-    { id: "cat4", label: "Color and Selection", status: "in-progress", completed: 2, total: 4 },
-    { id: "cat5", label: "Sites and Trades", status: "in-progress", completed: 2, total: 4 },
-    { id: "cat6", label: "Pre-Start", status: "pending", completed: 0, total: 4 }
+    {
+      id: "cat1",
+      label: "Legal and Finance",
+      status: "done",
+      completed: 4,
+      total: 4,
+    },
+    {
+      id: "cat2",
+      label: "Design and Drafting",
+      status: "done",
+      completed: 4,
+      total: 4,
+    },
+    {
+      id: "cat3",
+      label: "Permits and Approval",
+      status: "done",
+      completed: 4,
+      total: 4,
+    },
+    {
+      id: "cat4",
+      label: "Color and Selection",
+      status: "in-progress",
+      completed: 2,
+      total: 4,
+    },
+    {
+      id: "cat5",
+      label: "Sites and Trades",
+      status: "in-progress",
+      completed: 2,
+      total: 4,
+    },
+    {
+      id: "cat6",
+      label: "Pre-Start",
+      status: "pending",
+      completed: 0,
+      total: 4,
+    },
   ],
   stages: preconstructionStages,
   taskList: preconstructionTaskRows,
   documents: preconstructionDocuments,
-  timelineEntries: preconstructionTimeline
+  timelineEntries: preconstructionTimeline,
 };

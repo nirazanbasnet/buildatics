@@ -5,9 +5,8 @@ import { LoginForm } from "@/features/auth";
 export function generateMetadata() {
   return generateMeta({
     title: "Login",
-    description:
-      "Sign in to Buildatics with your email and password.",
-    canonical: "/login"
+    description: "Sign in to Buildatics with your email and password.",
+    canonical: "/login",
   });
 }
 

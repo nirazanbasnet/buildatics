@@ -8,7 +8,7 @@ export async function generateMetadata() {
     title: "404 Page",
     description:
       "This is an example of a template for 404 error pages. Built with shadcn/ui, Tailwind CSS and Next.js.",
-    canonical: "/pages/error/404"
+    canonical: "/pages/error/404",
   });
 }
 
@@ -23,7 +23,7 @@ export default function Page() {
                 key={i}
                 className="border-primary/30 border"
                 style={{
-                  opacity: Math.random() * 0.5 + 0.5
+                  opacity: Math.random() * 0.5 + 0.5,
                 }}
               />
             ))}
@@ -33,7 +33,9 @@ export default function Page() {
             <div className="text-primary mb-4 text-8xl font-black tracking-tighter sm:text-9xl">
               404
             </div>
-            <div className="text-foreground text-xl font-medium sm:text-2xl">Page Not Found</div>
+            <div className="text-foreground text-xl font-medium sm:text-2xl">
+              Page Not Found
+            </div>
           </div>
 
           <div className="from-background/80 absolute right-0 bottom-0 left-0 h-1/3 bg-linear-to-t to-transparent" />

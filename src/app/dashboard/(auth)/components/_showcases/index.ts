@@ -29,5 +29,5 @@ export const SHOWCASES: Record<string, ComponentType> = {
   switch: SwitchShowcase,
   tabs: TabsShowcase,
   textarea: TextareaShowcase,
-  tooltip: TooltipShowcase
+  tooltip: TooltipShowcase,
 };

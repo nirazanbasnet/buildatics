@@ -22,7 +22,7 @@ const initialFilters = {
   customRange: [8000, 40000],
   selectedType: "all",
   bedroom: "any",
-  selectedAmenities: [] as string[]
+  selectedAmenities: [] as string[],
 };
 
 export const usePropertyFilterStore = create<FilterState>((set) => ({
@@ -36,7 +36,7 @@ export const usePropertyFilterStore = create<FilterState>((set) => ({
     set((state) => ({
       selectedAmenities: state.selectedAmenities.includes(amenity)
         ? state.selectedAmenities.filter((item) => item !== amenity)
-        : [...state.selectedAmenities, amenity]
+        : [...state.selectedAmenities, amenity],
     })),
-  resetFilters: () => set(initialFilters)
+  resetFilters: () => set(initialFilters),
 }));

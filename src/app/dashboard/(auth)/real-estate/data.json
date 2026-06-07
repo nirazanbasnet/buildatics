@@ -36,7 +36,10 @@
         "description": "Follow up with Mr. Aditya about payment status.",
         "month": "Oct",
         "day": "08",
-        "avatars": ["https://i.pravatar.cc/100?img=39", "https://i.pravatar.cc/100?img=40"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=39",
+          "https://i.pravatar.cc/100?img=40"
+        ]
       },
       {
         "title": "Upload new photos",
@@ -50,7 +53,10 @@
         "description": "Review and sign contract draft for The Somerset sale.",
         "month": "Oct",
         "day": "17",
-        "avatars": ["https://i.pravatar.cc/100?img=42", "https://i.pravatar.cc/100?img=43"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=42",
+          "https://i.pravatar.cc/100?img=43"
+        ]
       }
     ],
     "leads": [
@@ -110,7 +116,10 @@
       "cost": "$ 622K",
       "leads": {
         "count": 18,
-        "avatars": ["https://i.pravatar.cc/100?img=13", "https://i.pravatar.cc/100?img=14"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=13",
+          "https://i.pravatar.cc/100?img=14"
+        ]
       },
       "views": 312,
       "listingStatus": "Available",
@@ -149,7 +158,10 @@
       "cost": "$ 905K",
       "leads": {
         "count": 26,
-        "avatars": ["https://i.pravatar.cc/100?img=15", "https://i.pravatar.cc/100?img=16"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=15",
+          "https://i.pravatar.cc/100?img=16"
+        ]
       },
       "views": 445,
       "listingStatus": "Occupied",
@@ -184,7 +196,10 @@
       "cost": "$ 672K",
       "leads": {
         "count": 41,
-        "avatars": ["https://i.pravatar.cc/100?img=17", "https://i.pravatar.cc/100?img=18"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=17",
+          "https://i.pravatar.cc/100?img=18"
+        ]
       },
       "views": 156,
       "listingStatus": "Sold Out",
@@ -220,7 +235,10 @@
       "cost": "$ 655K",
       "leads": {
         "count": 9,
-        "avatars": ["https://i.pravatar.cc/100?img=19", "https://i.pravatar.cc/100?img=20"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=19",
+          "https://i.pravatar.cc/100?img=20"
+        ]
       },
       "views": 267,
       "listingStatus": "Available",
@@ -255,7 +273,10 @@
       "cost": "$ 602K",
       "leads": {
         "count": 52,
-        "avatars": ["https://i.pravatar.cc/100?img=21", "https://i.pravatar.cc/100?img=22"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=21",
+          "https://i.pravatar.cc/100?img=22"
+        ]
       },
       "views": 891,
       "listingStatus": "Occupied",
@@ -290,7 +311,10 @@
       "cost": "$ 842K",
       "leads": {
         "count": 6,
-        "avatars": ["https://i.pravatar.cc/100?img=23", "https://i.pravatar.cc/100?img=24"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=23",
+          "https://i.pravatar.cc/100?img=24"
+        ]
       },
       "views": 124,
       "listingStatus": "Available",
@@ -325,7 +349,10 @@
       "cost": "$ 748K",
       "leads": {
         "count": 33,
-        "avatars": ["https://i.pravatar.cc/100?img=25", "https://i.pravatar.cc/100?img=26"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=25",
+          "https://i.pravatar.cc/100?img=26"
+        ]
       },
       "views": 502,
       "listingStatus": "Available",
@@ -360,7 +387,10 @@
       "cost": "$ 662K",
       "leads": {
         "count": 29,
-        "avatars": ["https://i.pravatar.cc/100?img=27", "https://i.pravatar.cc/100?img=28"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=27",
+          "https://i.pravatar.cc/100?img=28"
+        ]
       },
       "views": 338,
       "listingStatus": "Occupied",
@@ -395,7 +425,10 @@
       "cost": "$ 936K",
       "leads": {
         "count": 37,
-        "avatars": ["https://i.pravatar.cc/100?img=29", "https://i.pravatar.cc/100?img=30"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=29",
+          "https://i.pravatar.cc/100?img=30"
+        ]
       },
       "views": 673,
       "listingStatus": "Sold Out",
@@ -430,7 +463,10 @@
       "cost": "$ 902K",
       "leads": {
         "count": 14,
-        "avatars": ["https://i.pravatar.cc/100?img=31", "https://i.pravatar.cc/100?img=32"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=31",
+          "https://i.pravatar.cc/100?img=32"
+        ]
       },
       "views": 221,
       "listingStatus": "Available",
@@ -465,7 +501,10 @@
       "cost": "$ 724K",
       "leads": {
         "count": 48,
-        "avatars": ["https://i.pravatar.cc/100?img=33", "https://i.pravatar.cc/100?img=34"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=33",
+          "https://i.pravatar.cc/100?img=34"
+        ]
       },
       "views": 418,
       "listingStatus": "Available",
@@ -500,7 +539,10 @@
       "cost": "$ 972K",
       "leads": {
         "count": 22,
-        "avatars": ["https://i.pravatar.cc/100?img=35", "https://i.pravatar.cc/100?img=36"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=35",
+          "https://i.pravatar.cc/100?img=36"
+        ]
       },
       "views": 155,
       "listingStatus": "Occupied",
@@ -535,7 +577,10 @@
       "cost": "$ 1.5M",
       "leads": {
         "count": 32,
-        "avatars": ["https://i.pravatar.cc/100?img=5", "https://i.pravatar.cc/100?img=6"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=5",
+          "https://i.pravatar.cc/100?img=6"
+        ]
       },
       "views": 125,
       "listingStatus": "Occupied",
@@ -570,7 +615,10 @@
       "cost": "$ 520K",
       "leads": {
         "count": 15,
-        "avatars": ["https://i.pravatar.cc/100?img=7", "https://i.pravatar.cc/100?img=8"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=7",
+          "https://i.pravatar.cc/100?img=8"
+        ]
       },
       "views": 930,
       "listingStatus": "Available",
@@ -605,7 +653,10 @@
       "cost": "$ 700K",
       "leads": {
         "count": 40,
-        "avatars": ["https://i.pravatar.cc/100?img=9", "https://i.pravatar.cc/100?img=10"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=9",
+          "https://i.pravatar.cc/100?img=10"
+        ]
       },
       "views": 355,
       "listingStatus": "Available",
@@ -640,7 +691,10 @@
       "cost": "$ 700K",
       "leads": {
         "count": 11,
-        "avatars": ["https://i.pravatar.cc/100?img=11", "https://i.pravatar.cc/100?img=12"]
+        "avatars": [
+          "https://i.pravatar.cc/100?img=11",
+          "https://i.pravatar.cc/100?img=12"
+        ]
       },
       "views": 425,
       "listingStatus": "Sold Out",

@@ -6,7 +6,11 @@ import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 
 interface NavProps {
@@ -37,7 +41,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                     buttonVariants({ variant: link.variant, size: "icon" }),
                     "size-9",
                     link.variant === "default" &&
-                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
+                      "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white",
                   )}
                 >
                   {link.dot ?? <link.icon className="size-4" />}
@@ -46,7 +50,11 @@ export function Nav({ links, isCollapsed }: NavProps) {
               </TooltipTrigger>
               <TooltipContent side="right" className="flex items-center gap-4">
                 {link.title}
-                {link.label && <span className="text-muted-foreground ml-auto">{link.label}</span>}
+                {link.label && (
+                  <span className="text-muted-foreground ml-auto">
+                    {link.label}
+                  </span>
+                )}
               </TooltipContent>
             </Tooltip>
           ) : (
@@ -57,7 +65,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 buttonVariants({ variant: link.variant, size: "sm" }),
                 link.variant === "default" &&
                   "dark:bg-muted dark:hover:bg-muted dark:text-white dark:hover:text-white",
-                "flex justify-start gap-3"
+                "flex justify-start gap-3",
               )}
             >
               {link.dot ?? <link.icon className="size-4" />}
@@ -71,7 +79,7 @@ export function Nav({ links, isCollapsed }: NavProps) {
                 </Badge>
               )}
             </Link>
-          )
+          ),
         )}
       </nav>
     </div>

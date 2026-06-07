@@ -12,18 +12,28 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, Columns, FilterIcon, MoreHorizontal, PlusCircle } from "lucide-react";
+import {
+  ArrowUpDown,
+  Columns,
+  FilterIcon,
+  MoreHorizontal,
+  PlusCircle,
+} from "lucide-react";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,7 +43,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -42,7 +52,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -70,7 +80,8 @@ export const columns: ColumnDef<Order>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -84,7 +95,7 @@ export const columns: ColumnDef<Order>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
     accessorKey: "id",
@@ -96,7 +107,7 @@ export const columns: ColumnDef<Order>[] = [
       >
         #{row.getValue("id")}
       </Link>
-    )
+    ),
   },
   {
     accessorKey: "product_name",
@@ -110,7 +121,7 @@ export const columns: ColumnDef<Order>[] = [
         />
         {row.getValue("product_name")}
       </div>
-    )
+    ),
   },
   {
     accessorKey: "price",
@@ -126,7 +137,7 @@ export const columns: ColumnDef<Order>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("price")
+    cell: ({ row }) => row.getValue("price"),
   },
   {
     accessorKey: "customer",
@@ -140,7 +151,7 @@ export const columns: ColumnDef<Order>[] = [
           <div className="text-muted-foreground">{customer.email}</div>
         </div>
       );
-    }
+    },
   },
   {
     accessorKey: "date",
@@ -156,12 +167,12 @@ export const columns: ColumnDef<Order>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("date")
+    cell: ({ row }) => row.getValue("date"),
   },
   {
     accessorKey: "type",
     header: "Type",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("type")}</div>
+    cell: ({ row }) => <div className="capitalize">{row.getValue("type")}</div>,
   },
   {
     accessorKey: "status",
@@ -186,7 +197,7 @@ export const columns: ColumnDef<Order>[] = [
         pending: "warning",
         cancel: "destructive",
         completed: "success",
-        delivered: "success"
+        delivered: "success",
       } as const;
 
       const statusClass = statusMap[status] ?? "secondary";
@@ -198,7 +209,7 @@ export const columns: ColumnDef<Order>[] = [
           </Badge>
         </div>
       );
-    }
+    },
   },
   {
     id: "actions",
@@ -223,14 +234,17 @@ export const columns: ColumnDef<Order>[] = [
           </DropdownMenu>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export default function OrdersDataTable({ data }: { data: Order[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -248,50 +262,50 @@ export default function OrdersDataTable({ data }: { data: Order[] }) {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   const statuses = [
     {
       value: "pending",
-      label: "Pending"
+      label: "Pending",
     },
     {
       value: "completed",
-      label: "Completed"
+      label: "Completed",
     },
     {
       value: "shipped",
-      label: "Shipped"
+      label: "Shipped",
     },
     {
       value: "delivered",
-      label: "Delivered"
-    }
+      label: "Delivered",
+    },
   ];
 
   const categories = [
     {
       value: "beauty",
-      label: "Beauty"
+      label: "Beauty",
     },
     {
       value: "technology",
-      label: "Technology"
+      label: "Technology",
     },
     {
       value: "toys",
-      label: "Toys"
+      label: "Toys",
     },
     {
       value: "food",
-      label: "Food"
+      label: "Food",
     },
     {
       value: "home-appliances",
-      label: "Home Appliances"
-    }
+      label: "Home Appliances",
+    },
   ];
 
   const Filters = () => {
@@ -368,8 +382,12 @@ export default function OrdersDataTable({ data }: { data: Order[] }) {
       <div className="flex gap-3">
         <Input
           placeholder="Search orders..."
-          value={(table.getColumn("product_name")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("product_name")?.setFilterValue(event.target.value)}
+          value={
+            (table.getColumn("product_name")?.getFilterValue() as string) ?? ""
+          }
+          onChange={(event) =>
+            table.getColumn("product_name")?.setFilterValue(event.target.value)
+          }
           className="md:max-w-sm"
         />
         <div className="hidden gap-2 md:flex">
@@ -407,7 +425,9 @@ export default function OrdersDataTable({ data }: { data: Order[] }) {
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -428,7 +448,10 @@ export default function OrdersDataTable({ data }: { data: Order[] }) {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -438,17 +461,26 @@ export default function OrdersDataTable({ data }: { data: Order[] }) {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils";
 
 import Icon from "@/components/icon";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const data = {
@@ -11,39 +17,39 @@ const data = {
       name: "Emails",
       value: 1.503,
       percentage: -0.3,
-      icon: "Mail"
+      icon: "Mail",
     },
     {
       name: "Opened",
       value: 6.043,
       percentage: 2.1,
-      icon: "Eye"
+      icon: "Eye",
     },
     {
       name: "Clicked",
       value: 600,
       percentage: -2.1,
-      icon: "MousePointer"
+      icon: "MousePointer",
     },
     {
       name: "Subscribe",
       value: 490,
       percentage: 8.5,
-      icon: "UserPlus"
+      icon: "UserPlus",
     },
     {
       name: "Complaints",
       value: 490,
       percentage: 4.5,
-      icon: "CircleAlert"
+      icon: "CircleAlert",
     },
     {
       name: "Unsubscribe",
       value: 1.2,
       percentage: -0.5,
-      icon: "UserMinus"
-    }
-  ]
+      icon: "UserMinus",
+    },
+  ],
 };
 
 export function MonthlyCampaignStateCard() {
@@ -70,7 +76,7 @@ export function MonthlyCampaignStateCard() {
                     variant="outline"
                     className={cn({
                       "text-green-600": metric.percentage >= 0,
-                      "text-red-600": metric.percentage < 0
+                      "text-red-600": metric.percentage < 0,
                     })}
                   >
                     {metric.percentage}%

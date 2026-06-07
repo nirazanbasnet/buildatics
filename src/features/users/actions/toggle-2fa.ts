@@ -8,19 +8,28 @@ import type { UserActionResult } from "../types";
 // Enables/disables email-OTP 2FA for a user. PATCH /api/UsersA/UpdateEmailOtpTwoFactor (Bearer, Admin).
 export async function toggleUserTwoFactor(
   userId: string,
-  emailOtp2FAEnabled: boolean
+  emailOtp2FAEnabled: boolean,
 ): Promise<UserActionResult> {
   const body: UpdateUserEmailOtp2FAReq = { userId, emailOtp2FAEnabled };
   try {
-    await apiFetch("/api/UsersA/UpdateEmailOtpTwoFactor", { method: "PATCH", auth: true, body });
+    await apiFetch("/api/UsersA/UpdateEmailOtpTwoFactor", {
+      method: "PATCH",
+      auth: true,
+      body,
+    });
     return {
       ok: true,
-      message: emailOtp2FAEnabled ? "Two-factor enabled." : "Two-factor disabled."
+      message: emailOtp2FAEnabled
+        ? "Two-factor enabled."
+        : "Two-factor disabled.",
     };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to update two-factor."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to update two-factor.",
     };
   }
 }

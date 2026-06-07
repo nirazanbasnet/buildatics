@@ -9,7 +9,7 @@ import {
   getSortedRowModel,
   flexRender,
   ColumnDef,
-  SortingState
+  SortingState,
 } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,20 +19,20 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
 import {
@@ -42,9 +42,13 @@ import {
   Filter,
   MoreHorizontal,
   Plus,
-  Search
+  Search,
 } from "lucide-react";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import type { RealEstateProperty } from "../../types";
 
 interface PropertyTableProps {
@@ -52,7 +56,7 @@ interface PropertyTableProps {
 }
 
 const getStatusVariant = (
-  status: string
+  status: string,
 ): NonNullable<React.ComponentProps<typeof Badge>["variant"]> => {
   switch (status) {
     case "On rent":
@@ -97,12 +101,16 @@ export function PropertyTable({ items }: PropertyTableProps) {
           />
           <span className="font-medium">{row.original.name}</span>
         </div>
-      )
+      ),
     },
     {
       accessorKey: "listingCode",
       header: "ID",
-      cell: ({ row }) => <span className="text-muted-foreground">{row.original.listingCode}</span>
+      cell: ({ row }) => (
+        <span className="text-muted-foreground">
+          {row.original.listingCode}
+        </span>
+      ),
     },
     {
       accessorKey: "status",
@@ -118,8 +126,10 @@ export function PropertyTable({ items }: PropertyTableProps) {
       cell: ({ row }) => {
         const statusLabel = row.original.status?.trim() || "Unknown";
 
-        return <Badge variant={getStatusVariant(statusLabel)}>{statusLabel}</Badge>;
-      }
+        return (
+          <Badge variant={getStatusVariant(statusLabel)}>{statusLabel}</Badge>
+        );
+      },
     },
     {
       accessorKey: "priceMin",
@@ -134,9 +144,10 @@ export function PropertyTable({ items }: PropertyTableProps) {
       ),
       cell: ({ row }) => (
         <span>
-          ${row.original.priceMin.toLocaleString()} - ${row.original.priceMax.toLocaleString()}
+          ${row.original.priceMin.toLocaleString()} - $
+          {row.original.priceMax.toLocaleString()}
         </span>
-      )
+      ),
     },
     {
       accessorKey: "sqft",
@@ -149,7 +160,7 @@ export function PropertyTable({ items }: PropertyTableProps) {
           <ChevronDown className="h-4 w-4" />
         </button>
       ),
-      cell: ({ row }) => <span>{row.original.sqft.toLocaleString()}</span>
+      cell: ({ row }) => <span>{row.original.sqft.toLocaleString()}</span>,
     },
     {
       accessorKey: "complain",
@@ -161,9 +172,11 @@ export function PropertyTable({ items }: PropertyTableProps) {
             className="bg-muted w-20"
             indicatorColor={getProgressColor(row.original.complain)}
           />
-          <span className="text-muted-foreground text-xs">{row.original.complain}%</span>
+          <span className="text-muted-foreground text-xs">
+            {row.original.complain}%
+          </span>
         </div>
-      )
+      ),
     },
     {
       id: "actions",
@@ -180,8 +193,8 @@ export function PropertyTable({ items }: PropertyTableProps) {
             <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-      )
-    }
+      ),
+    },
   ];
 
   const table = useReactTable({
@@ -189,7 +202,7 @@ export function PropertyTable({ items }: PropertyTableProps) {
     columns,
     state: {
       sorting,
-      globalFilter
+      globalFilter,
     },
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
@@ -199,9 +212,9 @@ export function PropertyTable({ items }: PropertyTableProps) {
     getSortedRowModel: getSortedRowModel(),
     initialState: {
       pagination: {
-        pageSize: 10
-      }
-    }
+        pageSize: 10,
+      },
+    },
   });
 
   const totalRows = table.getFilteredRowModel().rows.length;
@@ -255,7 +268,10 @@ export function PropertyTable({ items }: PropertyTableProps) {
                   <TableHead key={header.id}>
                     {header.isPlaceholder
                       ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -267,14 +283,20 @@ export function PropertyTable({ items }: PropertyTableProps) {
                 <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

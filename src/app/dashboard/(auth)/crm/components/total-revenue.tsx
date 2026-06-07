@@ -1,5 +1,10 @@
 import { WalletMinimal } from "lucide-react";
-import { Card, CardAction, CardDescription, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardHeader,
+} from "@/components/ui/card";
 
 export function TotalRevenueCard() {
   return (

@@ -5,7 +5,7 @@ import {
   DialogTrigger,
   DialogContent,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -46,7 +46,11 @@ export default function SubmitReviewForm() {
           </div>
           <div className="grid gap-2">
             <Label htmlFor="comment">Comment</Label>
-            <Textarea id="comment" placeholder="Share your thoughts..." rows={4} />
+            <Textarea
+              id="comment"
+              placeholder="Share your thoughts..."
+              rows={4}
+            />
           </div>
           <div className="flex gap-2">
             <StarRating rating={rating} onRatingChangeAction={setRating} />

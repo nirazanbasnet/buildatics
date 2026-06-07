@@ -2,12 +2,18 @@
 
 import { Area, AreaChart, CartesianGrid } from "recharts";
 
-import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Badge } from "@/components/ui/badge";
 import CalendarDateRangePicker from "@/components/custom-date-range-picker";
@@ -18,14 +24,14 @@ const chartData = [
   { month: "March", desktop: 4 },
   { month: "April", desktop: 6 },
   { month: "May", desktop: 6 },
-  { month: "June", desktop: 7 }
+  { month: "June", desktop: 7 },
 ];
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export function CourseProgressByMonth() {
@@ -47,19 +53,35 @@ export function CourseProgressByMonth() {
           data={chartData}
           margin={{
             left: 0,
-            right: 0
+            right: 0,
           }}
         >
           <CartesianGrid vertical={false} />
           <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
           <defs>
             <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--color-desktop)" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="var(--color-desktop)" stopOpacity={0.1} />
+              <stop
+                offset="5%"
+                stopColor="var(--color-desktop)"
+                stopOpacity={0.8}
+              />
+              <stop
+                offset="95%"
+                stopColor="var(--color-desktop)"
+                stopOpacity={0.1}
+              />
             </linearGradient>
             <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="var(--color-mobile)" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="var(--color-mobile)" stopOpacity={0.1} />
+              <stop
+                offset="5%"
+                stopColor="var(--color-mobile)"
+                stopOpacity={0.8}
+              />
+              <stop
+                offset="95%"
+                stopColor="var(--color-mobile)"
+                stopOpacity={0.1}
+              />
             </linearGradient>
           </defs>
           <Area

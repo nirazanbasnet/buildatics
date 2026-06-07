@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -7,20 +13,20 @@ const friends = [
     name: "Sarah Chen",
     activity: "Completed 10km run",
     time: "2h",
-    avatar: "https://i.pravatar.cc/150?img=1"
+    avatar: "https://i.pravatar.cc/150?img=1",
   },
   {
     name: "Mike Johnson",
     activity: "New PR in deadlifts",
     time: "4h",
-    avatar: "https://i.pravatar.cc/150?img=2"
+    avatar: "https://i.pravatar.cc/150?img=2",
   },
   {
     name: "Emma Davis",
     activity: "Joined yoga challenge",
     time: "6h",
-    avatar: "/imageshttps://i.pravatar.cc/150?img=3"
-  }
+    avatar: "/imageshttps://i.pravatar.cc/150?img=3",
+  },
 ];
 
 export function FriendsCard() {
@@ -44,7 +50,9 @@ export function FriendsCard() {
             </Avatar>
             <div className="min-w-0 flex-1">
               <p className="text-sm font-semibold">{friend.name}</p>
-              <p className="text-muted-foreground truncate text-xs">{friend.activity}</p>
+              <p className="text-muted-foreground truncate text-xs">
+                {friend.activity}
+              </p>
             </div>
             <span className="text-muted-foreground text-xs">{friend.time}</span>
           </div>

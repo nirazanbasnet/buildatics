@@ -11,14 +11,14 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { LEADS_FILTER_DEFAULTS } from "../../lib/filter";
@@ -40,7 +40,7 @@ export function LeadsFilterSheet({
   onOpenChange,
   value,
   onApply,
-  options
+  options,
 }: LeadsFilterSheetProps) {
   const [draft, setDraft] = useState<LeadsFilterState>(value);
   const close = () => onOpenChange(false);
@@ -49,20 +49,38 @@ export function LeadsFilterSheet({
     if (open) setDraft(value);
   }, [open, value]);
 
-  function update<K extends keyof LeadsFilterState>(key: K, next: LeadsFilterState[K]) {
+  function update<K extends keyof LeadsFilterState>(
+    key: K,
+    next: LeadsFilterState[K],
+  ) {
     setDraft((prev) => ({ ...prev, [key]: next }));
   }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" showCloseButton={false} className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        showCloseButton={false}
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="flex flex-row items-center justify-between gap-2 border-b">
-          <Button variant="ghost" size="sm" onClick={close} className="-ml-2 gap-1 p-0! md:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={close}
+            className="-ml-2 gap-1 p-0! md:hidden"
+          >
             <ChevronLeft className="size-5" />
             Back
           </Button>
           <SheetTitle className="text-base font-semibold">Filter</SheetTitle>
-          <Button variant="ghost" size="icon" onClick={close} aria-label="Close" className="p-0! md:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={close}
+            aria-label="Close"
+            className="p-0! md:hidden"
+          >
             <X className="size-5" />
           </Button>
         </SheetHeader>
@@ -102,13 +120,20 @@ export function LeadsFilterSheet({
               value={draft.status}
               onValueChange={(v) => update("status", v)}
               allLabel="All statuses"
-              options={STATUS_VALUES.map((n) => ({ id: String(n), name: statusLabel(n) }))}
+              options={STATUS_VALUES.map((n) => ({
+                id: String(n),
+                name: statusLabel(n),
+              }))}
             />
           </Section>
         </div>
 
         <div className="bg-background sticky bottom-0 z-10 flex items-center justify-between gap-2 border-t px-4 py-4 md:px-6">
-          <Button variant="ghost" size="sm" onClick={() => setDraft(LEADS_FILTER_DEFAULTS)}>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setDraft(LEADS_FILTER_DEFAULTS)}
+          >
             Reset
           </Button>
           <div className="flex gap-2">
@@ -131,7 +156,13 @@ export function LeadsFilterSheet({
   );
 }
 
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
+function Section({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="space-y-2">
       <Label className="text-foreground text-sm font-medium">{label}</Label>
@@ -144,7 +175,7 @@ function FilterSelect({
   value,
   onValueChange,
   allLabel,
-  options
+  options,
 }: {
   value: string;
   onValueChange: (value: string) => void;

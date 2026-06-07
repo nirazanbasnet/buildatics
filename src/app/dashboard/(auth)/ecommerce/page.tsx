@@ -19,7 +19,7 @@ export async function generateMetadata() {
     title: "Ecommerce Admin Dashboard Template",
     description:
       "The e-commerce admin dashboard template is an admin template that you can use for your e-commerce website projects. Built with shadcn/ui, Tailwind CSS, React, Next.js.",
-    canonical: "/ecommerce"
+    canonical: "/ecommerce",
   });
 }
 
@@ -27,7 +27,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">E-Commerce Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          E-Commerce Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <CustomDateRangePicker />
           <Button>

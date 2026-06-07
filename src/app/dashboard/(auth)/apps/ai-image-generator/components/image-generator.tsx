@@ -11,7 +11,7 @@ import {
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger
+  DrawerTrigger,
 } from "@/components/ui/drawer";
 
 import { ImageGeneratorForm, GenerationParams } from "./image-generator-form";
@@ -27,32 +27,35 @@ export default function ImageGenerator() {
         "A majestic mountain landscape at sunset with golden light reflecting on a pristine lake",
       style: "realistic",
       aspectRatio: "1:1",
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000),
     },
     {
       id: "sample-2",
       url: "https://picsum.photos/512/512?random=1002",
-      prompt: "Cyberpunk cityscape with neon lights and flying cars in a futuristic metropolis",
+      prompt:
+        "Cyberpunk cityscape with neon lights and flying cars in a futuristic metropolis",
       style: "digital-art",
       aspectRatio: "1:1",
-      createdAt: new Date(Date.now() - 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 60 * 60 * 1000),
     },
     {
       id: "sample-3",
       url: "https://picsum.photos/512/512?random=1003",
-      prompt: "Adorable corgi puppy playing in a field of colorful wildflowers on a sunny day",
+      prompt:
+        "Adorable corgi puppy playing in a field of colorful wildflowers on a sunny day",
       style: "photographic",
       aspectRatio: "1:1",
-      createdAt: new Date(Date.now() - 30 * 60 * 1000)
+      createdAt: new Date(Date.now() - 30 * 60 * 1000),
     },
     {
       id: "sample-4",
       url: "https://picsum.photos/512/512?random=1004",
-      prompt: "Abstract geometric patterns with vibrant colors and flowing organic shapes",
+      prompt:
+        "Abstract geometric patterns with vibrant colors and flowing organic shapes",
       style: "abstract",
       aspectRatio: "1:1",
-      createdAt: new Date(Date.now() - 15 * 60 * 1000)
-    }
+      createdAt: new Date(Date.now() - 15 * 60 * 1000),
+    },
   ]);
   const [isGenerating, setIsGenerating] = React.useState(false);
   const [mobileFormOpen, setMobileFormOpen] = React.useState(false);
@@ -65,19 +68,24 @@ export default function ImageGenerator() {
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
       // Generate mock images
-      const newImages: GeneratedImage[] = Array.from({ length: params.count }, (_, index) => ({
-        id: `${Date.now()}-${index}`,
-        url: `https://picsum.photos/512/512?random=${Date.now() + index}`,
-        prompt: params.prompt,
-        style: params.style,
-        aspectRatio: params.aspectRatio,
-        seed: params.seed || undefined,
-        createdAt: new Date()
-      }));
+      const newImages: GeneratedImage[] = Array.from(
+        { length: params.count },
+        (_, index) => ({
+          id: `${Date.now()}-${index}`,
+          url: `https://picsum.photos/512/512?random=${Date.now() + index}`,
+          prompt: params.prompt,
+          style: params.style,
+          aspectRatio: params.aspectRatio,
+          seed: params.seed || undefined,
+          createdAt: new Date(),
+        }),
+      );
 
       setImages((prev) => [...newImages, ...prev]);
       setMobileFormOpen(false); // Close mobile form after generation
-      toast.success(`Generated ${params.count} image${params.count > 1 ? "s" : ""} successfully!`);
+      toast.success(
+        `Generated ${params.count} image${params.count > 1 ? "s" : ""} successfully!`,
+      );
     } catch (error) {
       toast.error("Failed to generate images. Please try again.");
     } finally {
@@ -119,7 +127,7 @@ export default function ImageGenerator() {
     toast.promise(Promise.all(images.map((image) => handleDownload(image))), {
       loading: "Downloading all images...",
       success: "All images downloaded successfully!",
-      error: "Failed to download some images"
+      error: "Failed to download some images",
     });
   };
 
@@ -128,7 +136,9 @@ export default function ImageGenerator() {
       <header className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="from-primary to-primary-glow flex size-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br lg:size-10">
-            <span className="text-primary-foreground text-lg font-bold">AI</span>
+            <span className="text-primary-foreground text-lg font-bold">
+              AI
+            </span>
           </div>
           <div>
             <h1 className="font-bold lg:text-xl">AI Image Generator</h1>
@@ -140,7 +150,11 @@ export default function ImageGenerator() {
 
         <div className="flex items-center gap-2">
           {/* mobile generator form */}
-          <Drawer open={mobileFormOpen} onOpenChange={setMobileFormOpen} repositionInputs={false}>
+          <Drawer
+            open={mobileFormOpen}
+            onOpenChange={setMobileFormOpen}
+            repositionInputs={false}
+          >
             <DrawerTrigger asChild className="flex lg:hidden">
               <Button variant="default" size="sm">
                 <Wand2 />
@@ -149,10 +163,15 @@ export default function ImageGenerator() {
             <DrawerContent>
               <DrawerHeader>
                 <DrawerTitle>Generate Image</DrawerTitle>
-                <DrawerDescription>Create stunning AI-generated images</DrawerDescription>
+                <DrawerDescription>
+                  Create stunning AI-generated images
+                </DrawerDescription>
               </DrawerHeader>
               <div className="overflow-y-auto lg:mt-6 lg:h-[calc(90vh-120px)]">
-                <ImageGeneratorForm onGenerate={handleGenerate} isGenerating={isGenerating} />
+                <ImageGeneratorForm
+                  onGenerate={handleGenerate}
+                  isGenerating={isGenerating}
+                />
               </div>
             </DrawerContent>
           </Drawer>
@@ -170,7 +189,10 @@ export default function ImageGenerator() {
 
       <div className="grid h-[calc(100vh-var(--header-height)-3rem)] grid-cols-1 gap-4 lg:grid-cols-[400px_1fr]">
         <div className="hidden h-full min-h-0 lg:block">
-          <ImageGeneratorForm onGenerate={handleGenerate} isGenerating={isGenerating} />
+          <ImageGeneratorForm
+            onGenerate={handleGenerate}
+            isGenerating={isGenerating}
+          />
         </div>
 
         <div className="min-h-0">

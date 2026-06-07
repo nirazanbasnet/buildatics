@@ -12,7 +12,7 @@ export async function generateMetadata() {
     title: "File Manager Admin Dashboard Template",
     description:
       "Manage files, folders, and storage status with interactive charts. A professional admin page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/file-manager"
+    canonical: "/file-manager",
   });
 }
 
@@ -20,7 +20,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">File Manager</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          File Manager
+        </h1>
         <FileUploadDialog />
       </div>
       <SummaryCards />

@@ -21,16 +21,20 @@ const interestOptions = [
   { name: "Writing", emoji: "✍️" },
   { name: "Gaming", emoji: "🎮" },
   { name: "Fitness", emoji: "💪" },
-  { name: "Fashion", emoji: "👗" }
+  { name: "Fashion", emoji: "👗" },
 ];
 
 export function InterestsStep() {
   const { data, updateInterests, nextStep } = useOnboardingStore();
-  const [selectedInterests, setSelectedInterests] = useState<string[]>(data.interests);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(
+    data.interests,
+  );
 
   const toggleInterest = (interest: string) => {
     setSelectedInterests((prev) =>
-      prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]
+      prev.includes(interest)
+        ? prev.filter((i) => i !== interest)
+        : [...prev, interest],
     );
   };
 
@@ -54,7 +58,9 @@ export function InterestsStep() {
             <div
               key={interest.name}
               className={`hover:border-primary cursor-pointer rounded-md border px-4 py-6 ${
-                selectedInterests.includes(interest.name) ? "bg-primary/10 border-primary" : ""
+                selectedInterests.includes(interest.name)
+                  ? "bg-primary/10 border-primary"
+                  : ""
               }`}
               onClick={() => toggleInterest(interest.name)}
             >
@@ -68,7 +74,11 @@ export function InterestsStep() {
       </div>
 
       <div className="text-end">
-        <Button size="lg" onClick={handleNext} disabled={selectedInterests.length === 0}>
+        <Button
+          size="lg"
+          onClick={handleNext}
+          disabled={selectedInterests.length === 0}
+        >
           Continue ({selectedInterests.length} selected)
         </Button>
       </div>

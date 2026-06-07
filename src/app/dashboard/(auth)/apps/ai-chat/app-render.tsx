@@ -5,7 +5,7 @@ import {
   Input,
   PromptInputAction,
   PromptInputActions,
-  PromptInputTextarea
+  PromptInputTextarea,
 } from "@/components/ui/custom/prompt/input";
 import { Button } from "@/components/ui/button";
 import { ArrowUpIcon, Paperclip, SquareIcon, X } from "lucide-react";
@@ -22,7 +22,7 @@ const chatSuggestions = [
   "How does this work?",
   "Generate an image of a cat",
   "Generate a REST API with Express.js",
-  "What’s the best UX for onboarding?"
+  "What’s the best UX for onboarding?",
 ];
 
 export default function AppRender() {
@@ -42,7 +42,8 @@ export default function AppRender() {
     { id: number; role: string; content: string; files?: File[] }[]
   >([]);
 
-  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   const streamResponse = async () => {
     if (isStreaming) return;
@@ -58,8 +59,8 @@ export default function AppRender() {
           id: newMessageId,
           role: "user",
           content: prompt,
-          files: files
-        }
+          files: files,
+        },
       ]);
 
       setPrompt("");
@@ -75,8 +76,8 @@ export default function AppRender() {
         {
           id: newMessageId + 1,
           role: "assistant",
-          content: ""
-        }
+          content: "",
+        },
       ]);
 
       let charIndex = 0;
@@ -87,8 +88,10 @@ export default function AppRender() {
           streamContentRef.current += fullResponse[charIndex];
           setMessages((prev) =>
             prev.map((msg) =>
-              msg.id === newMessageId + 1 ? { ...msg, content: streamContentRef.current } : msg
-            )
+              msg.id === newMessageId + 1
+                ? { ...msg, content: streamContentRef.current }
+                : msg,
+            ),
           );
           charIndex++;
         } else {
@@ -124,7 +127,7 @@ export default function AppRender() {
   const FileListItem = ({
     file,
     dismiss = true,
-    index
+    index,
   }: {
     file: File;
     dismiss?: boolean;
@@ -147,7 +150,9 @@ export default function AppRender() {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center space-y-4">
       <ChatContainer
-        className={cn("relative w-full flex-1 space-y-4 pe-2", { hidden: !isFirstResponse })}
+        className={cn("relative w-full flex-1 space-y-4 pe-2", {
+          hidden: !isFirstResponse,
+        })}
         ref={containerRef}
         scrollToRef={bottomRef}
       >
@@ -156,22 +161,31 @@ export default function AppRender() {
           return (
             <Message
               key={message.id}
-              className={message.role === "user" ? "justify-end" : "justify-start"}
+              className={
+                message.role === "user" ? "justify-end" : "justify-start"
+              }
             >
               <div
                 className={cn("max-w-[85%] flex-1 sm:max-w-[75%]", {
-                  "justify-end text-end": !isAssistant
+                  "justify-end text-end": !isAssistant,
                 })}
               >
                 {isAssistant ? (
                   <div className="bg-muted text-foreground prose rounded-lg border px-3 py-2">
-                    <Markdown className={"space-y-4"}>{message.content}</Markdown>
+                    <Markdown className={"space-y-4"}>
+                      {message.content}
+                    </Markdown>
                   </div>
                 ) : message?.files && message.files.length > 0 ? (
                   <div className="flex flex-col items-end space-y-2">
                     <div className="flex flex-wrap justify-end gap-2">
                       {message.files.map((file, index) => (
-                        <FileListItem key={index} index={index} file={file} dismiss={false} />
+                        <FileListItem
+                          key={index}
+                          index={index}
+                          file={file}
+                          dismiss={false}
+                        />
                       ))}
                     </div>
                     {message.content ? (
@@ -238,7 +252,9 @@ export default function AppRender() {
             </label>
           </PromptInputAction>
 
-          <PromptInputAction tooltip={isStreaming ? "Stop generation" : "Send message"}>
+          <PromptInputAction
+            tooltip={isStreaming ? "Stop generation" : "Send message"}
+          >
             <Button
               variant="default"
               size="icon"

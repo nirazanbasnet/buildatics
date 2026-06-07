@@ -1,12 +1,18 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
@@ -26,7 +32,7 @@ export function EcommerceSalesByLocationCard() {
     { country: "Russia", percentage: 63, value: 945000, change: -2.1 },
     { country: "China", percentage: 60, value: 900000, change: 3.4 },
     { country: "Australia", percentage: 45, value: 675000, change: 1.2 },
-    { country: "Greece", percentage: 40, value: 475000, change: 1 }
+    { country: "Greece", percentage: 40, value: 475000, change: 1 },
   ];
 
   return (

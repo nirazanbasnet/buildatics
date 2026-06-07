@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import {
   ArrowUpDown,
@@ -19,17 +19,21 @@ import {
   FilterIcon,
   MoreHorizontal,
   PlusCircle,
-  Star
+  Star,
 } from "lucide-react";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,7 +43,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -48,7 +52,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -57,7 +61,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 export type Product = {
@@ -79,7 +83,8 @@ export const columns: ColumnDef<Product>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -93,7 +98,7 @@ export const columns: ColumnDef<Product>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
     accessorKey: "name",
@@ -112,11 +117,16 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => (
       <div className="flex items-center gap-4">
         <figure className="rounded-lg border">
-          <img src={`/images${row.original.image}`} width="48px" height="48px" alt="..." />
+          <img
+            src={`/images${row.original.image}`}
+            width="48px"
+            height="48px"
+            alt="..."
+          />
         </figure>
         <div className="capitalize">{row.getValue("name")}</div>
       </div>
-    )
+    ),
   },
   {
     accessorKey: "price",
@@ -132,7 +142,7 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("price")
+    cell: ({ row }) => row.getValue("price"),
   },
   {
     accessorKey: "category",
@@ -148,7 +158,9 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("category")}</div>
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("category")}</div>
+    ),
   },
   {
     accessorKey: "stock",
@@ -164,21 +176,22 @@ export const columns: ColumnDef<Product>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("stock")
+    cell: ({ row }) => row.getValue("stock"),
   },
   {
     accessorKey: "sku",
     header: "SKU",
-    cell: ({ row }) => row.getValue("sku")
+    cell: ({ row }) => row.getValue("sku"),
   },
   {
     accessorKey: "rating",
     header: "Rating",
     cell: ({ row }) => (
       <div className="flex items-center gap-1">
-        <Star className="size-4 fill-orange-400 text-orange-400" /> {row.getValue("rating")}
+        <Star className="size-4 fill-orange-400 text-orange-400" />{" "}
+        {row.getValue("rating")}
       </div>
-    )
+    ),
   },
   {
     accessorKey: "status",
@@ -201,7 +214,7 @@ export const columns: ColumnDef<Product>[] = [
         active: "success",
         "out-of-stock": "warning",
         "closed-for-sale": "destructive",
-        completed: "success"
+        completed: "success",
       } as const;
 
       const statusClass = statusMap[status] ?? "default";
@@ -213,7 +226,7 @@ export const columns: ColumnDef<Product>[] = [
           </Badge>
         </div>
       );
-    }
+    },
   },
   {
     id: "actions",
@@ -237,14 +250,17 @@ export const columns: ColumnDef<Product>[] = [
           </DropdownMenuContent>
         </DropdownMenu>
       );
-    }
-  }
+    },
+  },
 ];
 
 export default function ProductList({ data }: { data: Product[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -262,50 +278,50 @@ export default function ProductList({ data }: { data: Product[] }) {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   const statuses = [
     {
       value: "active",
-      label: "Active"
+      label: "Active",
     },
     {
       value: "inactive",
-      label: "Inactive"
+      label: "Inactive",
     },
     {
       value: "out-of-stock",
-      label: "Out of stock"
+      label: "Out of stock",
     },
     {
       value: "closed-for-sale",
-      label: "Closed for sale"
-    }
+      label: "Closed for sale",
+    },
   ];
 
   const categories = [
     {
       value: "beauty",
-      label: "Beauty"
+      label: "Beauty",
     },
     {
       value: "technology",
-      label: "Technology"
+      label: "Technology",
     },
     {
       value: "toys",
-      label: "Toys"
+      label: "Toys",
     },
     {
       value: "food",
-      label: "Food"
+      label: "Food",
     },
     {
       value: "home-appliances",
-      label: "Home Appliances"
-    }
+      label: "Home Appliances",
+    },
   ];
 
   const Filters = () => {
@@ -403,7 +419,9 @@ export default function ProductList({ data }: { data: Product[] }) {
           <Input
             placeholder="Search products..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
             className="max-w-sm"
           />
           <div className="hidden gap-2 md:flex">
@@ -429,7 +447,8 @@ export default function ProductList({ data }: { data: Product[] }) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">
-                <span className="hidden lg:inline">Columns</span> <ColumnsIcon />
+                <span className="hidden lg:inline">Columns</span>{" "}
+                <ColumnsIcon />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -442,7 +461,9 @@ export default function ProductList({ data }: { data: Product[] }) {
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(value)}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(value)
+                      }
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -463,7 +484,10 @@ export default function ProductList({ data }: { data: Product[] }) {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   );
                 })}
@@ -473,17 +497,26 @@ export default function ProductList({ data }: { data: Product[] }) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

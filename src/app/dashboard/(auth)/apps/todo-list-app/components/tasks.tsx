@@ -17,7 +17,7 @@ export default function Tasks({ tasks }: { tasks: Todo[] }) {
     isTodoSheetOpen,
     setTodoSheetOpen,
     selectedTodoId,
-    setSelectedTodoId
+    setSelectedTodoId,
   } = useTodoStore();
 
   useEffect(() => {

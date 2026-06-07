@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Layout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -16,18 +16,18 @@ export default function Layout({
     {
       label: "Fitness",
       key: "fitness",
-      href: "/dashboard/widgets/fitness"
+      href: "/dashboard/widgets/fitness",
     },
     {
       label: "E-commerce",
       key: "ecommerce",
-      href: "/dashboard/widgets/ecommerce"
+      href: "/dashboard/widgets/ecommerce",
     },
     {
       label: "Analytics",
       key: "analytics",
-      href: "/dashboard/widgets/analytics"
-    }
+      href: "/dashboard/widgets/analytics",
+    },
   ];
 
   return (

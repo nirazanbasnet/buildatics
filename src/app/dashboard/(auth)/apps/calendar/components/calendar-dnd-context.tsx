@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useId, useRef, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useId,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   DndContext,
   DragOverlay,
@@ -12,7 +19,7 @@ import {
   type DragEndEvent,
   type DragOverEvent,
   type DragStartEvent,
-  type UniqueIdentifier
+  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import { addMinutes, differenceInMinutes } from "date-fns";
 
@@ -46,7 +53,7 @@ const CalendarDndContext = createContext<CalendarDndContextType>({
   eventHeight: null,
   isMultiDay: false,
   multiDayWidth: null,
-  dragHandlePosition: null
+  dragHandlePosition: null,
 });
 
 // Hook to use the context
@@ -58,10 +65,15 @@ interface CalendarDndProviderProps {
   onEventUpdate: (event: CalendarEvent) => void;
 }
 
-export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProviderProps) {
+export function CalendarDndProvider({
+  children,
+  onEventUpdate,
+}: CalendarDndProviderProps) {
   const [activeEvent, setActiveEvent] = useState<CalendarEvent | null>(null);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
-  const [activeView, setActiveView] = useState<"month" | "week" | "day" | null>(null);
+  const [activeView, setActiveView] = useState<"month" | "week" | "day" | null>(
+    null,
+  );
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [eventHeight, setEventHeight] = useState<number | null>(null);
   const [isMultiDay, setIsMultiDay] = useState(false);
@@ -83,22 +95,22 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
     useSensor(MouseSensor, {
       // Require the mouse to move by 5px before activating
       activationConstraint: {
-        distance: 5
-      }
+        distance: 5,
+      },
     }),
     useSensor(TouchSensor, {
       // Press delay of 250ms, with tolerance of 5px of movement
       activationConstraint: {
         delay: 250,
-        tolerance: 5
-      }
+        tolerance: 5,
+      },
     }),
     useSensor(PointerSensor, {
       // Require the pointer to move by 5px before activating
       activationConstraint: {
-        distance: 5
-      }
-    })
+        distance: 5,
+      },
+    }),
   );
 
   // Generate a stable ID for the DndContext
@@ -119,7 +131,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
       height,
       isMultiDay: eventIsMultiDay,
       multiDayWidth: eventMultiDayWidth,
-      dragHandlePosition: eventDragHandlePosition
+      dragHandlePosition: eventDragHandlePosition,
     } = active.data.current as {
       event: CalendarEvent;
       view: "month" | "week" | "day";
@@ -193,7 +205,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
             currentTime.getHours(),
             currentTime.getMinutes(),
             currentTime.getSeconds(),
-            currentTime.getMilliseconds()
+            currentTime.getMilliseconds(),
           );
         }
 
@@ -270,7 +282,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
           currentTime.getHours(),
           currentTime.getMinutes(),
           currentTime.getSeconds(),
-          currentTime.getMilliseconds()
+          currentTime.getMilliseconds(),
         );
       }
 
@@ -293,7 +305,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
         onEventUpdate({
           ...calendarEvent,
           start: newStart,
-          end: newEnd
+          end: newEnd,
         });
       }
     } catch (error) {
@@ -328,7 +340,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
           eventHeight,
           isMultiDay,
           multiDayWidth,
-          dragHandlePosition
+          dragHandlePosition,
         }}
       >
         {children}
@@ -338,7 +350,8 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
             <div
               style={{
                 height: eventHeight ? `${eventHeight}px` : "auto",
-                width: isMultiDay && multiDayWidth ? `${multiDayWidth}%` : "100%"
+                width:
+                  isMultiDay && multiDayWidth ? `${multiDayWidth}%` : "100%",
                 // Remove the transform that was causing the shift
               }}
             >

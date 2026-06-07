@@ -17,6 +17,6 @@ export async function queryLeads(params: {
 
   return {
     items: filtered.slice(start, start + params.pageSize),
-    total: filtered.length
+    total: filtered.length,
   };
 }

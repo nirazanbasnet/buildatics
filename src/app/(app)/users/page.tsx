@@ -5,7 +5,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { getProfile } from "@/features/profile";
 import { getUsersPage, UsersList, USERS_PAGE_SIZE } from "@/features/users";
@@ -15,7 +15,7 @@ export function generateMetadata() {
   return generateMeta({
     title: "Users",
     description: "Manage user accounts and access.",
-    canonical: "/users"
+    canonical: "/users",
   });
 }
 
@@ -34,7 +34,8 @@ export default async function UsersPage() {
           </EmptyMedia>
           <EmptyTitle>Admins only</EmptyTitle>
           <EmptyDescription>
-            You need the Admin role to manage users. Contact an administrator if you need access.
+            You need the Admin role to manage users. Contact an administrator if
+            you need access.
           </EmptyDescription>
         </EmptyHeader>
       </Empty>

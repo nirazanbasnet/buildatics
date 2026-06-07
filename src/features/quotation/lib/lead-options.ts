@@ -8,6 +8,8 @@ export async function getQuoteLeadOptions(): Promise<QuoteLeadOption[]> {
   const leads = await getAllLeads();
   return leads.map((lead) => ({
     id: lead.id,
-    label: [lead.leadNo, lead.client].filter((p) => p && p !== "—").join(" · ") || lead.leadNo
+    label:
+      [lead.leadNo, lead.client].filter((p) => p && p !== "—").join(" · ") ||
+      lead.leadNo,
   }));
 }

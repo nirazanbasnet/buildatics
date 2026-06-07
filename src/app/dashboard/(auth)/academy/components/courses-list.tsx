@@ -11,16 +11,21 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight, MoreHorizontalIcon, StarIcon } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MoreHorizontalIcon,
+  StarIcon,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -29,9 +34,15 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
 const data: Course[] = [
@@ -42,7 +53,7 @@ const data: Course[] = [
     image: `/images/tech/react.svg`,
     score: 4.5,
     progress: 60,
-    started: true
+    started: true,
   },
   {
     id: 2,
@@ -51,7 +62,7 @@ const data: Course[] = [
     image: `/images/tech/angular.svg`,
     score: 4.8,
     progress: 0,
-    started: false
+    started: false,
   },
   {
     id: 3,
@@ -60,7 +71,7 @@ const data: Course[] = [
     image: `/images/tech/vue.svg`,
     score: 4.2,
     progress: 45,
-    started: true
+    started: true,
   },
   {
     id: 4,
@@ -69,7 +80,7 @@ const data: Course[] = [
     image: `/images/tech/html.svg`,
     score: 4.6,
     progress: 0,
-    started: false
+    started: false,
   },
   {
     id: 5,
@@ -78,7 +89,7 @@ const data: Course[] = [
     image: `/images/tech/css.svg`,
     score: 4.4,
     progress: 0,
-    started: false
+    started: false,
   },
   {
     id: 5,
@@ -87,8 +98,8 @@ const data: Course[] = [
     image: `/images/tech/svelte.svg`,
     score: 4.8,
     progress: 0,
-    started: false
-  }
+    started: false,
+  },
 ];
 
 export type Course = {
@@ -110,12 +121,12 @@ export const columns: ColumnDef<Course>[] = [
         <img className="size-8" src={row.original.image} alt="shadcn/ui" />
         <div className="capitalize">{row.getValue("name")}</div>
       </div>
-    )
+    ),
   },
   {
     accessorKey: "category",
     header: "Category",
-    cell: ({ row }) => row.getValue("category")
+    cell: ({ row }) => row.getValue("category"),
   },
   {
     accessorKey: "score",
@@ -125,12 +136,14 @@ export const columns: ColumnDef<Course>[] = [
         <StarIcon className="mr-1 size-4 fill-yellow-500 text-yellow-500" />
         {row.getValue("score")}
       </div>
-    )
+    ),
   },
   {
     accessorKey: "progress",
     header: "Progress",
-    cell: ({ row }) => <Progress className="h-2 w-20" value={row.getValue("progress")} />
+    cell: ({ row }) => (
+      <Progress className="h-2 w-20" value={row.getValue("progress")} />
+    ),
   },
   {
     id: "actions",
@@ -158,14 +171,17 @@ export const columns: ColumnDef<Course>[] = [
           )}
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function CoursesListTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -183,8 +199,8 @@ export function CoursesListTable() {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   return (
@@ -195,7 +211,9 @@ export function CoursesListTable() {
           <Input
             placeholder="Search courses"
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
             className="w-full sm:w-52"
           />
         </CardAction>
@@ -211,7 +229,10 @@ export function CoursesListTable() {
                       <TableHead key={header.id}>
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -221,17 +242,26 @@ export function CoursesListTable() {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

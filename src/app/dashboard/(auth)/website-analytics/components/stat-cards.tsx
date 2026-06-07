@@ -10,26 +10,26 @@ const data = [
     name: "Daily active users",
     stat: "3,450",
     change: "+12.1%",
-    changeType: "positive"
+    changeType: "positive",
   },
   {
     name: "Weekly sessions",
     stat: "1,342",
     change: "-9.8%",
-    changeType: "negative"
+    changeType: "negative",
   },
   {
     name: "Duration",
     stat: "5.2min",
     change: "+7.7%",
-    changeType: "positive"
+    changeType: "positive",
   },
   {
     name: "Conversion Rate",
     stat: "2.8%",
     change: "+4.3%",
-    changeType: "positive"
-  }
+    changeType: "positive",
+  },
 ];
 
 export function StatCards() {
@@ -40,14 +40,16 @@ export function StatCards() {
           <Card key={item.name} className="w-full p-6 py-4">
             <CardContent className="p-0">
               <div className="flex items-center justify-between">
-                <dt className="text-muted-foreground text-sm font-medium">{item.name}</dt>
+                <dt className="text-muted-foreground text-sm font-medium">
+                  {item.name}
+                </dt>
                 <Badge
                   variant="outline"
                   className={cn(
                     "inline-flex items-center px-1.5 py-0.5 ps-2.5 text-xs font-medium",
                     item.changeType === "positive"
                       ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                      : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
+                      : "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
                   )}
                 >
                   {item.changeType === "positive" ? (
@@ -57,12 +59,17 @@ export function StatCards() {
                   )}
                   <span className="sr-only">
                     {" "}
-                    {item.changeType === "positive" ? "Increased" : "Decreased"} by{" "}
+                    {item.changeType === "positive"
+                      ? "Increased"
+                      : "Decreased"}{" "}
+                    by{" "}
                   </span>
                   {item.change}
                 </Badge>
               </div>
-              <dd className="text-foreground mt-2 text-3xl font-semibold">{item.stat}</dd>
+              <dd className="text-foreground mt-2 text-3xl font-semibold">
+                {item.stat}
+              </dd>
             </CardContent>
           </Card>
         ))}

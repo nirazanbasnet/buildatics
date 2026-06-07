@@ -8,7 +8,12 @@ import { Table, TableCategory } from "../store";
 
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import TableListItem from "./components/table-list-item";
 import AddTableDialog from "./components/add-table-dialog";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -18,7 +23,10 @@ type PosSystemTableRender = {
   tables: Table[];
 };
 
-export default function PosSystemTableRender({ tableCategories, tables }: PosSystemTableRender) {
+export default function PosSystemTableRender({
+  tableCategories,
+  tables,
+}: PosSystemTableRender) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const filteredTables = React.useCallback(() => {
@@ -47,7 +55,9 @@ export default function PosSystemTableRender({ tableCategories, tables }: PosSys
                     <TooltipContent side="left">Menu</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Tables</h1>
+                <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+                  Tables
+                </h1>
               </div>
               <div className="flex gap-2">
                 <AddTableDialog tableCategories={tableCategories} />
@@ -60,7 +70,9 @@ export default function PosSystemTableRender({ tableCategories, tables }: PosSys
             <RadioGroup
               className="flex gap-4"
               defaultValue="all"
-              onValueChange={(value) => setSelectedCategory(value === "all" ? null : value)}
+              onValueChange={(value) =>
+                setSelectedCategory(value === "all" ? null : value)
+              }
             >
               <div className="has-data-[state=checked]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex cursor-pointer flex-col items-center gap-4 rounded-md border px-4 py-4 text-center outline-none">
                 <RadioGroupItem id={`c-all`} value="all" className="sr-only" />
@@ -76,7 +88,11 @@ export default function PosSystemTableRender({ tableCategories, tables }: PosSys
                   key={category.id}
                   className="has-data-[state=checked]:border-primary has-focus-visible:border-ring has-focus-visible:ring-ring/50 relative flex cursor-pointer flex-col items-center gap-4 rounded-md border px-4 py-4 text-center outline-none"
                 >
-                  <RadioGroupItem id={`c-${category.id}`} value={category.id} className="sr-only" />
+                  <RadioGroupItem
+                    id={`c-${category.id}`}
+                    value={category.id}
+                    className="sr-only"
+                  />
                   <label
                     htmlFor={`c-${category.id}`}
                     className="text-foreground cursor-pointer leading-none after:absolute after:inset-0"
@@ -97,7 +113,9 @@ export default function PosSystemTableRender({ tableCategories, tables }: PosSys
               ))}
             </div>
           ) : (
-            <div className="text-muted-foreground py-4 text-center">There are no tables here.</div>
+            <div className="text-muted-foreground py-4 text-center">
+              There are no tables here.
+            </div>
           )}
         </div>
       </div>

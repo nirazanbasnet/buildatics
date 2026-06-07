@@ -17,11 +17,17 @@ import type { TeamMemberRow } from "../types";
 
 export function mapStaffToRow(staff: StaffRes): TeamMemberRow {
   const name =
-    [staff.firstName, staff.lastName].filter(Boolean).join(" ") || staff.email || "—";
+    [staff.firstName, staff.lastName].filter(Boolean).join(" ") ||
+    staff.email ||
+    "—";
 
   const maps = staff.designationToAppUserMaps ?? [];
-  const designationIds = maps.map((m) => m.designation?.id ?? "").filter(Boolean);
-  const designationNames = maps.map((m) => m.designation?.name ?? "").filter(Boolean);
+  const designationIds = maps
+    .map((m) => m.designation?.id ?? "")
+    .filter(Boolean);
+  const designationNames = maps
+    .map((m) => m.designation?.name ?? "")
+    .filter(Boolean);
 
   return {
     id: staff.id ?? "",
@@ -31,6 +37,6 @@ export function mapStaffToRow(staff: StaffRes): TeamMemberRow {
     systemRoles: staff.roles ?? [],
     designationIds,
     designationNames,
-    status: staff.emailConfirmed ? "active" : "invited"
+    status: staff.emailConfirmed ? "active" : "invited",
   };
 }

@@ -7,7 +7,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
 
@@ -33,7 +33,9 @@ export function BrochureDetailSheet({ open, onOpenChange, detail }: Props) {
         <VisuallyHidden>
           <SheetHeader>
             <SheetTitle>Brochure Detail — {detail.ref}</SheetTitle>
-            <SheetDescription>Brochure builder, preview, and history</SheetDescription>
+            <SheetDescription>
+              Brochure builder, preview, and history
+            </SheetDescription>
           </SheetHeader>
         </VisuallyHidden>
         <SheetMobileBar onClose={close} title={`Brochure ${detail.ref}`} />

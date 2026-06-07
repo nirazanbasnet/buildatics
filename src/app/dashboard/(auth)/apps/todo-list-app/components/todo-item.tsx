@@ -10,7 +10,12 @@ import { useSortable } from "@dnd-kit/sortable";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface TodoItemProps {
   todo: Todo;
@@ -27,20 +32,28 @@ const TodoItem: React.FC<TodoItemProps> = ({
   onStatusChange,
   viewMode,
   onStarToggle,
-  isDraggingOverlay = false
+  isDraggingOverlay = false,
 }) => {
-  const completedSubTasks = todo.subTasks?.filter((st) => st.completed).length || 0;
+  const completedSubTasks =
+    todo.subTasks?.filter((st) => st.completed).length || 0;
   const totalSubTasks = todo.subTasks?.length || 0;
 
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
-    id: todo.id
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: todo.id,
   });
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? (!isDraggingOverlay ? 0.4 : 0.8) : 1,
-    zIndex: isDragging ? 100 : 1
+    zIndex: isDragging ? 100 : 1,
   };
 
   // Format reminder date for tooltip if it exists
@@ -54,7 +67,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         <Card
           className={cn(
             "flex h-full cursor-pointer flex-col transition-shadow hover:shadow-md",
-            todo.status === "completed" ? "opacity-70" : ""
+            todo.status === "completed" ? "opacity-70" : "",
           )}
           onClick={onClick}
         >
@@ -67,7 +80,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
                     onStatusChange
                       ? onStatusChange(
                           todo.id,
-                          todo.status === "completed" ? "pending" : "completed"
+                          todo.status === "completed" ? "pending" : "completed",
                         )
                       : undefined
                   }
@@ -77,7 +90,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
                 <h3
                   className={cn(
                     "text-md flex-1 leading-none font-medium",
-                    todo.status === "completed" ? "text-muted-foreground line-through" : ""
+                    todo.status === "completed"
+                      ? "text-muted-foreground line-through"
+                      : "",
                   )}
                 >
                   {todo.title}
@@ -88,9 +103,11 @@ const TodoItem: React.FC<TodoItemProps> = ({
                     "size-5 cursor-pointer",
                     todo.starred
                       ? "fill-yellow-400 text-yellow-400"
-                      : "text-muted-foreground/50 hover:text-muted-foreground"
+                      : "text-muted-foreground/50 hover:text-muted-foreground",
                   )}
-                  onClick={(e) => (onStarToggle ? onStarToggle(todo.id, e) : undefined)}
+                  onClick={(e) =>
+                    onStarToggle ? onStarToggle(todo.id, e) : undefined
+                  }
                 />
               </div>
 
@@ -136,14 +153,20 @@ const TodoItem: React.FC<TodoItemProps> = ({
           </CardContent>
           <CardFooter className="flex flex-wrap justify-between border-t">
             <div className="flex items-center gap-2 capitalize">
-              <Badge className={statusClasses[todo.status]}>{todo.status.replace("-", " ")}</Badge>
-              <Badge className={priorityClasses[todo.priority]}>{todo.priority}</Badge>
+              <Badge className={statusClasses[todo.status]}>
+                {todo.status.replace("-", " ")}
+              </Badge>
+              <Badge className={priorityClasses[todo.priority]}>
+                {todo.priority}
+              </Badge>
             </div>
 
             {(todo.files?.length || 0) > 0 && (
               <div className="flex items-center gap-1">
                 <FileIcon className="text-muted-foreground size-3" />
-                <span className="text-muted-foreground text-xs">{todo.files?.length}</span>
+                <span className="text-muted-foreground text-xs">
+                  {todo.files?.length}
+                </span>
               </div>
             )}
           </CardFooter>
@@ -157,7 +180,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
       <Card
         className={cn(
           "cursor-pointer transition-shadow hover:shadow-md",
-          todo.status === "completed" ? "opacity-70" : ""
+          todo.status === "completed" ? "opacity-70" : "",
         )}
         onClick={onClick}
       >
@@ -166,7 +189,10 @@ const TodoItem: React.FC<TodoItemProps> = ({
             checked={todo.status === "completed"}
             onCheckedChange={() =>
               onStatusChange
-                ? onStatusChange(todo.id, todo.status === "completed" ? "pending" : "completed")
+                ? onStatusChange(
+                    todo.id,
+                    todo.status === "completed" ? "pending" : "completed",
+                  )
                 : undefined
             }
             onClick={(e) => e.stopPropagation()}
@@ -178,7 +204,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
                 <h3
                   className={cn(
                     "text-md leading-none font-medium",
-                    todo.status === "completed" ? "text-muted-foreground line-through" : ""
+                    todo.status === "completed"
+                      ? "text-muted-foreground line-through"
+                      : "",
                   )}
                 >
                   {todo.title}
@@ -189,9 +217,11 @@ const TodoItem: React.FC<TodoItemProps> = ({
                     "size-4 cursor-pointer",
                     todo.starred
                       ? "fill-yellow-400 text-yellow-400"
-                      : "text-muted-foreground/50 hover:text-muted-foreground"
+                      : "text-muted-foreground/50 hover:text-muted-foreground",
                   )}
-                  onClick={(e) => (onStarToggle ? onStarToggle(todo.id, e) : undefined)}
+                  onClick={(e) =>
+                    onStarToggle ? onStarToggle(todo.id, e) : undefined
+                  }
                 />
               </div>
 
@@ -199,7 +229,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
                 <Badge className={statusClasses[todo.status]}>
                   {todo.status.replace("-", " ")}
                 </Badge>
-                <Badge className={priorityClasses[todo.priority]}>{todo.priority}</Badge>
+                <Badge className={priorityClasses[todo.priority]}>
+                  {todo.priority}
+                </Badge>
               </div>
             </div>
 

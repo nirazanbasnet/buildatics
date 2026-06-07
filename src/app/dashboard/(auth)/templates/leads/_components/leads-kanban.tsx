@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
-import { ChevronRight, MapPin, Phone, Plus, Settings, User } from "lucide-react";
+import {
+  ChevronRight,
+  MapPin,
+  Phone,
+  Plus,
+  Settings,
+  User,
+} from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +17,12 @@ import { Button } from "@/components/ui/button";
 import * as Kanban from "@/components/ui/kanban";
 import { cn } from "@/lib/utils";
 
-import { groupLeadsByStage, leadStages, leadStatusLabels, type Lead } from "../_data";
+import {
+  groupLeadsByStage,
+  leadStages,
+  leadStatusLabels,
+  type Lead,
+} from "../_data";
 
 type Props = {
   leads: Lead[];
@@ -20,7 +32,7 @@ type Props = {
 function InfoRow({
   icon: Icon,
   label,
-  value
+  value,
 }: {
   icon: typeof MapPin;
   label?: string;
@@ -33,11 +45,17 @@ function InfoRow({
       </span>
       {label ? (
         <>
-          <span className="text-foreground flex-1 self-center text-sm font-medium">{label}</span>
-          <span className="text-muted-foreground self-center text-sm">{value}</span>
+          <span className="text-foreground flex-1 self-center text-sm font-medium">
+            {label}
+          </span>
+          <span className="text-muted-foreground self-center text-sm">
+            {value}
+          </span>
         </>
       ) : (
-        <span className="text-foreground flex-1 self-center text-sm leading-snug">{value}</span>
+        <span className="text-foreground flex-1 self-center text-sm leading-snug">
+          {value}
+        </span>
       )}
     </li>
   );
@@ -53,7 +71,9 @@ function LeadKanbanCard({ lead, index = 0 }: { lead: Lead; index?: number }) {
       className="bg-card flex flex-col gap-4 rounded-2xl border p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
       <header className="flex items-start justify-between gap-3">
-        <h3 className="text-foreground text-lg font-bold tracking-tight">{lead.leadNo}</h3>
+        <h3 className="text-foreground text-lg font-bold tracking-tight">
+          {lead.leadNo}
+        </h3>
         <span className="inline-flex min-w-24 items-center justify-center rounded-full bg-emerald-500 px-2.5 py-1 text-xs font-medium text-white dark:bg-emerald-600">
           {leadStatusLabels[lead.status]}
         </span>
@@ -67,13 +87,20 @@ function LeadKanbanCard({ lead, index = 0 }: { lead: Lead; index?: number }) {
       </ul>
 
       <div className="bg-muted h-1.5 w-full overflow-hidden rounded-full">
-        <div className="bg-primary h-full rounded-full" style={{ width: `${lead.progress}%` }} />
+        <div
+          className="bg-primary h-full rounded-full"
+          style={{ width: `${lead.progress}%` }}
+        />
       </div>
 
       <footer className="flex items-center justify-between gap-3 pt-1">
         <div className="flex -space-x-2">
           {lead.assignees.map((a) => (
-            <Avatar key={a.initials} className="border-card bg-card size-7 border-2" title={a.name}>
+            <Avatar
+              key={a.initials}
+              className="border-card bg-card size-7 border-2"
+              title={a.name}
+            >
               <AvatarFallback className="bg-muted text-foreground text-[10px] font-semibold">
                 {a.initials}
               </AvatarFallback>
@@ -93,11 +120,19 @@ function LeadKanbanCard({ lead, index = 0 }: { lead: Lead; index?: number }) {
 }
 
 export function LeadsKanban({ leads, className }: Props) {
-  const [columns, setColumns] = useState<Record<string, Lead[]>>(() => groupLeadsByStage(leads));
+  const [columns, setColumns] = useState<Record<string, Lead[]>>(() =>
+    groupLeadsByStage(leads),
+  );
 
   return (
-    <Kanban.Root value={columns} onValueChange={setColumns} getItemValue={(item) => item.id}>
-      <Kanban.Board className={cn("flex w-full gap-4 overflow-x-auto pb-2", className)}>
+    <Kanban.Root
+      value={columns}
+      onValueChange={setColumns}
+      getItemValue={(item) => item.id}
+    >
+      <Kanban.Board
+        className={cn("flex w-full gap-4 overflow-x-auto pb-2", className)}
+      >
         {leadStages.map((stage) => {
           const items = columns[stage.id] ?? [];
           return (
@@ -108,8 +143,13 @@ export function LeadsKanban({ leads, className }: Props) {
             >
               <div className="flex items-center justify-between pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-foreground text-sm font-semibold">{stage.name}</span>
-                  <Badge variant="outline" className="bg-background h-5 rounded-md px-1.5 text-xs">
+                  <span className="text-foreground text-sm font-semibold">
+                    {stage.name}
+                  </span>
+                  <Badge
+                    variant="outline"
+                    className="bg-background h-5 rounded-md px-1.5 text-xs"
+                  >
                     {items.length}
                   </Badge>
                 </div>

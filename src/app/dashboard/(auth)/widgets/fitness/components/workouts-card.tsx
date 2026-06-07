@@ -4,7 +4,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Plus, Check, Dumbbell, Flower2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,8 +17,9 @@ const workouts = [
     time: "6:30 AM",
     duration: "45 min",
     status: "Completed",
-    statusColor: "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-200",
-    iconBg: "bg-green-200 dark:text-green-200 dark:bg-green-950"
+    statusColor:
+      "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-200",
+    iconBg: "bg-green-200 dark:text-green-200 dark:bg-green-950",
   },
   {
     icon: Dumbbell,
@@ -26,8 +27,9 @@ const workouts = [
     time: "2:00 PM",
     duration: "60 min",
     status: "Next",
-    statusColor: "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-200",
-    iconBg: "bg-orange-100 dark:bg-orange-900 dark:text-orange-200"
+    statusColor:
+      "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-200",
+    iconBg: "bg-orange-100 dark:bg-orange-900 dark:text-orange-200",
   },
   {
     icon: Flower2,
@@ -35,9 +37,10 @@ const workouts = [
     time: "7:00 PM",
     duration: "30 min",
     status: "Pending",
-    statusColor: "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200",
-    iconBg: "bg-purple-100 dark:bg-purple-900"
-  }
+    statusColor:
+      "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200",
+    iconBg: "bg-purple-100 dark:bg-purple-900",
+  },
 ];
 
 export function WorkoutsCard() {
@@ -69,7 +72,9 @@ export function WorkoutsCard() {
                 </p>
               </div>
             </div>
-            <Badge className={`${workout.statusColor} rounded-full px-3 py-1 text-xs font-medium`}>
+            <Badge
+              className={`${workout.statusColor} rounded-full px-3 py-1 text-xs font-medium`}
+            >
               {workout.status}
             </Badge>
           </div>

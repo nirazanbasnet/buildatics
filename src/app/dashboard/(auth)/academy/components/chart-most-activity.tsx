@@ -7,28 +7,28 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
   { source: "mentoring", leads: 65.2, fill: "var(--color-mentoring)" },
   { source: "organization", leads: 25, fill: "var(--color-organization)" },
-  { source: "planning", leads: 9.8, fill: "var(--color-planning)" }
+  { source: "planning", leads: 9.8, fill: "var(--color-planning)" },
 ];
 
 const chartConfig = {
   mentoring: {
     label: "Mentoring",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   organization: {
     label: "Organization",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   planning: {
     label: "Planning",
-    color: "var(--chart-3)"
-  }
+    color: "var(--chart-3)",
+  },
 } satisfies ChartConfig;
 
 type ChartConfigKeys = keyof typeof chartConfig;
@@ -40,9 +40,15 @@ export function ChartMostActivity() {
         <CardTitle>Most Activity</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <ChartContainer config={chartConfig} className="mx-auto aspect-square max-h-[250px]">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[250px]"
+        >
           <PieChart>
-            <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
             <Pie
               data={chartData}
               dataKey="leads"
@@ -59,12 +65,15 @@ export function ChartMostActivity() {
                 <span
                   className="block size-2 rounded-full"
                   style={{
-                    backgroundColor: chartConfig[item.source as ChartConfigKeys]?.color
+                    backgroundColor:
+                      chartConfig[item.source as ChartConfigKeys]?.color,
                   }}
                 ></span>
                 <div>{chartConfig[item.source as ChartConfigKeys]?.label}</div>
               </div>
-              <div className="text-center text-xl font-semibold">{item.leads}%</div>
+              <div className="text-center text-xl font-semibold">
+                {item.leads}%
+              </div>
             </div>
           ))}
           <div></div>

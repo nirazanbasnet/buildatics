@@ -5,7 +5,7 @@ import { apiFetch, ApiError } from "@/features/auth/lib/api-client";
 import type { CompanyDesignReq, CompanyDesignRes } from "../lib/dto";
 import {
   parseCompanyDesignForm,
-  type CreateCompanyDesignInput
+  type CreateCompanyDesignInput,
 } from "../lib/create-company-design-schema";
 
 export type CreateCompanyDesignResult = {
@@ -20,7 +20,7 @@ const undef = (v: string | undefined) => (v && v.trim() ? v.trim() : undefined);
 // Server Action: creates a company design from scratch via POST /api/CompanyDesigns/Create.
 // Note: this endpoint does not accept blobs — the new design has no images until uploaded later.
 export async function createCompanyDesign(
-  input: CreateCompanyDesignInput
+  input: CreateCompanyDesignInput,
 ): Promise<CreateCompanyDesignResult> {
   const parsed = parseCompanyDesignForm.safeParse(input);
   if (!parsed.success) {
@@ -41,19 +41,24 @@ export async function createCompanyDesign(
     livingRooms: data.livingRooms,
     maximumCarsInGarage: data.maximumCarsInGarage,
     storeys: data.storeys,
-    visibleOnWebsite: data.visibleOnWebsite
+    visibleOnWebsite: data.visibleOnWebsite,
   };
 
   try {
-    const created = await apiFetch<CompanyDesignRes>("/api/CompanyDesigns/Create", {
-      method: "POST",
-      auth: true,
-      body
-    });
+    const created = await apiFetch<CompanyDesignRes>(
+      "/api/CompanyDesigns/Create",
+      {
+        method: "POST",
+        auth: true,
+        body,
+      },
+    );
     return { ok: true, id: created.id };
   } catch (error) {
     const message =
-      error instanceof ApiError ? error.message : "Failed to create the design. Please try again.";
+      error instanceof ApiError
+        ? error.message
+        : "Failed to create the design. Please try again.";
     return { ok: false, error: message };
   }
 }

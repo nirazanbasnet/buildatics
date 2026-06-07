@@ -6,7 +6,11 @@ import { CalendarIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -25,7 +29,10 @@ export function QuotationValidUntil({ value, onChange, className }: Props) {
         <Button
           variant="outline"
           size="sm"
-          className={cn("h-8 justify-start gap-2 px-2.5 font-normal", className)}
+          className={cn(
+            "h-8 justify-start gap-2 px-2.5 font-normal",
+            className,
+          )}
         >
           <CalendarIcon className="size-4 opacity-70" />
           {selected ? format(selected, "dd MMM yyyy") : "Pick a date"}

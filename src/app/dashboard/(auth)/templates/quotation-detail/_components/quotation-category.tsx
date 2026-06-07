@@ -8,13 +8,16 @@ import {
   closestCenter,
   useSensor,
   useSensors,
-  type DragEndEvent
+  type DragEndEvent,
 } from "@dnd-kit/core";
-import { restrictToParentElement, restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import {
+  restrictToParentElement,
+  restrictToVerticalAxis,
+} from "@dnd-kit/modifiers";
 import {
   SortableContext,
   sortableKeyboardCoordinates,
-  verticalListSortingStrategy
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +28,7 @@ import {
   categoryTotal,
   formatCurrency,
   type QuotationBuilderHandlers,
-  type QuotationCategory as Category
+  type QuotationCategory as Category,
 } from "../_data";
 import { QuotationCategoryActionsMenu } from "./quotation-category-actions-menu";
 import { QuotationLineItem } from "./quotation-line-item";
@@ -38,13 +41,19 @@ type Props = {
 export function QuotationCategory({ category, handlers }: Props) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 4 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
   );
 
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (over && active.id !== over.id) {
-      handlers.reorderLineItems(category.id, String(active.id), String(over.id));
+      handlers.reorderLineItems(
+        category.id,
+        String(active.id),
+        String(over.id),
+      );
     }
   }
 
@@ -58,11 +67,16 @@ export function QuotationCategory({ category, handlers }: Props) {
           type="button"
           onClick={() => handlers.toggleCategoryCollapsed(category.id)}
           aria-expanded={!category.collapsed}
-          aria-label={category.collapsed ? "Expand category" : "Collapse category"}
+          aria-label={
+            category.collapsed ? "Expand category" : "Collapse category"
+          }
           className="text-muted-foreground hover:text-foreground shrink-0"
         >
           <ChevronDown
-            className={cn("size-4 transition-transform", category.collapsed && "-rotate-90")}
+            className={cn(
+              "size-4 transition-transform",
+              category.collapsed && "-rotate-90",
+            )}
           />
         </button>
 

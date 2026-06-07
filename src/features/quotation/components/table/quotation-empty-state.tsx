@@ -6,7 +6,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 
 type QuotationEmptyStateProps = {
@@ -15,14 +15,19 @@ type QuotationEmptyStateProps = {
   onClearFilters?: () => void;
 };
 
-export function QuotationEmptyState({ filtered, onClearFilters }: QuotationEmptyStateProps) {
+export function QuotationEmptyState({
+  filtered,
+  onClearFilters,
+}: QuotationEmptyStateProps) {
   return (
     <Empty>
       <EmptyHeader>
         <EmptyMedia variant="icon">
           <FileText />
         </EmptyMedia>
-        <EmptyTitle>{filtered ? "No matching quotations" : "No quotations yet"}</EmptyTitle>
+        <EmptyTitle>
+          {filtered ? "No matching quotations" : "No quotations yet"}
+        </EmptyTitle>
         <EmptyDescription>
           {filtered
             ? "Try adjusting or clearing your filters."

@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -21,18 +21,22 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 
 import { inviteStaff } from "../actions/invite-staff";
-import { inviteStaffSchema, ROLE_NONE, type InviteStaffInput } from "../lib/team-form-schema";
+import {
+  inviteStaffSchema,
+  ROLE_NONE,
+  type InviteStaffInput,
+} from "../lib/team-form-schema";
 import type { RoleOption } from "../types";
 
 type InviteMemberSheetProps = {
@@ -47,14 +51,19 @@ const DEFAULTS: InviteStaffInput = {
   lastName: "",
   email: "",
   phone: "",
-  roleId: ROLE_NONE
+  roleId: ROLE_NONE,
 };
 
-export function InviteMemberSheet({ open, onOpenChange, roles, onInvited }: InviteMemberSheetProps) {
+export function InviteMemberSheet({
+  open,
+  onOpenChange,
+  roles,
+  onInvited,
+}: InviteMemberSheetProps) {
   const [isPending, startTransition] = useTransition();
   const form = useForm<InviteStaffInput>({
     resolver: zodResolver(inviteStaffSchema),
-    defaultValues: DEFAULTS
+    defaultValues: DEFAULTS,
   });
 
   useEffect(() => {
@@ -70,15 +79,20 @@ export function InviteMemberSheet({ open, onOpenChange, roles, onInvited }: Invi
         onInvited();
         return;
       }
-      if (res.fieldErrors?.firstName) form.setError("firstName", { message: res.fieldErrors.firstName });
-      if (res.fieldErrors?.email) form.setError("email", { message: res.fieldErrors.email });
+      if (res.fieldErrors?.firstName)
+        form.setError("firstName", { message: res.fieldErrors.firstName });
+      if (res.fieldErrors?.email)
+        form.setError("email", { message: res.fieldErrors.email });
       if (res.error) toast.error(res.error);
     });
   }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Invite member</SheetTitle>
           <SheetDescription className="sr-only">
@@ -87,7 +101,10 @@ export function InviteMemberSheet({ open, onOpenChange, roles, onInvited }: Invi
         </SheetHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="flex min-h-0 flex-1 flex-col">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex min-h-0 flex-1 flex-col"
+          >
             <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5">
               <div className="grid grid-cols-2 items-start gap-4">
                 <FormField
@@ -125,10 +142,15 @@ export function InviteMemberSheet({ open, onOpenChange, roles, onInvited }: Invi
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input type="email" placeholder="name@example.com" {...field} />
+                      <Input
+                        type="email"
+                        placeholder="name@example.com"
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>
-                      An invite with an email-confirmation link is sent to this address.
+                      An invite with an email-confirmation link is sent to this
+                      address.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>

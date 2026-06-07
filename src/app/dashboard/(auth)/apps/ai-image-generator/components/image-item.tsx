@@ -82,7 +82,9 @@ export default function ImageItem({ image, onDeleteImage }: ImageItemProps) {
 
         {/* Image info */}
         <div className="space-y-2 p-3">
-          <p className="text-muted-foreground line-clamp-2 text-xs">{image.prompt}</p>
+          <p className="text-muted-foreground line-clamp-2 text-xs">
+            {image.prompt}
+          </p>
           <div className="flex items-center justify-between">
             <div className="flex gap-1">
               <Badge variant="outline" className="text-xs">
@@ -92,7 +94,10 @@ export default function ImageItem({ image, onDeleteImage }: ImageItemProps) {
                 {image.aspectRatio}
               </Badge>
             </div>
-            <span className="text-muted-foreground text-xs" suppressHydrationWarning={true}>
+            <span
+              className="text-muted-foreground text-xs"
+              suppressHydrationWarning={true}
+            >
               {image.createdAt.toLocaleTimeString()}
             </span>
           </div>

@@ -5,9 +5,19 @@ import { Button } from "@/components/ui/button";
 import { generateAvatarFallback } from "@/lib/utils";
 import useChatStore from "../useChatStore";
 
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { CallDialog, ChatUserDropdown, VideoCallDialog } from "./index";
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from "@/components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarIndicator,
+} from "@/components/ui/avatar";
 import { UserPropsTypes } from "../types";
 
 export function ChatHeader({ user }: { user: UserPropsTypes }) {
@@ -34,7 +44,9 @@ export function ChatHeader({ user }: { user: UserPropsTypes }) {
           {user.online_status == "success" ? (
             <span className="text-xs text-green-500">Online</span>
           ) : (
-            <span className="text-muted-foreground text-xs">{user.last_seen}</span>
+            <span className="text-muted-foreground text-xs">
+              {user.last_seen}
+            </span>
           )}
         </div>
       </div>

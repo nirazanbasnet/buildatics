@@ -14,7 +14,7 @@ const accountTypes = [
     icon: User,
     emoji: "👤",
     features: ["Personal dashboard", "Basic analytics", "Community access"],
-    color: "from-green-500 to-emerald-500"
+    color: "from-green-500 to-emerald-500",
   },
   {
     id: "business",
@@ -23,7 +23,7 @@ const accountTypes = [
     icon: Building2,
     emoji: "🏢",
     features: ["Team collaboration", "Advanced analytics", "Priority support"],
-    color: "from-blue-500 to-indigo-500"
+    color: "from-blue-500 to-indigo-500",
   },
   {
     id: "enterprise",
@@ -32,8 +32,8 @@ const accountTypes = [
     icon: Users,
     emoji: "🏛️",
     features: ["Custom integrations", "Dedicated support", "Advanced security"],
-    color: "from-purple-500 to-pink-500"
-  }
+    color: "from-purple-500 to-pink-500",
+  },
 ];
 
 export function AccountTypeStep() {
@@ -53,7 +53,11 @@ export function AccountTypeStep() {
           {accountTypes.map((type) => {
             return (
               <div key={type.id} className="relative">
-                <RadioGroupItem value={type.id} id={type.id} className="peer sr-only" />
+                <RadioGroupItem
+                  value={type.id}
+                  id={type.id}
+                  className="peer sr-only"
+                />
                 <Label
                   htmlFor={type.id}
                   className="peer-data-[state=checked]:bg-primary/5 peer-data-[state=checked]:border-primary hover:border-primary flex cursor-pointer flex-col items-start space-y-2 rounded-md border px-4 py-6"

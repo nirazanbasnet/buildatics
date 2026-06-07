@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   PresetSelector,
@@ -17,7 +17,7 @@ import {
   ThemeRadiusSelector,
   ResetThemeButton,
   FontSelector,
-  CustomThemeDialog
+  CustomThemeDialog,
 } from "@src/components/theme-customizer/index";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -62,7 +62,10 @@ export function ThemeCustomizerPanel() {
           <ResetThemeButton />
         </DropdownMenuContent>
       </DropdownMenu>
-      <CustomThemeDialog open={customThemeOpen} onOpenChange={setCustomThemeOpen} />
+      <CustomThemeDialog
+        open={customThemeOpen}
+        onOpenChange={setCustomThemeOpen}
+      />
     </>
   );
 }

@@ -1,4 +1,10 @@
-import { Building2, FileText, Layers, ListChecks, type LucideIcon } from "lucide-react";
+import {
+  Building2,
+  FileText,
+  Layers,
+  ListChecks,
+  type LucideIcon,
+} from "lucide-react";
 
 // Static placeholder content for the design detail sheet. These sections are not yet wired to the
 // API (see map-design.ts gap notes): description, specs, room dimensions (designCustomFields,
@@ -15,10 +21,13 @@ const detailTabIcons: Record<DetailTab, LucideIcon> = {
   Details: Layers,
   Facades: Building2,
   Documents: FileText,
-  Tasks: ListChecks
+  Tasks: ListChecks,
 };
 
-export const detailTabItems = detailTabs.map((value) => ({ value, icon: detailTabIcons[value] }));
+export const detailTabItems = detailTabs.map((value) => ({
+  value,
+  icon: detailTabIcons[value],
+}));
 
 export const detailDescription =
   "Rear master retreat, open living, and alfresco for seamless outdoor flow.";
@@ -26,7 +35,7 @@ export const detailDescription =
 export const detailSpecs: SpecRow[] = [
   { label: "Min. Block Width", value: "12.5 m" },
   { label: "Min. Block Depth", value: "30 m" },
-  { label: "House Area", value: "25 sq (232 m²)" }
+  { label: "House Area", value: "25 sq (232 m²)" },
 ];
 
 export const detailRooms: RoomDimension[] = [
@@ -34,23 +43,23 @@ export const detailRooms: RoomDimension[] = [
   { name: "Living Room", size: "3000 X 3000" },
   { name: "Living Room", size: "3000 X 3000" },
   { name: "Living Room", size: "3000 X 3000" },
-  { name: "Living Room", size: "3000 X 3000" }
+  { name: "Living Room", size: "3000 X 3000" },
 ];
 
 export const availableFacades: FacadeOption[] = [
   {
     id: "facade-1",
     label: "Coastal",
-    image: "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg"
+    image: "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg",
   },
   {
     id: "facade-2",
     label: "Hampton",
-    image: "/images/display-center/facade/RENDER_DF02_12.5M_RIGHT_VN01.jpg"
+    image: "/images/display-center/facade/RENDER_DF02_12.5M_RIGHT_VN01.jpg",
   },
   {
     id: "facade-3",
     label: "Modern",
-    image: "/images/display-center/facade/RENDER_DF04_12.5M_RIGHT_VN01.jpg"
-  }
+    image: "/images/display-center/facade/RENDER_DF04_12.5M_RIGHT_VN01.jpg",
+  },
 ];

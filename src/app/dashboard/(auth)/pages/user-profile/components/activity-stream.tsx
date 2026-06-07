@@ -1,4 +1,11 @@
-import { Clock12Icon, FileText, Filter, MoreHorizontal, Settings, Download } from "lucide-react";
+import {
+  Clock12Icon,
+  FileText,
+  Filter,
+  MoreHorizontal,
+  Settings,
+  Download,
+} from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -6,7 +13,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Card,
@@ -14,7 +21,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Timeline,
@@ -24,7 +31,7 @@ import {
   TimelineIndicator,
   TimelineItem,
   TimelineSeparator,
-  TimelineTitle
+  TimelineTitle,
 } from "@/components/ui/timeline";
 
 const activities = [
@@ -37,8 +44,8 @@ const activities = [
     files: [
       { name: "weekly-reports.xls", size: "12kb", type: "excel" },
       { name: "weekly-reports.xls", size: "4kb", type: "word" },
-      { name: "monthly-reports.xls", size: "8kb", type: "word" }
-    ]
+      { name: "monthly-reports.xls", size: "8kb", type: "word" },
+    ],
   },
   {
     id: "2",
@@ -46,7 +53,7 @@ const activities = [
     title: "Project status updated",
     description: "Marked",
     timestamp: "3 hours ago",
-    badge: { text: "Completed", color: "cyan" }
+    badge: { text: "Completed", color: "cyan" },
   },
   {
     id: "3",
@@ -57,18 +64,18 @@ const activities = [
     images: [
       {
         id: "1",
-        src: "https://plus.unsplash.com/premium_photo-1751667124857-32b5a1c63d8a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400"
+        src: "https://plus.unsplash.com/premium_photo-1751667124857-32b5a1c63d8a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400",
       },
       {
         id: "2",
-        src: "https://images.unsplash.com/photo-1747302793923-23f66490ae0d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400"
+        src: "https://images.unsplash.com/photo-1747302793923-23f66490ae0d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400",
       },
       {
         id: "3",
-        src: "https://images.unsplash.com/photo-1756038714389-8ff4e5967ed5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400"
-      }
-    ]
-  }
+        src: "https://images.unsplash.com/photo-1756038714389-8ff4e5967ed5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=400",
+      },
+    ],
+  },
 ];
 
 export function ActivityStream() {
@@ -103,10 +110,16 @@ export function ActivityStream() {
       <CardContent>
         <Timeline defaultValue={3}>
           {activities.map((activity) => (
-            <TimelineItem key={activity.id} step={Number(activity.id)} className="space-y-2">
+            <TimelineItem
+              key={activity.id}
+              step={Number(activity.id)}
+              className="space-y-2"
+            >
               <TimelineHeader>
                 <TimelineSeparator />
-                <TimelineTitle className="-mt-0.5">{activity.title}</TimelineTitle>
+                <TimelineTitle className="-mt-0.5">
+                  {activity.title}
+                </TimelineTitle>
                 <TimelineIndicator />
               </TimelineHeader>
               <TimelineContent className="space-y-4">
@@ -120,8 +133,12 @@ export function ActivityStream() {
                       >
                         <FileText className="text-muted-foreground size-5" />
                         <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium">{file.name}</p>
-                          <p className="text-muted-foreground text-xs">{file.size}</p>
+                          <p className="truncate text-sm font-medium">
+                            {file.name}
+                          </p>
+                          <p className="text-muted-foreground text-xs">
+                            {file.size}
+                          </p>
                         </div>
                       </Link>
                     ))}
@@ -132,7 +149,11 @@ export function ActivityStream() {
                   <div className="grid gap-3 sm:grid-cols-3">
                     {activity.images.map((img) => (
                       <figure key={img.id}>
-                        <img className="aspect-video w-full rounded-lg" src={img.src} alt="..." />
+                        <img
+                          className="aspect-video w-full rounded-lg"
+                          src={img.src}
+                          alt="..."
+                        />
                       </figure>
                     ))}
                   </div>

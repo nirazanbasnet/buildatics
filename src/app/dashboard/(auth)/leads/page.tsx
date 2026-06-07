@@ -11,7 +11,9 @@ import { parseLeadsVariant } from "../templates/leads/_components/variants";
 
 export default async function LeadsPage() {
   const cookieStore = await cookies();
-  const leadsVariant = parseLeadsVariant(cookieStore.get("leads_variant")?.value);
+  const leadsVariant = parseLeadsVariant(
+    cookieStore.get("leads_variant")?.value,
+  );
 
   const Layout = leadsVariant === "v2" ? LeadsLayoutV2 : LeadsLayout;
 

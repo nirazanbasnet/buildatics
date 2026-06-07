@@ -6,7 +6,7 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -31,14 +31,14 @@ const DEFAULTS: FilterState = {
   minBlockWidth: "12.5",
   bedrooms: "3",
   baths: "3",
-  garage: "all"
+  garage: "all",
 };
 
 const blockOptions = [
   { value: "all", label: "All" },
   { value: "8.5", label: "8.5m" },
   { value: "10.5", label: "10.5m" },
-  { value: "12.5", label: "12.5m" }
+  { value: "12.5", label: "12.5m" },
 ];
 
 const countOptions = [
@@ -46,13 +46,13 @@ const countOptions = [
   { value: "1", label: "1" },
   { value: "2", label: "2" },
   { value: "3", label: "3" },
-  { value: "4+", label: "4+" }
+  { value: "4+", label: "4+" },
 ];
 
 const garageOptions = [
   { value: "all", label: "All" },
   { value: "single", label: "Single" },
-  { value: "double", label: "Double" }
+  { value: "double", label: "Double" },
 ];
 
 function countActive(state: FilterState): number {
@@ -73,7 +73,12 @@ type Props = {
   className?: string;
 };
 
-export function FilterContentV2({ onCancel, onApply, hideHeader, className }: Props) {
+export function FilterContentV2({
+  onCancel,
+  onApply,
+  hideHeader,
+  className,
+}: Props) {
   const [draft, setDraft] = useState<FilterState>(DEFAULTS);
   const activeCount = countActive(draft);
 
@@ -98,20 +103,30 @@ export function FilterContentV2({ onCancel, onApply, hideHeader, className }: Pr
       ) : null}
 
       <div className="flex-1 overflow-y-auto px-3 py-3">
-        <Accordion type="multiple" defaultValue={["house-area", "bedrooms"]} className="space-y-2">
+        <Accordion
+          type="multiple"
+          defaultValue={["house-area", "bedrooms"]}
+          className="space-y-2"
+        >
           <FilterAccordionItem
             value="house-area"
             label="House Area"
             summary={`${draft.houseArea[0].toFixed(1)}–${draft.houseArea[1].toFixed(1)} sq`}
           >
             <div className="relative pt-8">
-              <SliderTooltip value={draft.houseArea[1]} min={AREA_MIN} max={AREA_MAX} />
+              <SliderTooltip
+                value={draft.houseArea[1]}
+                min={AREA_MIN}
+                max={AREA_MAX}
+              />
               <Slider
                 min={AREA_MIN}
                 max={AREA_MAX}
                 step={0.1}
                 value={draft.houseArea}
-                onValueChange={(v) => update("houseArea", v as [number, number])}
+                onValueChange={(v) =>
+                  update("houseArea", v as [number, number])
+                }
               />
             </div>
             <div className="mt-2 flex items-center justify-between">
@@ -148,7 +163,11 @@ export function FilterContentV2({ onCancel, onApply, hideHeader, className }: Pr
             />
           </FilterAccordionItem>
 
-          <FilterAccordionItem value="bedrooms" label="Bedrooms" summary={summary(draft.bedrooms)}>
+          <FilterAccordionItem
+            value="bedrooms"
+            label="Bedrooms"
+            summary={summary(draft.bedrooms)}
+          >
             <PillToggleGroup
               value={draft.bedrooms}
               onValueChange={(v) => v && update("bedrooms", v)}
@@ -156,7 +175,11 @@ export function FilterContentV2({ onCancel, onApply, hideHeader, className }: Pr
             />
           </FilterAccordionItem>
 
-          <FilterAccordionItem value="baths" label="Baths" summary={summary(draft.baths)}>
+          <FilterAccordionItem
+            value="baths"
+            label="Baths"
+            summary={summary(draft.baths)}
+          >
             <PillToggleGroup
               value={draft.baths}
               onValueChange={(v) => v && update("baths", v)}
@@ -164,7 +187,11 @@ export function FilterContentV2({ onCancel, onApply, hideHeader, className }: Pr
             />
           </FilterAccordionItem>
 
-          <FilterAccordionItem value="garage" label="Garage" summary={summary(draft.garage)}>
+          <FilterAccordionItem
+            value="garage"
+            label="Garage"
+            summary={summary(draft.garage)}
+          >
             <PillToggleGroup
               value={draft.garage}
               onValueChange={(v) => v && update("garage", v)}
@@ -195,7 +222,7 @@ function FilterAccordionItem({
   value,
   label,
   summary,
-  children
+  children,
 }: {
   value: string;
   label: string;
@@ -203,11 +230,16 @@ function FilterAccordionItem({
   children: React.ReactNode;
 }) {
   return (
-    <AccordionItem value={value} className="bg-card overflow-hidden rounded-md border last:border">
+    <AccordionItem
+      value={value}
+      className="bg-card overflow-hidden rounded-md border last:border"
+    >
       <AccordionTrigger className="px-3 py-2 hover:no-underline">
         <div className="flex w-full items-center justify-between gap-2 pr-2">
           <span className="text-sm font-medium">{label}</span>
-          <span className="text-muted-foreground text-xs font-medium">{summary}</span>
+          <span className="text-muted-foreground text-xs font-medium">
+            {summary}
+          </span>
         </div>
       </AccordionTrigger>
       <AccordionContent className="px-3 pb-3">{children}</AccordionContent>
@@ -215,7 +247,15 @@ function FilterAccordionItem({
   );
 }
 
-function SliderTooltip({ value, min, max }: { value: number; min: number; max: number }) {
+function SliderTooltip({
+  value,
+  min,
+  max,
+}: {
+  value: number;
+  min: number;
+  max: number;
+}) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
     <div
@@ -231,7 +271,7 @@ function SliderTooltip({ value, min, max }: { value: number; min: number; max: n
 function PillToggleGroup({
   value,
   onValueChange,
-  options
+  options,
 }: {
   value: string;
   onValueChange: (value: string) => void;
@@ -250,7 +290,7 @@ function PillToggleGroup({
           value={opt.value}
           variant="outline"
           className={cn(
-            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors"
+            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors",
           )}
         >
           {opt.label}

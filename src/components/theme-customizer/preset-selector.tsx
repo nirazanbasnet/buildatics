@@ -7,7 +7,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 
@@ -21,7 +21,10 @@ export function PresetSelector() {
   return (
     <div className="flex flex-col gap-3">
       <Label>Theme preset:</Label>
-      <Select value={theme.preset} onValueChange={(value) => handlePreset(value)}>
+      <Select
+        value={theme.preset}
+        onValueChange={(value) => handlePreset(value)}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Select a theme" />
         </SelectTrigger>

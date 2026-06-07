@@ -6,13 +6,29 @@ import { DollarSign, GripVertical, Phone, PlusCircleIcon } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import * as Kanban from "@/components/ui/kanban";
 import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
-import { groupLeadsByStage, leadStages, leadStatusLabels, type Lead } from "../_data";
+import {
+  groupLeadsByStage,
+  leadStages,
+  leadStatusLabels,
+  type Lead,
+} from "../_data";
 
 type Props = {
   leads: Lead[];
@@ -46,7 +62,7 @@ function ProgressChip({ value }: { value: number }) {
             fill="none"
             className={cn("stroke-current", {
               "text-green-600!": value === 100,
-              "text-orange-500!": value > 50 && value < 100
+              "text-orange-500!": value > 50 && value < 100,
             })}
             strokeWidth="2"
             strokeDasharray={circumference}
@@ -99,16 +115,28 @@ function LeadKanbanCardV2({ lead }: { lead: Lead }) {
 }
 
 export function LeadsKanbanV2({ leads, className }: Props) {
-  const [columns, setColumns] = useState<Record<string, Lead[]>>(() => groupLeadsByStage(leads));
+  const [columns, setColumns] = useState<Record<string, Lead[]>>(() =>
+    groupLeadsByStage(leads),
+  );
 
   return (
     <TooltipProvider>
-      <Kanban.Root value={columns} onValueChange={setColumns} getItemValue={(item) => item.id}>
-        <Kanban.Board className={cn("flex w-full gap-4 overflow-x-auto pb-4", className)}>
+      <Kanban.Root
+        value={columns}
+        onValueChange={setColumns}
+        getItemValue={(item) => item.id}
+      >
+        <Kanban.Board
+          className={cn("flex w-full gap-4 overflow-x-auto pb-4", className)}
+        >
           {leadStages.map((stage) => {
             const items = columns[stage.id] ?? [];
             return (
-              <Kanban.Column key={stage.id} value={stage.id} className="w-[340px] min-w-[340px]">
+              <Kanban.Column
+                key={stage.id}
+                value={stage.id}
+                className="w-[340px] min-w-[340px]"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-semibold">{stage.name}</span>
@@ -135,7 +163,12 @@ export function LeadsKanbanV2({ leads, className }: Props) {
                 {items.length > 0 ? (
                   <div className="flex flex-col gap-2 p-0.5">
                     {items.map((lead) => (
-                      <Kanban.Item key={lead.id} value={lead.id} asHandle asChild>
+                      <Kanban.Item
+                        key={lead.id}
+                        value={lead.id}
+                        asHandle
+                        asChild
+                      >
                         <div>
                           <LeadKanbanCardV2 lead={lead} />
                         </div>
@@ -144,7 +177,9 @@ export function LeadsKanbanV2({ leads, className }: Props) {
                   </div>
                 ) : (
                   <div className="flex flex-col justify-center gap-4 pt-4">
-                    <div className="text-muted-foreground text-sm">No lead added here.</div>
+                    <div className="text-muted-foreground text-sm">
+                      No lead added here.
+                    </div>
                     <Button variant="outline">Add Lead</Button>
                   </div>
                 )}

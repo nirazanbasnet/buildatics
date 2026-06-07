@@ -5,14 +5,21 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { FilterTab, Todo, TodoStatus } from "../types";
 
 import { Button } from "@/components/ui/button";
-import { Plus, X, Search, SlidersHorizontal, GridIcon, ListIcon } from "lucide-react";
+import {
+  Plus,
+  X,
+  Search,
+  SlidersHorizontal,
+  GridIcon,
+  ListIcon,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Toggle } from "@/components/ui/toggle";
 import TodoItem from "./todo-item";
@@ -22,7 +29,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { priorityDotColors, EnumTodoPriority } from "../enum";
 import { toast } from "sonner";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   DndContext,
   closestCenter,
@@ -33,13 +45,13 @@ import {
   type DragStartEvent,
   type DragEndEvent,
   type DragCancelEvent,
-  DragOverlay
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
-  rectSortingStrategy
+  rectSortingStrategy,
 } from "@dnd-kit/sortable";
 
 interface TodoListProps {
@@ -48,7 +60,11 @@ interface TodoListProps {
   onAddTodoClick: () => void;
 }
 
-export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: TodoListProps) {
+export default function TodoList({
+  activeTab,
+  onSelectTodo,
+  onAddTodoClick,
+}: TodoListProps) {
   const [activeId, setActiveId] = React.useState<string | null>(null);
   const {
     todos,
@@ -65,19 +81,21 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
     toggleStarred,
     showStarredOnly,
     toggleShowStarredOnly,
-    setActiveTab
+    setActiveTab,
   } = useTodoStore();
-  const [, setReorderedPositions] = React.useState<{ id: string; position: number }[]>([]);
+  const [, setReorderedPositions] = React.useState<
+    { id: string; position: number }[]
+  >([]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 3
-      }
+        distance: 3,
+      },
     }),
     useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates
-    })
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
   );
 
   const handleTabChange = (tab: FilterTab) => {
@@ -85,7 +103,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
   };
 
   // Get unique users for the filter dropdown
-  const uniqueUsers = Array.from(new Set(todos.flatMap((todo) => todo.assignedTo)));
+  const uniqueUsers = Array.from(
+    new Set(todos.flatMap((todo) => todo.assignedTo)),
+  );
 
   // Apply all filters
   const filteredTodos = todos.filter((todo) => {
@@ -94,7 +114,8 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
 
     // User filter
     if (filterUser && filterUser.length > 0) {
-      if (!filterUser.some((user) => todo.assignedTo.includes(user))) return false;
+      if (!filterUser.some((user) => todo.assignedTo.includes(user)))
+        return false;
     }
 
     // Priority filter
@@ -140,7 +161,7 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
 
     const positions = newItems.map((item, index) => ({
       id: item.id,
-      position: index
+      position: index,
     }));
 
     reorderTodos(positions);
@@ -150,8 +171,8 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
       reorderedTodos: newItems.map((todo) => ({
         id: todo.id,
         title: todo.title,
-        position: positions.find((p) => p.id === todo.id)?.position
-      }))
+        position: positions.find((p) => p.id === todo.id)?.position,
+      })),
     });
 
     toast.success("The to-do items have been reordered successfully.");
@@ -165,7 +186,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
     if (!filterUser) {
       setFilterUser(checked ? [user] : null);
     } else {
-      const newUsers = checked ? [...filterUser, user] : filterUser.filter((u) => u !== user);
+      const newUsers = checked
+        ? [...filterUser, user]
+        : filterUser.filter((u) => u !== user);
 
       setFilterUser(newUsers.length > 0 ? newUsers : null);
     }
@@ -196,7 +219,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
               variant="outline"
               size="sm"
               pressed={filterUser?.includes(user) || false}
-              onPressedChange={(pressed) => handleUserFilterChange(user, pressed)}
+              onPressedChange={(pressed) =>
+                handleUserFilterChange(user, pressed)
+              }
               className="px-3 text-xs"
             >
               {user}
@@ -206,7 +231,11 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
       </div>
 
       <div className="flex items-center gap-2">
-        <Checkbox id="starred" checked={showStarredOnly} onCheckedChange={toggleShowStarredOnly} />
+        <Checkbox
+          id="starred"
+          checked={showStarredOnly}
+          onCheckedChange={toggleShowStarredOnly}
+        />
         <Label htmlFor="starred">Show starred only</Label>
       </div>
 
@@ -222,7 +251,12 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
               onPressedChange={() => setFilterPriority(priority)}
               className="px-3 text-xs capitalize"
             >
-              <span className={cn("size-2 rounded-full", priorityDotColors[priority])}></span>
+              <span
+                className={cn(
+                  "size-2 rounded-full",
+                  priorityDotColors[priority],
+                )}
+              ></span>
               {priority}
             </Toggle>
           ))}
@@ -230,7 +264,12 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
 
         {(filterUser || filterPriority || showStarredOnly) && (
           <div className="text-end">
-            <Button variant="link" size="sm" className="px-0!" onClick={clearFilters}>
+            <Button
+              variant="link"
+              size="sm"
+              className="px-0!"
+              onClick={clearFilters}
+            >
               Clear Filters
               <X />
             </Button>
@@ -343,7 +382,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
                     variant="secondary"
                     className="absolute -end-1.5 -top-1.5 size-4 rounded-full p-0"
                   >
-                    {(filterUser ? 1 : 0) + (filterPriority ? 1 : 0) + (showStarredOnly ? 1 : 0)}
+                    {(filterUser ? 1 : 0) +
+                      (filterPriority ? 1 : 0) +
+                      (showStarredOnly ? 1 : 0)}
                   </Badge>
                 )}
               </Button>
@@ -358,7 +399,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
             type="single"
             variant="outline"
             value={viewMode}
-            onValueChange={(value) => value && setViewMode(value as "list" | "grid")}
+            onValueChange={(value) =>
+              value && setViewMode(value as "list" | "grid")
+            }
           >
             <ToggleGroupItem value="list" aria-label="List view">
               <ListIcon />
@@ -391,7 +434,9 @@ export default function TodoList({ activeTab, onSelectTodo, onAddTodoClick }: To
       {filteredTodos.length === 0 ? (
         <div className="flex h-[calc(100vh-12rem)] flex-col items-center justify-center py-12 text-center">
           <h3 className="text-xl font-medium">No tasks found</h3>
-          <p className="text-muted-foreground mt-2">Add a new task to get started</p>
+          <p className="text-muted-foreground mt-2">
+            Add a new task to get started
+          </p>
         </div>
       ) : (
         renderTodoItems()

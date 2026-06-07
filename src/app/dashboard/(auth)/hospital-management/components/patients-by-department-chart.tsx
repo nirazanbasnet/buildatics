@@ -8,36 +8,36 @@ import {
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
   { department: "cardiology", visitors: 275, fill: "var(--color-cardiology)" },
   { department: "neurology", visitors: 200, fill: "var(--color-neurology)" },
   { department: "oncology", visitors: 187, fill: "var(--color-oncology)" },
-  { department: "pediatrics", visitors: 173, fill: "var(--color-pediatrics)" }
+  { department: "pediatrics", visitors: 173, fill: "var(--color-pediatrics)" },
 ];
 
 const chartConfig = {
   visitors: {
-    label: "Visitors"
+    label: "Visitors",
   },
   cardiology: {
     label: "Cardiology",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   neurology: {
     label: "Neurology",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   oncology: {
     label: "Oncology",
-    color: "var(--chart-3)"
+    color: "var(--chart-3)",
   },
   pediatrics: {
     label: "Pediatrics",
-    color: "var(--chart-4)"
-  }
+    color: "var(--chart-4)",
+  },
 } satisfies ChartConfig;
 
 export function PatientsByDepartmentChart() {
@@ -53,7 +53,12 @@ export function PatientsByDepartmentChart() {
         >
           <PieChart>
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <Pie data={chartData} dataKey="visitors" label nameKey="department" />
+            <Pie
+              data={chartData}
+              dataKey="visitors"
+              label
+              nameKey="department"
+            />
             <ChartLegend
               content={<ChartLegendContent nameKey="department" />}
               className="-translate-y-2 flex-wrap gap-2 *:basis-1/4 *:justify-center"

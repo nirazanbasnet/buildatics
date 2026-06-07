@@ -7,7 +7,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { SheetMobileBar } from "@src/components/ui/sheet-mobile-bar";
 
@@ -24,7 +24,12 @@ type Props = {
   variant?: DetailVariantId;
 };
 
-export function DetailSheet({ open, onOpenChange, property, variant = "v1" }: Props) {
+export function DetailSheet({
+  open,
+  onOpenChange,
+  property,
+  variant = "v1",
+}: Props) {
   const Layout = variant === "v2" ? DetailLayoutV2 : DetailLayout;
   const close = () => onOpenChange(false);
   return (
@@ -37,7 +42,9 @@ export function DetailSheet({ open, onOpenChange, property, variant = "v1" }: Pr
         <VisuallyHidden>
           <SheetHeader>
             <SheetTitle>{property.title} details</SheetTitle>
-            <SheetDescription>Detail view for {property.title}</SheetDescription>
+            <SheetDescription>
+              Detail view for {property.title}
+            </SheetDescription>
           </SheetHeader>
         </VisuallyHidden>
         <SheetMobileBar onClose={close} title={property.title} />

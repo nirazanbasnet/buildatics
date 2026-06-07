@@ -31,7 +31,7 @@ export function PropertyCardV7({
   view = "facade",
   index = 0,
   detailEnabled,
-  detailVariant
+  detailVariant,
 }: Props) {
   const [open, setOpen] = useState(false);
   const src = view === "floor" ? property.floorPlan : property.facade;
@@ -58,7 +58,8 @@ export function PropertyCardV7({
         }
         className={cn(
           "group h-full gap-0 overflow-hidden p-0 transition duration-300 hover:-translate-y-1.5 hover:shadow-lg",
-          detailEnabled && "focus-visible:ring-ring cursor-pointer focus-visible:ring-2"
+          detailEnabled &&
+            "focus-visible:ring-ring cursor-pointer focus-visible:ring-2",
         )}
       >
         <div className="relative">
@@ -69,7 +70,7 @@ export function PropertyCardV7({
             height={560}
             className={cn(
               "h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105",
-              view === "floor" && "bg-muted dark:bg-stone-100"
+              view === "floor" && "bg-muted dark:bg-stone-100",
             )}
           />
           <span
@@ -107,7 +108,9 @@ export function PropertyCardV7({
               </p>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-xl font-bold tabular-nums">{property.squareFootage}</span>
+              <span className="text-xl font-bold tabular-nums">
+                {property.squareFootage}
+              </span>
               <span className="text-muted-foreground text-sm">sq</span>
             </div>
           </div>
@@ -136,7 +139,7 @@ export function PropertyCardV7({
 function SpecTile({
   icon: Icon,
   value,
-  label
+  label,
 }: {
   icon: typeof BedDouble;
   value: number;

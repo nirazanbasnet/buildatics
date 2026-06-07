@@ -5,7 +5,7 @@ import { Variant7Layout } from "../templates/display-center/_components/variant-
 import { PaginationNav } from "@src/components/pagination-nav";
 
 export default async function DisplayCenterPage({
-  searchParams
+  searchParams,
 }: {
   searchParams: Promise<{ view?: string }>;
 }) {

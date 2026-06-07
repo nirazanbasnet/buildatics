@@ -7,7 +7,7 @@ import {
   useState,
   type ChangeEvent,
   type DragEvent,
-  type InputHTMLAttributes
+  type InputHTMLAttributes,
 } from "react";
 
 export type FileMetadata = {
@@ -52,14 +52,14 @@ export type FileUploadActions = {
   handleFileChange: (e: ChangeEvent<HTMLInputElement>) => void;
   openFileDialog: () => void;
   getInputProps: (
-    props?: InputHTMLAttributes<HTMLInputElement>
+    props?: InputHTMLAttributes<HTMLInputElement>,
   ) => InputHTMLAttributes<HTMLInputElement> & {
     ref: React.Ref<HTMLInputElement>;
   };
 };
 
 export const useFileUpload = (
-  options: FileUploadOptions = {}
+  options: FileUploadOptions = {},
 ): [FileUploadState, FileUploadActions] => {
   const {
     maxFiles = Infinity,
@@ -68,17 +68,17 @@ export const useFileUpload = (
     multiple = false,
     initialFiles = [],
     onFilesChange,
-    onFilesAdded
+    onFilesAdded,
   } = options;
 
   const [state, setState] = useState<FileUploadState>({
     files: initialFiles.map((file) => ({
       file,
       id: file.id,
-      preview: file.url
+      preview: file.url,
     })),
     isDragging: false,
-    errors: []
+    errors: [],
   });
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -118,15 +118,18 @@ export const useFileUpload = (
 
       return null;
     },
-    [accept, maxSize]
+    [accept, maxSize],
   );
 
-  const createPreview = useCallback((file: File | FileMetadata): string | undefined => {
-    if (file instanceof File) {
-      return URL.createObjectURL(file);
-    }
-    return file.url;
-  }, []);
+  const createPreview = useCallback(
+    (file: File | FileMetadata): string | undefined => {
+      if (file instanceof File) {
+        return URL.createObjectURL(file);
+      }
+      return file.url;
+    },
+    [],
+  );
 
   const generateUniqueId = useCallback((file: File | FileMetadata): string => {
     if (file instanceof File) {
@@ -139,7 +142,11 @@ export const useFileUpload = (
     setState((prev) => {
       // Clean up object URLs
       prev.files.forEach((file) => {
-        if (file.preview && file.file instanceof File && file.file.type.startsWith("image/")) {
+        if (
+          file.preview &&
+          file.file instanceof File &&
+          file.file.type.startsWith("image/")
+        ) {
           URL.revokeObjectURL(file.preview);
         }
       });
@@ -151,7 +158,7 @@ export const useFileUpload = (
       const newState = {
         ...prev,
         files: [],
-        errors: []
+        errors: [],
       };
 
       onFilesChange?.(newState.files);
@@ -192,7 +199,8 @@ export const useFileUpload = (
         if (multiple) {
           const isDuplicate = state.files.some(
             (existingFile) =>
-              existingFile.file.name === file.name && existingFile.file.size === file.size
+              existingFile.file.name === file.name &&
+              existingFile.file.size === file.size,
           );
 
           // Skip duplicate files silently
@@ -206,7 +214,7 @@ export const useFileUpload = (
           errors.push(
             multiple
               ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.`
-              : `File exceeds the maximum size of ${formatBytes(maxSize)}.`
+              : `File exceeds the maximum size of ${formatBytes(maxSize)}.`,
           );
           return;
         }
@@ -218,7 +226,7 @@ export const useFileUpload = (
           validFiles.push({
             file,
             id: generateUniqueId(file),
-            preview: createPreview(file)
+            preview: createPreview(file),
           });
         }
       });
@@ -229,18 +237,20 @@ export const useFileUpload = (
         onFilesAdded?.(validFiles);
 
         setState((prev) => {
-          const newFiles = !multiple ? validFiles : [...prev.files, ...validFiles];
+          const newFiles = !multiple
+            ? validFiles
+            : [...prev.files, ...validFiles];
           onFilesChange?.(newFiles);
           return {
             ...prev,
             files: newFiles,
-            errors
+            errors,
           };
         });
       } else if (errors.length > 0) {
         setState((prev) => ({
           ...prev,
-          errors
+          errors,
         }));
       }
 
@@ -259,8 +269,8 @@ export const useFileUpload = (
       generateUniqueId,
       clearFiles,
       onFilesChange,
-      onFilesAdded
-    ]
+      onFilesAdded,
+    ],
   );
 
   const removeFile = useCallback(
@@ -282,17 +292,17 @@ export const useFileUpload = (
         return {
           ...prev,
           files: newFiles,
-          errors: []
+          errors: [],
         };
       });
     },
-    [onFilesChange]
+    [onFilesChange],
   );
 
   const clearErrors = useCallback(() => {
     setState((prev) => ({
       ...prev,
-      errors: []
+      errors: [],
     }));
   }, []);
 
@@ -339,7 +349,7 @@ export const useFileUpload = (
         }
       }
     },
-    [addFiles, multiple]
+    [addFiles, multiple],
   );
 
   const handleFileChange = useCallback(
@@ -348,7 +358,7 @@ export const useFileUpload = (
         addFiles(e.target.files);
       }
     },
-    [addFiles]
+    [addFiles],
   );
 
   const openFileDialog = useCallback(() => {
@@ -365,10 +375,10 @@ export const useFileUpload = (
         onChange: handleFileChange,
         accept: props.accept || accept,
         multiple: props.multiple !== undefined ? props.multiple : multiple,
-        ref: inputRef
+        ref: inputRef,
       };
     },
-    [accept, multiple, handleFileChange]
+    [accept, multiple, handleFileChange],
   );
 
   return [
@@ -384,8 +394,8 @@ export const useFileUpload = (
       handleDrop,
       handleFileChange,
       openFileDialog,
-      getInputProps
-    }
+      getInputProps,
+    },
   ];
 };
 

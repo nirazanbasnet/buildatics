@@ -16,7 +16,7 @@ import {
   type QuotationDetail,
   type QuotationDetailStatus,
   type QuotationDetailTab,
-  type QuotationLineItem
+  type QuotationLineItem,
 } from "../_data";
 
 import { QuotationBuilder } from "./quotation-builder";
@@ -44,22 +44,31 @@ type Props = {
   className?: string;
 };
 
-export function QuotationDetailLayout({ detail: initialDetail, className }: Props) {
+export function QuotationDetailLayout({
+  detail: initialDetail,
+  className,
+}: Props) {
   const [detail, setDetail] = useState<QuotationDetail>(initialDetail);
-  const [activeTab, setActiveTab] = useState<QuotationDetailTab>(quotationDetailTabs[0]);
+  const [activeTab, setActiveTab] = useState<QuotationDetailTab>(
+    quotationDetailTabs[0],
+  );
 
-  function patchCategories(updater: (categories: QuotationCategory[]) => QuotationCategory[]) {
+  function patchCategories(
+    updater: (categories: QuotationCategory[]) => QuotationCategory[],
+  ) {
     setDetail((prev) => ({ ...prev, categories: updater(prev.categories) }));
   }
 
   function patchItems(
     categoryId: string,
-    updater: (items: QuotationLineItem[]) => QuotationLineItem[]
+    updater: (items: QuotationLineItem[]) => QuotationLineItem[],
   ) {
     patchCategories((categories) =>
       categories.map((category) =>
-        category.id === categoryId ? { ...category, items: updater(category.items) } : category
-      )
+        category.id === categoryId
+          ? { ...category, items: updater(category.items) }
+          : category,
+      ),
     );
   }
 
@@ -71,30 +80,34 @@ export function QuotationDetailLayout({ detail: initialDetail, className }: Prop
           id: uid("cat"),
           name: "New Category",
           collapsed: false,
-          items: [{ id: uid("li"), name: "New item", cost: 0, visible: true }]
-        }
+          items: [{ id: uid("li"), name: "New item", cost: 0, visible: true }],
+        },
       ]),
     moveCategory: (categoryId, direction) =>
       patchCategories((categories) => {
-        const index = categories.findIndex((category) => category.id === categoryId);
+        const index = categories.findIndex(
+          (category) => category.id === categoryId,
+        );
         return index === -1 ? categories : move(categories, index, direction);
       }),
     renameCategory: (categoryId, name) =>
       patchCategories((categories) =>
         categories.map((category) =>
-          category.id === categoryId ? { ...category, name } : category
-        )
+          category.id === categoryId ? { ...category, name } : category,
+        ),
       ),
     duplicateCategory: (categoryId) =>
       patchCategories((categories) => {
-        const index = categories.findIndex((category) => category.id === categoryId);
+        const index = categories.findIndex(
+          (category) => category.id === categoryId,
+        );
         if (index === -1) return categories;
         const source = categories[index];
         const clone: QuotationCategory = {
           ...source,
           id: uid("cat"),
           name: `${source.name} (copy)`,
-          items: source.items.map((item) => ({ ...item, id: uid("li") }))
+          items: source.items.map((item) => ({ ...item, id: uid("li") })),
         };
         const next = [...categories];
         next.splice(index + 1, 0, clone);
@@ -103,23 +116,31 @@ export function QuotationDetailLayout({ detail: initialDetail, className }: Prop
     toggleCategoryCollapsed: (categoryId) =>
       patchCategories((categories) =>
         categories.map((category) =>
-          category.id === categoryId ? { ...category, collapsed: !category.collapsed } : category
-        )
+          category.id === categoryId
+            ? { ...category, collapsed: !category.collapsed }
+            : category,
+        ),
       ),
     deleteCategory: (categoryId) =>
-      patchCategories((categories) => categories.filter((category) => category.id !== categoryId)),
+      patchCategories((categories) =>
+        categories.filter((category) => category.id !== categoryId),
+      ),
     addLineItem: (categoryId) =>
       patchItems(categoryId, (items) => [
         ...items,
-        { id: uid("li"), name: "New item", cost: 0, visible: true }
+        { id: uid("li"), name: "New item", cost: 0, visible: true },
       ]),
     updateLineItem: (categoryId, itemId, patch) =>
       patchItems(categoryId, (items) =>
-        items.map((item) => (item.id === itemId ? { ...item, ...patch } : item))
+        items.map((item) =>
+          item.id === itemId ? { ...item, ...patch } : item,
+        ),
       ),
     toggleLineItemVisibility: (categoryId, itemId) =>
       patchItems(categoryId, (items) =>
-        items.map((item) => (item.id === itemId ? { ...item, visible: !item.visible } : item))
+        items.map((item) =>
+          item.id === itemId ? { ...item, visible: !item.visible } : item,
+        ),
       ),
     moveLineItem: (categoryId, itemId, direction) =>
       patchItems(categoryId, (items) => {
@@ -142,7 +163,9 @@ export function QuotationDetailLayout({ detail: initialDetail, className }: Prop
         return next;
       }),
     deleteLineItem: (categoryId, itemId) =>
-      patchItems(categoryId, (items) => items.filter((item) => item.id !== itemId))
+      patchItems(categoryId, (items) =>
+        items.filter((item) => item.id !== itemId),
+      ),
   };
 
   function setStatus(status: QuotationDetailStatus) {
@@ -161,10 +184,7 @@ export function QuotationDetailLayout({ detail: initialDetail, className }: Prop
   }
 
   return (
-    <div
-      className={cn("", className)}
-      data-slot="quotation-detail"
-    >
+    <div className={cn("", className)} data-slot="quotation-detail">
       <AnimatedSection>
         <SegmentedNav
           items={quotationDetailTabItems}
@@ -184,19 +204,25 @@ export function QuotationDetailLayout({ detail: initialDetail, className }: Prop
                 title="Internal Notes"
                 value={detail.internalNotes}
                 placeholder="Notes only visible to your team…"
-                onChange={(value) => setDetail((prev) => ({ ...prev, internalNotes: value }))}
+                onChange={(value) =>
+                  setDetail((prev) => ({ ...prev, internalNotes: value }))
+                }
               />
               <QuotationEditableSection
                 title="Scope and Description"
                 value={detail.scope}
                 placeholder="Describe the scope of work…"
-                onChange={(value) => setDetail((prev) => ({ ...prev, scope: value }))}
+                onChange={(value) =>
+                  setDetail((prev) => ({ ...prev, scope: value }))
+                }
               />
               <QuotationEditableSection
                 title="Terms and Conditions"
                 value={detail.terms}
                 placeholder="Payment terms, validity, exclusions…"
-                onChange={(value) => setDetail((prev) => ({ ...prev, terms: value }))}
+                onChange={(value) =>
+                  setDetail((prev) => ({ ...prev, terms: value }))
+                }
               />
             </div>
 

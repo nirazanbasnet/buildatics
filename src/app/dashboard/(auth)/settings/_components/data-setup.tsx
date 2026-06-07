@@ -15,7 +15,7 @@ const itemIcons: Record<string, { icon: LucideIcon; className: string }> = {
   "lead-status": { icon: BarChart3, className: "text-green-600" },
   "design-stages": { icon: Home, className: "text-orange-500" },
   "design-status": { icon: Home, className: "text-orange-500" },
-  "project-status": { icon: LineChart, className: "text-blue-600" }
+  "project-status": { icon: LineChart, className: "text-blue-600" },
 };
 
 type Props = {
@@ -29,7 +29,10 @@ export function DataSetup({ groups }: Props) {
 
   return (
     <div className="flex flex-col gap-6 lg:flex-row" data-slot="data-setup">
-      <nav className="flex shrink-0 flex-col gap-4 lg:w-52" aria-label="Data setup sections">
+      <nav
+        className="flex shrink-0 flex-col gap-4 lg:w-52"
+        aria-label="Data setup sections"
+      >
         {groups.map((group) => (
           <div key={group.label} className="flex flex-col gap-1">
             <p className="text-muted-foreground px-2 text-[11px] font-medium tracking-wider uppercase">
@@ -48,10 +51,15 @@ export function DataSetup({ groups }: Props) {
                     "flex items-center gap-2 rounded-md px-2 py-1.5 text-left text-sm transition-colors",
                     isActive
                       ? "bg-muted text-foreground font-medium"
-                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
                   )}
                 >
-                  <Icon className={cn("size-4 shrink-0", itemIcons[item.id]?.className)} />
+                  <Icon
+                    className={cn(
+                      "size-4 shrink-0",
+                      itemIcons[item.id]?.className,
+                    )}
+                  />
                   {item.label}
                 </button>
               );

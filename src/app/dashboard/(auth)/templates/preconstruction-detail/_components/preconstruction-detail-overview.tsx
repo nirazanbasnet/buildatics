@@ -23,7 +23,9 @@ export function PreconstructionDetailOverview({ project }: Props) {
         <PreconstructionDetailNotes />
       </div>
       <aside className="flex flex-col gap-3">
-        <PreconstructionDetailCategoryProgress categories={project.categories} />
+        <PreconstructionDetailCategoryProgress
+          categories={project.categories}
+        />
         <PreconstructionDetailActions />
       </aside>
     </div>

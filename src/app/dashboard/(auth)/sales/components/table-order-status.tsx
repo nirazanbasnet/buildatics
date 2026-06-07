@@ -11,9 +11,14 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
-import { ArrowDownIcon, ArrowUpIcon, ChevronDown, FolderUp } from "lucide-react";
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  ChevronDown,
+  FolderUp,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +26,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -30,7 +35,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import {
   Card,
@@ -38,7 +43,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -59,7 +64,7 @@ const data: Order[] = [
     items: 2,
     amount: 34.5,
     paymentMethod: "E-Wallet",
-    status: "new-order"
+    status: "new-order",
   },
   {
     id: "1082",
@@ -67,7 +72,7 @@ const data: Order[] = [
     items: 6,
     amount: 60.5,
     paymentMethod: "Bank Transfer",
-    status: "in-progress"
+    status: "in-progress",
   },
   {
     id: "1081",
@@ -75,7 +80,7 @@ const data: Order[] = [
     items: 3,
     amount: 47.5,
     paymentMethod: "E-Wallet",
-    status: "new-order"
+    status: "new-order",
   },
   {
     id: "1079",
@@ -83,7 +88,7 @@ const data: Order[] = [
     items: 15,
     amount: 89.8,
     paymentMethod: "Bank Transfer",
-    status: "on-hold"
+    status: "on-hold",
   },
   {
     id: "1078",
@@ -91,7 +96,7 @@ const data: Order[] = [
     items: 4,
     amount: 120.75,
     paymentMethod: "Credit Card",
-    status: "completed"
+    status: "completed",
   },
   {
     id: "1077",
@@ -99,7 +104,7 @@ const data: Order[] = [
     items: 8,
     amount: 210.5,
     paymentMethod: "PayPal",
-    status: "completed"
+    status: "completed",
   },
   {
     id: "1076",
@@ -107,7 +112,7 @@ const data: Order[] = [
     items: 1,
     amount: 25.99,
     paymentMethod: "E-Wallet",
-    status: "in-progress"
+    status: "in-progress",
   },
   {
     id: "1075",
@@ -115,7 +120,7 @@ const data: Order[] = [
     items: 3,
     amount: 78.45,
     paymentMethod: "Bank Transfer",
-    status: "return"
+    status: "return",
   },
   {
     id: "1074",
@@ -123,7 +128,7 @@ const data: Order[] = [
     items: 5,
     amount: 145.2,
     paymentMethod: "Credit Card",
-    status: "new-order"
+    status: "new-order",
   },
   {
     id: "1073",
@@ -131,7 +136,7 @@ const data: Order[] = [
     items: 2,
     amount: 67.8,
     paymentMethod: "PayPal",
-    status: "in-progress"
+    status: "in-progress",
   },
   {
     id: "1072",
@@ -139,7 +144,7 @@ const data: Order[] = [
     items: 7,
     amount: 198.35,
     paymentMethod: "Bank Transfer",
-    status: "completed"
+    status: "completed",
   },
   {
     id: "1071",
@@ -147,7 +152,7 @@ const data: Order[] = [
     items: 4,
     amount: 112.9,
     paymentMethod: "E-Wallet",
-    status: "on-hold"
+    status: "on-hold",
   },
   {
     id: "1070",
@@ -155,7 +160,7 @@ const data: Order[] = [
     items: 9,
     amount: 245.75,
     paymentMethod: "Credit Card",
-    status: "new-order"
+    status: "new-order",
   },
   {
     id: "1069",
@@ -163,7 +168,7 @@ const data: Order[] = [
     items: 3,
     amount: 87.6,
     paymentMethod: "Bank Transfer",
-    status: "return"
+    status: "return",
   },
   {
     id: "1068",
@@ -171,7 +176,7 @@ const data: Order[] = [
     items: 6,
     amount: 156.4,
     paymentMethod: "PayPal",
-    status: "completed"
+    status: "completed",
   },
   {
     id: "1067",
@@ -179,33 +184,33 @@ const data: Order[] = [
     items: 2,
     amount: 54.25,
     paymentMethod: "E-Wallet",
-    status: "in-progress"
-  }
+    status: "in-progress",
+  },
 ];
 
 const columns: ColumnDef<Order>[] = [
   {
     accessorKey: "id",
     header: "ID",
-    size: 80
+    size: 80,
   },
   {
     accessorKey: "customerName",
-    header: "Customer Name"
+    header: "Customer Name",
   },
   {
     accessorKey: "items",
     header: "Qty Items",
-    cell: ({ row }) => `${row.getValue("items")} Items`
+    cell: ({ row }) => `${row.getValue("items")} Items`,
   },
   {
     accessorKey: "amount",
     header: "Amount",
-    cell: ({ row }) => `$${row.getValue("amount")}`
+    cell: ({ row }) => `$${row.getValue("amount")}`,
   },
   {
     accessorKey: "paymentMethod",
-    header: "Payment Method"
+    header: "Payment Method",
   },
   {
     accessorKey: "status",
@@ -218,7 +223,7 @@ const columns: ColumnDef<Order>[] = [
         "new-order": "info",
         "in-progress": "warning",
         "on-hold": "warning",
-        return: "destructive"
+        return: "destructive",
       } as const;
 
       const statusClass = statusMap[status] ?? "default";
@@ -228,14 +233,17 @@ const columns: ColumnDef<Order>[] = [
           {status.replace("-", " ")}
         </Badge>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function TableOrderStatus() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -253,20 +261,22 @@ export function TableOrderStatus() {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
+      rowSelection,
     },
     initialState: {
       pagination: {
-        pageSize: 6
-      }
-    }
+        pageSize: 6,
+      },
+    },
   });
 
   return (
     <Card className="h-full">
       <CardHeader>
         <CardTitle>Track Order Status</CardTitle>
-        <CardDescription>Analyze growth and changes in visitor patterns</CardDescription>
+        <CardDescription>
+          Analyze growth and changes in visitor patterns
+        </CardDescription>
         <CardAction>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -349,9 +359,14 @@ export function TableOrderStatus() {
           <div className="flex items-center gap-2">
             <Input
               placeholder="Filter orders..."
-              value={(table.getColumn("customerName")?.getFilterValue() as string) ?? ""}
+              value={
+                (table.getColumn("customerName")?.getFilterValue() as string) ??
+                ""
+              }
               onChange={(event) =>
-                table.getColumn("customerName")?.setFilterValue(event.target.value)
+                table
+                  .getColumn("customerName")
+                  ?.setFilterValue(event.target.value)
               }
               className="max-w-sm"
             />
@@ -371,7 +386,9 @@ export function TableOrderStatus() {
                         key={column.id}
                         className="capitalize"
                         checked={column.getIsVisible()}
-                        onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
                       >
                         {column.id}
                       </DropdownMenuCheckboxItem>
@@ -390,7 +407,10 @@ export function TableOrderStatus() {
                         <TableHead key={header.id}>
                           {header.isPlaceholder
                             ? null
-                            : flexRender(header.column.columnDef.header, header.getContext())}
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
                         </TableHead>
                       );
                     })}
@@ -400,17 +420,26 @@ export function TableOrderStatus() {
               <TableBody>
                 {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row) => (
-                    <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                    >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
                         </TableCell>
                       ))}
                     </TableRow>
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell colSpan={columns.length} className="h-24 text-center">
+                    <TableCell
+                      colSpan={columns.length}
+                      className="h-24 text-center"
+                    >
                       No results.
                     </TableCell>
                   </TableRow>

@@ -10,12 +10,16 @@ type DesignEmptyStateProps = {
   className?: string;
 };
 
-export function DesignEmptyState({ filtered, onClearFilters, className }: DesignEmptyStateProps) {
+export function DesignEmptyState({
+  filtered,
+  onClearFilters,
+  className,
+}: DesignEmptyStateProps) {
   return (
     <div
       className={cn(
         "flex flex-col items-center justify-center rounded-xl border border-dashed px-6 py-20 text-center",
-        className
+        className,
       )}
       data-slot="design-empty-state"
     >
@@ -31,7 +35,12 @@ export function DesignEmptyState({ filtered, onClearFilters, className }: Design
           : "There are no designs in the library yet. New designs will appear here once added."}
       </p>
       {filtered && onClearFilters ? (
-        <Button variant="outline" size="sm" className="mt-5" onClick={onClearFilters}>
+        <Button
+          variant="outline"
+          size="sm"
+          className="mt-5"
+          onClick={onClearFilters}
+        >
           Clear filters
         </Button>
       ) : null}

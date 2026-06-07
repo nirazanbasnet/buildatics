@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,7 +20,7 @@ import {
   clearCustomTheme,
   loadCustomTheme,
   removeCustomTheme,
-  saveCustomTheme
+  saveCustomTheme,
 } from "@/lib/custom-theme";
 import { DEFAULT_THEME } from "@/lib/themes";
 import { useThemeConfig } from "@src/components/active-theme";
@@ -89,7 +89,8 @@ export function CustomThemeDialog({ open, onOpenChange }: Props) {
             </a>{" "}
             (the <code className="text-foreground">index.css</code> with{" "}
             <code className="text-foreground">:root</code> and{" "}
-            <code className="text-foreground">.dark</code> variables) to apply it across the app.
+            <code className="text-foreground">.dark</code> variables) to apply
+            it across the app.
           </DialogDescription>
         </DialogHeader>
 
@@ -106,7 +107,11 @@ export function CustomThemeDialog({ open, onOpenChange }: Props) {
         </div>
 
         <DialogFooter className="gap-2 sm:justify-between">
-          <Button variant="ghost" className="text-muted-foreground" onClick={handleRemove}>
+          <Button
+            variant="ghost"
+            className="text-muted-foreground"
+            onClick={handleRemove}
+          >
             <Trash2 />
             Remove
           </Button>

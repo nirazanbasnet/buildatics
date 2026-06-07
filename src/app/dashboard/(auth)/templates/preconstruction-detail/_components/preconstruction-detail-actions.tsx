@@ -9,11 +9,17 @@ export function PreconstructionDetailActions() {
         <Phone className="size-4" />
         Call Client
       </Button>
-      <Button variant="secondary" className="h-10 justify-center gap-2 rounded-lg">
+      <Button
+        variant="secondary"
+        className="h-10 justify-center gap-2 rounded-lg"
+      >
         <Mail className="size-4" />
         Send Mail
       </Button>
-      <Button variant="secondary" className="h-10 justify-center gap-2 rounded-lg">
+      <Button
+        variant="secondary"
+        className="h-10 justify-center gap-2 rounded-lg"
+      >
         <CalendarDays className="size-4" />
         Schedule Meeting
       </Button>

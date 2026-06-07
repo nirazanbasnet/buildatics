@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import type {
   PreconstructionDetailProject,
   PreconstructionStage,
-  PreconstructionTaskStatus
+  PreconstructionTaskStatus,
 } from "../_data";
 
 import { PreconstructionTabLayout } from "./preconstruction-tab-layout";
@@ -26,19 +26,19 @@ type StageTone = "done" | "in-progress" | "pending";
 const barToneStyles: Record<StageTone, string> = {
   done: "bg-emerald-500",
   "in-progress": "bg-blue-500",
-  pending: "bg-orange-500"
+  pending: "bg-orange-500",
 };
 
 const textToneStyles: Record<StageTone, string> = {
   done: "text-emerald-700 dark:text-emerald-400",
   "in-progress": "text-blue-700 dark:text-blue-400",
-  pending: "text-orange-700 dark:text-orange-400"
+  pending: "text-orange-700 dark:text-orange-400",
 };
 
 const dotToneStyles: Record<PreconstructionTaskStatus, string> = {
   completed: "bg-emerald-500",
   "in-progress": "bg-blue-500",
-  pending: "bg-amber-500"
+  pending: "bg-amber-500",
 };
 
 function stageTone(completed: number, total: number): StageTone {
@@ -50,22 +50,34 @@ function stageTone(completed: number, total: number): StageTone {
 export function ItiPreconstructionV2({ project, className }: Props) {
   const [stages, setStages] = useState<PreconstructionStage[]>(project.stages);
 
-  function updateStatus(stageId: string, taskId: string, status: PreconstructionTaskStatus) {
+  function updateStatus(
+    stageId: string,
+    taskId: string,
+    status: PreconstructionTaskStatus,
+  ) {
     setStages((prev) =>
       prev.map((stage) =>
         stage.id === stageId
           ? {
               ...stage,
-              tasks: stage.tasks.map((task) => (task.id === taskId ? { ...task, status } : task))
+              tasks: stage.tasks.map((task) =>
+                task.id === taskId ? { ...task, status } : task,
+              ),
             }
-          : stage
-      )
+          : stage,
+      ),
     );
   }
 
   return (
-    <PreconstructionTabLayout categories={project.categories} className={className}>
-      <section className="bg-card overflow-hidden rounded-2xl border" data-slot="stage-list">
+    <PreconstructionTabLayout
+      categories={project.categories}
+      className={className}
+    >
+      <section
+        className="bg-card overflow-hidden rounded-2xl border"
+        data-slot="stage-list"
+      >
         {stages.map((stage, index) => (
           <StageSection
             key={stage.id}
@@ -84,18 +96,32 @@ type StageSectionProps = {
   stage: PreconstructionStage;
   defaultOpen: boolean;
   isLast: boolean;
-  onStatusChange: (stageId: string, taskId: string, status: PreconstructionTaskStatus) => void;
+  onStatusChange: (
+    stageId: string,
+    taskId: string,
+    status: PreconstructionTaskStatus,
+  ) => void;
 };
 
-function StageSection({ stage, defaultOpen, isLast, onStatusChange }: StageSectionProps) {
+function StageSection({
+  stage,
+  defaultOpen,
+  isLast,
+  onStatusChange,
+}: StageSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
-  const completed = stage.tasks.filter((task) => task.status === "completed").length;
+  const completed = stage.tasks.filter(
+    (task) => task.status === "completed",
+  ).length;
   const total = stage.tasks.length;
   const tone = stageTone(completed, total);
   const fillPct = total > 0 ? (completed / total) * 100 : 0;
 
   return (
-    <div className={cn(!isLast && "border-border border-b")} data-slot="stage-section">
+    <div
+      className={cn(!isLast && "border-border border-b")}
+      data-slot="stage-section"
+    >
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -105,20 +131,27 @@ function StageSection({ stage, defaultOpen, isLast, onStatusChange }: StageSecti
         <ChevronDown
           className={cn(
             "text-muted-foreground size-4 shrink-0 transition-transform duration-200",
-            !open && "-rotate-90"
+            !open && "-rotate-90",
           )}
         />
-        <span className="text-foreground flex-1 text-base font-semibold">{stage.label}</span>
+        <span className="text-foreground flex-1 text-base font-semibold">
+          {stage.label}
+        </span>
         <div className="bg-muted hidden h-1.5 w-24 overflow-hidden rounded-full sm:block">
           <div
             className={cn(
               "h-full rounded-full transition-[width] duration-300",
-              barToneStyles[tone]
+              barToneStyles[tone],
             )}
             style={{ width: `${fillPct}%` }}
           />
         </div>
-        <span className={cn("text-sm font-semibold tabular-nums", textToneStyles[tone])}>
+        <span
+          className={cn(
+            "text-sm font-semibold tabular-nums",
+            textToneStyles[tone],
+          )}
+        >
           {completed}/{total}
         </span>
       </button>
@@ -140,17 +173,24 @@ function StageSection({ stage, defaultOpen, isLast, onStatusChange }: StageSecti
                   className="hover:bg-muted/50 flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors"
                 >
                   <span
-                    className={cn("size-2 shrink-0 rounded-full", dotToneStyles[task.status])}
+                    className={cn(
+                      "size-2 shrink-0 rounded-full",
+                      dotToneStyles[task.status],
+                    )}
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="text-foreground text-sm font-medium">{task.label}</p>
+                    <p className="text-foreground text-sm font-medium">
+                      {task.label}
+                    </p>
                     <p className="text-muted-foreground truncate text-xs">
                       {task.staff} · {task.date}
                     </p>
                   </div>
                   <TaskStatusDropdown
                     status={task.status}
-                    onStatusChange={(status) => onStatusChange(stage.id, task.id, status)}
+                    onStatusChange={(status) =>
+                      onStatusChange(stage.id, task.id, status)
+                    }
                   />
                   <TaskActionsMenu />
                 </li>

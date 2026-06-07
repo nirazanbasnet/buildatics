@@ -10,16 +10,22 @@ type Result = { ok: boolean; error?: string };
 export async function updateQuoteStatus(
   leadId: string,
   id: string,
-  status: LeadQuoteStatus
+  status: LeadQuoteStatus,
 ): Promise<Result> {
   const body: LeadQuoteStatusReq = { status };
   try {
     await apiFetch(
       `/api/LeadQuotes/UpdateStatus?leadId=${encodeURIComponent(leadId)}&id=${encodeURIComponent(id)}`,
-      { method: "POST", auth: true, body }
+      { method: "POST", auth: true, body },
     );
     return { ok: true };
   } catch (error) {
-    return { ok: false, error: error instanceof ApiError ? error.message : "Failed to update the status." };
+    return {
+      ok: false,
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to update the status.",
+    };
   }
 }

@@ -18,7 +18,7 @@ export async function generateMetadata() {
     title: "Admin Dashboard Template",
     description:
       "Track revenue, subscriptions, and team activity with a modern interface. A professional admin page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/default"
+    canonical: "/default",
   });
 }
 
@@ -26,7 +26,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <CustomDateRangePicker />
           <Button>

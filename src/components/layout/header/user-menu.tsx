@@ -1,6 +1,13 @@
 "use client";
 
-import { BadgeCheck, Bell, ChevronRightIcon, CreditCard, LogOut, Sparkles } from "lucide-react";
+import {
+  BadgeCheck,
+  Bell,
+  ChevronRightIcon,
+  CreditCard,
+  LogOut,
+  Sparkles,
+} from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -10,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { Progress } from "@/components/ui/progress";
@@ -24,8 +31,10 @@ type UserMenuProps = {
 };
 
 export default function UserMenu({ user }: UserMenuProps) {
-  const name = [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;
-  const initials = generateAvatarFallback(name) || user.email.charAt(0).toUpperCase();
+  const name =
+    [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email;
+  const initials =
+    generateAvatarFallback(name) || user.email.charAt(0).toUpperCase();
 
   return (
     <DropdownMenu>
@@ -34,7 +43,10 @@ export default function UserMenu({ user }: UserMenuProps) {
           <AvatarFallback className="rounded-lg">{initials}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-60" align="end">
+      <DropdownMenuContent
+        className="w-(--radix-dropdown-menu-trigger-width) min-w-60"
+        align="end"
+      >
         <DropdownMenuLabel className="p-0">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar>
@@ -42,7 +54,9 @@ export default function UserMenu({ user }: UserMenuProps) {
             </Avatar>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">{name}</span>
-              <span className="text-muted-foreground truncate text-xs">{user.email}</span>
+              <span className="text-muted-foreground truncate text-xs">
+                {user.email}
+              </span>
             </div>
           </div>
         </DropdownMenuLabel>

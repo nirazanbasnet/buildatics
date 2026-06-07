@@ -10,13 +10,16 @@ export async function confirmEmail(email: string): Promise<UserActionResult> {
   try {
     const res = await apiFetch<MessageResponseDto>(
       `/api/UsersA/ConfirmEmail?email=${encodeURIComponent(email)}`,
-      { method: "POST", auth: true }
+      { method: "POST", auth: true },
     );
     return { ok: true, message: res.message ?? "Email confirmed." };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to confirm the email."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to confirm the email.",
     };
   }
 }

@@ -8,15 +8,21 @@ import type { TeamActionResult } from "../types";
 // (Bearer).
 export async function resendInvite(staffId: string): Promise<TeamActionResult> {
   try {
-    await apiFetch(`/api/Staff/InviteReminder?staffId=${encodeURIComponent(staffId)}`, {
-      method: "POST",
-      auth: true
-    });
+    await apiFetch(
+      `/api/Staff/InviteReminder?staffId=${encodeURIComponent(staffId)}`,
+      {
+        method: "POST",
+        auth: true,
+      },
+    );
     return { ok: true, message: "Invite reminder sent." };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to resend the invite."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to resend the invite.",
     };
   }
 }

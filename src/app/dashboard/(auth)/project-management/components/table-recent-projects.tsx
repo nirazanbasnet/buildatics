@@ -1,7 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { ChevronDownIcon, ChevronLeft, ChevronRight, Ellipsis } from "lucide-react";
+import {
+  ChevronDownIcon,
+  ChevronLeft,
+  ChevronRight,
+  Ellipsis,
+} from "lucide-react";
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -12,7 +17,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +30,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,7 +39,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -46,145 +51,145 @@ const data: Project[] = [
     name: "Product Development",
     client: {
       avatar: `https://i.pravatar.cc/150?img=1`,
-      name: "Kevin Heal"
+      name: "Kevin Heal",
     },
     date: "20/03/2024",
     deadline: "05/04/2024",
     status: "active",
-    progress: 30
+    progress: 30,
   },
   {
     id: 2,
     name: "New Office Building",
     client: {
       avatar: `https://i.pravatar.cc/150?img=2`,
-      name: "Sarah Johnson"
+      name: "Sarah Johnson",
     },
     date: "15/03/2024",
     deadline: "10/04/2024",
     status: "cancel",
-    progress: 60
+    progress: 60,
   },
   {
     id: 3,
     name: "Mobile app design",
     client: {
       avatar: `/imageshttps://i.pravatar.cc/150?img=3`,
-      name: "Michael Chen"
+      name: "Michael Chen",
     },
     date: "10/03/2024",
     deadline: "01/04/2024",
     status: "completed",
-    progress: 100
+    progress: 100,
   },
   {
     id: 4,
     name: "Website & Blog",
     client: {
       avatar: `https://i.pravatar.cc/150?img=4`,
-      name: "Emily Rodriguez"
+      name: "Emily Rodriguez",
     },
     date: "05/03/2024",
     deadline: "20/03/2024",
     status: "pending",
-    progress: 50
+    progress: 50,
   },
   {
     id: 5,
     name: "Marketing Campaign",
     client: {
       avatar: `https://i.pravatar.cc/150?img=5`,
-      name: "David Wilson"
+      name: "David Wilson",
     },
     date: "01/03/2024",
     deadline: "15/04/2024",
     status: "active",
-    progress: 45
+    progress: 45,
   },
   {
     id: 6,
     name: "E-commerce Platform",
     client: {
       avatar: `https://i.pravatar.cc/150?img=6`,
-      name: "Jessica Lee"
+      name: "Jessica Lee",
     },
     date: "25/02/2024",
     deadline: "10/05/2024",
     status: "pending",
-    progress: 20
+    progress: 20,
   },
   {
     id: 7,
     name: "CRM Integration",
     client: {
       avatar: `https://i.pravatar.cc/150?img=7`,
-      name: "Robert Brown"
+      name: "Robert Brown",
     },
     date: "20/02/2024",
     deadline: "15/03/2024",
     status: "completed",
-    progress: 100
+    progress: 100,
   },
   {
     id: 8,
     name: "Data Analytics Dashboard",
     client: {
       avatar: `https://i.pravatar.cc/150?img=8`,
-      name: "Amanda Taylor"
+      name: "Amanda Taylor",
     },
     date: "15/02/2024",
     deadline: "30/03/2024",
     status: "active",
-    progress: 75
+    progress: 75,
   },
   {
     id: 9,
     name: "Mobile Payment System",
     client: {
       avatar: `https://i.pravatar.cc/150?img=9`,
-      name: "Thomas Garcia"
+      name: "Thomas Garcia",
     },
     date: "10/02/2024",
     deadline: "25/03/2024",
     status: "cancel",
-    progress: 35
+    progress: 35,
   },
   {
     id: 10,
     name: "AI Chatbot Development",
     client: {
       avatar: `https://i.pravatar.cc/150?img=10`,
-      name: "Olivia Martinez"
+      name: "Olivia Martinez",
     },
     date: "05/02/2024",
     deadline: "20/04/2024",
     status: "active",
-    progress: 60
+    progress: 60,
   },
   {
     id: 11,
     name: "Cloud Migration",
     client: {
       avatar: `https://i.pravatar.cc/150?img=1`,
-      name: "William Clark"
+      name: "William Clark",
     },
     date: "01/02/2024",
     deadline: "15/03/2024",
     status: "completed",
-    progress: 95
+    progress: 95,
   },
   {
     id: 12,
     name: "Security Audit",
     client: {
       avatar: `https://i.pravatar.cc/150?img=2`,
-      name: "Sophia Kim"
+      name: "Sophia Kim",
     },
     date: "25/01/2024",
     deadline: "10/03/2024",
     status: "pending",
-    progress: 40
-  }
+    progress: 40,
+  },
 ];
 
 type Client = {
@@ -208,7 +213,8 @@ export const columns: ColumnDef<Project>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -222,12 +228,12 @@ export const columns: ColumnDef<Project>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
     accessorKey: "name",
     header: "Project Name",
-    cell: ({ row }) => row.getValue("name")
+    cell: ({ row }) => row.getValue("name"),
   },
   {
     accessorKey: "client",
@@ -244,33 +250,44 @@ export const columns: ColumnDef<Project>[] = [
           {client.name}
         </div>
       );
-    }
+    },
   },
   {
     accessorKey: "date",
     header: "Start Date",
-    cell: ({ row }) => row.getValue("date")
+    cell: ({ row }) => row.getValue("date"),
   },
   {
     accessorKey: "deadline",
     header: "Deadline",
-    cell: ({ row }) => row.getValue("deadline")
+    cell: ({ row }) => row.getValue("deadline"),
   },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      const status = row.getValue("status") as "pending" | "active" | "completed" | "cancel";
+      const status = row.getValue("status") as
+        | "pending"
+        | "active"
+        | "completed"
+        | "cancel";
 
       const statusClassMap: Record<typeof status, string> = {
-        pending: "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200",
-        active: "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200",
-        completed: "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200",
-        cancel: "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200"
+        pending:
+          "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200",
+        active:
+          "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200",
+        completed:
+          "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200",
+        cancel: "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200",
       };
 
-      return <Badge className={`capitalize ${statusClassMap[status]}`}>{status}</Badge>;
-    }
+      return (
+        <Badge className={`capitalize ${statusClassMap[status]}`}>
+          {status}
+        </Badge>
+      );
+    },
   },
   {
     accessorKey: "progress",
@@ -278,9 +295,11 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => (
       <div className="flex flex-col lg:flex-row lg:items-center lg:gap-2">
         <Progress value={row.getValue("progress")} className="h-2" />
-        <span className="text-muted-foreground text-sm">%{row.getValue("progress")}</span>
+        <span className="text-muted-foreground text-sm">
+          %{row.getValue("progress")}
+        </span>
       </div>
-    )
+    ),
   },
   {
     id: "actions",
@@ -305,14 +324,17 @@ export const columns: ColumnDef<Project>[] = [
           </DropdownMenu>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function TableRecentProjects() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -330,13 +352,13 @@ export function TableRecentProjects() {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
+      rowSelection,
     },
     initialState: {
       pagination: {
-        pageSize: 6
-      }
-    }
+        pageSize: 6,
+      },
+    },
   });
 
   return (
@@ -349,7 +371,9 @@ export function TableRecentProjects() {
           <Input
             placeholder="Filter projects..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
             className="max-w-sm"
           />
           <DropdownMenu>
@@ -368,7 +392,9 @@ export function TableRecentProjects() {
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                      onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                      }
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -384,10 +410,16 @@ export function TableRecentProjects() {
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     return (
-                      <TableHead key={header.id} className="[&:has([role=checkbox])]:pl-3">
+                      <TableHead
+                        key={header.id}
+                        className="[&:has([role=checkbox])]:pl-3"
+                      >
                         {header.isPlaceholder
                           ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                          : flexRender(
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     );
                   })}
@@ -397,17 +429,29 @@ export function TableRecentProjects() {
             <TableBody>
               {table.getRowModel().rows?.length ? (
                 table.getRowModel().rows.map((row) => (
-                  <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id} className="[&:has([role=checkbox])]:pl-3">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      <TableCell
+                        key={cell.id}
+                        className="[&:has([role=checkbox])]:pl-3"
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results.
                   </TableCell>
                 </TableRow>

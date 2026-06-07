@@ -2,7 +2,10 @@ import { MapPin } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import { preconstructionListStatusLabels, type PreconstructionListProject } from "../_data";
+import {
+  preconstructionListStatusLabels,
+  type PreconstructionListProject,
+} from "../_data";
 
 type Props = {
   projects: PreconstructionListProject[];
@@ -19,9 +22,18 @@ function DefRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function PreconstructionListCardsV2({ projects, className, onProjectClick }: Props) {
+export function PreconstructionListCardsV2({
+  projects,
+  className,
+  onProjectClick,
+}: Props) {
   return (
-    <div className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4", className)}>
+    <div
+      className={cn(
+        "grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+        className,
+      )}
+    >
       {projects.map((project) => {
         const interactive = Boolean(onProjectClick);
         return (
@@ -43,7 +55,7 @@ export function PreconstructionListCardsV2({ projects, className, onProjectClick
             className={cn(
               "bg-card flex flex-col gap-3 rounded-lg border border-l-4 border-l-emerald-500 p-4",
               interactive &&
-                "focus-visible:ring-ring hover:border-foreground/30 cursor-pointer transition-colors hover:border-l-emerald-500 focus-visible:ring-2 focus-visible:outline-none"
+                "focus-visible:ring-ring hover:border-foreground/30 cursor-pointer transition-colors hover:border-l-emerald-500 focus-visible:ring-2 focus-visible:outline-none",
             )}
           >
             <header className="flex items-center justify-between gap-2">
@@ -70,7 +82,9 @@ export function PreconstructionListCardsV2({ projects, className, onProjectClick
             <div className="mt-auto space-y-1.5 pt-1">
               <div className="flex items-baseline justify-between text-xs">
                 <span className="text-muted-foreground">Progress</span>
-                <span className="text-foreground font-semibold">{project.progress}%</span>
+                <span className="text-foreground font-semibold">
+                  {project.progress}%
+                </span>
               </div>
               <div className="bg-muted h-1.5 w-full overflow-hidden rounded-full">
                 <div

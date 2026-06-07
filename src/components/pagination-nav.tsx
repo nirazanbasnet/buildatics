@@ -67,17 +67,24 @@ export function PaginationNav({
               "focus-visible:ring-ring relative flex size-8 items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none",
               isActive
                 ? "text-primary-foreground z-10"
-                : "bg-muted text-foreground hover:bg-muted/80"
+                : "bg-muted text-foreground hover:bg-muted/80",
             )}
           >
             {isActive ? (
               reduceMotion ? (
-                <span aria-hidden className="bg-primary absolute inset-0 z-0 rounded-full" />
+                <span
+                  aria-hidden
+                  className="bg-primary absolute inset-0 z-0 rounded-full"
+                />
               ) : (
                 <motion.span
                   aria-hidden
                   layoutId={`pagination-active-pill-${pillId}`}
-                  transition={{ type: "tween", duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{
+                    type: "tween",
+                    duration: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="bg-primary absolute inset-0 z-0 rounded-full"
                 />
               )

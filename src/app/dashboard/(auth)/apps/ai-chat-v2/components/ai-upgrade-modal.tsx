@@ -9,12 +9,16 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode }) => {
+export const AIUpgradePricingModal = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
 
   const plans = [
@@ -25,10 +29,15 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
       period: "/month",
       description: "Perfect for getting started",
       icon: <Sparkles className="h-5 w-5" />,
-      features: ["10 messages per day", "Basic AI models", "Standard support", "Web access only"],
+      features: [
+        "10 messages per day",
+        "Basic AI models",
+        "Standard support",
+        "Web access only",
+      ],
       current: true,
       buttonText: "Current Plan",
-      buttonVariant: "outline" as const
+      buttonVariant: "outline" as const,
     },
     {
       id: "pro",
@@ -43,11 +52,11 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
         "Priority support",
         "API access",
         "Custom integrations",
-        "Advanced analytics"
+        "Advanced analytics",
       ],
       popular: true,
       buttonText: "Upgrade to Pro",
-      buttonVariant: "default" as const
+      buttonVariant: "default" as const,
     },
     {
       id: "enterprise",
@@ -62,11 +71,11 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
         "SSO & advanced security",
         "Dedicated support",
         "Custom models",
-        "On-premise deployment"
+        "On-premise deployment",
       ],
       buttonText: "Contact Sales",
-      buttonVariant: "outline" as const
-    }
+      buttonVariant: "outline" as const,
+    },
   ];
 
   const handleUpgrade = (planId: string) => {
@@ -80,7 +89,8 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
         <DialogHeader>
           <DialogTitle>Upgrade Your iBeeBot Experience</DialogTitle>
           <DialogDescription>
-            Choose the perfect plan to unlock the full potential of AI-powered conversations
+            Choose the perfect plan to unlock the full potential of AI-powered
+            conversations
           </DialogDescription>
         </DialogHeader>
 
@@ -114,7 +124,9 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
                   <span className="text-3xl font-bold">{plan.price}</span>
                   <span className="text-muted-foreground">{plan.period}</span>
                 </div>
-                <p className="text-muted-foreground mt-1 text-sm">{plan.description}</p>
+                <p className="text-muted-foreground mt-1 text-sm">
+                  {plan.description}
+                </p>
               </div>
 
               <ul className="mb-6 space-y-3">
@@ -142,7 +154,9 @@ export const AIUpgradePricingModal = ({ children }: { children: React.ReactNode 
           <p>All plans include a 14-day free trial. Cancel anytime.</p>
           <p className="mt-1">
             Need a custom solution?{" "}
-            <span className="text-primary cursor-pointer hover:underline">Contact us</span>
+            <span className="text-primary cursor-pointer hover:underline">
+              Contact us
+            </span>
           </p>
         </div>
       </DialogContent>

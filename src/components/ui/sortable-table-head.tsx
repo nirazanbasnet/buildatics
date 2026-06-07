@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { TableHead } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
@@ -33,7 +33,7 @@ export function useSortState<T extends string>(initial: SortState<T>) {
 export function sortBy<Row, T extends string>(
   rows: ReadonlyArray<Row>,
   sort: SortState<T>,
-  accessors: Record<T, (row: Row) => string | number>
+  accessors: Record<T, (row: Row) => string | number>,
 ): Row[] {
   const accessor = accessors[sort.field];
   const sorted = [...rows].sort((a, b) => {
@@ -59,10 +59,14 @@ export function SortableTableHead<T extends string>({
   sort,
   onSort,
   children,
-  className
+  className,
 }: Props<T>) {
   const isActive = sort.field === field;
-  const SortedIcon = !isActive ? ChevronsUpDown : sort.direction === "asc" ? ArrowUp : ArrowDown;
+  const SortedIcon = !isActive
+    ? ChevronsUpDown
+    : sort.direction === "asc"
+      ? ArrowUp
+      : ArrowDown;
 
   return (
     <TableHead className={cn("font-semibold", className)}>
@@ -72,11 +76,20 @@ export function SortableTableHead<T extends string>({
             variant="ghost"
             size="sm"
             className="data-[state=open]:bg-accent text-foreground -ml-3 h-8 font-semibold"
-            aria-sort={isActive ? (sort.direction === "asc" ? "ascending" : "descending") : "none"}
+            aria-sort={
+              isActive
+                ? sort.direction === "asc"
+                  ? "ascending"
+                  : "descending"
+                : "none"
+            }
           >
             <span>{children}</span>
             <SortedIcon
-              className={cn("size-3.5", isActive ? "text-foreground" : "text-muted-foreground/60")}
+              className={cn(
+                "size-3.5",
+                isActive ? "text-foreground" : "text-muted-foreground/60",
+              )}
             />
           </Button>
         </DropdownMenuTrigger>

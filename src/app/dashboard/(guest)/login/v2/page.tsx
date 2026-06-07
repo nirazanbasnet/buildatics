@@ -1,7 +1,13 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { generateMeta } from "@/lib/utils";
@@ -12,7 +18,7 @@ export function generateMetadata() {
     title: "Login Page v2",
     description:
       "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account.",
-    canonical: "/login/v2"
+    canonical: "/login/v2",
   });
 }
 
@@ -22,13 +28,20 @@ export default function Page() {
       <Card className="mx-auto w-96">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>Enter your email below to login to your account</CardDescription>
+          <CardDescription>
+            Enter your email below to login to your account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="contact@bundui.com" required />
+              <Input
+                id="email"
+                type="email"
+                placeholder="contact@bundui.com"
+                required
+              />
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
@@ -49,7 +62,9 @@ export default function Page() {
             <div className="my-4">
               <div className="flex items-center gap-3">
                 <div className="w-full border-t" />
-                <span className="text-muted-foreground shrink-0 text-sm">or continue with</span>
+                <span className="text-muted-foreground shrink-0 text-sm">
+                  or continue with
+                </span>
                 <div className="w-full border-t" />
               </div>
             </div>

@@ -29,7 +29,7 @@ const data: AppointmentData[] = [
     title: "General Health Check up",
     description: "Dr. Dianne Philips",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=4",
@@ -38,7 +38,7 @@ const data: AppointmentData[] = [
     title: "Temporary Headache",
     description: "Dr. Jenny Smith",
     status: "pending",
-    statusColor: "warning"
+    statusColor: "warning",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=12",
@@ -47,7 +47,7 @@ const data: AppointmentData[] = [
     title: "Follow-up Visit",
     description: "Dr. John Davis",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=23",
@@ -56,7 +56,7 @@ const data: AppointmentData[] = [
     title: "Lab Results Review",
     description: "Dr. Sarah Wilson",
     status: "pending",
-    statusColor: "warning"
+    statusColor: "warning",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=33",
@@ -65,7 +65,7 @@ const data: AppointmentData[] = [
     title: "Physical Therapy",
     description: "Dr. Mike Brown",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=45",
@@ -74,7 +74,7 @@ const data: AppointmentData[] = [
     title: "Cardiac Check",
     description: "Dr. Emma Lee",
     status: "pending",
-    statusColor: "warning"
+    statusColor: "warning",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=52",
@@ -83,7 +83,7 @@ const data: AppointmentData[] = [
     title: "Diabetes Management",
     description: "Dr. James Taylor",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=11",
@@ -92,7 +92,7 @@ const data: AppointmentData[] = [
     title: "Blood Pressure Check",
     description: "Dr. Lisa Anderson",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=22",
@@ -101,7 +101,7 @@ const data: AppointmentData[] = [
     title: "X-Ray Review",
     description: "Dr. Robert Clark",
     status: "pending",
-    statusColor: "warning"
+    statusColor: "warning",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=31",
@@ -110,7 +110,7 @@ const data: AppointmentData[] = [
     title: "Vaccination",
     description: "Dr. Anna Martinez",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=8",
@@ -119,7 +119,7 @@ const data: AppointmentData[] = [
     title: "General Health Check up",
     description: "Dr. Dianne Philips",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=12",
@@ -128,7 +128,7 @@ const data: AppointmentData[] = [
     title: "Follow-up Visit",
     description: "Dr. John Davis",
     status: "active",
-    statusColor: "success"
+    statusColor: "success",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=4",
@@ -137,7 +137,7 @@ const data: AppointmentData[] = [
     title: "Temporary Headache",
     description: "Dr. Jenny Smith",
     status: "pending",
-    statusColor: "warning"
+    statusColor: "warning",
   },
   {
     avatar: "https://i.pravatar.cc/150?img=23",
@@ -146,8 +146,8 @@ const data: AppointmentData[] = [
     title: "Lab Results Review",
     description: "Dr. Sarah Wilson",
     status: "pending",
-    statusColor: "warning"
-  }
+    statusColor: "warning",
+  },
 ];
 
 function isSameDay(a: Date, b: Date | undefined): boolean {
@@ -177,7 +177,9 @@ const datesWithAppointments = (() => {
 
 export function PlannedCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
-  const appointmentsForSelectedDate = data.filter((item) => isSameDay(item.date, date));
+  const appointmentsForSelectedDate = data.filter((item) =>
+    isSameDay(item.date, date),
+  );
 
   return (
     <Card className="p-0">
@@ -191,7 +193,7 @@ export function PlannedCalendar() {
           modifiers={{ hasAppointment: datesWithAppointments }}
           modifiersClassNames={{
             hasAppointment:
-              "relative after:absolute after:bottom-1 after:left-1/2 after:size-1.5 after:-translate-x-1/2 after:rounded-full after:bg-amber-600 after:content-['']"
+              "relative after:absolute after:bottom-1 after:left-1/2 after:size-1.5 after:-translate-x-1/2 after:rounded-full after:bg-amber-600 after:content-['']",
           }}
           className="w-full! **:[[role=gridcell]_button]:h-10! **:[[role=gridcell]]:h-10!"
         />

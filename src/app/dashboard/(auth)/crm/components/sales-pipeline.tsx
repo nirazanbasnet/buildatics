@@ -1,6 +1,17 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type PipelineStage = {
   id: string;
@@ -16,36 +27,36 @@ const pipelineData: PipelineStage[] = [
     name: "Lead",
     count: 235,
     value: 420500,
-    color: "bg-[var(--chart-1)]"
+    color: "bg-[var(--chart-1)]",
   },
   {
     id: "qualified",
     name: "Qualified",
     count: 146,
     value: 267800,
-    color: "bg-[var(--chart-2)]"
+    color: "bg-[var(--chart-2)]",
   },
   {
     id: "proposal",
     name: "Proposal",
     count: 84,
     value: 192400,
-    color: "bg-[var(--chart-3)]"
+    color: "bg-[var(--chart-3)]",
   },
   {
     id: "negotiation",
     name: "Negotiation",
     count: 52,
     value: 129600,
-    color: "bg-[var(--chart-4)]"
+    color: "bg-[var(--chart-4)]",
   },
   {
     id: "closed",
     name: "Closed Won",
     count: 36,
     value: 87200,
-    color: "bg-[var(--chart-5)]"
-  }
+    color: "bg-[var(--chart-5)]",
+  },
 ];
 
 const totalValue = pipelineData.reduce((sum, stage) => sum + stage.value, 0);
@@ -72,8 +83,12 @@ export function SalesPipeline() {
                 <TooltipContent>
                   <div className="text-sm">
                     <p className="font-medium">{stage.name}</p>
-                    <p className="text-muted-foreground text-xs">{stage.count} deals</p>
-                    <p className="text-muted-foreground text-xs">${stage.value.toLocaleString()}</p>
+                    <p className="text-muted-foreground text-xs">
+                      {stage.count} deals
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      ${stage.value.toLocaleString()}
+                    </p>
                   </div>
                 </TooltipContent>
               </Tooltip>

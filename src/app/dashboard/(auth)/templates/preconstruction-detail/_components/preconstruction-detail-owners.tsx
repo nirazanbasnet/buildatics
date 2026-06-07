@@ -15,7 +15,7 @@ function OwnerRow({
   label,
   value,
   index,
-  reduceMotion
+  reduceMotion,
 }: {
   icon: LucideIcon;
   label: string;
@@ -28,7 +28,11 @@ function OwnerRow({
     : {
         initial: { opacity: 0, y: 4 },
         animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.22, delay: index * 0.04, ease: "easeOut" as const }
+        transition: {
+          duration: 0.22,
+          delay: index * 0.04,
+          ease: "easeOut" as const,
+        },
       };
 
   return (
@@ -39,7 +43,9 @@ function OwnerRow({
       <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
         <Icon className="size-4" />
       </span>
-      <span className="text-foreground flex-1 text-sm font-medium">{label}</span>
+      <span className="text-foreground flex-1 text-sm font-medium">
+        {label}
+      </span>
       <span className="text-muted-foreground group-hover:text-foreground text-sm transition-all motion-safe:group-hover:-translate-x-0.5">
         {value}
       </span>
@@ -73,7 +79,7 @@ export function PreconstructionDetailOwners({ owners }: Props) {
                   "rounded px-3 py-1 text-sm font-medium transition-colors",
                   isActive
                     ? "bg-card text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {owner.label}
@@ -81,7 +87,12 @@ export function PreconstructionDetailOwners({ owners }: Props) {
             );
           })}
         </div>
-        <Button variant="outline" size="icon" className="size-9" aria-label="Edit owner">
+        <Button
+          variant="outline"
+          size="icon"
+          className="size-9"
+          aria-label="Edit owner"
+        >
           <Pencil className="size-4" />
         </Button>
       </header>

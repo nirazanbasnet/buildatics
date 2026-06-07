@@ -8,9 +8,13 @@ export default function SeparatorShowcase() {
       <ShowcaseSection title="Horizontal">
         <div className="w-80 space-y-1">
           <p className="text-sm font-medium">Account settings</p>
-          <p className="text-muted-foreground text-sm">Manage your profile and preferences.</p>
+          <p className="text-muted-foreground text-sm">
+            Manage your profile and preferences.
+          </p>
           <Separator className="my-3" />
-          <p className="text-muted-foreground text-xs">Last updated 12 May 2026</p>
+          <p className="text-muted-foreground text-xs">
+            Last updated 12 May 2026
+          </p>
         </div>
       </ShowcaseSection>
 

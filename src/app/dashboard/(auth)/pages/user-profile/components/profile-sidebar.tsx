@@ -1,6 +1,13 @@
 "use client";
 
-import { Mail, Phone, Briefcase, TrendingUp, Users, FolderKanban } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Briefcase,
+  TrendingUp,
+  Users,
+  FolderKanban,
+} from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { useProfileStore } from "../store";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,8 +23,14 @@ export function ProfileSidebar() {
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-3">
-            <Progress value={profileCompletion} className="flex-1" indicatorColor="bg-green-500" />
-            <span className="text-muted-foreground text-xs">{profileCompletion}%</span>
+            <Progress
+              value={profileCompletion}
+              className="flex-1"
+              indicatorColor="bg-green-500"
+            />
+            <span className="text-muted-foreground text-xs">
+              {profileCompletion}%
+            </span>
           </div>
         </CardContent>
       </Card>
@@ -42,7 +55,9 @@ export function ProfileSidebar() {
           </div>
 
           <div>
-            <p className="text-muted-foreground mb-3 text-xs font-medium uppercase">Contacts</p>
+            <p className="text-muted-foreground mb-3 text-xs font-medium uppercase">
+              Contacts
+            </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="text-muted-foreground h-4 w-4" />
@@ -56,7 +71,9 @@ export function ProfileSidebar() {
           </div>
 
           <div>
-            <p className="text-muted-foreground mb-3 text-xs font-medium uppercase">Teams</p>
+            <p className="text-muted-foreground mb-3 text-xs font-medium uppercase">
+              Teams
+            </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm">
                 <Users className="text-muted-foreground h-4 w-4" />

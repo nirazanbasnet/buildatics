@@ -18,7 +18,7 @@ import { SpecificationsTable } from "./specifications-table";
 
 export function DetailLayoutV2({
   property,
-  className
+  className,
 }: {
   property: Property;
   className?: string;

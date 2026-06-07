@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { MailPlus, MoreHorizontal, ShieldEllipsis, UserMinus } from "lucide-react";
+import {
+  MailPlus,
+  MoreHorizontal,
+  ShieldEllipsis,
+  UserMinus,
+} from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -12,7 +17,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +26,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { removeStaff } from "../actions/remove-staff";
@@ -34,7 +39,11 @@ type TeamMemberActionsProps = {
   onChanged: () => void;
 };
 
-export function TeamMemberActions({ member, onChangeRole, onChanged }: TeamMemberActionsProps) {
+export function TeamMemberActions({
+  member,
+  onChangeRole,
+  onChanged,
+}: TeamMemberActionsProps) {
   const [isPending, startTransition] = useTransition();
   const [removeOpen, setRemoveOpen] = useState(false);
 
@@ -63,7 +72,12 @@ export function TeamMemberActions({ member, onChangeRole, onChanged }: TeamMembe
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="size-8" disabled={isPending}>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-8"
+            disabled={isPending}
+          >
             <MoreHorizontal className="size-4" />
             <span className="sr-only">Member actions</span>
           </Button>
@@ -81,7 +95,10 @@ export function TeamMemberActions({ member, onChangeRole, onChanged }: TeamMembe
             </DropdownMenuItem>
           ) : null}
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive" onClick={() => setRemoveOpen(true)}>
+          <DropdownMenuItem
+            variant="destructive"
+            onClick={() => setRemoveOpen(true)}
+          >
             <UserMinus className="size-4" />
             Remove member
           </DropdownMenuItem>
@@ -93,7 +110,8 @@ export function TeamMemberActions({ member, onChangeRole, onChanged }: TeamMembe
           <AlertDialogHeader>
             <AlertDialogTitle>Remove {member.name}?</AlertDialogTitle>
             <AlertDialogDescription>
-              They will lose access to this workspace. This can be restored by an admin.
+              They will lose access to this workspace. This can be restored by
+              an admin.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

@@ -30,7 +30,7 @@ export function DraggableEvent({
   multiDayWidth,
   isFirstDay = true,
   isLastDay = true,
-  "aria-hidden": ariaHidden
+  "aria-hidden": ariaHidden,
 }: DraggableEventProps) {
   const { activeId } = useCalendarDnd();
   const elementRef = useRef<HTMLDivElement>(null);
@@ -42,21 +42,23 @@ export function DraggableEvent({
   // Check if this is a multi-day event
   const eventStart = new Date(event.start);
   const eventEnd = new Date(event.end);
-  const isMultiDayEvent = isMultiDay || event.allDay || differenceInDays(eventEnd, eventStart) >= 1;
+  const isMultiDayEvent =
+    isMultiDay || event.allDay || differenceInDays(eventEnd, eventStart) >= 1;
 
-  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
-    id: `${event.id}-${view}`,
-    data: {
-      event,
-      view,
-      height: height || elementRef.current?.offsetHeight || null,
-      isMultiDay: isMultiDayEvent,
-      multiDayWidth: multiDayWidth,
-      dragHandlePosition,
-      isFirstDay,
-      isLastDay
-    }
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id: `${event.id}-${view}`,
+      data: {
+        event,
+        view,
+        height: height || elementRef.current?.offsetHeight || null,
+        isMultiDay: isMultiDayEvent,
+        multiDayWidth: multiDayWidth,
+        dragHandlePosition,
+        isFirstDay,
+        isLastDay,
+      },
+    });
 
   // Handle mouse down to track where on the event the user clicked
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -64,25 +66,33 @@ export function DraggableEvent({
       const rect = elementRef.current.getBoundingClientRect();
       setDragHandlePosition({
         x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        y: e.clientY - rect.top,
       });
     }
   };
 
   // Don't render if this event is being dragged
   if (isDragging || activeId === `${event.id}-${view}`) {
-    return <div ref={setNodeRef} className="opacity-0" style={{ height: height || "auto" }} />;
+    return (
+      <div
+        ref={setNodeRef}
+        className="opacity-0"
+        style={{ height: height || "auto" }}
+      />
+    );
   }
 
   const style = transform
     ? {
         transform: CSS.Translate.toString(transform),
         height: height || "auto",
-        width: isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined
+        width:
+          isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined,
       }
     : {
         height: height || "auto",
-        width: isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined
+        width:
+          isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined,
       };
 
   // Handle touch start to track where on the event the user touched
@@ -93,7 +103,7 @@ export function DraggableEvent({
       if (touch) {
         setDragHandlePosition({
           x: touch.clientX - rect.left,
-          y: touch.clientY - rect.top
+          y: touch.clientY - rect.top,
         });
       }
     }

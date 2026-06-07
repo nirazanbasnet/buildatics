@@ -7,7 +7,7 @@ export function formatDate(iso: string | null | undefined): string {
   return new Date(ms).toLocaleDateString("en-AU", {
     day: "numeric",
     month: "short",
-    year: "numeric"
+    year: "numeric",
   });
 }
 

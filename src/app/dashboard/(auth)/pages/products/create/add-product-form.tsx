@@ -11,7 +11,7 @@ import {
   CirclePlusIcon,
   ImageIcon,
   UploadIcon,
-  XIcon
+  XIcon,
 } from "lucide-react";
 import { useFileUpload } from "@/hooks/use-file-upload";
 
@@ -23,7 +23,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -32,7 +32,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -44,14 +44,14 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { AddMediaFromUrl } from "./add-media-from-url";
 import AddNewCategory from "./add-category";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
-    message: "Product name must be at least 2 characters."
+    message: "Product name must be at least 2 characters.",
   }),
   sku: z.string(),
   barcode: z.string(),
@@ -61,7 +61,7 @@ const FormSchema = z.object({
   price: z.string(),
   status: z.string(),
   category: z.string(),
-  sub_category: z.string()
+  sub_category: z.string(),
 });
 
 export default function AddProductForm() {
@@ -71,8 +71,8 @@ export default function AddProductForm() {
       name: "",
       sku: "",
       barcode: "",
-      description: ""
-    }
+      description: "",
+    },
   });
 
   const [
@@ -84,13 +84,13 @@ export default function AddProductForm() {
       handleDrop,
       openFileDialog,
       removeFile,
-      getInputProps
-    }
+      getInputProps,
+    },
   ] = useFileUpload({
     accept: "image/png,image/jpeg,image/jpg",
     maxSize: 5 * 1024 * 1024, // 5MB
     multiple: true,
-    maxFiles: 5
+    maxFiles: 5,
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -99,7 +99,7 @@ export default function AddProductForm() {
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         </pre>
-      )
+      ),
     });
   }
 
@@ -184,7 +184,8 @@ export default function AddProductForm() {
                           <Textarea {...field} />
                         </FormControl>
                         <FormDescription>
-                          Set a description to the product for better visibility.
+                          Set a description to the product for better
+                          visibility.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -199,8 +200,14 @@ export default function AddProductForm() {
                 <CardTitle>Product Images</CardTitle>
                 <CardAction>
                   <AddMediaFromUrl>
-                    <Button variant="link" size="sm" className="mt-0! h-auto p-0">
-                      <span className="hidden lg:block">Add media from URL</span>
+                    <Button
+                      variant="link"
+                      size="sm"
+                      className="mt-0! h-auto p-0"
+                    >
+                      <span className="hidden lg:block">
+                        Add media from URL
+                      </span>
                       <span className="block lg:hidden">Add URL</span>
                     </Button>
                   </AddMediaFromUrl>
@@ -278,15 +285,22 @@ export default function AddProductForm() {
                             >
                               <ImageIcon className="size-4 opacity-60" />
                             </div>
-                            <p className="mb-1.5 text-sm font-medium">Drop your images here</p>
-                            <p className="text-muted-foreground text-xs">PNG or JPG (max. 5MB)</p>
+                            <p className="mb-1.5 text-sm font-medium">
+                              Drop your images here
+                            </p>
+                            <p className="text-muted-foreground text-xs">
+                              PNG or JPG (max. 5MB)
+                            </p>
                             <Button
                               type="button"
                               variant="outline"
                               className="mt-4"
                               onClick={openFileDialog}
                             >
-                              <UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
+                              <UploadIcon
+                                className="-ms-1 opacity-60"
+                                aria-hidden="true"
+                              />
                               Select images
                             </Button>
                           </div>
@@ -464,14 +478,17 @@ export default function AddProductForm() {
                           <SelectContent>
                             <SelectGroup>
                               <SelectItem value="draft">
-                                <span className="size-2 rounded-full bg-orange-400"></span> Draft
+                                <span className="size-2 rounded-full bg-orange-400"></span>{" "}
+                                Draft
                               </SelectItem>
                               <SelectItem value="active">
                                 {" "}
-                                <span className="size-2 rounded-full bg-green-400"></span> Active
+                                <span className="size-2 rounded-full bg-green-400"></span>{" "}
+                                Active
                               </SelectItem>
                               <SelectItem value="archived">
-                                <span className="size-2 rounded-full bg-indigo-400"></span> Archived
+                                <span className="size-2 rounded-full bg-indigo-400"></span>{" "}
+                                Archived
                               </SelectItem>
                             </SelectGroup>
                           </SelectContent>
@@ -504,9 +521,15 @@ export default function AddProductForm() {
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectGroup>
-                                    <SelectItem value="Electronics">Electronics</SelectItem>
-                                    <SelectItem value="Clothing">Clothing</SelectItem>
-                                    <SelectItem value="banana">Accessories</SelectItem>
+                                    <SelectItem value="Electronics">
+                                      Electronics
+                                    </SelectItem>
+                                    <SelectItem value="Clothing">
+                                      Clothing
+                                    </SelectItem>
+                                    <SelectItem value="banana">
+                                      Accessories
+                                    </SelectItem>
                                   </SelectGroup>
                                 </SelectContent>
                               </Select>

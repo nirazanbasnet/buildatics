@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import {
@@ -18,7 +18,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import { changeRole } from "../actions/change-role";
@@ -32,7 +32,12 @@ type ChangeRoleDialogProps = {
   onChanged: () => void;
 };
 
-export function ChangeRoleDialog({ member, roles, onOpenChange, onChanged }: ChangeRoleDialogProps) {
+export function ChangeRoleDialog({
+  member,
+  roles,
+  onOpenChange,
+  onChanged,
+}: ChangeRoleDialogProps) {
   const [isPending, startTransition] = useTransition();
   const [roleId, setRoleId] = useState(ROLE_NONE);
 
@@ -59,7 +64,9 @@ export function ChangeRoleDialog({ member, roles, onOpenChange, onChanged }: Cha
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Change role</DialogTitle>
-          <DialogDescription>Set the company role for {member?.name}.</DialogDescription>
+          <DialogDescription>
+            Set the company role for {member?.name}.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-2">
           <Label htmlFor="role-select">Role</Label>
@@ -78,7 +85,8 @@ export function ChangeRoleDialog({ member, roles, onOpenChange, onChanged }: Cha
           </Select>
           {roles.length === 0 ? (
             <p className="text-muted-foreground text-xs">
-              No roles defined yet. Create designations to assign roles to members.
+              No roles defined yet. Create designations to assign roles to
+              members.
             </p>
           ) : null}
         </div>

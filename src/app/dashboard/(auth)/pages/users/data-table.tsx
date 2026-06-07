@@ -11,18 +11,22 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, Columns, MoreHorizontal, PlusCircle } from "lucide-react";
 
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +34,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -39,7 +43,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -62,7 +66,8 @@ export const columns: ColumnDef<User>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -76,7 +81,7 @@ export const columns: ColumnDef<User>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
     accessorKey: "name",
@@ -85,11 +90,13 @@ export const columns: ColumnDef<User>[] = [
       <div className="flex items-center gap-4">
         <Avatar>
           <AvatarImage src={row.original.image} alt="shadcn ui kit" />
-          <AvatarFallback>{generateAvatarFallback(row.getValue("name"))}</AvatarFallback>
+          <AvatarFallback>
+            {generateAvatarFallback(row.getValue("name"))}
+          </AvatarFallback>
         </Avatar>
         <div className="capitalize">{row.getValue("name")}</div>
       </div>
-    )
+    ),
   },
   {
     accessorKey: "role",
@@ -105,7 +112,7 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("role")
+    cell: ({ row }) => row.getValue("role"),
   },
   {
     accessorKey: "plan_name",
@@ -121,7 +128,7 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("plan_name")
+    cell: ({ row }) => row.getValue("plan_name"),
   },
   {
     accessorKey: "email",
@@ -137,7 +144,7 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("email")
+    cell: ({ row }) => row.getValue("email"),
   },
   {
     accessorKey: "country",
@@ -153,7 +160,7 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => row.getValue("country")
+    cell: ({ row }) => row.getValue("country"),
   },
   {
     accessorKey: "status",
@@ -175,7 +182,7 @@ export const columns: ColumnDef<User>[] = [
       const statusMap = {
         active: "success",
         inactive: "destructive",
-        pending: "warning"
+        pending: "warning",
       } as const;
 
       const statusClass = statusMap[status] ?? "outline";
@@ -185,7 +192,7 @@ export const columns: ColumnDef<User>[] = [
           {status.replace("-", " ")}
         </Badge>
       );
-    }
+    },
   },
   {
     id: "actions",
@@ -205,14 +212,17 @@ export const columns: ColumnDef<User>[] = [
           </DropdownMenuContent>
         </DropdownMenu>
       );
-    }
-  }
+    },
+  },
 ];
 
 export default function UsersDataTable({ data }: { data: User[] }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    [],
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -230,69 +240,69 @@ export default function UsersDataTable({ data }: { data: User[] }) {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   const statuses = [
     {
       value: "active",
-      label: "Active"
+      label: "Active",
     },
     {
       value: "inactive",
-      label: "Inactive"
+      label: "Inactive",
     },
     {
       value: "pending",
-      label: "Pending"
-    }
+      label: "Pending",
+    },
   ];
 
   const plans = [
     {
       value: "basic",
-      label: "Basic"
+      label: "Basic",
     },
     {
       value: "team",
-      label: "Team"
+      label: "Team",
     },
     {
       value: "enterprise",
-      label: "Enterprise"
-    }
+      label: "Enterprise",
+    },
   ];
 
   const roles = [
     {
       value: "construction-foreman",
-      label: "Construction Foreman"
+      label: "Construction Foreman",
     },
     {
       value: "project-manager",
-      label: "Project Manager"
+      label: "Project Manager",
     },
     {
       value: "surveyor",
-      label: "Surveyor"
+      label: "Surveyor",
     },
     {
       value: "architect",
-      label: "Architect"
+      label: "Architect",
     },
     {
       value: "subcontractor",
-      label: "Subcontractor"
+      label: "Subcontractor",
     },
     {
       value: "electrician",
-      label: "Electrician"
+      label: "Electrician",
     },
     {
       value: "estimator",
-      label: "Estimator"
-    }
+      label: "Estimator",
+    },
   ];
 
   return (
@@ -302,7 +312,9 @@ export default function UsersDataTable({ data }: { data: User[] }) {
           <Input
             placeholder="Search users..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-            onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
+            onChange={(event) =>
+              table.getColumn("name")?.setFilterValue(event.target.value)
+            }
             className="max-w-sm"
           />
           <Popover>
@@ -441,7 +453,10 @@ export default function UsersDataTable({ data }: { data: User[] }) {
                     <TableHead key={header.id}>
                       {header.isPlaceholder
                         ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   );
                 })}
@@ -451,17 +466,26 @@ export default function UsersDataTable({ data }: { data: User[] }) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

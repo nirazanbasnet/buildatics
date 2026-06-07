@@ -8,28 +8,28 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 import {
   ASSIGNEE_UNASSIGNED,
   DESIGN_NONE,
   STAGE_AUTO,
-  type CreateLeadInput
+  type CreateLeadInput,
 } from "../../lib/lead-form-schema";
 import type { LeadOptions } from "../../types";
 
 // The shared Add/Edit lead form fields. Both sheets render this inside their own <Form>.
 export function LeadFormFields({
   control,
-  options
+  options,
 }: {
   control: Control<CreateLeadInput>;
   options: LeadOptions;
@@ -120,7 +120,9 @@ export function LeadFormFields({
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                <SelectItem value={STAGE_AUTO}>First pipeline stage (automatic)</SelectItem>
+                <SelectItem value={STAGE_AUTO}>
+                  First pipeline stage (automatic)
+                </SelectItem>
                 {options.stages.map((s) => (
                   <SelectItem key={s.id} value={s.id}>
                     {s.name}

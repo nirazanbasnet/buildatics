@@ -21,7 +21,7 @@ export async function generateMetadata() {
     title: "Hospital Management Dashboard Template",
     description:
       "Monitor patient visits, appointments, and hospital reports. A professional healthcare dashboard built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/hospital-management"
+    canonical: "/hospital-management",
   });
 }
 
@@ -29,7 +29,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Hospital Management</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Hospital Management
+        </h1>
         <div className="flex items-center space-x-2">
           <CustomDateRangePicker />
           <Button>

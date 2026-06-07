@@ -8,7 +8,8 @@ export const postsData = [
     verified: true,
     timeAgo: "1m ago",
     type: "image",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop",
     likes: "x_ae_a-22 and others",
     likeCount: 1243,
     caption:
@@ -20,7 +21,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=33",
         text: "Amazing design! 🔥",
         timeAgo: "30s ago",
-        likes: 5
+        likes: 5,
       },
       {
         id: "c2",
@@ -28,7 +29,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=34",
         text: "This house looks beautiful",
         timeAgo: "2m ago",
-        likes: 12
+        likes: 12,
       },
       {
         id: "c3",
@@ -36,9 +37,9 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=35",
         text: "Where is this place?",
         timeAgo: "5m ago",
-        likes: 3
-      }
-    ]
+        likes: 3,
+      },
+    ],
   },
   {
     id: "2",
@@ -58,7 +59,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=36",
         text: "So inspiring!",
         timeAgo: "10m ago",
-        likes: 8
+        likes: 8,
       },
       {
         id: "c5",
@@ -66,9 +67,9 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=37",
         text: "Exactly what I needed 🙏",
         timeAgo: "12m ago",
-        likes: 15
-      }
-    ]
+        likes: 15,
+      },
+    ],
   },
   {
     id: "3",
@@ -81,7 +82,8 @@ export const postsData = [
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
     likes: "adventure_seeker and others",
     likeCount: 3421,
-    caption: "An amazing sunset in the Alps 🏔️ I will never forget this moment!",
+    caption:
+      "An amazing sunset in the Alps 🏔️ I will never forget this moment!",
     comments: [
       {
         id: "c6",
@@ -89,7 +91,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=38",
         text: "My dream place! 😍",
         timeAgo: "30m ago",
-        likes: 24
+        likes: 24,
       },
       {
         id: "c7",
@@ -97,7 +99,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=39",
         text: "Which camera did you use?",
         timeAgo: "45m ago",
-        likes: 7
+        likes: 7,
       },
       {
         id: "c8",
@@ -105,9 +107,9 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=40",
         text: "Wonderful!",
         timeAgo: "55m ago",
-        likes: 11
-      }
-    ]
+        likes: 11,
+      },
+    ],
   },
   {
     id: "4",
@@ -116,7 +118,8 @@ export const postsData = [
     verified: false,
     timeAgo: "2h ago",
     type: "image",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=600&fit=crop",
+    image:
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&h=600&fit=crop",
     likes: "chef_master and others",
     likeCount: 2156,
     caption: "Homemade Italian pizza 🍕 Recipe in the comments!",
@@ -127,7 +130,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=41",
         text: "Recipe please! 🤤",
         timeAgo: "1h ago",
-        likes: 32
+        likes: 32,
       },
       {
         id: "c10",
@@ -135,9 +138,9 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=42",
         text: "How did the dough turn out so good?",
         timeAgo: "1h 30m ago",
-        likes: 18
-      }
-    ]
+        likes: 18,
+      },
+    ],
   },
   {
     id: "5",
@@ -157,7 +160,7 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=43",
         text: "Saved this! Thanks 🙏",
         timeAgo: "2h ago",
-        likes: 45
+        likes: 45,
       },
       {
         id: "c12",
@@ -165,10 +168,10 @@ export const postsData = [
         avatar: "https://i.pravatar.cc/150?img=44",
         text: "5th tip: Don't be afraid to make mistakes!",
         timeAgo: "2h 30m ago",
-        likes: 67
-      }
-    ]
-  }
+        likes: 67,
+      },
+    ],
+  },
 ];
 
 export type Post = (typeof postsData)[number];
@@ -183,7 +186,7 @@ export const reels: ReelItem[] = [
     title: "Product Reveal Teaser",
     description: "Short intro teaser for the new Grok feature.",
     duration: 7,
-    isRead: false
+    isRead: false,
   },
   {
     id: "2",
@@ -194,7 +197,7 @@ export const reels: ReelItem[] = [
     title: "Sunset in the Valley",
     description: "Captured during a quick evening hike.",
     duration: 4,
-    isRead: false
+    isRead: false,
   },
   {
     id: "3",
@@ -205,7 +208,7 @@ export const reels: ReelItem[] = [
     title: "Mountain Escape",
     description: "Planning the next outdoor adventure.",
     duration: 6,
-    isRead: true
+    isRead: true,
   },
   {
     id: "4",
@@ -216,7 +219,7 @@ export const reels: ReelItem[] = [
     title: "Minimal Mood",
     description: "Exploring simplicity and quiet tones.",
     duration: 5,
-    isRead: true
+    isRead: true,
   },
   {
     id: "5",
@@ -227,7 +230,7 @@ export const reels: ReelItem[] = [
     title: "Studio Session",
     description: "Behind-the-scenes footage from today’s shoot.",
     duration: 9,
-    isRead: true
+    isRead: true,
   },
   {
     id: "6",
@@ -238,7 +241,7 @@ export const reels: ReelItem[] = [
     title: "City in Motion",
     description: "Timelapse of the downtown streets.",
     duration: 8,
-    isRead: true
+    isRead: true,
   },
   {
     id: "7",
@@ -249,7 +252,7 @@ export const reels: ReelItem[] = [
     title: "Night Drive",
     description: "Late ride through neon-lit roads.",
     duration: 10,
-    isRead: true
+    isRead: true,
   },
   {
     id: "8",
@@ -260,6 +263,6 @@ export const reels: ReelItem[] = [
     title: "Weekend Waves",
     description: "Slow-motion ocean clips from the coast.",
     duration: 6,
-    isRead: true
-  }
+    isRead: true,
+  },
 ];

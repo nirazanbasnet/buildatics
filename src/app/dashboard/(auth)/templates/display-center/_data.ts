@@ -32,7 +32,7 @@ export const properties: Property[] = [
     living: 2,
     garage: 2,
     facade: facade("RENDER_DF01_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png")
+    floorPlan: plan("PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png"),
   },
   {
     id: "bondi-24",
@@ -47,7 +47,7 @@ export const properties: Property[] = [
     living: 1,
     garage: 2,
     facade: facade("RENDER_DF02_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP02_12.5M BY 28M_RIGHT_VN01.png")
+    floorPlan: plan("PLAN_DP02_12.5M BY 28M_RIGHT_VN01.png"),
   },
   {
     id: "manhattan-32",
@@ -62,7 +62,7 @@ export const properties: Property[] = [
     living: 2,
     garage: 2,
     facade: facade("RENDER_DF04_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP03_12.5M BY 28M_RIGHT_VN01.png")
+    floorPlan: plan("PLAN_DP03_12.5M BY 28M_RIGHT_VN01.png"),
   },
   {
     id: "promenade-25",
@@ -77,7 +77,7 @@ export const properties: Property[] = [
     living: 1,
     garage: 2,
     facade: facade("RENDER_DF01_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png")
+    floorPlan: plan("PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png"),
   },
   {
     id: "vista-22",
@@ -92,7 +92,7 @@ export const properties: Property[] = [
     living: 1,
     garage: 1,
     facade: facade("RENDER_DF02_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP02_12.5M BY 28M_RIGHT_VN01.png")
+    floorPlan: plan("PLAN_DP02_12.5M BY 28M_RIGHT_VN01.png"),
   },
   {
     id: "riviera-34",
@@ -107,8 +107,8 @@ export const properties: Property[] = [
     living: 2,
     garage: 2,
     facade: facade("RENDER_DF04_12.5M_RIGHT_VN01.jpg"),
-    floorPlan: plan("PLAN_DP03_12.5M BY 28M_RIGHT_VN01.png")
-  }
+    floorPlan: plan("PLAN_DP03_12.5M BY 28M_RIGHT_VN01.png"),
+  },
 ];
 
 export type PropertyView = "facade" | "floor";

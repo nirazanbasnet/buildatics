@@ -6,12 +6,12 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Compare subscription plans and pricing models with flexible layout options including columns, tables, and single cards. A professional pricing page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/pages/pricing/column"
+    canonical: "/pages/pricing/column",
   });
 }
 
 export default function PricingLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {

@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,12 @@ type TableDetailDialog = {
   order?: Order;
 };
 
-export default function TableDetailDialog({ table, order, open, setOpen }: TableDetailDialog) {
+export default function TableDetailDialog({
+  table,
+  order,
+  open,
+  setOpen,
+}: TableDetailDialog) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-md">
@@ -70,7 +75,9 @@ export default function TableDetailDialog({ table, order, open, setOpen }: Table
                             </div>
                           </div>
                         </td>
-                        <td className="px-4 py-3 text-center">{item.quantity}</td>
+                        <td className="px-4 py-3 text-center">
+                          {item.quantity}
+                        </td>
                         <td className="px-4 py-3 text-right">
                           ${(item.product.price * item.quantity).toFixed(2)}
                         </td>
@@ -82,7 +89,9 @@ export default function TableDetailDialog({ table, order, open, setOpen }: Table
                       <td colSpan={2} className="px-4 py-2 text-right">
                         Subtotal:
                       </td>
-                      <td className="px-4 py-2 text-right">${(order.total / 1.05).toFixed(2)}</td>
+                      <td className="px-4 py-2 text-right">
+                        ${(order.total / 1.05).toFixed(2)}
+                      </td>
                     </tr>
                     <tr>
                       <td colSpan={2} className="px-4 py-2 text-right">
@@ -93,10 +102,15 @@ export default function TableDetailDialog({ table, order, open, setOpen }: Table
                       </td>
                     </tr>
                     <tr>
-                      <td colSpan={2} className="px-4 py-2 text-right font-bold">
+                      <td
+                        colSpan={2}
+                        className="px-4 py-2 text-right font-bold"
+                      >
                         Total:
                       </td>
-                      <td className="px-4 py-2 text-right font-bold">${order.total.toFixed(2)}</td>
+                      <td className="px-4 py-2 text-right font-bold">
+                        ${order.total.toFixed(2)}
+                      </td>
                     </tr>
                   </tfoot>
                 </table>

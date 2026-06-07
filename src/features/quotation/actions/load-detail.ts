@@ -11,18 +11,24 @@ export type LoadDetailResult =
   | { ok: false; error: string };
 
 // Loads everything the detail sheet needs (quote + line items + lead context) in one call.
-export async function loadQuoteDetail(leadId: string, id: string): Promise<LoadDetailResult> {
+export async function loadQuoteDetail(
+  leadId: string,
+  id: string,
+): Promise<LoadDetailResult> {
   try {
     const quote = await getQuote(leadId, id);
     const [lineItems, lead] = await Promise.all([
       getLineItems(leadId, id).catch(() => quote.lineItems ?? []),
-      getQuoteLeadContext(leadId)
+      getQuoteLeadContext(leadId),
     ]);
     return { ok: true, detail: mapToDetail(quote, lineItems, lead) };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to load the quotation."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to load the quotation.",
     };
   }
 }

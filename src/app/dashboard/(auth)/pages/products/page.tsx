@@ -4,7 +4,13 @@ import { PlusIcon } from "@radix-ui/react-icons";
 import { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ProductList, { Product } from "./product-list";
 import productsData from "./data.json";
@@ -15,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Manage inventory and track sales metrics on a professional admin page. Built with React, Next.js, TypeScript, Tailwind CSS, shadcn/ui, and Tanstack Table for data handling.",
-    canonical: "/pages/products"
+    canonical: "/pages/products",
   });
 }
 
@@ -34,7 +40,9 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardDescription>Total Sales</CardDescription>
-            <CardTitle className="font-display text-2xl lg:text-3xl">$30,230</CardTitle>
+            <CardTitle className="font-display text-2xl lg:text-3xl">
+              $30,230
+            </CardTitle>
             <CardAction>
               <Badge variant="outline">
                 <span className="text-green-600">+20.1%</span>
@@ -45,7 +53,9 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardDescription>Number of Sales</CardDescription>
-            <CardTitle className="font-display text-2xl lg:text-3xl">982</CardTitle>
+            <CardTitle className="font-display text-2xl lg:text-3xl">
+              982
+            </CardTitle>
             <CardAction>
               <Badge variant="outline">
                 <span className="text-green-600">+5.02</span>
@@ -56,7 +66,9 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardDescription>Affiliate</CardDescription>
-            <CardTitle className="font-display text-2xl lg:text-3xl">$4,530</CardTitle>
+            <CardTitle className="font-display text-2xl lg:text-3xl">
+              $4,530
+            </CardTitle>
             <CardAction>
               <Badge variant="outline">
                 <span className="text-green-600">+3.1%</span>
@@ -67,7 +79,9 @@ export default function Page() {
         <Card>
           <CardHeader>
             <CardDescription>Discounts</CardDescription>
-            <CardTitle className="font-display text-2xl lg:text-3xl">$2,230</CardTitle>
+            <CardTitle className="font-display text-2xl lg:text-3xl">
+              $2,230
+            </CardTitle>
             <CardAction>
               <Badge variant="outline">
                 <span className="text-red-600">-3.58%</span>

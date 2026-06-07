@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Bookings",
     description:
       "On the hotel management admin dashboard, you can see your turnover, manage reservations, and view your customers. Built with shadcn/ui, Tailwind CSS, Next.js.",
-    canonical: "/hotel/bookings"
+    canonical: "/hotel/bookings",
   });
 }
 

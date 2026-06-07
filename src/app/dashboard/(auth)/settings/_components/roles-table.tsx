@@ -8,7 +8,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
 import { cn } from "@/lib/utils";
@@ -27,18 +27,27 @@ export function RolesTable({ roles, className }: Props) {
   const [rows, setRows] = useState<Role[]>(roles);
 
   function setStatus(id: string, status: SettingsStatus) {
-    setRows((prev) => prev.map((row) => (row.id === id ? { ...row, status } : row)));
+    setRows((prev) =>
+      prev.map((row) => (row.id === id ? { ...row, status } : row)),
+    );
   }
 
   return (
-    <div className={cn("bg-card h-full overflow-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "bg-card h-full overflow-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="pl-4 font-semibold">Role</TableHead>
             <TableHead className="font-semibold">Permissions</TableHead>
             <TableHead className="font-semibold">Status</TableHead>
-            <TableHead className="pr-4 text-right font-semibold">Actions</TableHead>
+            <TableHead className="pr-4 text-right font-semibold">
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

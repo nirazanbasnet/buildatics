@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, Phone } from "lucide-react";
@@ -40,7 +46,9 @@ export function LeadsContact({ items }: LeadsContactProps) {
               </Avatar>
               <div className="min-w-0 space-y-1">
                 <p className="font-medium">{lead.name}</p>
-                <p className="text-muted-foreground truncate text-xs">{lead.location}</p>
+                <p className="text-muted-foreground truncate text-xs">
+                  {lead.location}
+                </p>
               </div>
             </div>
             <Button variant="outline" size="icon-xs" className="rounded-full">

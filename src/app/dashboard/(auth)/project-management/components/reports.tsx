@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, Search } from "lucide-react";
 
@@ -21,7 +21,7 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -29,7 +29,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -61,7 +61,7 @@ const data: Project[] = [
     budget: 12500,
     spent: 5200,
     progress: 42,
-    manager: "John Smith"
+    manager: "John Smith",
   },
   {
     id: "PRJ-002",
@@ -73,7 +73,7 @@ const data: Project[] = [
     budget: 35000,
     spent: 12800,
     progress: 36,
-    manager: "Sarah Johnson"
+    manager: "Sarah Johnson",
   },
   {
     id: "PRJ-003",
@@ -85,7 +85,7 @@ const data: Project[] = [
     budget: 8500,
     spent: 8500,
     progress: 100,
-    manager: "Michael Brown"
+    manager: "Michael Brown",
   },
   {
     id: "PRJ-004",
@@ -97,7 +97,7 @@ const data: Project[] = [
     budget: 42000,
     spent: 18600,
     progress: 44,
-    manager: "Emily Davis"
+    manager: "Emily Davis",
   },
   {
     id: "PRJ-005",
@@ -109,7 +109,7 @@ const data: Project[] = [
     budget: 4500,
     spent: 1200,
     progress: 27,
-    manager: "David Wilson"
+    manager: "David Wilson",
   },
   {
     id: "PRJ-006",
@@ -121,7 +121,7 @@ const data: Project[] = [
     budget: 18000,
     spent: 4500,
     progress: 25,
-    manager: "Lisa Anderson"
+    manager: "Lisa Anderson",
   },
   {
     id: "PRJ-007",
@@ -133,7 +133,7 @@ const data: Project[] = [
     budget: 28000,
     spent: 9800,
     progress: 35,
-    manager: "Robert Taylor"
+    manager: "Robert Taylor",
   },
   {
     id: "PRJ-008",
@@ -145,7 +145,7 @@ const data: Project[] = [
     budget: 7500,
     spent: 7500,
     progress: 100,
-    manager: "Jennifer Martinez"
+    manager: "Jennifer Martinez",
   },
   {
     id: "PRJ-009",
@@ -157,7 +157,7 @@ const data: Project[] = [
     budget: 15000,
     spent: 3200,
     progress: 21,
-    manager: "Thomas Clark"
+    manager: "Thomas Clark",
   },
   {
     id: "PRJ-010",
@@ -169,7 +169,7 @@ const data: Project[] = [
     budget: 22000,
     spent: 8900,
     progress: 40,
-    manager: "Amanda Lewis"
+    manager: "Amanda Lewis",
   },
   {
     id: "PRJ-011",
@@ -181,7 +181,7 @@ const data: Project[] = [
     budget: 9500,
     spent: 4200,
     progress: 44,
-    manager: "Kevin White"
+    manager: "Kevin White",
   },
   {
     id: "PRJ-012",
@@ -193,7 +193,7 @@ const data: Project[] = [
     budget: 12000,
     spent: 12000,
     progress: 100,
-    manager: "Patricia Moore"
+    manager: "Patricia Moore",
   },
   {
     id: "PRJ-013",
@@ -205,7 +205,7 @@ const data: Project[] = [
     budget: 18500,
     spent: 7200,
     progress: 39,
-    manager: "James Wilson"
+    manager: "James Wilson",
   },
   {
     id: "PRJ-014",
@@ -217,7 +217,7 @@ const data: Project[] = [
     budget: 14000,
     spent: 3500,
     progress: 25,
-    manager: "Michelle Johnson"
+    manager: "Michelle Johnson",
   },
   {
     id: "PRJ-015",
@@ -229,7 +229,7 @@ const data: Project[] = [
     budget: 8500,
     spent: 2100,
     progress: 25,
-    manager: "Daniel Brown"
+    manager: "Daniel Brown",
   },
   {
     id: "PRJ-016",
@@ -241,7 +241,7 @@ const data: Project[] = [
     budget: 32000,
     spent: 12800,
     progress: 40,
-    manager: "Christopher Lee"
+    manager: "Christopher Lee",
   },
   {
     id: "PRJ-017",
@@ -253,7 +253,7 @@ const data: Project[] = [
     budget: 6500,
     spent: 2600,
     progress: 40,
-    manager: "Jessica Taylor"
+    manager: "Jessica Taylor",
   },
   {
     id: "PRJ-018",
@@ -265,7 +265,7 @@ const data: Project[] = [
     budget: 9000,
     spent: 9000,
     progress: 100,
-    manager: "Andrew Martin"
+    manager: "Andrew Martin",
   },
   {
     id: "PRJ-019",
@@ -277,7 +277,7 @@ const data: Project[] = [
     budget: 16500,
     spent: 6800,
     progress: 41,
-    manager: "Stephanie Garcia"
+    manager: "Stephanie Garcia",
   },
   {
     id: "PRJ-020",
@@ -289,8 +289,8 @@ const data: Project[] = [
     budget: 21000,
     spent: 9450,
     progress: 45,
-    manager: "Brian Wilson"
-  }
+    manager: "Brian Wilson",
+  },
 ];
 
 // Define the columns for our table
@@ -298,7 +298,7 @@ const columns: ColumnDef<Project>[] = [
   {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => <div>{row.getValue("id")}</div>
+    cell: ({ row }) => <div>{row.getValue("id")}</div>,
   },
   {
     accessorKey: "name",
@@ -314,12 +314,12 @@ const columns: ColumnDef<Project>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div>{row.getValue("name")}</div>
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
     accessorKey: "client",
     header: "Client",
-    cell: ({ row }) => <div>{row.getValue("client")}</div>
+    cell: ({ row }) => <div>{row.getValue("client")}</div>,
   },
   {
     accessorKey: "status",
@@ -333,18 +333,26 @@ const columns: ColumnDef<Project>[] = [
         | "on-hold";
 
       const statusClassMap: Record<typeof status, string> = {
-        pending: "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200",
-        active: "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200",
-        completed: "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200",
+        pending:
+          "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200",
+        active:
+          "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200",
+        completed:
+          "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200",
         cancelled: "bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200",
-        "on-hold": "bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200"
+        "on-hold":
+          "bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200",
       };
 
-      return <Badge className={`capitalize ${statusClassMap[status]}`}>{status}</Badge>;
+      return (
+        <Badge className={`capitalize ${statusClassMap[status]}`}>
+          {status}
+        </Badge>
+      );
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id));
-    }
+    },
   },
   {
     accessorKey: "startDate",
@@ -352,7 +360,7 @@ const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       const date = new Date(row.getValue("startDate"));
       return <div>{date.toLocaleDateString()}</div>;
-    }
+    },
   },
   {
     accessorKey: "endDate",
@@ -360,7 +368,7 @@ const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       const date = new Date(row.getValue("endDate"));
       return <div>{date.toLocaleDateString()}</div>;
-    }
+    },
   },
   {
     accessorKey: "budget",
@@ -380,11 +388,11 @@ const columns: ColumnDef<Project>[] = [
       const amount = Number.parseFloat(row.getValue("budget"));
       const formatted = new Intl.NumberFormat("en-US", {
         style: "currency",
-        currency: "USD"
+        currency: "USD",
       }).format(amount);
 
       return <div>{formatted}</div>;
-    }
+    },
   },
   {
     accessorKey: "progress",
@@ -400,8 +408,8 @@ const columns: ColumnDef<Project>[] = [
           </div>
         </div>
       );
-    }
-  }
+    },
+  },
 ];
 
 export function Reports() {
@@ -428,13 +436,13 @@ export function Reports() {
       columnFilters,
       columnVisibility,
       rowSelection,
-      globalFilter
+      globalFilter,
     },
     initialState: {
       pagination: {
-        pageSize: 15
-      }
-    }
+        pageSize: 15,
+      },
+    },
   });
 
   return (
@@ -465,7 +473,9 @@ export function Reports() {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
@@ -482,7 +492,10 @@ export function Reports() {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {flexRender(header.column.columnDef.header, header.getContext())}
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext(),
+                    )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -505,7 +518,8 @@ export function Reports() {
       {/* Pagination controls */}
       <div className="flex items-center justify-between space-x-2">
         <div className="text-muted-foreground text-sm">
-          Showing {table.getFilteredRowModel().rows.length} of {data.length} projects
+          Showing {table.getFilteredRowModel().rows.length} of {data.length}{" "}
+          projects
         </div>
         <div className="flex items-center space-x-2">
           <Button

@@ -18,7 +18,7 @@ export async function generateMetadata() {
     title: "Website Analytics Admin Dashboard",
     description:
       "Analyze website analytics, earnings, and user data with real-time reports. A professional admin page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/website-analytics"
+    canonical: "/website-analytics",
   });
 }
 
@@ -26,7 +26,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Website Analytics</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Website Analytics
+        </h1>
         <div className="flex items-center space-x-2">
           <div className="grow">
             <CalendarDateRangePicker />

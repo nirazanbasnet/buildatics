@@ -7,7 +7,7 @@ import {
   MapPin,
   PencilIcon,
   TrendingUp,
-  XIcon
+  XIcon,
 } from "lucide-react";
 import { useId } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,7 +20,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -43,10 +43,11 @@ function EditProfileModal() {
     value: bioValue,
     characterCount,
     handleChange: handleBioChange,
-    maxLength: limit
+    maxLength: limit,
   } = useCharacterLimit({
-    initialValue: "Hey, I am a web developer who loves turning ideas into amazing websites!",
-    maxLength
+    initialValue:
+      "Hey, I am a web developer who loves turning ideas into amazing websites!",
+    maxLength,
   });
 
   const initialBgImage = [
@@ -55,8 +56,8 @@ function EditProfileModal() {
       name: "profile-bg.jpg",
       size: 0,
       type: "image/jpeg",
-      url: DEFAULT_COVER_URL
-    }
+      url: DEFAULT_COVER_URL,
+    },
   ];
 
   const initialAvatarImage = [
@@ -65,17 +66,20 @@ function EditProfileModal() {
       name: "avatar.jpg",
       size: 0,
       type: "image/jpeg",
-      url: user.avatar
-    }
+      url: user.avatar,
+    },
   ];
 
   return (
     <DialogContent className="flex flex-col gap-0 overflow-y-visible p-0 sm:max-w-lg [&>button:last-child]:top-3.5">
       <DialogHeader className="contents space-y-0 text-left">
-        <DialogTitle className="border-b px-6 py-4 font-normal">Edit Profile</DialogTitle>
+        <DialogTitle className="border-b px-6 py-4 font-normal">
+          Edit Profile
+        </DialogTitle>
       </DialogHeader>
       <DialogDescription className="sr-only">
-        Make changes to your profile here. You can change your photo and set a username.
+        Make changes to your profile here. You can change your photo and set a
+        username.
       </DialogDescription>
       <div className="overflow-y-auto">
         <ProfileBg initialFiles={initialBgImage} />
@@ -116,7 +120,11 @@ function EditProfileModal() {
                   type="text"
                 />
                 <div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 end-0 flex items-center justify-center pe-3 peer-disabled:opacity-50">
-                  <CheckIcon aria-hidden className="text-emerald-500" size={16} />
+                  <CheckIcon
+                    aria-hidden
+                    className="text-emerald-500"
+                    size={16}
+                  />
                 </div>
               </div>
             </div>
@@ -151,7 +159,8 @@ function EditProfileModal() {
                 id={`${id}-description`}
                 role="status"
               >
-                <span className="tabular-nums">{limit - characterCount}</span> characters left
+                <span className="tabular-nums">{limit - characterCount}</span>{" "}
+                characters left
               </p>
             </div>
           </form>
@@ -180,10 +189,11 @@ type FileMetadata = {
 };
 
 function ProfileBg({ initialFiles }: { initialFiles: FileMetadata[] }) {
-  const [{ files }, { removeFile, openFileDialog, getInputProps }] = useFileUpload({
-    accept: "image/*",
-    initialFiles
-  });
+  const [{ files }, { removeFile, openFileDialog, getInputProps }] =
+    useFileUpload({
+      accept: "image/*",
+      initialFiles,
+    });
 
   const currentImage = files[0]?.preview ?? null;
 
@@ -192,7 +202,11 @@ function ProfileBg({ initialFiles }: { initialFiles: FileMetadata[] }) {
       <div className="bg-muted relative flex size-full items-center justify-center overflow-hidden">
         {currentImage && (
           <img
-            alt={files[0]?.preview ? "Upload preview" : "Default profile background"}
+            alt={
+              files[0]?.preview
+                ? "Upload preview"
+                : "Default profile background"
+            }
             className="size-full object-cover"
             height={96}
             src={currentImage}
@@ -220,7 +234,11 @@ function ProfileBg({ initialFiles }: { initialFiles: FileMetadata[] }) {
           )}
         </div>
       </div>
-      <input {...getInputProps()} aria-label="Upload image file" className="sr-only" />
+      <input
+        {...getInputProps()}
+        aria-label="Upload image file"
+        className="sr-only"
+      />
     </div>
   );
 }
@@ -228,7 +246,7 @@ function ProfileBg({ initialFiles }: { initialFiles: FileMetadata[] }) {
 function ProfileAvatar({ initialFiles }: { initialFiles: FileMetadata[] }) {
   const [{ files }, { openFileDialog, getInputProps }] = useFileUpload({
     accept: "image/*",
-    initialFiles
+    initialFiles,
   });
 
   const currentImage = files[0]?.preview ?? null;
@@ -253,7 +271,11 @@ function ProfileAvatar({ initialFiles }: { initialFiles: FileMetadata[] }) {
         >
           <ImagePlusIcon aria-hidden size={16} />
         </button>
-        <input {...getInputProps()} aria-label="Upload profile picture" className="sr-only" />
+        <input
+          {...getInputProps()}
+          aria-label="Upload profile picture"
+          className="sr-only"
+        />
       </div>
     </div>
   );
@@ -271,7 +293,11 @@ export function ProfileHeader() {
         <div className="absolute end-4 top-4">
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="bg-background/50 rounded-full" size="icon-sm" variant="ghost">
+              <Button
+                className="bg-background/50 rounded-full"
+                size="icon-sm"
+                variant="ghost"
+              >
                 <PencilIcon />
               </Button>
             </DialogTrigger>

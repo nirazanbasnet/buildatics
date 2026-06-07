@@ -1,19 +1,24 @@
 import { useId } from "react";
-import { ChevronFirstIcon, ChevronLastIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import {
+  ChevronFirstIcon,
+  ChevronLastIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react";
 
 import { Label } from "@/components/ui/label";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink
+  PaginationLink,
 } from "@/components/ui/pagination";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 type PaginationProps = {
@@ -23,7 +28,7 @@ type PaginationProps = {
 
 export default function FileManagerPagination({
   currentPage = 1,
-  totalPages = 1
+  totalPages = 1,
 }: PaginationProps) {
   const id = useId();
   return (
@@ -48,7 +53,10 @@ export default function FileManagerPagination({
 
       {/* Page number information */}
       <div className="text-muted-foreground flex grow justify-end text-sm whitespace-nowrap">
-        <p className="text-muted-foreground text-sm whitespace-nowrap" aria-live="polite">
+        <p
+          className="text-muted-foreground text-sm whitespace-nowrap"
+          aria-live="polite"
+        >
           <span className="text-foreground">1-25</span> of{" "}
           <span className="text-foreground">100</span>
         </p>
@@ -62,7 +70,9 @@ export default function FileManagerPagination({
             <PaginationItem>
               <PaginationLink
                 className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                href={currentPage === 1 ? undefined : `#/page/${currentPage - 1}`}
+                href={
+                  currentPage === 1 ? undefined : `#/page/${currentPage - 1}`
+                }
                 aria-label="Go to first page"
                 aria-disabled={currentPage === 1 ? true : undefined}
                 role={currentPage === 1 ? "link" : undefined}
@@ -75,7 +85,9 @@ export default function FileManagerPagination({
             <PaginationItem>
               <PaginationLink
                 className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                href={currentPage === 1 ? undefined : `#/page/${currentPage - 1}`}
+                href={
+                  currentPage === 1 ? undefined : `#/page/${currentPage - 1}`
+                }
                 aria-label="Go to previous page"
                 aria-disabled={currentPage === 1 ? true : undefined}
                 role={currentPage === 1 ? "link" : undefined}
@@ -88,7 +100,11 @@ export default function FileManagerPagination({
             <PaginationItem>
               <PaginationLink
                 className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                href={currentPage === totalPages ? undefined : `#/page/${currentPage + 1}`}
+                href={
+                  currentPage === totalPages
+                    ? undefined
+                    : `#/page/${currentPage + 1}`
+                }
                 aria-label="Go to next page"
                 aria-disabled={currentPage === totalPages ? true : undefined}
                 role={currentPage === totalPages ? "link" : undefined}
@@ -101,7 +117,11 @@ export default function FileManagerPagination({
             <PaginationItem>
               <PaginationLink
                 className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
-                href={currentPage === totalPages ? undefined : `#/page/${totalPages}`}
+                href={
+                  currentPage === totalPages
+                    ? undefined
+                    : `#/page/${totalPages}`
+                }
                 aria-label="Go to last page"
                 aria-disabled={currentPage === totalPages ? true : undefined}
                 role={currentPage === totalPages ? "link" : undefined}

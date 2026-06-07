@@ -11,14 +11,19 @@ export function ProfileCard() {
         <div className="space-y-12">
           <div className="flex flex-col items-center space-y-4">
             <Avatar className="size-20">
-              <AvatarImage src={`https://i.pravatar.cc/150?img=10`} alt="@shadcn" />
+              <AvatarImage
+                src={`https://i.pravatar.cc/150?img=10`}
+                alt="@shadcn"
+              />
               <AvatarFallback>AH</AvatarFallback>
             </Avatar>
             <div className="text-center">
               <h5 className="flex items-center gap-2 text-xl font-semibold">
                 Anshan Haso <Badge variant="info">Pro</Badge>
               </h5>
-              <div className="text-muted-foreground text-sm">Project Manager</div>
+              <div className="text-muted-foreground text-sm">
+                Project Manager
+              </div>
             </div>
           </div>
           <div className="bg-muted grid grid-cols-3 divide-x rounded-md border text-center *:py-3">
@@ -37,10 +42,12 @@ export function ProfileCard() {
           </div>
           <div className="flex flex-col gap-y-4">
             <div className="flex items-center gap-3 text-sm">
-              <Mail className="text-muted-foreground size-4" /> hello@tobybelhome.com
+              <Mail className="text-muted-foreground size-4" />{" "}
+              hello@tobybelhome.com
             </div>
             <div className="flex items-center gap-3 text-sm">
-              <PhoneCall className="text-muted-foreground size-4" /> (+1-876) 8654 239 581
+              <PhoneCall className="text-muted-foreground size-4" /> (+1-876)
+              8654 239 581
             </div>
             <div className="flex items-center gap-3 text-sm">
               <MapPin className="text-muted-foreground size-4" />

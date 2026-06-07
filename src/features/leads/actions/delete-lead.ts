@@ -9,13 +9,16 @@ export async function deleteLead(id: string): Promise<DeleteLeadResult> {
   try {
     await apiFetch(`/api/Leads/SoftDelete?id=${encodeURIComponent(id)}`, {
       method: "DELETE",
-      auth: true
+      auth: true,
     });
     return { ok: true };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to delete the lead."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to delete the lead.",
     };
   }
 }

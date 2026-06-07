@@ -21,7 +21,9 @@ export function BrochurePropertyInfo({ property, onChange, className }: Props) {
       className={cn("bg-card rounded-2xl border p-5", className)}
       data-slot="brochure-property"
     >
-      <h3 className="text-foreground text-base font-semibold">Property Information</h3>
+      <h3 className="text-foreground text-base font-semibold">
+        Property Information
+      </h3>
       <div className="mt-5 flex flex-col gap-3">
         <BrochureField
           icon={MoveHorizontal}
@@ -48,7 +50,9 @@ export function BrochurePropertyInfo({ property, onChange, className }: Props) {
           <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
             <Car className="size-4" />
           </span>
-          <span className="text-foreground flex-1 text-sm font-medium">Driveway</span>
+          <span className="text-foreground flex-1 text-sm font-medium">
+            Driveway
+          </span>
           <div className="bg-muted/60 flex gap-1 rounded-md p-0.5">
             {driveways.map((side) => {
               const isActive = property.driveway === side;
@@ -62,7 +66,7 @@ export function BrochurePropertyInfo({ property, onChange, className }: Props) {
                     "rounded-md px-3 py-1 text-sm font-medium capitalize transition-colors",
                     isActive
                       ? "bg-foreground text-background"
-                      : "text-muted-foreground hover:text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {side}

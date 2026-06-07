@@ -10,9 +10,12 @@ export function WelcomeCard() {
             <div className="font-display text-3xl">
               Hi, Andrew <span className="text-4xl">👋</span>
             </div>
-            <div className="text-2xl">What do you want to learn today with your partner?</div>
+            <div className="text-2xl">
+              What do you want to learn today with your partner?
+            </div>
             <div className="text-muted-foreground">
-              Discover courses, track progress, and achieve your learning goods seamlessly.
+              Discover courses, track progress, and achieve your learning goods
+              seamlessly.
             </div>
             <div className="pt-2">
               <Button>Explorer Course</Button>

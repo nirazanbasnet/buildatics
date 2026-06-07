@@ -13,7 +13,9 @@ export function PreconstructionDetailHeader({ project }: Props) {
     <section className="bg-card rounded-2xl border p-5">
       <header className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h2 className="text-foreground text-2xl font-bold tracking-tight">{project.projectNo}</h2>
+          <h2 className="text-foreground text-2xl font-bold tracking-tight">
+            {project.projectNo}
+          </h2>
           <button
             type="button"
             className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-xs font-medium text-white transition-colors hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-500"

@@ -26,10 +26,14 @@ export function BrochureHistory({ entries, className }: Props) {
               <Bell className="size-4" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="text-foreground text-sm font-semibold">{entry.message}</p>
+              <p className="text-foreground text-sm font-semibold">
+                {entry.message}
+              </p>
               <p className="text-muted-foreground text-xs">By: {entry.by}</p>
             </div>
-            <span className="text-muted-foreground shrink-0 text-xs">{entry.time}</span>
+            <span className="text-muted-foreground shrink-0 text-xs">
+              {entry.time}
+            </span>
           </li>
         ))}
       </ul>

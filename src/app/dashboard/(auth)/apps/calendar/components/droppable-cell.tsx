@@ -20,7 +20,7 @@ export function DroppableCell({
   time,
   children,
   className,
-  onClick
+  onClick,
 }: DroppableCellProps) {
   const { activeEvent } = useCalendarDnd();
 
@@ -28,8 +28,8 @@ export function DroppableCell({
     id,
     data: {
       date,
-      time
-    }
+      time,
+    },
   });
 
   // Format time for display in tooltip (only for debugging)
@@ -46,7 +46,7 @@ export function DroppableCell({
       onClick={onClick}
       className={cn(
         "data-dragging:bg-accent flex h-full flex-col overflow-hidden px-0.5 py-1 sm:px-1",
-        className
+        className,
       )}
       title={formattedTime ? `${formattedTime}` : undefined}
       data-dragging={isOver && activeEvent ? true : undefined}

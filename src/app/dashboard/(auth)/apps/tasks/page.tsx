@@ -13,7 +13,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Organize project issues, monitor task status, and manage priorities using a robust data table with advanced filtering and sorting. A professional task management application built with React, Next.js, TypeScript, Tailwind CSS, and Tanstack Table",
-    canonical: "/apps/tasks"
+    canonical: "/apps/tasks",
   });
 }
 

@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 
 export function useCharacterLimit({
   initialValue = "",
-  maxLength
+  maxLength,
 }: {
   initialValue: string;
   maxLength: number;
@@ -16,13 +16,13 @@ export function useCharacterLimit({
     (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
       setValue(e.target.value.slice(0, maxLength));
     },
-    [maxLength]
+    [maxLength],
   );
 
   return {
     value,
     characterCount,
     handleChange,
-    maxLength
+    maxLength,
   };
 }

@@ -7,7 +7,13 @@ import { useStore } from "../store";
 
 import { Card, CardContent } from "@/components/ui/card";
 import CartListItem from "./cart-list-item";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -15,11 +21,16 @@ type POStSystemCart = {
   setShowAssignOrderDialogAction: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function POStSystemCartSheet({ setShowAssignOrderDialogAction }: POStSystemCart) {
+export default function POStSystemCartSheet({
+  setShowAssignOrderDialogAction,
+}: POStSystemCart) {
   const { cart, createOrder } = useStore();
 
   // Calculate subtotal
-  const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0,
+  );
 
   // Calculate tax (5%)
   const tax = subtotal * 0.05;

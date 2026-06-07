@@ -16,7 +16,12 @@ type Props = {
   className?: string;
 };
 
-export function BrochureOwners({ owners, onAddOwner, onUpdateOwner, className }: Props) {
+export function BrochureOwners({
+  owners,
+  onAddOwner,
+  onUpdateOwner,
+  className,
+}: Props) {
   const [activeId, setActiveId] = useState(owners[0]?.id);
   const active = owners.find((owner) => owner.id === activeId) ?? owners[0];
 
@@ -48,7 +53,7 @@ export function BrochureOwners({ owners, onAddOwner, onUpdateOwner, className }:
                   "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                   isActive
                     ? "bg-card text-foreground shadow-sm"
-                    : "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 Owner {index + 1}

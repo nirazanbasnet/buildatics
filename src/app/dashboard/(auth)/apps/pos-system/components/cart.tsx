@@ -13,11 +13,16 @@ type POStSystemCart = {
   setShowAssignOrderDialogAction: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function POStSystemCart({ setShowAssignOrderDialogAction }: POStSystemCart) {
+export default function POStSystemCart({
+  setShowAssignOrderDialogAction,
+}: POStSystemCart) {
   const { cart, createOrder } = useStore();
 
   // Calculate subtotal
-  const subtotal = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+  const subtotal = cart.reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0,
+  );
 
   // Calculate tax (5%)
   const tax = subtotal * 0.05;

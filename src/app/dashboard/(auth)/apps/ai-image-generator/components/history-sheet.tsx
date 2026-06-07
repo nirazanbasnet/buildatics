@@ -8,12 +8,16 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { History } from "lucide-react";
 import { toast } from "sonner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function HistorySheet() {
   const [historyOpen, setHistoryOpen] = React.useState(false);
@@ -22,10 +26,11 @@ export default function HistorySheet() {
     {
       id: "hist-1",
       url: "https://picsum.photos/512/512?random=2001",
-      prompt: "Medieval castle on a misty mountain with dragons flying overhead",
+      prompt:
+        "Medieval castle on a misty mountain with dragons flying overhead",
       style: "fantasy",
       aspectRatio: "16:9",
-      createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
     },
     {
       id: "hist-2",
@@ -33,7 +38,7 @@ export default function HistorySheet() {
       prompt: "Steampunk airship floating above Victorian London cityscape",
       style: "digital-art",
       aspectRatio: "1:1",
-      createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
     },
     {
       id: "hist-3",
@@ -41,7 +46,7 @@ export default function HistorySheet() {
       prompt: "Bioluminescent forest with glowing mushrooms and fairy lights",
       style: "fantasy",
       aspectRatio: "9:16",
-      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
     },
     {
       id: "hist-4",
@@ -49,7 +54,7 @@ export default function HistorySheet() {
       prompt: "Underwater coral reef with tropical fish and sea creatures",
       style: "photographic",
       aspectRatio: "4:3",
-      createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
+      createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000),
     },
     {
       id: "hist-5",
@@ -57,8 +62,8 @@ export default function HistorySheet() {
       prompt: "Space station orbiting Earth with astronauts doing spacewalk",
       style: "realistic",
       aspectRatio: "16:9",
-      createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000)
-    }
+      createdAt: new Date(Date.now() - 12 * 60 * 60 * 1000),
+    },
   ];
 
   return (

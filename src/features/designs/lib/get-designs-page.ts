@@ -10,7 +10,7 @@ export async function getDesignsPage(req: PagedReq): Promise<DesignsPage> {
   const res = await apiFetch<DesignResPage>("/api/Designs/Page", {
     method: "POST",
     auth: true,
-    body: req
+    body: req,
   });
 
   const items = res.items ?? [];
@@ -19,7 +19,7 @@ export async function getDesignsPage(req: PagedReq): Promise<DesignsPage> {
     designs: items.map((design, index) => mapDesignToProperty(design, index)),
     totalCount: res.totalCount ?? items.length,
     pageNumber: res.pageNumber ?? req.pageNumber,
-    pageSize: res.pageSize ?? req.pageSize
+    pageSize: res.pageSize ?? req.pageSize,
   };
 }
 
@@ -33,7 +33,10 @@ export async function getAllDesigns(): Promise<DesignProperty[]> {
   let pageNumber = 1;
 
   while (pageNumber <= ALL_MAX_PAGES) {
-    const { designs, totalCount } = await getDesignsPage({ pageNumber, pageSize: ALL_PAGE_SIZE });
+    const { designs, totalCount } = await getDesignsPage({
+      pageNumber,
+      pageSize: ALL_PAGE_SIZE,
+    });
     all.push(...designs);
     if (all.length >= totalCount || designs.length < ALL_PAGE_SIZE) break;
     pageNumber += 1;

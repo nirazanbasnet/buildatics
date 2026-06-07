@@ -16,7 +16,7 @@ export async function generateMetadata() {
     title: "CRM Admin Dashboard Template",
     description:
       "Manage customer relationships, sales pipelines, and performance metrics. A professional CRM admin page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/crm"
+    canonical: "/crm",
   });
 }
 
@@ -24,7 +24,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">CRM Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          CRM Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <CustomDateRangePicker />
           <Button>Download</Button>

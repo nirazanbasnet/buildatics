@@ -12,7 +12,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 type AssignOrderToTable = {
@@ -35,7 +35,7 @@ export default function AssignOrderToTable({
   open,
   setOpen,
   tableCategories,
-  tables
+  tables,
 }: AssignOrderToTable) {
   const { orders, assignOrderToTable } = useStore();
 
@@ -46,13 +46,19 @@ export default function AssignOrderToTable({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Assign Order to Table</DialogTitle>
-          <DialogDescription>Please select a table to assign this order</DialogDescription>
+          <DialogDescription>
+            Please select a table to assign this order
+          </DialogDescription>
         </DialogHeader>
         <div className="py-4">
           <Tabs defaultValue={selectedCategory} className="w-full">
             <TabsList className="h-auto w-full flex-col lg:h-9 lg:flex-row">
               {tableCategories.map((category) => (
-                <TabsTrigger className="w-full lg:w-auto" key={category.id} value={category.id}>
+                <TabsTrigger
+                  className="w-full lg:w-auto"
+                  key={category.id}
+                  value={category.id}
+                >
                   {category.name}
                 </TabsTrigger>
               ))}
@@ -64,7 +70,9 @@ export default function AssignOrderToTable({
                   {tables
                     .filter((table) => table.category === c.id)
                     .map((table) => {
-                      const tableOrder = orders.find((t) => t.tableId === table.id);
+                      const tableOrder = orders.find(
+                        (t) => t.tableId === table.id,
+                      );
 
                       if (tableOrder) {
                         table.status = "occupied";
@@ -85,7 +93,9 @@ export default function AssignOrderToTable({
                           <span
                             className={cn(
                               "text-xs capitalize",
-                              EnumTableStatusColor[table.status as EnumTableStatus].text
+                              EnumTableStatusColor[
+                                table.status as EnumTableStatus
+                              ].text,
                             )}
                           >
                             {table.status}

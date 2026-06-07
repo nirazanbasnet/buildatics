@@ -35,20 +35,28 @@ import type { BlobMapRes, CompanyDesignRes } from "./dto";
  */
 
 // Defensive only: imported designs carry previews. Local kit assets guarantee next/image never gets "".
-const PLACEHOLDER_FACADE = "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg";
-const PLACEHOLDER_PLAN = "/images/display-center/plans/PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png";
+const PLACEHOLDER_FACADE =
+  "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg";
+const PLACEHOLDER_PLAN =
+  "/images/display-center/plans/PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png";
 
 // First available preview URL across a set of blob maps.
 function firstPreview(blobs: BlobMapRes[]): string | undefined {
-  return blobs.map((b) => b.blobModel?.previewSasUrl).find((u): u is string => Boolean(u));
+  return blobs
+    .map((b) => b.blobModel?.previewSasUrl)
+    .find((u): u is string => Boolean(u));
 }
 
-export function mapCompanyDesignToProperty(cd: CompanyDesignRes, index: number): DesignProperty {
+export function mapCompanyDesignToProperty(
+  cd: CompanyDesignRes,
+  index: number,
+): DesignProperty {
   const designBlobs = cd.companyDesignBlobMaps ?? cd.blobMaps ?? [];
   const floorPlan = firstPreview(designBlobs);
 
   const facadeBlobs: BlobMapRes[] = (cd.companyDesignFacadeMaps ?? []).flatMap(
-    (m) => m.companyFacade?.companyFacadeBlobMaps ?? m.companyFacade?.blobMaps ?? []
+    (m) =>
+      m.companyFacade?.companyFacadeBlobMaps ?? m.companyFacade?.blobMaps ?? [],
   );
   const facade = firstPreview(facadeBlobs);
 
@@ -67,6 +75,6 @@ export function mapCompanyDesignToProperty(cd: CompanyDesignRes, index: number):
     living: cd.livingRooms ?? 0,
     garage: cd.maximumCarsInGarage ?? 0,
     facade: facade ?? floorPlan ?? PLACEHOLDER_FACADE,
-    floorPlan: floorPlan ?? facade ?? PLACEHOLDER_PLAN
+    floorPlan: floorPlan ?? facade ?? PLACEHOLDER_PLAN,
   };
 }

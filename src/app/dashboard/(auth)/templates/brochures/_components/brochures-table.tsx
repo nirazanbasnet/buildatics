@@ -10,10 +10,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
 import { brochureStatusConfig, type Brochure } from "../_data";
@@ -25,7 +29,13 @@ type Props = {
   onBrochureClick?: (brochure: Brochure) => void;
 };
 
-type SortField = "ref" | "client" | "siteAddress" | "design" | "createdDate" | "status";
+type SortField =
+  | "ref"
+  | "client"
+  | "siteAddress"
+  | "design"
+  | "createdDate"
+  | "status";
 
 const ACCESSORS: Record<SortField, (b: Brochure) => string | number> = {
   ref: (b) => b.ref,
@@ -33,16 +43,28 @@ const ACCESSORS: Record<SortField, (b: Brochure) => string | number> = {
   siteAddress: (b) => b.siteAddress,
   design: (b) => b.design,
   createdDate: (b) => b.createdDate,
-  status: (b) => b.status
+  status: (b) => b.status,
 };
 
-export function BrochuresTable({ brochures, className, onBrochureClick }: Props) {
+export function BrochuresTable({
+  brochures,
+  className,
+  onBrochureClick,
+}: Props) {
   const [selected, setSelected] = useState<Set<string>>(new Set());
-  const [sort, setSort] = useSortState<SortField>({ field: "ref", direction: "asc" });
-  const sortedBrochures = useMemo(() => sortBy(brochures, sort, ACCESSORS), [brochures, sort]);
+  const [sort, setSort] = useSortState<SortField>({
+    field: "ref",
+    direction: "asc",
+  });
+  const sortedBrochures = useMemo(
+    () => sortBy(brochures, sort, ACCESSORS),
+    [brochures, sort],
+  );
 
-  const allSelected = sortedBrochures.length > 0 && selected.size === sortedBrochures.length;
-  const someSelected = selected.size > 0 && selected.size < sortedBrochures.length;
+  const allSelected =
+    sortedBrochures.length > 0 && selected.size === sortedBrochures.length;
+  const someSelected =
+    selected.size > 0 && selected.size < sortedBrochures.length;
 
   function toggleAll(value: boolean) {
     setSelected(value ? new Set(sortedBrochures.map((b) => b.id)) : new Set());
@@ -58,13 +80,20 @@ export function BrochuresTable({ brochures, className, onBrochureClick }: Props)
   }
 
   return (
-    <div className={cn("bg-card h-full overflow-auto rounded-lg border", className)}>
+    <div
+      className={cn(
+        "bg-card h-full overflow-auto rounded-lg border",
+        className,
+      )}
+    >
       <Table>
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="w-12 pl-4">
               <Checkbox
-                checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                checked={
+                  allSelected ? true : someSelected ? "indeterminate" : false
+                }
                 onCheckedChange={(v) => toggleAll(v === true)}
                 aria-label="Select all brochures"
               />
@@ -87,7 +116,9 @@ export function BrochuresTable({ brochures, className, onBrochureClick }: Props)
             <SortableTableHead field="status" sort={sort} onSort={setSort}>
               Status
             </SortableTableHead>
-            <TableHead className="pr-4 text-right font-semibold">Actions</TableHead>
+            <TableHead className="pr-4 text-right font-semibold">
+              Actions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -98,10 +129,15 @@ export function BrochuresTable({ brochures, className, onBrochureClick }: Props)
               <MotionTableRow
                 key={brochure.id}
                 index={index}
-                onClick={onBrochureClick ? () => onBrochureClick(brochure) : undefined}
+                onClick={
+                  onBrochureClick ? () => onBrochureClick(brochure) : undefined
+                }
                 className={onBrochureClick ? "cursor-pointer" : undefined}
               >
-                <TableCell className="py-3 pl-4" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="py-3 pl-4"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <Checkbox
                     checked={isChecked}
                     onCheckedChange={(v) => toggleOne(brochure.id, v === true)}
@@ -113,14 +149,18 @@ export function BrochuresTable({ brochures, className, onBrochureClick }: Props)
                     {brochure.ref}
                   </span>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{brochure.client}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {brochure.client}
+                </TableCell>
                 <TableCell className="text-muted-foreground">
                   <span className="group-hover:text-foreground inline-flex items-center gap-1.5 transition-all motion-safe:group-hover:translate-x-0.5">
                     <MapPin className="size-4 shrink-0" />
                     {brochure.siteAddress}
                   </span>
                 </TableCell>
-                <TableCell className="text-foreground font-semibold">{brochure.design}</TableCell>
+                <TableCell className="text-foreground font-semibold">
+                  {brochure.design}
+                </TableCell>
                 <TableCell className="text-muted-foreground whitespace-nowrap">
                   {brochure.createdDate}
                 </TableCell>
@@ -128,16 +168,23 @@ export function BrochuresTable({ brochures, className, onBrochureClick }: Props)
                   <span
                     className={cn(
                       "inline-flex min-w-24 items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                      status.solid
+                      status.solid,
                     )}
                   >
                     {status.label}
                   </span>
                 </TableCell>
-                <TableCell className="pr-4 text-right" onClick={(e) => e.stopPropagation()}>
+                <TableCell
+                  className="pr-4 text-right"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   <BrochuresActionsMenu
                     brochureRef={brochure.ref}
-                    onView={onBrochureClick ? () => onBrochureClick(brochure) : undefined}
+                    onView={
+                      onBrochureClick
+                        ? () => onBrochureClick(brochure)
+                        : undefined
+                    }
                   />
                 </TableCell>
               </MotionTableRow>

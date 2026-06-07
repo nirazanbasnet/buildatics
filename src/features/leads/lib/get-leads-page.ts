@@ -14,7 +14,10 @@ export async function getAllLeads(): Promise<LeadRow[]> {
   const [stages, staff] = await Promise.all([getLeadStages(), getStaff()]);
   const stageNames = new Map(stages.map((s) => [s.id ?? "", s.name ?? "—"]));
   const staffNames = new Map(
-    staff.map((s) => [s.id ?? "", [s.firstName, s.lastName].filter(Boolean).join(" ") || "—"])
+    staff.map((s) => [
+      s.id ?? "",
+      [s.firstName, s.lastName].filter(Boolean).join(" ") || "—",
+    ]),
   );
 
   const rows: LeadRow[] = [];
@@ -24,10 +27,12 @@ export async function getAllLeads(): Promise<LeadRow[]> {
     const res = await apiFetch<LeadResPage>("/api/Leads/Page", {
       method: "POST",
       auth: true,
-      body: { pageNumber, pageSize: ALL_PAGE_SIZE }
+      body: { pageNumber, pageSize: ALL_PAGE_SIZE },
     });
     const items = res.items ?? [];
-    rows.push(...items.map((lead) => mapLeadToRow(lead, stageNames, staffNames)));
+    rows.push(
+      ...items.map((lead) => mapLeadToRow(lead, stageNames, staffNames)),
+    );
 
     const total = res.totalCount ?? rows.length;
     if (rows.length >= total || items.length < ALL_PAGE_SIZE) break;

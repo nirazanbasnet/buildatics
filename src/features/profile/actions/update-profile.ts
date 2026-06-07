@@ -3,7 +3,10 @@
 import { apiFetch, ApiError } from "@/features/auth/lib/api-client";
 
 import type { AddressReq, UserProfileReq, UserProfileRes } from "../lib/dto";
-import { profileDetailsSchema, type ProfileDetailsInput } from "../lib/profile-form-schema";
+import {
+  profileDetailsSchema,
+  type ProfileDetailsInput,
+} from "../lib/profile-form-schema";
 import { STATE_UNSET } from "../lib/state-options";
 import type { ProfileActionResult } from "../types";
 
@@ -14,13 +17,16 @@ const undef = (v: string | undefined) => (v && v.trim() ? v.trim() : undefined);
 function toAddress(input: ProfileDetailsInput): AddressReq | undefined {
   const areaCode = undef(input.areaCode);
   if (!areaCode) return undefined;
-  const state = input.state && input.state !== STATE_UNSET ? Number(input.state) : undefined;
+  const state =
+    input.state && input.state !== STATE_UNSET
+      ? Number(input.state)
+      : undefined;
   return {
     areaCode,
     street: undef(input.street),
     suburb: undef(input.suburb),
     city: undef(input.city),
-    state
+    state,
   };
 }
 
@@ -28,7 +34,7 @@ function toAddress(input: ProfileDetailsInput): AddressReq | undefined {
 // is passed through so the Security toggle can reuse this action without dropping its value.
 export async function updateProfile(
   input: ProfileDetailsInput,
-  emailOtp2FAEnabled?: boolean
+  emailOtp2FAEnabled?: boolean,
 ): Promise<ProfileActionResult> {
   const parsed = profileDetailsSchema.safeParse(input);
   if (!parsed.success) {
@@ -42,17 +48,25 @@ export async function updateProfile(
     middleName: undef(data.middleName),
     lastName: undef(data.lastName),
     phoneNumber: undef(data.phoneNumber),
-    address: toAddress(data)
+    address: toAddress(data),
   };
-  if (emailOtp2FAEnabled !== undefined) body.emailOtp2FAEnabled = emailOtp2FAEnabled;
+  if (emailOtp2FAEnabled !== undefined)
+    body.emailOtp2FAEnabled = emailOtp2FAEnabled;
 
   try {
-    await apiFetch<UserProfileRes>("/api/UserProfile/Update", { method: "PATCH", auth: true, body });
+    await apiFetch<UserProfileRes>("/api/UserProfile/Update", {
+      method: "PATCH",
+      auth: true,
+      body,
+    });
     return { ok: true };
   } catch (error) {
     return {
       ok: false,
-      error: error instanceof ApiError ? error.message : "Failed to update your profile."
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to update your profile.",
     };
   }
 }

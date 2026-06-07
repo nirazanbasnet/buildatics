@@ -24,7 +24,12 @@ function stop(e: React.MouseEvent) {
   e.stopPropagation();
 }
 
-export function DesignCard({ design, view = "facade", index = 0, detailEnabled }: DesignCardProps) {
+export function DesignCard({
+  design,
+  view = "facade",
+  index = 0,
+  detailEnabled,
+}: DesignCardProps) {
   const [open, setOpen] = useState(false);
   const src = view === "floor" ? design.floorPlan : design.facade;
   const brandTag = design.brand.slice(0, 3).toUpperCase();
@@ -50,7 +55,8 @@ export function DesignCard({ design, view = "facade", index = 0, detailEnabled }
         }
         className={cn(
           "group h-full gap-0 overflow-hidden p-0 transition duration-300 hover:-translate-y-1.5 hover:shadow-lg",
-          detailEnabled && "focus-visible:ring-ring cursor-pointer focus-visible:ring-2"
+          detailEnabled &&
+            "focus-visible:ring-ring cursor-pointer focus-visible:ring-2",
         )}
       >
         <div className="relative">
@@ -66,7 +72,7 @@ export function DesignCard({ design, view = "facade", index = 0, detailEnabled }
             blurDataURL={BLUR_DATA_URL}
             className={cn(
               "h-72 w-full object-cover transition-transform duration-500 group-hover:scale-105",
-              view === "floor" && "bg-muted dark:bg-stone-100"
+              view === "floor" && "bg-muted dark:bg-stone-100",
             )}
           />
           <span
@@ -104,7 +110,9 @@ export function DesignCard({ design, view = "facade", index = 0, detailEnabled }
               </p>
             </div>
             <div className="flex items-baseline gap-1">
-              <span className="text-xl font-bold tabular-nums">{design.squareFootage}</span>
+              <span className="text-xl font-bold tabular-nums">
+                {design.squareFootage}
+              </span>
               <span className="text-muted-foreground text-sm">sq</span>
             </div>
           </div>
@@ -128,7 +136,7 @@ export function DesignCard({ design, view = "facade", index = 0, detailEnabled }
 function SpecTile({
   icon: Icon,
   value,
-  label
+  label,
 }: {
   icon: typeof BedDouble;
   value: number;

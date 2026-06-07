@@ -13,19 +13,26 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 
 import { changePassword } from "../actions/change-password";
-import { changePasswordSchema, type ChangePasswordInput } from "../lib/profile-form-schema";
+import {
+  changePasswordSchema,
+  type ChangePasswordInput,
+} from "../lib/profile-form-schema";
 
-const EMPTY: ChangePasswordInput = { oldPassword: "", newPassword: "", confirmPassword: "" };
+const EMPTY: ChangePasswordInput = {
+  oldPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+};
 
 export function ChangePasswordForm() {
   const [isPending, startTransition] = useTransition();
   const form = useForm<ChangePasswordInput>({
     resolver: zodResolver(changePasswordSchema),
-    defaultValues: EMPTY
+    defaultValues: EMPTY,
   });
 
   function onSubmit(values: ChangePasswordInput) {
@@ -56,7 +63,11 @@ export function ChangePasswordForm() {
             <FormItem>
               <FormLabel>Current password</FormLabel>
               <FormControl>
-                <Input type="password" autoComplete="current-password" {...field} />
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,7 +81,11 @@ export function ChangePasswordForm() {
               <FormItem>
                 <FormLabel>New password</FormLabel>
                 <FormControl>
-                  <Input type="password" autoComplete="new-password" {...field} />
+                  <Input
+                    type="password"
+                    autoComplete="new-password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,7 +98,11 @@ export function ChangePasswordForm() {
               <FormItem>
                 <FormLabel>Confirm new password</FormLabel>
                 <FormControl>
-                  <Input type="password" autoComplete="new-password" {...field} />
+                  <Input
+                    type="password"
+                    autoComplete="new-password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

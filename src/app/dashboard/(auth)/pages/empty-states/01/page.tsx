@@ -5,7 +5,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { generateMeta } from "@/lib/utils";
 import { FolderCodeIcon } from "lucide-react";
@@ -16,7 +16,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Empty states show placeholder content when no data is available. Built with shadcn/ui, Tailwind CSS, Next.js and React.",
-    canonical: "/pages/empty-states/01"
+    canonical: "/pages/empty-states/01",
   });
 }
 
@@ -29,7 +29,8 @@ export default function Page() {
         </EmptyMedia>
         <EmptyTitle className="text-xl">No Projects Yet</EmptyTitle>
         <EmptyDescription>
-          You haven&apos;t created any projects yet. Get started by creating your first project.
+          You haven&apos;t created any projects yet. Get started by creating
+          your first project.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">

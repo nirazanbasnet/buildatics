@@ -2,13 +2,19 @@
 
 import { Line, LineChart, Tooltip } from "recharts";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { FolderUp } from "lucide-react";
@@ -16,43 +22,43 @@ import { FolderUp } from "lucide-react";
 const chartData = [
   {
     average: 400,
-    today: 240
+    today: 240,
   },
   {
     average: 300,
-    today: 139
+    today: 139,
   },
   {
     average: 200,
-    today: 400
+    today: 400,
   },
   {
     average: 278,
-    today: 390
+    today: 390,
   },
   {
     average: 189,
-    today: 480
+    today: 480,
   },
   {
     average: 239,
-    today: 380
+    today: 380,
   },
   {
     average: 349,
-    today: 400
-  }
+    today: 400,
+  },
 ];
 
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   mobile: {
     label: "Mobile",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function ExerciseMinutes() {
@@ -78,14 +84,17 @@ export function ExerciseMinutes() {
         </DropdownMenu>
       </CardHeader>
       <CardContent>
-        <ChartContainer className="h-32 w-full lg:h-[250px]" config={chartConfig}>
+        <ChartContainer
+          className="h-32 w-full lg:h-[250px]"
+          config={chartConfig}
+        >
           <LineChart
             accessibilityLayer
             data={chartData}
             margin={{
               top: 5,
               right: 10,
-              left: 10
+              left: 10,
             }}
           >
             <Tooltip
@@ -121,13 +130,13 @@ export function ExerciseMinutes() {
               dataKey="average"
               activeDot={{
                 r: 6,
-                style: { fill: "var(--theme-primary)", opacity: 0.25 }
+                style: { fill: "var(--theme-primary)", opacity: 0.25 },
               }}
               style={
                 {
                   stroke: "var(--theme-primary)",
                   opacity: 0.35,
-                  "--theme-primary": `var(--primary)`
+                  "--theme-primary": `var(--primary)`,
                 } as React.CSSProperties
               }
             />
@@ -137,12 +146,12 @@ export function ExerciseMinutes() {
               strokeWidth={2}
               activeDot={{
                 r: 8,
-                style: { fill: "var(--theme-primary)" }
+                style: { fill: "var(--theme-primary)" },
               }}
               style={
                 {
                   stroke: "var(--theme-primary)",
-                  "--theme-primary": `var(--primary)`
+                  "--theme-primary": `var(--primary)`,
                 } as React.CSSProperties
               }
             />

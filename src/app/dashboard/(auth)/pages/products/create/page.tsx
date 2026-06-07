@@ -7,7 +7,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Add Product Page for shadcn/ui built with React, TypeScript, Tailwind CSS, and Zod. Optimize your e-commerce dashboard with step-by-step forms and media upload components.",
-    canonical: "/pages/products/create"
+    canonical: "/pages/products/create",
   });
 }
 

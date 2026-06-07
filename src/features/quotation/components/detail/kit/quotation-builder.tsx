@@ -10,7 +10,7 @@ import {
   formatCurrency,
   quotedCost,
   type QuotationBuilderHandlers,
-  type QuotationDetail
+  type QuotationDetail,
 } from "../_data";
 import { QuotationCategory } from "./quotation-category";
 
@@ -22,7 +22,10 @@ type Props = {
 
 export function QuotationBuilder({ detail, handlers, className }: Props) {
   return (
-    <div className={cn("flex flex-col gap-3", className)} data-slot="quotation-builder">
+    <div
+      className={cn("flex flex-col gap-3", className)}
+      data-slot="quotation-builder"
+    >
       <div className="flex flex-wrap gap-2">
         <Button
           variant="secondary"
@@ -40,7 +43,10 @@ export function QuotationBuilder({ detail, handlers, className }: Props) {
           <LayoutTemplate className="size-4" />
           Load Template
         </Button>
-        <Button className="text-[10px] md:text-base h-10 flex-1 gap-2" onClick={handlers.addCategory}>
+        <Button
+          className="text-[10px] md:text-base h-10 flex-1 gap-2"
+          onClick={handlers.addCategory}
+        >
           <Plus className="size-4" />
           Add Category
         </Button>
@@ -48,7 +54,11 @@ export function QuotationBuilder({ detail, handlers, className }: Props) {
 
       <div className="flex flex-col gap-3">
         {detail.categories.map((category) => (
-          <QuotationCategory key={category.id} category={category} handlers={handlers} />
+          <QuotationCategory
+            key={category.id}
+            category={category}
+            handlers={handlers}
+          />
         ))}
         {detail.categories.length === 0 ? (
           <p className="text-muted-foreground rounded-xl border border-dashed px-4 py-8 text-center text-sm">
@@ -58,7 +68,9 @@ export function QuotationBuilder({ detail, handlers, className }: Props) {
       </div>
 
       <div className="border-border bg-card flex items-center justify-between gap-3 rounded-xl border px-4 py-3">
-        <span className="text-foreground text-base font-semibold">Total Cost</span>
+        <span className="text-foreground text-base font-semibold">
+          Total Cost
+        </span>
         <span className="bg-muted text-foreground rounded-md px-3 py-1.5 text-base font-semibold">
           {formatCurrency(quotedCost(detail))}
         </span>

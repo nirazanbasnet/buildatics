@@ -11,7 +11,7 @@ export const profileDetailsSchema = z.object({
   suburb: z.string().trim().optional(),
   city: z.string().trim().optional(),
   areaCode: z.string().trim().optional(),
-  state: z.string().optional()
+  state: z.string().optional(),
 });
 
 export type ProfileDetailsInput = z.infer<typeof profileDetailsSchema>;
@@ -19,12 +19,14 @@ export type ProfileDetailsInput = z.infer<typeof profileDetailsSchema>;
 export const changePasswordSchema = z
   .object({
     oldPassword: z.string().min(1, "Enter your current password."),
-    newPassword: z.string().min(8, "New password must be at least 8 characters."),
-    confirmPassword: z.string().min(1, "Confirm your new password.")
+    newPassword: z
+      .string()
+      .min(8, "New password must be at least 8 characters."),
+    confirmPassword: z.string().min(1, "Confirm your new password."),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords do not match.",
-    path: ["confirmPassword"]
+    path: ["confirmPassword"],
   });
 
 export type ChangePasswordInput = z.infer<typeof changePasswordSchema>;

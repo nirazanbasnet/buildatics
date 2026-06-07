@@ -11,7 +11,11 @@ type AnimatedSectionProps = {
   className?: string;
 };
 
-export function AnimatedSection({ children, delay = 0, className }: AnimatedSectionProps) {
+export function AnimatedSection({
+  children,
+  delay = 0,
+  className,
+}: AnimatedSectionProps) {
   return (
     <motion.div
       className={cn(className)}

@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,7 +19,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { DateTimePicker } from "@/components/date-time-picker";
 
@@ -43,7 +43,7 @@ export function AddReminderDialog() {
       date: "Today",
       time: "12:30",
       text: "Create a design training for beginners.",
-      category: "Design Education"
+      category: "Design Education",
     },
     {
       id: 2,
@@ -51,7 +51,7 @@ export function AddReminderDialog() {
       date: "Today",
       time: "10:00",
       text: "Have a meeting with the new design team.",
-      category: "Meeting"
+      category: "Meeting",
     },
     {
       id: 3,
@@ -59,8 +59,8 @@ export function AddReminderDialog() {
       date: "Tomorrow",
       time: "16:30",
       text: "Respond to customer support emails.",
-      category: "Customer Support"
-    }
+      category: "Customer Support",
+    },
   ]);
 
   const [open, setOpen] = React.useState(false);
@@ -69,13 +69,13 @@ export function AddReminderDialog() {
     date: "",
     time: "",
     text: "",
-    category: ""
+    category: "",
   });
 
   const handleAddReminder = () => {
     const reminder: Reminder = {
       ...newReminder,
-      id: reminders.length + 1
+      id: reminders.length + 1,
     };
 
     setReminders([...reminders, reminder]);
@@ -84,7 +84,7 @@ export function AddReminderDialog() {
       date: "",
       time: "",
       text: "",
-      category: ""
+      category: "",
     });
     setOpen(false);
   };
@@ -121,7 +121,9 @@ export function AddReminderDialog() {
               id="text"
               placeholder="Enter your reminder"
               value={newReminder.text}
-              onChange={(e) => setNewReminder({ ...newReminder, text: e.target.value })}
+              onChange={(e) =>
+                setNewReminder({ ...newReminder, text: e.target.value })
+              }
             />
           </div>
 
@@ -164,15 +166,21 @@ export function AddReminderDialog() {
             <Label htmlFor="category">Category</Label>
             <Select
               value={newReminder.category}
-              onValueChange={(value) => setNewReminder({ ...newReminder, category: value })}
+              onValueChange={(value) =>
+                setNewReminder({ ...newReminder, category: value })
+              }
             >
               <SelectTrigger id="category" className="w-full">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Meeting">Meeting</SelectItem>
-                <SelectItem value="Design Education">Design Education</SelectItem>
-                <SelectItem value="Customer Support">Customer Support</SelectItem>
+                <SelectItem value="Design Education">
+                  Design Education
+                </SelectItem>
+                <SelectItem value="Customer Support">
+                  Customer Support
+                </SelectItem>
                 <SelectItem value="Personal">Personal</SelectItem>
                 <SelectItem value="Work">Work</SelectItem>
               </SelectContent>

@@ -8,7 +8,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,7 +36,7 @@ export function EditLabelsModal({ children }: Props) {
     "bg-teal-500",
     "bg-cyan-500",
     "bg-blue-500",
-    "bg-indigo-500"
+    "bg-indigo-500",
   ];
 
   return (
@@ -51,21 +51,38 @@ export function EditLabelsModal({ children }: Props) {
           {/* Existing labels */}
           <div className="space-y-1">
             {noteLabels.map((label) => (
-              <div key={label.id} className="flex items-center justify-between rounded-md py-1">
+              <div
+                key={label.id}
+                className="flex items-center justify-between rounded-md py-1"
+              >
                 {editingLabelId && editingLabelId === label.id ? (
                   <div className="flex flex-1 items-center">
-                    <Input defaultValue={label.title} className="me-2 h-8" autoFocus />
-                    <Button size="icon" variant="ghost" onClick={() => setEditingLabelId(null)}>
+                    <Input
+                      defaultValue={label.title}
+                      className="me-2 h-8"
+                      autoFocus
+                    />
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => setEditingLabelId(null)}
+                    >
                       <Check />
                     </Button>
-                    <Button size="icon" variant="ghost" onClick={() => setEditingLabelId(null)}>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      onClick={() => setEditingLabelId(null)}
+                    >
                       <X />
                     </Button>
                   </div>
                 ) : (
                   <>
                     <div className="flex items-center gap-2">
-                      <div className={`size-3 shrink-0 rounded-full ${label.color}`} />
+                      <div
+                        className={`size-3 shrink-0 rounded-full ${label.color}`}
+                      />
                       <span>{label.title}</span>
                       <span className="text-muted-foreground text-xs">6</span>
                     </div>
@@ -107,13 +124,17 @@ export function EditLabelsModal({ children }: Props) {
 
             {/* Color picker */}
             <div className="mt-4 flex items-center gap-2">
-              <Label className="text-muted-foreground block text-xs">Select color</Label>
+              <Label className="text-muted-foreground block text-xs">
+                Select color
+              </Label>
               <div className="flex flex-wrap gap-2">
                 {availableColors.map((color) => (
                   <button
                     key={color}
                     className={`size-5 rounded-full ${color} ${
-                      newLabelColor === color ? "ring-primary ring-2 ring-offset-2" : ""
+                      newLabelColor === color
+                        ? "ring-primary ring-2 ring-offset-2"
+                        : ""
                     }`}
                     onClick={() => setNewLabelColor(color)}
                     type="button"

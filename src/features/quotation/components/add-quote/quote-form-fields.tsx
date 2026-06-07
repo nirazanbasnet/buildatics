@@ -9,14 +9,18 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "@/components/ui/form";
 
 import type { AddQuoteInput } from "../../lib/quote-form-schema";
 
 // Shared title/description/valid-until fields for the Add and Edit quote forms. `AddQuoteInput` is a
 // superset of `EditQuoteInput`, so the edit form (which omits leadId) reuses these by control typing.
-export function QuoteFormFields({ control }: { control: Control<AddQuoteInput> }) {
+export function QuoteFormFields({
+  control,
+}: {
+  control: Control<AddQuoteInput>;
+}) {
   return (
     <>
       <FormField
@@ -39,7 +43,11 @@ export function QuoteFormFields({ control }: { control: Control<AddQuoteInput> }
           <FormItem>
             <FormLabel>Description</FormLabel>
             <FormControl>
-              <Textarea rows={3} placeholder="Optional scope summary" {...field} />
+              <Textarea
+                rows={3}
+                placeholder="Optional scope summary"
+                {...field}
+              />
             </FormControl>
             <FormMessage />
           </FormItem>

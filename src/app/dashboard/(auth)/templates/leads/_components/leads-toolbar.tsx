@@ -16,7 +16,7 @@ type Props = {
 
 const VIEW_ITEMS = [
   { value: "list" as const, label: "List View", icon: List },
-  { value: "card" as const, label: "Kanban View", icon: LayoutGrid }
+  { value: "card" as const, label: "Kanban View", icon: LayoutGrid },
 ];
 
 export function LeadsToolbar({ view, onViewChange }: Props) {
@@ -27,7 +27,10 @@ export function LeadsToolbar({ view, onViewChange }: Props) {
       <div className="flex items-center gap-2">
         <span className="text-muted-foreground text-sm">Status</span>
         {statusActive ? (
-          <Badge variant="default" className="h-7 gap-1 rounded-full py-1 pr-1 pl-3">
+          <Badge
+            variant="default"
+            className="h-7 gap-1 rounded-full py-1 pr-1 pl-3"
+          >
             In Progress
             <Button
               variant="ghost"

@@ -8,7 +8,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { generateAvatarFallback } from "@/lib/utils";
 
@@ -21,9 +21,16 @@ type TeamTableProps = {
   onChanged: () => void;
 };
 
-export function TeamTable({ members, onChangeRole, onChanged }: TeamTableProps) {
+export function TeamTable({
+  members,
+  onChangeRole,
+  onChanged,
+}: TeamTableProps) {
   return (
-    <div className="bg-card overflow-hidden rounded-lg border" data-slot="team-table">
+    <div
+      className="bg-card overflow-hidden rounded-lg border"
+      data-slot="team-table"
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -40,12 +47,15 @@ export function TeamTable({ members, onChangeRole, onChanged }: TeamTableProps) 
                 <div className="flex items-center gap-3">
                   <Avatar className="size-9">
                     <AvatarFallback className="rounded-full text-xs">
-                      {generateAvatarFallback(member.name) || member.email.charAt(0).toUpperCase()}
+                      {generateAvatarFallback(member.name) ||
+                        member.email.charAt(0).toUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0">
                     <p className="truncate font-medium">{member.name}</p>
-                    <p className="text-muted-foreground truncate text-sm">{member.email}</p>
+                    <p className="text-muted-foreground truncate text-sm">
+                      {member.email}
+                    </p>
                   </div>
                 </div>
               </TableCell>
@@ -61,7 +71,8 @@ export function TeamTable({ members, onChangeRole, onChanged }: TeamTableProps) 
                       {role}
                     </Badge>
                   ))}
-                  {member.systemRoles.length === 0 && member.designationNames.length === 0 ? (
+                  {member.systemRoles.length === 0 &&
+                  member.designationNames.length === 0 ? (
                     <span className="text-muted-foreground">No role</span>
                   ) : null}
                 </div>

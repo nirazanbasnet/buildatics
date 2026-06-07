@@ -18,7 +18,7 @@ export async function generateMetadata() {
     title: "Finance Admin Dashboard Template",
     description:
       "Manage income, expenses, and savings goals with interactive charts. A professional finance admin page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/finance"
+    canonical: "/finance",
   });
 }
 
@@ -26,7 +26,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Finance Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Finance Dashboard
+        </h1>
         <div className="flex items-center space-x-2">
           <CalendarDateRangePicker />
           <Button size="icon">

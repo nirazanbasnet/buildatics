@@ -14,13 +14,22 @@ interface EventsPopupProps {
   onEventSelect: (event: CalendarEvent) => void;
 }
 
-export function EventsPopup({ date, events, position, onClose, onEventSelect }: EventsPopupProps) {
+export function EventsPopup({
+  date,
+  events,
+  position,
+  onClose,
+  onEventSelect,
+}: EventsPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
 
   // Handle click outside to close popup
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
         onClose();
       }
     };
@@ -80,12 +89,16 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
       className="bg-background absolute z-50 max-h-96 w-80 overflow-auto rounded-md border shadow-lg"
       style={{
         top: `${adjustedPosition.top}px`,
-        left: `${adjustedPosition.left}px`
+        left: `${adjustedPosition.left}px`,
       }}
     >
       <div className="bg-background sticky top-0 flex items-center justify-between border-b p-3">
         <h3 className="font-medium">{format(date, "d MMMM yyyy")}</h3>
-        <button onClick={onClose} className="hover:bg-muted rounded-full p-1" aria-label="Close">
+        <button
+          onClick={onClose}
+          className="hover:bg-muted rounded-full p-1"
+          aria-label="Close"
+        >
           <XIcon className="h-4 w-4" />
         </button>
       </div>

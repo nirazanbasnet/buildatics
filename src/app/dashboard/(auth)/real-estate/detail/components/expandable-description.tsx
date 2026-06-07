@@ -8,7 +8,10 @@ type ExpandableDescriptionProps = {
   collapsedLines?: number;
 };
 
-export function ExpandableDescription({ text, collapsedLines = 7 }: ExpandableDescriptionProps) {
+export function ExpandableDescription({
+  text,
+  collapsedLines = 7,
+}: ExpandableDescriptionProps) {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -16,7 +19,9 @@ export function ExpandableDescription({ text, collapsedLines = 7 }: ExpandableDe
   useEffect(() => {
     const checkOverflow = () => {
       if (!textRef.current) return;
-      setIsOverflowing(textRef.current.scrollHeight > textRef.current.clientHeight);
+      setIsOverflowing(
+        textRef.current.scrollHeight > textRef.current.clientHeight,
+      );
     };
 
     checkOverflow();
@@ -37,7 +42,7 @@ export function ExpandableDescription({ text, collapsedLines = 7 }: ExpandableDe
                 display: "-webkit-box",
                 WebkitLineClamp: collapsedLines,
                 WebkitBoxOrient: "vertical",
-                overflow: "hidden"
+                overflow: "hidden",
               }
         }
       >

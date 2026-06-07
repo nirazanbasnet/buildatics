@@ -9,7 +9,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { cn } from "@/lib/utils";
 
@@ -40,7 +40,9 @@ export function TeamList({ initialMembers, roles }: TeamListProps) {
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
         <div>
-          <h1 className="text-lg font-semibold tracking-tight">Team &amp; Roles</h1>
+          <h1 className="text-lg font-semibold tracking-tight">
+            Team &amp; Roles
+          </h1>
           <p className="text-muted-foreground text-sm">
             {members.length} {members.length === 1 ? "member" : "members"}
           </p>
@@ -58,17 +60,23 @@ export function TeamList({ initialMembers, roles }: TeamListProps) {
               <Users />
             </EmptyMedia>
             <EmptyTitle>No team members yet</EmptyTitle>
-            <EmptyDescription>Invite your first member to start building your team.</EmptyDescription>
+            <EmptyDescription>
+              Invite your first member to start building your team.
+            </EmptyDescription>
           </EmptyHeader>
         </Empty>
       ) : (
         <div
           className={cn(
             "transition-opacity duration-200",
-            isPending && "pointer-events-none opacity-50"
+            isPending && "pointer-events-none opacity-50",
           )}
         >
-          <TeamTable members={members} onChangeRole={setRoleMember} onChanged={refresh} />
+          <TeamTable
+            members={members}
+            onChangeRole={setRoleMember}
+            onChanged={refresh}
+          />
         </div>
       )}
 

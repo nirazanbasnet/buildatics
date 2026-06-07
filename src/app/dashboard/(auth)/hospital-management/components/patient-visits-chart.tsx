@@ -1,11 +1,17 @@
 "use client";
 
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 import {
@@ -13,7 +19,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 
 const chartData = [
@@ -22,21 +28,21 @@ const chartData = [
   { month: "March", famale: 237, male: 120, child: 190 },
   { month: "April", famale: 173, male: 190, child: 170 },
   { month: "May", famale: 209, male: 130, child: 129 },
-  { month: "June", famale: 214, male: 90, child: 180 }
+  { month: "June", famale: 214, male: 90, child: 180 },
 ];
 const chartConfig = {
   famale: {
     label: "Female",
-    color: "var(--chart-1)"
+    color: "var(--chart-1)",
   },
   male: {
     label: "Male",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   child: {
     label: "Child",
-    color: "var(--chart-2)"
-  }
+    color: "var(--chart-2)",
+  },
 } satisfies ChartConfig;
 
 export function PatientVisitsChart() {
@@ -65,7 +71,7 @@ export function PatientVisitsChart() {
             data={chartData}
             margin={{
               left: 6,
-              right: 6
+              right: 6,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -83,9 +89,24 @@ export function PatientVisitsChart() {
               tickFormatter={(value) => `${value}`}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Line dataKey="famale" type="natural" stroke="var(--color-famale)" strokeWidth={2} />
-            <Line dataKey="male" type="natural" stroke="var(--color-male)" strokeWidth={2} />
-            <Line dataKey="child" type="natural" stroke="var(--color-child)" strokeWidth={2} />
+            <Line
+              dataKey="famale"
+              type="natural"
+              stroke="var(--color-famale)"
+              strokeWidth={2}
+            />
+            <Line
+              dataKey="male"
+              type="natural"
+              stroke="var(--color-male)"
+              strokeWidth={2}
+            />
+            <Line
+              dataKey="child"
+              type="natural"
+              stroke="var(--color-child)"
+              strokeWidth={2}
+            />
           </LineChart>
         </ChartContainer>
       </CardContent>

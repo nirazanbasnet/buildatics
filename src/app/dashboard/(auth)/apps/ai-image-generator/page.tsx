@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Create high-fidelity visuals from text prompts with granular control over styles, aspect ratios, and seeds. A professional AI image generation workspace built with React, TypeScript, Next.js, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/ai-image-generator"
+    canonical: "/apps/ai-image-generator",
   });
 }
 

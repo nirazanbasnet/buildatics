@@ -5,7 +5,7 @@ import { detailSpecs } from "../_data";
 
 export function SpecificationsTable({
   className,
-  headerClassName
+  headerClassName,
 }: {
   className?: string;
   headerClassName?: string;
@@ -15,7 +15,7 @@ export function SpecificationsTable({
       <div
         className={cn(
           "bg-muted/40 flex items-center justify-between border-b px-4 py-2.5",
-          headerClassName
+          headerClassName,
         )}
       >
         <h3 className="font-display text-base">Specifications</h3>
@@ -27,7 +27,9 @@ export function SpecificationsTable({
             className="hover:bg-accent/30 flex items-center justify-between px-4 py-2 text-sm transition-colors"
           >
             <span>{spec.label}</span>
-            <span className="text-muted-foreground font-display text-sm">{spec.value}</span>
+            <span className="text-muted-foreground font-display text-sm">
+              {spec.value}
+            </span>
           </div>
         ))}
       </div>

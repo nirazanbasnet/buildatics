@@ -3,7 +3,13 @@ import { Plus } from "lucide-react";
 import { generateMeta } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
@@ -17,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "Track project status, progress, and team assignments. A professional admin dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui components.",
-    canonical: "/project-list"
+    canonical: "/project-list",
   });
 }
 
@@ -27,7 +33,9 @@ export default function Page() {
       <div className="mb-4 flex flex-row items-center justify-between space-y-2">
         <div className="space-y-1">
           <h1 className="text-2xl font-bold tracking-tight">Projects</h1>
-          <p className="text-muted-foreground text-sm">List of your ongoing projects</p>
+          <p className="text-muted-foreground text-sm">
+            List of your ongoing projects
+          </p>
         </div>
         <Button>
           <Plus />
@@ -44,14 +52,21 @@ export default function Page() {
                 <CardDescription>{project.subtitle}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-muted-foreground mb-4 text-sm">{project.date}</div>
+                <div className="text-muted-foreground mb-4 text-sm">
+                  {project.date}
+                </div>
 
                 <div className="mb-6">
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-sm opacity-90">Progress</span>
-                    <span className="text-sm font-semibold">{project.progress}%</span>
+                    <span className="text-sm font-semibold">
+                      {project.progress}%
+                    </span>
                   </div>
-                  <Progress value={project.progress} indicatorColor={project.progressColor} />
+                  <Progress
+                    value={project.progress}
+                    indicatorColor={project.progressColor}
+                  />
                 </div>
 
                 <div className="flex items-center justify-between">

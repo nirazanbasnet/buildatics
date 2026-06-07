@@ -16,6 +16,6 @@ export async function queryQuotes(params: {
   const start = Math.max(0, (params.page - 1) * params.pageSize);
   return {
     items: filtered.slice(start, start + params.pageSize),
-    total: filtered.length
+    total: filtered.length,
   };
 }

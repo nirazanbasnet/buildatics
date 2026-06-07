@@ -1,24 +1,30 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Line, LineChart } from "recharts";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 export function EcommerceSalesCard() {
   const chartConfig = {
     desktop: {
       label: "Desktop",
-      color: "var(--chart-3)"
+      color: "var(--chart-3)",
     },
     mobile: {
       label: "Mobile",
-      color: "var(--chart-4)"
-    }
+      color: "var(--chart-4)",
+    },
   } satisfies ChartConfig;
 
   const chartData = [
@@ -27,7 +33,7 @@ export function EcommerceSalesCard() {
     { month: "March", desktop: 300, mobile: 120 },
     { month: "April", desktop: 120, mobile: 190 },
     { month: "May", desktop: 80, mobile: 130 },
-    { month: "June", desktop: 150, mobile: 140 }
+    { month: "June", desktop: 150, mobile: 140 },
   ];
 
   return (
@@ -48,20 +54,23 @@ export function EcommerceSalesCard() {
               margin={{
                 left: 12,
                 right: 12,
-                top: 6
+                top: 6,
               }}
             >
-              <ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent hideLabel />}
+              />
               <Line
                 dataKey="desktop"
                 type="natural"
                 stroke="var(--color-desktop)"
                 strokeWidth={2}
                 dot={{
-                  fill: "var(--color-desktop)"
+                  fill: "var(--color-desktop)",
                 }}
                 activeDot={{
-                  r: 6
+                  r: 6,
                 }}
               />
             </LineChart>

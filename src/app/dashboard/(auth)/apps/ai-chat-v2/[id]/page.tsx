@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "AI Chat V2",
     description:
       "AI chatbot is an app ui template that allows users to interact with an AI for messaging and assistance. Built with shadcn/ui, Next.js and Tailwind CSS.",
-    canonical: "/apps/ai-chat-v2"
+    canonical: "/apps/ai-chat-v2",
   });
 }
 

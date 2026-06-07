@@ -10,7 +10,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +20,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -29,7 +29,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import {
   Search,
@@ -37,10 +37,14 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
-  ChevronsRight
+  ChevronsRight,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 
 type RoomType = "Deluxe" | "Standard" | "Suite";
 type BookingStatus = "Checked-In" | "Pending";
@@ -65,7 +69,7 @@ const bookings: Booking[] = [
     duration: "3 nights",
     checkIn: "June 19, 2028",
     checkOut: "June 22, 2028",
-    status: "Checked-In"
+    status: "Checked-In",
   },
   {
     bookingId: "LG-B00109",
@@ -75,7 +79,7 @@ const bookings: Booking[] = [
     duration: "2 nights",
     checkIn: "June 19, 2028",
     checkOut: "June 21, 2028",
-    status: "Checked-In"
+    status: "Checked-In",
   },
   {
     bookingId: "LG-B00110",
@@ -85,7 +89,7 @@ const bookings: Booking[] = [
     duration: "5 nights",
     checkIn: "June 19, 2028",
     checkOut: "June 24, 2028",
-    status: "Pending"
+    status: "Pending",
   },
   {
     bookingId: "LG-B00111",
@@ -95,7 +99,7 @@ const bookings: Booking[] = [
     duration: "4 nights",
     checkIn: "June 19, 2028",
     checkOut: "June 23, 2028",
-    status: "Checked-In"
+    status: "Checked-In",
   },
   {
     bookingId: "LG-B00112",
@@ -105,7 +109,7 @@ const bookings: Booking[] = [
     duration: "2 nights",
     checkIn: "June 20, 2028",
     checkOut: "June 22, 2028",
-    status: "Pending"
+    status: "Pending",
   },
   {
     bookingId: "LG-B00113",
@@ -115,8 +119,8 @@ const bookings: Booking[] = [
     duration: "7 nights",
     checkIn: "June 21, 2028",
     checkOut: "June 28, 2028",
-    status: "Checked-In"
-  }
+    status: "Checked-In",
+  },
 ];
 
 const columns: ColumnDef<Booking>[] = [
@@ -132,7 +136,9 @@ const columns: ColumnDef<Booking>[] = [
         <ArrowUpDown className="ml-1 h-3 w-3" />
       </Button>
     ),
-    cell: ({ row }) => <span className="text-foreground">{row.getValue("bookingId")}</span>
+    cell: ({ row }) => (
+      <span className="text-foreground">{row.getValue("bookingId")}</span>
+    ),
   },
   {
     accessorKey: "guestName",
@@ -146,7 +152,9 @@ const columns: ColumnDef<Booking>[] = [
         <ArrowUpDown className="ml-1 h-3 w-3" />
       </Button>
     ),
-    cell: ({ row }) => <span className="text-foreground">{row.getValue("guestName")}</span>
+    cell: ({ row }) => (
+      <span className="text-foreground">{row.getValue("guestName")}</span>
+    ),
   },
   {
     accessorKey: "roomType",
@@ -170,7 +178,7 @@ const columns: ColumnDef<Booking>[] = [
           {row.getValue("roomType")}
         </Badge>
       </div>
-    )
+    ),
   },
   {
     accessorKey: "roomNumber",
@@ -184,7 +192,9 @@ const columns: ColumnDef<Booking>[] = [
         <ArrowUpDown className="ml-1 h-3 w-3" />
       </Button>
     ),
-    cell: ({ row }) => <span className="text-foreground">{row.getValue("roomNumber")}</span>
+    cell: ({ row }) => (
+      <span className="text-foreground">{row.getValue("roomNumber")}</span>
+    ),
   },
   {
     accessorKey: "duration",
@@ -198,7 +208,9 @@ const columns: ColumnDef<Booking>[] = [
         <ArrowUpDown className="ml-1 h-3 w-3" />
       </Button>
     ),
-    cell: ({ row }) => <span className="text-foreground">{row.getValue("duration")}</span>
+    cell: ({ row }) => (
+      <span className="text-foreground">{row.getValue("duration")}</span>
+    ),
   },
   {
     id: "checkInOut",
@@ -217,7 +229,7 @@ const columns: ColumnDef<Booking>[] = [
       <span className="text-foreground">
         {row.original.checkIn} - {row.original.checkOut}
       </span>
-    )
+    ),
   },
   {
     accessorKey: "status",
@@ -253,8 +265,8 @@ const columns: ColumnDef<Booking>[] = [
     filterFn: (row, columnId, filterValue) => {
       if (filterValue === "all") return true;
       return row.getValue(columnId) === filterValue;
-    }
-  }
+    },
+  },
 ];
 
 export function BookingList() {
@@ -269,12 +281,12 @@ export function BookingList() {
     state: {
       sorting,
       globalFilter,
-      columnFilters
+      columnFilters,
     },
     initialState: {
       pagination: {
-        pageSize: 4
-      }
+        pageSize: 4,
+      },
     },
     onSortingChange: setSorting,
     onGlobalFilterChange: setGlobalFilter,
@@ -282,7 +294,7 @@ export function BookingList() {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel()
+    getPaginationRowModel: getPaginationRowModel(),
   });
 
   const handleStatusChange = (value: string) => {
@@ -336,7 +348,10 @@ export function BookingList() {
                     >
                       {header.isPlaceholder
                         ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                     </TableHead>
                   ))}
                 </TableRow>
@@ -348,14 +363,20 @@ export function BookingList() {
                   <TableRow key={row.id}>
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id} className="py-4">
-                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
                       </TableCell>
                     ))}
                   </TableRow>
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={columns.length} className="h-24 text-center">
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
                     No results found.
                   </TableCell>
                 </TableRow>
@@ -367,7 +388,8 @@ export function BookingList() {
 
           <div className="flex items-center justify-between">
             <p className="text-muted-foreground text-sm">
-              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+              Page {table.getState().pagination.pageIndex + 1} of{" "}
+              {table.getPageCount()}
             </p>
             <div className="flex items-center gap-2">
               <Button

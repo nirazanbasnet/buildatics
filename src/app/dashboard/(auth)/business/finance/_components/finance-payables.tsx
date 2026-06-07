@@ -9,7 +9,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
 
@@ -46,7 +46,9 @@ export function FinancePayables() {
             <TableRow className="bg-muted/50 hover:bg-muted/50">
               <TableHead className="w-12 pl-4">
                 <Checkbox
-                  checked={allSelected ? true : someSelected ? "indeterminate" : false}
+                  checked={
+                    allSelected ? true : someSelected ? "indeterminate" : false
+                  }
                   onCheckedChange={(v) => toggleAll(v === true)}
                   aria-label="Select all invoices"
                 />
@@ -57,7 +59,9 @@ export function FinancePayables() {
               <TableHead className="font-semibold">Stage</TableHead>
               <TableHead className="font-semibold">Status</TableHead>
               <TableHead className="font-semibold">Due Date</TableHead>
-              <TableHead className="pr-4 text-right font-semibold">Actions</TableHead>
+              <TableHead className="pr-4 text-right font-semibold">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -75,9 +79,15 @@ export function FinancePayables() {
                     {payable.invoice}
                   </span>
                 </TableCell>
-                <TableCell className="text-muted-foreground">{payable.vendor}</TableCell>
-                <TableCell className="text-muted-foreground">{payable.project}</TableCell>
-                <TableCell className="text-foreground font-medium">{payable.stage}</TableCell>
+                <TableCell className="text-muted-foreground">
+                  {payable.vendor}
+                </TableCell>
+                <TableCell className="text-muted-foreground">
+                  {payable.project}
+                </TableCell>
+                <TableCell className="text-foreground font-medium">
+                  {payable.stage}
+                </TableCell>
                 <TableCell>
                   <span className="inline-flex min-w-24 items-center justify-center rounded-md bg-green-600 px-2.5 py-1 text-xs font-medium text-white dark:bg-green-600">
                     Sent

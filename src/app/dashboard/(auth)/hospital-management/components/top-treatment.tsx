@@ -3,8 +3,19 @@
 import { ArrowUp, ChevronsRight, ExternalLink, Info } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 
 function getChartColorClass(colorKey: string): string {
@@ -25,11 +36,36 @@ function getChartColorClass(colorKey: string): string {
 }
 
 const treatments = [
-  { name: "Physical Therapy", patientCount: 500, percentage: 78, colorKey: "color1" },
-  { name: "Cardiac Care", patientCount: 350, percentage: 48, colorKey: "color2" },
-  { name: "Diabetes Management", patientCount: 450, percentage: 84, colorKey: "color3" },
-  { name: "Orthopedic Surgery", patientCount: 280, percentage: 62, colorKey: "color4" },
-  { name: "Mental Health", patientCount: 320, percentage: 71, colorKey: "color5" }
+  {
+    name: "Physical Therapy",
+    patientCount: 500,
+    percentage: 78,
+    colorKey: "color1",
+  },
+  {
+    name: "Cardiac Care",
+    patientCount: 350,
+    percentage: 48,
+    colorKey: "color2",
+  },
+  {
+    name: "Diabetes Management",
+    patientCount: 450,
+    percentage: 84,
+    colorKey: "color3",
+  },
+  {
+    name: "Orthopedic Surgery",
+    patientCount: 280,
+    percentage: 62,
+    colorKey: "color4",
+  },
+  {
+    name: "Mental Health",
+    patientCount: 320,
+    percentage: 71,
+    colorKey: "color5",
+  },
 ];
 
 const totalPatients = 3278;
@@ -38,7 +74,7 @@ const totalFromList = treatments.reduce((sum, t) => sum + t.patientCount, 0);
 
 const segments = treatments.map((t) => ({
   width: (t.patientCount / totalFromList) * 100,
-  color: getChartColorClass(t.colorKey)
+  color: getChartColorClass(t.colorKey),
 }));
 
 export function TopTreatment() {
@@ -76,14 +112,21 @@ export function TopTreatment() {
 
             <div className="flex h-2 w-full overflow-hidden rounded-full">
               {segments.map((seg, i) => (
-                <div key={i} className={seg.color} style={{ width: `${seg.width}%` }} />
+                <div
+                  key={i}
+                  className={seg.color}
+                  style={{ width: `${seg.width}%` }}
+                />
               ))}
             </div>
           </div>
 
           <div className="space-y-5">
             {treatments.map((treatment, i) => (
-              <div key={treatment.name} className="flex items-start justify-between gap-4">
+              <div
+                key={treatment.name}
+                className="flex items-start justify-between gap-4"
+              >
                 <div className="flex min-w-0 gap-3">
                   <div
                     className={`mt-1.5 size-3 shrink-0 rounded-full ${getChartColorClass(treatment.colorKey)}`}

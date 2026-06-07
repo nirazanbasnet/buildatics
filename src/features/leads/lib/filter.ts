@@ -7,7 +7,7 @@ export const LEADS_FILTER_DEFAULTS: LeadsFilterState = {
   search: "",
   stageId: "all",
   assignedUserId: "all",
-  status: "all"
+  status: "all",
 };
 
 export function countActiveLeadFilters(f: LeadsFilterState): number {
@@ -19,12 +19,17 @@ export function countActiveLeadFilters(f: LeadsFilterState): number {
   return n;
 }
 
-export function applyLeadFilters(rows: LeadRow[], f: LeadsFilterState): LeadRow[] {
+export function applyLeadFilters(
+  rows: LeadRow[],
+  f: LeadsFilterState,
+): LeadRow[] {
   const q = f.search.trim().toLowerCase();
   return rows.filter((r) => {
-    if (q && !`${r.client} ${r.address} ${r.leadNo}`.toLowerCase().includes(q)) return false;
+    if (q && !`${r.client} ${r.address} ${r.leadNo}`.toLowerCase().includes(q))
+      return false;
     if (f.stageId !== "all" && r.stageId !== f.stageId) return false;
-    if (f.assignedUserId !== "all" && r.assignedUserId !== f.assignedUserId) return false;
+    if (f.assignedUserId !== "all" && r.assignedUserId !== f.assignedUserId)
+      return false;
     if (f.status !== "all" && String(r.statusValue) !== f.status) return false;
     return true;
   });
@@ -33,25 +38,29 @@ export function applyLeadFilters(rows: LeadRow[], f: LeadsFilterState): LeadRow[
 // Toolbar chips for active filters (labels resolved via the loaded options).
 export function describeActiveLeadFilters(
   f: LeadsFilterState,
-  options: LeadOptions
+  options: LeadOptions,
 ): Array<{ key: keyof LeadsFilterState; label: string }> {
   const chips: Array<{ key: keyof LeadsFilterState; label: string }> = [];
-  if (f.search.trim()) chips.push({ key: "search", label: `Search: ${f.search.trim()}` });
+  if (f.search.trim())
+    chips.push({ key: "search", label: `Search: ${f.search.trim()}` });
   if (f.stageId !== "all") {
-    const name = options.stages.find((s) => s.id === f.stageId)?.name ?? "Stage";
+    const name =
+      options.stages.find((s) => s.id === f.stageId)?.name ?? "Stage";
     chips.push({ key: "stageId", label: `Stage: ${name}` });
   }
   if (f.assignedUserId !== "all") {
-    const name = options.staff.find((s) => s.id === f.assignedUserId)?.name ?? "Assignee";
+    const name =
+      options.staff.find((s) => s.id === f.assignedUserId)?.name ?? "Assignee";
     chips.push({ key: "assignedUserId", label: `Assigned: ${name}` });
   }
-  if (f.status !== "all") chips.push({ key: "status", label: `Status: ${f.status}` });
+  if (f.status !== "all")
+    chips.push({ key: "status", label: `Status: ${f.status}` });
   return chips;
 }
 
 export function clearLeadFilterKey(
   f: LeadsFilterState,
-  key: keyof LeadsFilterState
+  key: keyof LeadsFilterState,
 ): LeadsFilterState {
   if (key === "search") return { ...f, search: "" };
   return { ...f, [key]: "all" };

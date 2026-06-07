@@ -11,11 +11,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 
 export function CreatePostDialog() {
-  const [newPostType, setNewPostType] = useState<"text" | "image" | "video">("text");
+  const [newPostType, setNewPostType] = useState<"text" | "image" | "video">(
+    "text",
+  );
 
   return (
     <Dialog>
@@ -70,13 +72,18 @@ export function CreatePostDialog() {
           </div>
 
           {/* Text Area */}
-          <Textarea placeholder="What's on your mind?" className="min-h-32 resize-none" />
+          <Textarea
+            placeholder="What's on your mind?"
+            className="min-h-32 resize-none"
+          />
 
           {/* Media Preview */}
           {newPostType === "image" && (
             <div className="rounded-lg border border-dashed p-8 text-center">
               <ImageIcon className="text-muted-foreground/50 mx-auto size-8" />
-              <p className="text-muted-foreground mt-2 text-sm">Add photos to your post</p>
+              <p className="text-muted-foreground mt-2 text-sm">
+                Add photos to your post
+              </p>
               <Button variant="outline" size="sm" className="mt-2">
                 Upload Photo
               </Button>
@@ -86,7 +93,9 @@ export function CreatePostDialog() {
           {newPostType === "video" && (
             <div className="rounded-lg border border-dashed p-8 text-center">
               <Video className="text-muted-foreground/50 mx-auto size-8" />
-              <p className="text-muted-foreground mt-2 text-sm">Add video to your post</p>
+              <p className="text-muted-foreground mt-2 text-sm">
+                Add video to your post
+              </p>
               <Button variant="outline" size="sm" className="mt-2">
                 Upload Video
               </Button>

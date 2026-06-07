@@ -8,10 +8,14 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { MotionTableRow } from "@src/components/ui/motion-table-row";
-import { SortableTableHead, sortBy, useSortState } from "@src/components/ui/sortable-table-head";
+import {
+  SortableTableHead,
+  sortBy,
+  useSortState,
+} from "@src/components/ui/sortable-table-head";
 import { cn } from "@/lib/utils";
 
 import { documentStatusConfig, type BusinessDocument } from "../_data";
@@ -30,33 +34,59 @@ const ACCESSORS: Record<SortField, (d: BusinessDocument) => string | number> = {
   fileName: (d) => d.fileName,
   status: (d) => d.status,
   uploadedBy: (d) => d.uploadedBy,
-  uploadedOn: (d) => d.uploadedOn
+  uploadedOn: (d) => d.uploadedOn,
 };
 
 export function DocumentsTable({ documents, className }: Props) {
-  const [sort, setSort] = useSortState<SortField>({ field: "fileName", direction: "asc" });
+  const [sort, setSort] = useSortState<SortField>({
+    field: "fileName",
+    direction: "asc",
+  });
   const [selected, setSelected] = useState<BusinessDocument | null>(null);
-  const sortedDocuments = useMemo(() => sortBy(documents, sort, ACCESSORS), [documents, sort]);
+  const sortedDocuments = useMemo(
+    () => sortBy(documents, sort, ACCESSORS),
+    [documents, sort],
+  );
 
   return (
     <>
-      <div className={cn("bg-card flex-1 overflow-auto rounded-lg border", className)}>
+      <div
+        className={cn(
+          "bg-card flex-1 overflow-auto rounded-lg border",
+          className,
+        )}
+      >
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50 hover:bg-muted/50">
-              <SortableTableHead field="fileName" sort={sort} onSort={setSort} className="pl-4">
+              <SortableTableHead
+                field="fileName"
+                sort={sort}
+                onSort={setSort}
+                className="pl-4"
+              >
                 File Name
               </SortableTableHead>
               <SortableTableHead field="status" sort={sort} onSort={setSort}>
                 Status
               </SortableTableHead>
-              <SortableTableHead field="uploadedBy" sort={sort} onSort={setSort}>
+              <SortableTableHead
+                field="uploadedBy"
+                sort={sort}
+                onSort={setSort}
+              >
                 Uploaded by
               </SortableTableHead>
-              <SortableTableHead field="uploadedOn" sort={sort} onSort={setSort}>
+              <SortableTableHead
+                field="uploadedOn"
+                sort={sort}
+                onSort={setSort}
+              >
                 Uploaded on
               </SortableTableHead>
-              <TableHead className="pr-4 text-right font-semibold">Actions</TableHead>
+              <TableHead className="pr-4 text-right font-semibold">
+                Actions
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -87,15 +117,22 @@ export function DocumentsTable({ documents, className }: Props) {
                     <span
                       className={cn(
                         "inline-flex min-w-24 items-center justify-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                        status.badge
+                        status.badge,
                       )}
                     >
                       {status.label}
                     </span>
                   </TableCell>
-                  <TableCell className="text-muted-foreground">{document.uploadedBy}</TableCell>
-                  <TableCell className="text-muted-foreground">{document.uploadedOn}</TableCell>
-                  <TableCell className="pr-4 text-right" onClick={(e) => e.stopPropagation()}>
+                  <TableCell className="text-muted-foreground">
+                    {document.uploadedBy}
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {document.uploadedOn}
+                  </TableCell>
+                  <TableCell
+                    className="pr-4 text-right"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <DocumentsActionsMenu
                       fileName={document.fileName}
                       onView={() => setSelected(document)}

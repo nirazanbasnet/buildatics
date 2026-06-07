@@ -14,7 +14,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Securely manage API keys, track usage analytics, and monitor conversion success rates with real-time metrics. A professional API management dashboard built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/api-keys"
+    canonical: "/apps/api-keys",
   });
 }
 
@@ -22,7 +22,9 @@ export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between space-y-2">
-        <h1 className="text-2xl font-bold tracking-tight">Api Keys Management</h1>
+        <h1 className="text-2xl font-bold tracking-tight">
+          Api Keys Management
+        </h1>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <UpgradePlanCard />

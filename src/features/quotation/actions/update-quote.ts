@@ -3,7 +3,11 @@
 import { apiFetch, ApiError } from "@/features/auth/lib/api-client";
 
 import type { LeadQuoteReq, LeadQuoteRes } from "../lib/dto";
-import { editQuoteSchema, toUtcIso, type EditQuoteInput } from "../lib/quote-form-schema";
+import {
+  editQuoteSchema,
+  toUtcIso,
+  type EditQuoteInput,
+} from "../lib/quote-form-schema";
 
 export type QuoteFormResult = {
   ok: boolean;
@@ -15,27 +19,36 @@ export type QuoteFormResult = {
 export async function updateQuote(
   leadId: string,
   id: string,
-  input: EditQuoteInput
+  input: EditQuoteInput,
 ): Promise<QuoteFormResult> {
   const parsed = editQuoteSchema.safeParse(input);
   if (!parsed.success) {
-    return { ok: false, fieldErrors: { title: parsed.error.flatten().fieldErrors.title?.[0] } };
+    return {
+      ok: false,
+      fieldErrors: { title: parsed.error.flatten().fieldErrors.title?.[0] },
+    };
   }
   const data = parsed.data;
 
   const body: LeadQuoteReq = {
     title: data.title,
     description: data.description?.trim() || undefined,
-    validUntilUtc: toUtcIso(data.validUntil)
+    validUntilUtc: toUtcIso(data.validUntil),
   };
 
   try {
     await apiFetch<LeadQuoteRes>(
       `/api/LeadQuotes/Update?leadId=${encodeURIComponent(leadId)}&id=${encodeURIComponent(id)}`,
-      { method: "POST", auth: true, body }
+      { method: "POST", auth: true, body },
     );
     return { ok: true };
   } catch (error) {
-    return { ok: false, error: error instanceof ApiError ? error.message : "Failed to update the quote." };
+    return {
+      ok: false,
+      error:
+        error instanceof ApiError
+          ? error.message
+          : "Failed to update the quote.",
+    };
   }
 }

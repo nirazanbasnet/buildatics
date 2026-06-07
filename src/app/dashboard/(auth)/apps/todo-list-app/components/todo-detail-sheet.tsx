@@ -10,13 +10,18 @@ import {
   X,
   Edit,
   PlusCircleIcon,
-  ClockIcon
+  ClockIcon,
 } from "lucide-react";
 import { useTodoStore } from "../store";
 import { statusClasses, priorityClasses } from "../enum";
 import { toast } from "sonner";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -35,7 +40,7 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
   isOpen,
   onClose,
   todoId,
-  onEditClick
+  onEditClick,
 }) => {
   const {
     todos,
@@ -45,7 +50,7 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
     removeFile,
     addSubTask,
     updateSubTask,
-    removeSubTask
+    removeSubTask,
   } = useTodoStore();
 
   const [newComment, setNewComment] = React.useState("");
@@ -80,7 +85,7 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
           url: reader.result as string,
           type: file.type,
           size: file.size,
-          uploadedAt: new Date()
+          uploadedAt: new Date(),
         });
 
         toast.success(`${file.name} has been added to the task`);
@@ -131,8 +136,12 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
             )}
           </div>
           <div className="flex items-center gap-2 capitalize">
-            <Badge className={statusClasses[todo.status]}>{todo.status.replace("-", " ")}</Badge>
-            <Badge className={priorityClasses[todo.priority]}>{todo.priority}</Badge>
+            <Badge className={statusClasses[todo.status]}>
+              {todo.status.replace("-", " ")}
+            </Badge>
+            <Badge className={priorityClasses[todo.priority]}>
+              {todo.priority}
+            </Badge>
           </div>
         </SheetHeader>
 
@@ -147,7 +156,9 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
           <div className="grid grid-cols-3">
             <div className="space-y-2">
               <h4 className="text-sm font-medium">Assigned To</h4>
-              <p className="text-muted-foreground text-sm">{todo.assignedTo || "Unassigned"}</p>
+              <p className="text-muted-foreground text-sm">
+                {todo.assignedTo || "Unassigned"}
+              </p>
             </div>
             {todo.dueDate && (
               <div className="space-y-2">
@@ -187,7 +198,8 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
                     <span
                       className={cn(
                         "text-sm",
-                        subTask.completed && "text-muted-foreground line-through"
+                        subTask.completed &&
+                          "text-muted-foreground line-through",
                       )}
                     >
                       {subTask.title}
@@ -212,7 +224,11 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
 
           {!isAddingSubTask && (
             <div>
-              <Button variant="outline" size="sm" onClick={() => setIsAddingSubTask(true)}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsAddingSubTask(true)}
+              >
                 <PlusCircleIcon />
                 <span>Add Sub Task</span>
               </Button>
@@ -320,7 +336,9 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
         <Separator />
 
         <div className="space-y-4 p-4">
-          <h4 className="text-sm font-medium">Comments ({todo.comments.length})</h4>
+          <h4 className="text-sm font-medium">
+            Comments ({todo.comments.length})
+          </h4>
 
           {todo.comments.length === 0 && (
             <div className="bg-muted text-muted-foreground rounded-md p-4 text-center text-sm">
@@ -330,11 +348,15 @@ const TodoDetailSheet: React.FC<TodoDetailSheetProps> = ({
 
           <div className="space-y-2">
             {todo.comments.map((comment) => (
-              <div key={comment.id} className="bg-muted group relative space-y-3 rounded-md p-3">
+              <div
+                key={comment.id}
+                className="bg-muted group relative space-y-3 rounded-md p-3"
+              >
                 <p className="text-sm">{comment.text}</p>
                 <div className="text-muted-foreground flex justify-between text-xs">
                   <div className="flex items-center gap-1">
-                    <ClockIcon className="size-3" /> {format(new Date(comment.createdAt), "PPp")}
+                    <ClockIcon className="size-3" />{" "}
+                    {format(new Date(comment.createdAt), "PPp")}
                   </div>
                   <div className="absolute end-2 bottom-2 flex items-center opacity-0 group-hover:opacity-100">
                     <Button

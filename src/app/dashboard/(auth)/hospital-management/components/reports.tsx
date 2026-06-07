@@ -7,7 +7,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   SortingState,
-  getSortedRowModel
+  getSortedRowModel,
 } from "@tanstack/react-table";
 
 import {
@@ -16,7 +16,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,9 +35,9 @@ export function HospitalReports() {
     getSortedRowModel: getSortedRowModel(),
     state: {
       sorting,
-      globalFilter: filtering
+      globalFilter: filtering,
     },
-    onGlobalFilterChange: setFiltering
+    onGlobalFilterChange: setFiltering,
   });
 
   return (
@@ -82,13 +82,16 @@ export function HospitalReports() {
                             className: header.column.getCanSort()
                               ? "cursor-pointer select-none"
                               : "",
-                            onClick: header.column.getToggleSortingHandler()
+                            onClick: header.column.getToggleSortingHandler(),
                           }}
                         >
-                          {flexRender(header.column.columnDef.header, header.getContext())}
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
                           {{
                             asc: " 🔼",
-                            desc: " 🔽"
+                            desc: " 🔽",
                           }[header.column.getIsSorted() as string] ?? null}
                         </div>
                       )}
@@ -101,17 +104,26 @@ export function HospitalReports() {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>

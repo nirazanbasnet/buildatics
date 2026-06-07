@@ -24,7 +24,10 @@ function isLockedNow(lockoutEnd: string | null | undefined): boolean {
 
 export function mapUserToRow(user: UserDetailedRes): UserRow {
   const name =
-    [user.firstName, user.lastName].filter(Boolean).join(" ") || user.userName || user.email || "—";
+    [user.firstName, user.lastName].filter(Boolean).join(" ") ||
+    user.userName ||
+    user.email ||
+    "—";
 
   return {
     id: user.id ?? "",
@@ -35,6 +38,6 @@ export function mapUserToRow(user: UserDetailedRes): UserRow {
     roles: user.roles ?? [],
     isDeleted: user.deletedOnUtc != null,
     isLocked: isLockedNow(user.lockoutEnd),
-    termsAccepted: user.termsAndConditionsAcceptedOnUtc != null
+    termsAccepted: user.termsAndConditionsAcceptedOnUtc != null,
   };
 }

@@ -5,14 +5,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { ListingAgent } from "../../types";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, { message: "Name is required." }),
-  message: z.string().trim().min(1, { message: "Message is required." })
+  message: z.string().trim().min(1, { message: "Message is required." }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -27,8 +33,8 @@ export function AgentContactForm({ agent }: AgentContactFormProps) {
     mode: "onChange",
     defaultValues: {
       name: agent.name,
-      message: agent.message
-    }
+      message: agent.message,
+    },
   });
 
   useEffect(() => {

@@ -8,20 +8,34 @@ import {
   MousePointerClickIcon,
   Reply,
   ReplyAll,
-  Trash2
+  Trash2,
 } from "lucide-react";
 
-import { DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { DropdownMenu, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Label } from "@/components/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Mail } from "../data";
 
 interface MailDisplayProps {
@@ -197,17 +211,30 @@ export function MailDisplay({ mail }: MailDisplayProps) {
             )}
           </div>
           <Separator />
-          <div className="flex-1 p-4 text-sm whitespace-pre-wrap">{mail.text}</div>
+          <div className="flex-1 p-4 text-sm whitespace-pre-wrap">
+            {mail.text}
+          </div>
           <Separator className="mt-auto" />
           <div className="p-4">
             <form>
               <div className="grid gap-4">
-                <Textarea className="p-4" placeholder={`Reply ${mail.name}...`} />
+                <Textarea
+                  className="p-4"
+                  placeholder={`Reply ${mail.name}...`}
+                />
                 <div className="flex items-center">
-                  <Label htmlFor="mute" className="flex items-center gap-2 text-xs font-normal">
-                    <Switch id="mute" aria-label="Mute thread" /> Mute this thread
+                  <Label
+                    htmlFor="mute"
+                    className="flex items-center gap-2 text-xs font-normal"
+                  >
+                    <Switch id="mute" aria-label="Mute thread" /> Mute this
+                    thread
                   </Label>
-                  <Button onClick={(e) => e.preventDefault()} size="sm" className="ml-auto">
+                  <Button
+                    onClick={(e) => e.preventDefault()}
+                    size="sm"
+                    className="ml-auto"
+                  >
                     Send
                   </Button>
                 </div>

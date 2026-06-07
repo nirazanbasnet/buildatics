@@ -10,11 +10,19 @@ type DesignGridProps = {
   className?: string;
 };
 
-export function DesignGrid({ designs, view, detailEnabled, className }: DesignGridProps) {
+export function DesignGrid({
+  designs,
+  view,
+  detailEnabled,
+  className,
+}: DesignGridProps) {
   return (
     <div
       key={view ?? "facade"}
-      className={cn("grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-3", className)}
+      className={cn(
+        "grid flex-1 gap-5 sm:grid-cols-2 lg:grid-cols-3",
+        className,
+      )}
     >
       {designs.map((design, index) => (
         <DesignCard

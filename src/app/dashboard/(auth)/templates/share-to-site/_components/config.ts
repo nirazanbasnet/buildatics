@@ -11,7 +11,7 @@ export type ShareConfig = {
 export const DEFAULT_SHARE_CONFIG: ShareConfig = {
   font: "default",
   style: 7,
-  color: "default"
+  color: "default",
 };
 
 export const FONT_OPTIONS = FONTS;
@@ -21,14 +21,14 @@ export const STYLE_OPTIONS: { name: string; value: VariantId }[] = [
   { name: "Spec grid", value: 7 },
   { name: "3-column grid", value: 1 },
   { name: "Showcase", value: 6 },
-  { name: "Compact list", value: 5 }
+  { name: "Compact list", value: 5 },
 ];
 
 export function buildEmbedSrc(config: ShareConfig): string {
   const params = new URLSearchParams({
     layout: String(config.style),
     font: config.font,
-    theme: config.color
+    theme: config.color,
   });
   return `https://buildatics-frontend.vercel.app/embed/display-center?${params.toString()}`;
 }

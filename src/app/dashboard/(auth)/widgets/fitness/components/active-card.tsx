@@ -7,7 +7,9 @@ export function ActiveCard() {
     <Card>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-muted-foreground text-sm font-medium">Active</CardTitle>
+          <CardTitle className="text-muted-foreground text-sm font-medium">
+            Active
+          </CardTitle>
           <Zap className="h-4 w-4 text-yellow-500" />
         </div>
       </CardHeader>
@@ -18,7 +20,11 @@ export function ActiveCard() {
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-3">
-            <Progress value={80} className="h-2 flex-1" indicatorColor="bg-yellow-500" />
+            <Progress
+              value={80}
+              className="h-2 flex-1"
+              indicatorColor="bg-yellow-500"
+            />
             <span className="text-muted-foreground text-xs">80%</span>
           </div>
           <p className="text-muted-foreground text-xs">Goal: 60 min</p>

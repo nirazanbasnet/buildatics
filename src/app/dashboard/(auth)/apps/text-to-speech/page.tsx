@@ -1,14 +1,20 @@
 import { Metadata } from "next";
 import { generateMeta } from "@/lib/utils";
 import { AlertCircleIcon } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMeta({
     title: "Text to Speech App",
     description:
       "Text to speech app is a ui template that converts written text into spoken audio. Built with shadcn/ui, Tailwind CSS, Next.js and React.",
-    canonical: "/apps/text-to-speech"
+    canonical: "/apps/text-to-speech",
   });
 }
 
@@ -42,7 +48,8 @@ export default function Page() {
               <h1 className="text-xl">Text to Speech</h1>
             </CardTitle>
             <CardDescription>
-              Text to speech app is a ui template that converts written text into spoken audio.
+              Text to speech app is a ui template that converts written text
+              into spoken audio.
             </CardDescription>
           </CardHeader>
           <CardContent className="border-t pt-4">

@@ -3,7 +3,10 @@
 import { apiFetch, ApiError } from "@/features/auth/lib/api-client";
 
 import type { ContactRes, LeadReq, LeadRes } from "../lib/dto";
-import { createLeadSchema, type CreateLeadInput } from "../lib/lead-form-schema";
+import {
+  createLeadSchema,
+  type CreateLeadInput,
+} from "../lib/lead-form-schema";
 
 export type CreateLeadResult = {
   ok: boolean;
@@ -16,7 +19,9 @@ const undef = (v: string | undefined) => (v && v.trim() ? v.trim() : undefined);
 
 // Server Action: creates a lead from the Add Lead form. Because the API has no combined endpoint,
 // this orchestrates 3 calls — Contact → Lead → (optional) LeadDesign. See map-lead.ts gap notes.
-export async function createLead(input: CreateLeadInput): Promise<CreateLeadResult> {
+export async function createLead(
+  input: CreateLeadInput,
+): Promise<CreateLeadResult> {
   const parsed = createLeadSchema.safeParse(input);
   if (!parsed.success) {
     const fe = parsed.error.flatten().fieldErrors;
@@ -24,8 +29,8 @@ export async function createLead(input: CreateLeadInput): Promise<CreateLeadResu
       ok: false,
       fieldErrors: {
         firstName: fe.firstName?.[0],
-        email: fe.email?.[0]
-      }
+        email: fe.email?.[0],
+      },
     };
   }
   const data = parsed.data;
@@ -39,22 +44,23 @@ export async function createLead(input: CreateLeadInput): Promise<CreateLeadResu
         firstName: data.firstName,
         lastName: undef(data.lastName),
         primaryEmail: undef(data.email),
-        primaryPhone: undef(data.phone)
-      }
+        primaryPhone: undef(data.phone),
+      },
     });
-    if (!contact.id) return { ok: false, error: "Failed to create the contact." };
+    if (!contact.id)
+      return { ok: false, error: "Failed to create the contact." };
 
     // 2. Create the lead linked to that contact. The single "Lot / site address" maps to lotNo.
     const leadBody: LeadReq = {
       contactIds: [contact.id],
       leadStageId: undef(data.leadStageId),
       assignedUserId: undef(data.assignedUserId),
-      lotNo: undef(data.lotAddress)
+      lotNo: undef(data.lotAddress),
     };
     const lead = await apiFetch<LeadRes>("/api/Leads/Create", {
       method: "POST",
       auth: true,
-      body: leadBody
+      body: leadBody,
     });
     if (!lead.id) return { ok: false, error: "Failed to create the lead." };
 
@@ -64,13 +70,16 @@ export async function createLead(input: CreateLeadInput): Promise<CreateLeadResu
       await apiFetch("/api/LeadDesigns/Add", {
         method: "POST",
         auth: true,
-        body: { leadId: lead.id, companyDesignId: designId }
+        body: { leadId: lead.id, companyDesignId: designId },
       });
     }
 
     return { ok: true, leadId: lead.id };
   } catch (error) {
-    const message = error instanceof ApiError ? error.message : "Something went wrong. Please try again.";
+    const message =
+      error instanceof ApiError
+        ? error.message
+        : "Something went wrong. Please try again.";
     return { ok: false, error: message };
   }
 }

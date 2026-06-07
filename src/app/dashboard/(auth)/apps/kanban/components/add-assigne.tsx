@@ -7,7 +7,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Command,
@@ -15,7 +15,7 @@ import {
   CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -24,28 +24,28 @@ const users = [
   {
     name: "Olivia Martin",
     email: "m@example.com",
-    avatar: `https://i.pravatar.cc/150?img=1`
+    avatar: `https://i.pravatar.cc/150?img=1`,
   },
   {
     name: "Isabella Nguyen",
     email: "isabella.nguyen@email.com",
-    avatar: `https://i.pravatar.cc/150?img=7`
+    avatar: `https://i.pravatar.cc/150?img=7`,
   },
   {
     name: "Emma Wilson",
     email: "emma@example.com",
-    avatar: `https://i.pravatar.cc/150?img=2`
+    avatar: `https://i.pravatar.cc/150?img=2`,
   },
   {
     name: "Jackson Lee",
     email: "lee@example.com",
-    avatar: `https://i.pravatar.cc/150?img=9`
+    avatar: `https://i.pravatar.cc/150?img=9`,
   },
   {
     name: "William Kim",
     email: "will@email.com",
-    avatar: `https://i.pravatar.cc/150?img=6`
-  }
+    avatar: `https://i.pravatar.cc/150?img=6`,
+  },
 ] as const;
 
 type User = (typeof users)[number];
@@ -78,12 +78,16 @@ export default function AddAssigne() {
                   onSelect={() => {
                     if (selectedUsers.includes(user)) {
                       return setSelectedUsers(
-                        selectedUsers.filter((selectedUser) => selectedUser !== user)
+                        selectedUsers.filter(
+                          (selectedUser) => selectedUser !== user,
+                        ),
                       );
                     }
 
                     return setSelectedUsers(
-                      [...users].filter((u) => [...selectedUsers, user].includes(u))
+                      [...users].filter((u) =>
+                        [...selectedUsers, user].includes(u),
+                      ),
                     );
                   }}
                 >
@@ -92,8 +96,12 @@ export default function AddAssigne() {
                     <AvatarFallback>{user.name[0]}</AvatarFallback>
                   </Avatar>
                   <div className="ml-2">
-                    <p className="text-sm leading-none font-medium">{user.name}</p>
-                    <p className="text-muted-foreground text-sm">{user.email}</p>
+                    <p className="text-sm leading-none font-medium">
+                      {user.name}
+                    </p>
+                    <p className="text-muted-foreground text-sm">
+                      {user.email}
+                    </p>
                   </div>
                   {selectedUsers.includes(user) ? (
                     <Check className="text-primary ml-auto flex h-5 w-5" />
@@ -107,14 +115,19 @@ export default function AddAssigne() {
           {selectedUsers.length > 0 ? (
             <div className="flex -space-x-2 overflow-hidden">
               {selectedUsers.map((user) => (
-                <Avatar key={user.email} className="border-background inline-block border-2">
+                <Avatar
+                  key={user.email}
+                  className="border-background inline-block border-2"
+                >
                   <AvatarImage src={user.avatar} />
                   <AvatarFallback>{user.name[0]}</AvatarFallback>
                 </Avatar>
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm">Select the users to add to this role.</p>
+            <p className="text-muted-foreground text-sm">
+              Select the users to add to this role.
+            </p>
           )}
           <Button
             disabled={selectedUsers.length < 1}

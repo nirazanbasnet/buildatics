@@ -6,7 +6,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import CountAnimation from "@/components/ui/custom/count-animation";
 import { Progress } from "@/components/ui/progress";
@@ -30,7 +30,7 @@ const data: DataType[] = [
     size: "2.1 GB",
     color: "text-blue-500",
     indicatorColor: "bg-blue-500",
-    usagePercentage: 35
+    usagePercentage: 35,
   },
   {
     type: "Images",
@@ -39,7 +39,7 @@ const data: DataType[] = [
     size: "3.8 GB",
     color: "text-green-500",
     indicatorColor: "bg-green-500",
-    usagePercentage: 62
+    usagePercentage: 62,
   },
   {
     type: "Videos",
@@ -48,7 +48,7 @@ const data: DataType[] = [
     size: "7.5 GB",
     color: "text-red-500",
     indicatorColor: "bg-red-500",
-    usagePercentage: 89
+    usagePercentage: 89,
   },
   {
     type: "Others",
@@ -57,8 +57,8 @@ const data: DataType[] = [
     size: "1.2 GB",
     color: "text-yellow-500",
     indicatorColor: "bg-yellow-500",
-    usagePercentage: 28
-  }
+    usagePercentage: 28,
+  },
 ];
 
 export function SummaryCards() {
@@ -77,10 +77,17 @@ export function SummaryCards() {
               <CountAnimation number={item.count} />
             </div>
             <div className="space-y-2">
-              <Progress value={item.usagePercentage} indicatorColor={item.indicatorColor} />
+              <Progress
+                value={item.usagePercentage}
+                indicatorColor={item.indicatorColor}
+              />
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground text-sm">{item.size} used</span>
-                <span className="text-muted-foreground text-sm">{item.usagePercentage}%</span>
+                <span className="text-muted-foreground text-sm">
+                  {item.size} used
+                </span>
+                <span className="text-muted-foreground text-sm">
+                  {item.usagePercentage}%
+                </span>
               </div>
             </div>
           </CardContent>

@@ -12,7 +12,7 @@ import {
   preconstructionDetailTabItems,
   preconstructionDetailTabs,
   type PreconstructionDetailProject,
-  type PreconstructionDetailTab
+  type PreconstructionDetailTab,
 } from "../_data";
 
 import { DocumentsV1 } from "./documents-v1";
@@ -28,7 +28,7 @@ type Props = {
 
 export function PreconstructionDetailLayout({ project, className }: Props) {
   const [activeTab, setActiveTab] = useState<PreconstructionDetailTab>(
-    preconstructionDetailTabs[0]
+    preconstructionDetailTabs[0],
   );
   const reduceMotion = useReducedMotion();
   const offset = reduceMotion ? 0 : 8;

@@ -6,7 +6,10 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { brochureDetailMock, type BrochureDetail } from "../../brochure-detail/_data";
+import {
+  brochureDetailMock,
+  type BrochureDetail,
+} from "../../brochure-detail/_data";
 import { BrochureDetailSheet } from "../../brochure-detail/_components/brochure-detail-sheet";
 import type { Brochure } from "../_data";
 
@@ -21,7 +24,7 @@ function toDetail(brochure: Brochure): BrochureDetail {
     ref: brochure.ref,
     siteAddress: brochure.siteAddress,
     status: brochure.status,
-    dateCreated: brochure.createdDate
+    dateCreated: brochure.createdDate,
   };
 }
 
@@ -31,18 +34,30 @@ type Props = {
   detailEnabled?: boolean;
 };
 
-export function BrochuresLayout({ brochures, className, detailEnabled }: Props) {
+export function BrochuresLayout({
+  brochures,
+  className,
+  detailEnabled,
+}: Props) {
   const [selected, setSelected] = useState<Brochure | null>(null);
   const handleBrochureClick = detailEnabled ? setSelected : undefined;
 
   return (
     <>
-      <div className={cn("flex h-full flex-col space-y-1 overflow-hidden", className)}>
+      <div
+        className={cn(
+          "flex h-full flex-col space-y-1 overflow-hidden",
+          className,
+        )}
+      >
         <AnimatedSection>
           <BrochuresToolbar />
         </AnimatedSection>
         <AnimatedSection delay={0.04} className="flex-1 overflow-auto">
-          <BrochuresTable brochures={brochures} onBrochureClick={handleBrochureClick} />
+          <BrochuresTable
+            brochures={brochures}
+            onBrochureClick={handleBrochureClick}
+          />
         </AnimatedSection>
         <AnimatedSection delay={0.08}>
           <PaginationNav />

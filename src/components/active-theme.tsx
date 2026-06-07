@@ -1,6 +1,12 @@
 "use client";
 
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { DEFAULT_THEME, ThemeType } from "@/lib/themes";
 import { applyCustomTheme, loadCustomTheme } from "@/lib/custom-theme";
 
@@ -23,13 +29,13 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ActiveThemeProvider({
   children,
-  initialTheme
+  initialTheme,
 }: {
   children: ReactNode;
   initialTheme?: ThemeType;
 }) {
   const [theme, setTheme] = useState<ThemeType>(() =>
-    initialTheme ? initialTheme : DEFAULT_THEME
+    initialTheme ? initialTheme : DEFAULT_THEME,
   );
 
   useEffect(() => {
@@ -77,15 +83,28 @@ export function ActiveThemeProvider({
 
     setThemeCookie("theme_sidebar_mode", theme.sidebarMode);
     body.setAttribute("data-theme-sidebar-mode", theme.sidebarMode);
-  }, [theme.preset, theme.radius, theme.scale, theme.contentLayout, theme.font, theme.sidebarMode]);
+  }, [
+    theme.preset,
+    theme.radius,
+    theme.scale,
+    theme.contentLayout,
+    theme.font,
+    theme.sidebarMode,
+  ]);
 
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 }
 
 export function useThemeConfig() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error("useThemeConfig must be used within an ActiveThemeProvider");
+    throw new Error(
+      "useThemeConfig must be used within an ActiveThemeProvider",
+    );
   }
   return context;
 }

@@ -15,7 +15,7 @@ type Props = {
 function MetaRow({
   icon: Icon,
   label,
-  children
+  children,
 }: {
   icon: LucideIcon;
   label: string;
@@ -26,7 +26,9 @@ function MetaRow({
       <span className="bg-muted text-muted-foreground flex size-9 shrink-0 items-center justify-center rounded-lg">
         <Icon className="size-4" />
       </span>
-      <span className="text-foreground flex-1 text-sm font-medium">{label}</span>
+      <span className="text-foreground flex-1 text-sm font-medium">
+        {label}
+      </span>
       {children}
     </li>
   );
@@ -34,13 +36,21 @@ function MetaRow({
 
 export function BrochureMetaCard({ detail, onStatusChange, className }: Props) {
   return (
-    <section className={cn("bg-card rounded-2xl border p-5", className)} data-slot="brochure-meta">
+    <section
+      className={cn("bg-card rounded-2xl border p-5", className)}
+      data-slot="brochure-meta"
+    >
       <ul className="flex flex-col gap-3.5">
         <MetaRow icon={CalendarDays} label="Date Created">
-          <span className="text-muted-foreground text-sm">{detail.dateCreated}</span>
+          <span className="text-muted-foreground text-sm">
+            {detail.dateCreated}
+          </span>
         </MetaRow>
         <MetaRow icon={Settings2} label="Status">
-          <BrochureStatusDropdown status={detail.status} onStatusChange={onStatusChange} />
+          <BrochureStatusDropdown
+            status={detail.status}
+            onStatusChange={onStatusChange}
+          />
         </MetaRow>
       </ul>
     </section>

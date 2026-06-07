@@ -12,7 +12,7 @@ const chatStore: StateCreator<UseChatStore> = (set) => ({
   selectedChat: null,
   showProfileSheet: false,
   setSelectedChat: (chat) => set(() => ({ selectedChat: chat })),
-  toggleProfileSheet: (value) => set({ showProfileSheet: value })
+  toggleProfileSheet: (value) => set({ showProfileSheet: value }),
 });
 
 const useChatStore = create(chatStore);

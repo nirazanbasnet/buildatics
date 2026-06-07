@@ -8,7 +8,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -23,7 +23,7 @@ import {
   Ruler,
   Mail,
   ChevronLeft,
-  Pencil
+  Pencil,
 } from "lucide-react";
 import { generateMeta } from "@/lib/utils";
 import type { ListingData } from "../types";
@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
     additionalTitle: true,
     description:
       "View property details, photo galleries, and listing analytics. A professional real estate admin page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/real-estate/detail"
+    canonical: "/real-estate/detail",
   });
 }
 
@@ -49,7 +49,7 @@ const infoItems = (listing: ListingData["listing"]) => [
   { label: "Floorplan", value: listing.floorplan },
   { label: "Builder", value: listing.builder },
   { label: "Garage", value: listing.garage },
-  { label: "Areas", value: listing.area }
+  { label: "Areas", value: listing.area },
 ];
 
 export default function Page() {
@@ -151,21 +151,27 @@ export default function Page() {
                 </div>
                 <div className="grid grid-cols-3 gap-3 text-sm *:space-y-1 *:rounded-md *:border *:p-3 *:text-center">
                   <div>
-                    <p className="text-2xl font-semibold">{detail.listing.beds}</p>
+                    <p className="text-2xl font-semibold">
+                      {detail.listing.beds}
+                    </p>
                     <p className="text-muted-foreground inline-flex items-center gap-1">
                       <BedDouble className="size-4" />
                       beds
                     </p>
                   </div>
                   <div>
-                    <p className="text-2xl font-semibold">{detail.listing.baths}</p>
+                    <p className="text-2xl font-semibold">
+                      {detail.listing.baths}
+                    </p>
                     <p className="text-muted-foreground inline-flex items-center gap-1">
                       <Bath className="size-4" />
                       baths
                     </p>
                   </div>
                   <div>
-                    <p className="text-2xl font-semibold">{detail.listing.sqft}</p>
+                    <p className="text-2xl font-semibold">
+                      {detail.listing.sqft}
+                    </p>
                     <p className="text-muted-foreground inline-flex items-center gap-1">
                       <Ruler className="size-4" />
                       Sqft
@@ -176,7 +182,10 @@ export default function Page() {
 
               <div className="flex flex-wrap items-center gap-3 text-sm">
                 <p>
-                  Est. <span className="font-semibold">{detail.listing.estimate}</span>
+                  Est.{" "}
+                  <span className="font-semibold">
+                    {detail.listing.estimate}
+                  </span>
                 </p>
                 <Button size="sm">Get pre-qualified</Button>
               </div>

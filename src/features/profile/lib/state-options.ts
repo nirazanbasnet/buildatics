@@ -14,7 +14,7 @@ export const STATE_OPTIONS: StateOption[] = [
   { value: 4, label: "SA" },
   { value: 5, label: "TAS" },
   { value: 6, label: "VIC" },
-  { value: 7, label: "WA" }
+  { value: 7, label: "WA" },
 ];
 
 export const STATE_UNSET = "unset";

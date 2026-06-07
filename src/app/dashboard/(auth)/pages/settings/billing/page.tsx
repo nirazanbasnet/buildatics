@@ -9,7 +9,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Table,
@@ -17,7 +17,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
@@ -37,43 +37,43 @@ const transactions: Transaction[] = [
     product: "Mock premium pack",
     status: "pending",
     date: "12/10/2025",
-    amount: "$39.90"
+    amount: "$39.90",
   },
   {
     id: "#34283",
     product: "Enterprise plan subscription",
     status: "paid",
     date: "11/13/2025",
-    amount: "$159.90"
+    amount: "$159.90",
   },
   {
     id: "#32234",
     product: "Business board pro license",
     status: "paid",
     date: "10/13/2025",
-    amount: "$89.90"
+    amount: "$89.90",
   },
   {
     id: "#31354",
     product: "Custom integration package",
     status: "failed",
     date: "09/13/2025",
-    amount: "$299.90"
+    amount: "$299.90",
   },
   {
     id: "#30254",
     product: "Developer toolkit license",
     status: "paid",
     date: "08/15/2025",
-    amount: "$129.90"
+    amount: "$129.90",
   },
   {
     id: "#29876",
     product: "Support package renewal",
     status: "pending",
     date: "07/22/2025",
-    amount: "$79.90"
-  }
+    amount: "$79.90",
+  },
 ];
 
 export default function Page() {
@@ -147,20 +147,25 @@ export default function Page() {
                 const statusMap = {
                   pending: "warning",
                   failed: "destructive",
-                  paid: "success"
+                  paid: "success",
                 } as const;
 
-                const statusClass = statusMap[transaction.status] ?? "secondary";
+                const statusClass =
+                  statusMap[transaction.status] ?? "secondary";
 
                 return (
                   <TableRow key={transaction.id}>
-                    <TableCell className="font-medium">{transaction.id}</TableCell>
+                    <TableCell className="font-medium">
+                      {transaction.id}
+                    </TableCell>
                     <TableCell>{transaction.product}</TableCell>
                     <TableCell>
                       <Badge variant={statusClass}>{transaction.status}</Badge>
                     </TableCell>
                     <TableCell>{transaction.date}</TableCell>
-                    <TableCell className="text-right font-medium">{transaction.amount}</TableCell>
+                    <TableCell className="text-right font-medium">
+                      {transaction.amount}
+                    </TableCell>
                   </TableRow>
                 );
               })}

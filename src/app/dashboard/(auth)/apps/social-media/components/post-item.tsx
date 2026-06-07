@@ -13,7 +13,7 @@ import {
   Play,
   Send,
   Share2,
-  UserX
+  UserX,
 } from "lucide-react";
 
 import {
@@ -21,7 +21,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -32,7 +32,9 @@ import { Post } from "../data";
 export function PostItem({ post }: { post: Post }) {
   const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set(["1"]));
   const [savedPosts, setSavedPosts] = useState<Set<string>>(new Set());
-  const [expandedComments, setExpandedComments] = useState<Set<string>>(new Set());
+  const [expandedComments, setExpandedComments] = useState<Set<string>>(
+    new Set(),
+  );
   const [newComments, setNewComments] = useState<Record<string, string>>({});
   const [likedComments, setLikedComments] = useState<Set<string>>(new Set());
 
@@ -105,9 +107,13 @@ export function PostItem({ post }: { post: Post }) {
             <div className="flex flex-col gap-0.5">
               <div className="flex items-center gap-1">
                 <span className="text-sm font-semibold">{post.username}</span>
-                {post.verified && <BadgeCheck className="text-foreground size-4" />}
+                {post.verified && (
+                  <BadgeCheck className="text-foreground size-4" />
+                )}
               </div>
-              <span className="text-muted-foreground text-xs">{post.timeAgo}</span>
+              <span className="text-muted-foreground text-xs">
+                {post.timeAgo}
+              </span>
             </div>
           </div>
           <DropdownMenu>
@@ -150,7 +156,11 @@ export function PostItem({ post }: { post: Post }) {
         {/* Post Content */}
         {post.type === "image" && post.image && (
           <div className="overflow-hidden rounded-lg">
-            <img src={post.image} alt="Post" className="aspect-video w-full object-cover" />
+            <img
+              src={post.image}
+              alt="Post"
+              className="aspect-video w-full object-cover"
+            />
           </div>
         )}
 
@@ -263,7 +273,9 @@ export function PostItem({ post }: { post: Post }) {
                 <div className="flex-1">
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="text-sm font-semibold">{comment.username}</span>
+                      <span className="text-sm font-semibold">
+                        {comment.username}
+                      </span>
                       <span className="ml-2 text-sm">{comment.text}</span>
                     </div>
                     <Button
@@ -274,15 +286,20 @@ export function PostItem({ post }: { post: Post }) {
                     >
                       <Heart
                         className={`h-3 w-3 ${
-                          likedComments.has(comment.id) ? "fill-destructive text-destructive" : ""
+                          likedComments.has(comment.id)
+                            ? "fill-destructive text-destructive"
+                            : ""
                         }`}
                       />
                     </Button>
                   </div>
                   <div className="mt-1 flex items-center gap-3">
-                    <span className="text-muted-foreground text-xs">{comment.timeAgo}</span>
                     <span className="text-muted-foreground text-xs">
-                      {comment.likes + (likedComments.has(comment.id) ? 1 : 0)} likes
+                      {comment.timeAgo}
+                    </span>
+                    <span className="text-muted-foreground text-xs">
+                      {comment.likes + (likedComments.has(comment.id) ? 1 : 0)}{" "}
+                      likes
                     </span>
                     <button className="text-muted-foreground hover:text-foreground text-xs font-medium">
                       Reply
@@ -305,7 +322,9 @@ export function PostItem({ post }: { post: Post }) {
           placeholder="Add a comment..."
           className="flex-1 border-0 shadow-none focus-visible:ring-0"
           value={newComments[post.id] || ""}
-          onChange={(e) => setNewComments((prev) => ({ ...prev, [post.id]: e.target.value }))}
+          onChange={(e) =>
+            setNewComments((prev) => ({ ...prev, [post.id]: e.target.value }))
+          }
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               handleAddComment(post.id);

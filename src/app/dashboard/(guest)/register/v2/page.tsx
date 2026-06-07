@@ -1,7 +1,13 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { generateMeta } from "@/lib/utils";
@@ -12,7 +18,7 @@ export async function generateMetadata() {
     title: "Register Page v2",
     description:
       "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account.",
-    canonical: "/register/v2"
+    canonical: "/register/v2",
   });
 }
 
@@ -49,7 +55,12 @@ export default function Page() {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="contact@bundui.com" required />
+              <Input
+                id="email"
+                type="email"
+                placeholder="contact@bundui.com"
+                required
+              />
             </div>
             <div className="flex items-center">
               <Label htmlFor="password">Password</Label>
@@ -62,7 +73,9 @@ export default function Page() {
             <div className="my-4">
               <div className="flex items-center gap-3">
                 <div className="w-full border-t" />
-                <span className="text-muted-foreground shrink-0 text-sm">or continue with</span>
+                <span className="text-muted-foreground shrink-0 text-sm">
+                  or continue with
+                </span>
                 <div className="w-full border-t" />
               </div>
             </div>

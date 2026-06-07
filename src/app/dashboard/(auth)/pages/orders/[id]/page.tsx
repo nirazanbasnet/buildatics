@@ -8,7 +8,7 @@ import {
   Package,
   Pencil,
   Printer,
-  Truck
+  Truck,
 } from "lucide-react";
 import { generateMeta } from "@/lib/utils";
 
@@ -20,7 +20,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -54,7 +54,7 @@ export async function generateMetadata() {
     title: "Order Detail Page",
     description:
       "Manage order details, customer data, and tracking. A professional admin dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/pages/orders/detail"
+    canonical: "/pages/orders/detail",
   });
 }
 
@@ -66,7 +66,7 @@ export default function Page() {
     customer: {
       name: "Alice Johnson",
       email: "alice@example.com",
-      address: "123 Main St, Anytown, AN 12345"
+      address: "123 Main St, Anytown, AN 12345",
     },
     items: [
       {
@@ -74,26 +74,26 @@ export default function Page() {
         name: "Wireless Headphones",
         image: "/products/01.jpeg",
         quantity: 2,
-        price: 25.99
+        price: 25.99,
       },
       {
         id: 2,
         name: "Bluetooth Speaker",
         image: "/products/02.jpeg",
         quantity: 1,
-        price: 49.99
-      }
+        price: 49.99,
+      },
     ],
     subtotal: 101.97,
     shipping: 10.0,
-    total: 111.97
+    total: 111.97,
   };
 
   const statusSteps: Record<OrderStatus, string> = {
     processing: "Processing",
     shipped: "Shipped",
     "out-for-delivery": "Out for Delivery",
-    delivered: "Delivered"
+    delivered: "Delivered",
   };
 
   const currentStep = statusSteps[order.status];
@@ -122,17 +122,27 @@ export default function Page() {
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="font-display text-2xl">Order {order.id}</CardTitle>
-            <p className="text-muted-foreground text-sm">Placed on {order.date}</p>
+            <CardTitle className="font-display text-2xl">
+              Order {order.id}
+            </CardTitle>
+            <p className="text-muted-foreground text-sm">
+              Placed on {order.date}
+            </p>
           </CardHeader>
           <CardContent>
             <Separator className="mb-4" />
             <div className="space-y-4">
               <div className="space-y-2">
                 <h3 className="font-medium">Customer Information</h3>
-                <p className="text-muted-foreground text-sm">{order.customer.name}</p>
-                <p className="text-muted-foreground text-sm">{order.customer.email}</p>
-                <p className="text-muted-foreground text-sm">{order.customer.address}</p>
+                <p className="text-muted-foreground text-sm">
+                  {order.customer.name}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  {order.customer.email}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  {order.customer.address}
+                </p>
               </div>
               <div className="bg-muted flex items-center justify-between space-y-2 rounded-md border p-4">
                 <div className="space-y-1">
@@ -189,19 +199,28 @@ export default function Page() {
                       {
                         processing: <Package className="size-4 lg:size-5" />,
                         shipped: <Truck className="size-4 lg:size-5" />,
-                        "out-for-delivery": <Truck className="size-4 lg:size-5" />,
-                        delivered: <CheckCircle2 className="size-4 lg:size-5" />
+                        "out-for-delivery": (
+                          <Truck className="size-4 lg:size-5" />
+                        ),
+                        delivered: (
+                          <CheckCircle2 className="size-4 lg:size-5" />
+                        ),
                       }[step as OrderStatus]
                     )}
                   </div>
-                  <div className="mt-2 text-xs">{statusSteps[step as OrderStatus]}</div>
+                  <div className="mt-2 text-xs">
+                    {statusSteps[step as OrderStatus]}
+                  </div>
                 </div>
               ))}
             </div>
             <div className="space-y-6">
               <Progress
                 className="w-full"
-                value={(currentStepIndex / (Object.keys(statusSteps).length - 1)) * 100}
+                value={
+                  (currentStepIndex / (Object.keys(statusSteps).length - 1)) *
+                  100
+                }
                 color="bg-green-200 dark:bg-green-800"
               />
               <div className="text-muted-foreground text-xs">
@@ -245,7 +264,9 @@ export default function Page() {
                     </div>
                   </TableCell>
                   <TableCell className="text-center">{item.quantity}</TableCell>
-                  <TableCell className="text-center">${item.price.toFixed(2)}</TableCell>
+                  <TableCell className="text-center">
+                    ${item.price.toFixed(2)}
+                  </TableCell>
                   <TableCell className="text-end">
                     ${(item.quantity * item.price).toFixed(2)}
                   </TableCell>

@@ -9,13 +9,13 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 
 const chartData = [
@@ -69,32 +69,33 @@ const chartData = [
   { date: "2024-05-18", desktop: 315, mobile: 350 },
   { date: "2024-05-19", desktop: 235, mobile: 180 },
   { date: "2024-05-20", desktop: 177, mobile: 230 },
-  { date: "2024-05-21", desktop: 82, mobile: 140 }
+  { date: "2024-05-21", desktop: 82, mobile: 140 },
 ];
 
 const chartConfig = {
   views: {
-    label: "Page Views"
+    label: "Page Views",
   },
   desktop: {
     label: "Desktop",
-    color: "var(--chart-2)"
+    color: "var(--chart-2)",
   },
   mobile: {
     label: "Mobile",
-    color: "var(--chart-1)"
-  }
+    color: "var(--chart-1)",
+  },
 } satisfies ChartConfig;
 
 export function RevenueChart() {
-  const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("desktop");
+  const [activeChart, setActiveChart] =
+    React.useState<keyof typeof chartConfig>("desktop");
 
   const total = React.useMemo(
     () => ({
       desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
-      mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0)
+      mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0),
     }),
-    []
+    [],
   );
 
   return (
@@ -113,7 +114,9 @@ export function RevenueChart() {
                   className="data-[active=true]:bg-muted relative flex flex-1 flex-col justify-center gap-1 px-6 py-4 text-left"
                   onClick={() => setActiveChart(chart)}
                 >
-                  <span className="text-muted-foreground text-xs">{chartConfig[chart].label}</span>
+                  <span className="text-muted-foreground text-xs">
+                    {chartConfig[chart].label}
+                  </span>
                   <span className="font-display text-lg leading-none sm:text-2xl">
                     {total[key as keyof typeof total].toLocaleString()}
                   </span>
@@ -131,7 +134,7 @@ export function RevenueChart() {
             margin={{
               left: 0,
               right: 0,
-              bottom: 0
+              bottom: 0,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -145,7 +148,7 @@ export function RevenueChart() {
                 const date = new Date(value);
                 return date.toLocaleDateString("en-US", {
                   month: "short",
-                  day: "numeric"
+                  day: "numeric",
                 });
               }}
             />
@@ -158,13 +161,17 @@ export function RevenueChart() {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
-                      year: "numeric"
+                      year: "numeric",
                     });
                   }}
                 />
               }
             />
-            <Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} radius={5} />
+            <Bar
+              dataKey={activeChart}
+              fill={`var(--color-${activeChart})`}
+              radius={5}
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>

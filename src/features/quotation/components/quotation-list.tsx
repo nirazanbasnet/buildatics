@@ -13,7 +13,7 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogTitle
+  AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
 import { QuotationToolbar } from "./toolbar/quotation-toolbar";
@@ -38,8 +38,15 @@ type QuotationListProps = {
   pageSize: number;
 };
 
-export function QuotationList({ initialItems, initialTotal, leads, pageSize }: QuotationListProps) {
-  const [filters, setFilters] = useState<QuotationsFilterState>(QUOTES_FILTER_DEFAULTS);
+export function QuotationList({
+  initialItems,
+  initialTotal,
+  leads,
+  pageSize,
+}: QuotationListProps) {
+  const [filters, setFilters] = useState<QuotationsFilterState>(
+    QUOTES_FILTER_DEFAULTS,
+  );
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(initialItems);
   const [total, setTotal] = useState(initialTotal);
@@ -48,14 +55,21 @@ export function QuotationList({ initialItems, initialTotal, leads, pageSize }: Q
   const [addOpen, setAddOpen] = useState(false);
   const [editQuote, setEditQuote] = useState<QuotationRow | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<QuotationRow | null>(null);
-  const [viewTarget, setViewTarget] = useState<{ leadId: string; id: string } | null>(null);
+  const [viewTarget, setViewTarget] = useState<{
+    leadId: string;
+    id: string;
+  } | null>(null);
 
   const totalPages = Math.max(1, Math.ceil(total / pageSize));
   const hasAny = initialTotal > 0;
 
   function runQuery(nextFilters: QuotationsFilterState, nextPage: number) {
     startTransition(async () => {
-      const res = await queryQuotes({ filters: nextFilters, page: nextPage, pageSize });
+      const res = await queryQuotes({
+        filters: nextFilters,
+        page: nextPage,
+        pageSize,
+      });
       setItems(res.items);
       setTotal(res.total);
     });
@@ -123,14 +137,16 @@ export function QuotationList({ initialItems, initialTotal, leads, pageSize }: Q
       {items.length === 0 ? (
         <QuotationEmptyState
           filtered={hasAny}
-          onClearFilters={countActiveQuoteFilters(filters) > 0 ? clearFilters : undefined}
+          onClearFilters={
+            countActiveQuoteFilters(filters) > 0 ? clearFilters : undefined
+          }
         />
       ) : (
         <>
           <div
             className={cn(
               "transition-opacity duration-200",
-              isPending && "pointer-events-none opacity-50"
+              isPending && "pointer-events-none opacity-50",
             )}
           >
             <QuotationTable
@@ -142,7 +158,11 @@ export function QuotationList({ initialItems, initialTotal, leads, pageSize }: Q
             />
           </div>
           {totalPages > 1 ? (
-            <PaginationNav totalPages={totalPages} page={page} onPageChange={goToPage} />
+            <PaginationNav
+              totalPages={totalPages}
+              page={page}
+              onPageChange={goToPage}
+            />
           ) : null}
         </>
       )}
@@ -156,14 +176,21 @@ export function QuotationList({ initialItems, initialTotal, leads, pageSize }: Q
           if (created) setViewTarget(created);
         }}
       />
-      <EditQuoteSheet quote={editQuote} onOpenChange={() => setEditQuote(null)} onSaved={refresh} />
+      <EditQuoteSheet
+        quote={editQuote}
+        onOpenChange={() => setEditQuote(null)}
+        onSaved={refresh}
+      />
       <QuotationDetailSheet
         target={viewTarget}
         onOpenChange={(o) => !o && setViewTarget(null)}
         onChanged={refresh}
       />
 
-      <AlertDialog open={deleteTarget !== null} onOpenChange={(o) => !o && setDeleteTarget(null)}>
+      <AlertDialog
+        open={deleteTarget !== null}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+      >
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete this quotation?</AlertDialogTitle>

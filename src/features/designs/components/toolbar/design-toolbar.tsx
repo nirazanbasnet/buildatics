@@ -12,13 +12,13 @@ import {
   clearFilterKey,
   describeActiveFilters,
   type AreaBounds,
-  type DesignFilterState
+  type DesignFilterState,
 } from "../../lib/filter";
 import type { DesignView } from "../../types";
 
 const VIEW_ITEMS = [
   { value: "facade" as const, label: "Facade View", icon: Home },
-  { value: "floor" as const, label: "Floor Plan View", icon: LayoutGrid }
+  { value: "floor" as const, label: "Floor Plan View", icon: LayoutGrid },
 ];
 
 type DesignToolbarProps = {
@@ -36,7 +36,7 @@ export function DesignToolbar({
   filters,
   onFiltersChange,
   areaBounds,
-  resultCount
+  resultCount,
 }: DesignToolbarProps) {
   const [filterOpen, setFilterOpen] = useState(false);
   const activeChips = describeActiveFilters(filters, areaBounds);
@@ -58,7 +58,9 @@ export function DesignToolbar({
               <button
                 type="button"
                 aria-label={`Remove ${chip.label} filter`}
-                onClick={() => onFiltersChange(clearFilterKey(filters, chip.key, areaBounds))}
+                onClick={() =>
+                  onFiltersChange(clearFilterKey(filters, chip.key, areaBounds))
+                }
                 className="hover:bg-primary-foreground/20 focus-visible:ring-primary-foreground/50 flex size-5 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:outline-none"
               >
                 <X className="size-3" />
@@ -68,7 +70,12 @@ export function DesignToolbar({
         </div>
 
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="h-9" onClick={() => setFilterOpen(true)}>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-9"
+            onClick={() => setFilterOpen(true)}
+          >
             <ListFilter className="size-4" />
             Filter
           </Button>

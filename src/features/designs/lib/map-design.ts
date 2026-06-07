@@ -37,38 +37,54 @@ import type { DesignProperty } from "../types";
  */
 
 // Defensive only: live data always carries previews. Local kit assets guarantee next/image never gets "".
-const PLACEHOLDER_FACADE = "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg";
-const PLACEHOLDER_PLAN = "/images/display-center/plans/PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png";
+const PLACEHOLDER_FACADE =
+  "/images/display-center/facade/RENDER_DF01_12.5M_RIGHT_VN01.jpg";
+const PLACEHOLDER_PLAN =
+  "/images/display-center/plans/PLAN_DP01_12.5M BY 28M_RIGHT_VN01.png";
 
 // Picks a blob's preview by preferred type order, falling back to the first available preview.
 function pickPreview<T extends { blobModel?: { previewSasUrl?: string } }>(
   blobs: T[],
   getType: (blob: T) => number | undefined,
-  preferredTypes: number[]
+  preferredTypes: number[],
 ): string | undefined {
   for (const type of preferredTypes) {
-    const match = blobs.find((b) => getType(b) === type && b.blobModel?.previewSasUrl);
+    const match = blobs.find(
+      (b) => getType(b) === type && b.blobModel?.previewSasUrl,
+    );
     if (match?.blobModel?.previewSasUrl) return match.blobModel.previewSasUrl;
   }
-  return blobs.map((b) => b.blobModel?.previewSasUrl).find((u): u is string => Boolean(u));
+  return blobs
+    .map((b) => b.blobModel?.previewSasUrl)
+    .find((u): u is string => Boolean(u));
 }
 
-export function mapDesignToProperty(design: DesignRes, index: number): DesignProperty {
+export function mapDesignToProperty(
+  design: DesignRes,
+  index: number,
+): DesignProperty {
   // Floor plan: prefer plan pages (designBlobType 1 then 2).
   const floorPlan = pickPreview<DesignBlobMapARes>(
     design.designBlobMaps ?? [],
     (b) => b.designBlobType,
-    [1, 2]
+    [1, 2],
   );
 
   // Facade: prefer the rendered facade (facadeBlobType 1 then 2) over elevations (3/4).
-  const facadeBlobs: FacadeBlobMapRes[] = (design.designFacadeMaps ?? []).flatMap(
-    (m) => m.facade?.facadeBlobMaps ?? []
+  const facadeBlobs: FacadeBlobMapRes[] = (
+    design.designFacadeMaps ?? []
+  ).flatMap((m) => m.facade?.facadeBlobMaps ?? []);
+  const facade = pickPreview<FacadeBlobMapRes>(
+    facadeBlobs,
+    (b) => b.facadeBlobType,
+    [1, 2],
   );
-  const facade = pickPreview<FacadeBlobMapRes>(facadeBlobs, (b) => b.facadeBlobType, [1, 2]);
 
   const id =
-    design.id ?? design.designBlobMaps?.[0]?.designId ?? design.code ?? `design-${index}`;
+    design.id ??
+    design.designBlobMaps?.[0]?.designId ??
+    design.code ??
+    `design-${index}`;
 
   return {
     id,
@@ -83,6 +99,6 @@ export function mapDesignToProperty(design: DesignRes, index: number): DesignPro
     living: design.livingRooms ?? 0,
     garage: design.maximumCarsInGarage ?? 0,
     facade: facade ?? floorPlan ?? PLACEHOLDER_FACADE,
-    floorPlan: floorPlan ?? facade ?? PLACEHOLDER_PLAN
+    floorPlan: floorPlan ?? facade ?? PLACEHOLDER_PLAN,
   };
 }

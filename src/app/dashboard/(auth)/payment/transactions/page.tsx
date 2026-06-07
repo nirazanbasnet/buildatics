@@ -12,7 +12,7 @@ export async function generateMetadata() {
     title: "Transactions",
     description:
       "Monitor payment history, withdrawals, and transaction statuses. A professional admin dashboard page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/payment/transactions"
+    canonical: "/payment/transactions",
   });
 }
 
@@ -23,7 +23,7 @@ const transactions = [
     description: "Withdrawal to JP Morgan Chase (0440)",
     status: "Completed",
     amount: "-1,275.79 USD",
-    type: "withdrawal"
+    type: "withdrawal",
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ const transactions = [
     description: "Withdrawal to Citibank (2290)",
     status: "Completed",
     amount: "-202.99 USD",
-    type: "withdrawal"
+    type: "withdrawal",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const transactions = [
     description: "Withdrawal to Bank of America (3311)",
     status: "Completed",
     amount: "-1,272.30 USD",
-    type: "withdrawal"
+    type: "withdrawal",
   },
   {
     id: 4,
@@ -47,7 +47,7 @@ const transactions = [
     description: "Payment from Paddle",
     status: "Completed",
     amount: "+5,651.56 USD",
-    type: "payment"
+    type: "payment",
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const transactions = [
     description: "Withdrawal to HSBC (5522)",
     status: "Completed",
     amount: "-1,679.35 USD",
-    type: "withdrawal"
+    type: "withdrawal",
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const transactions = [
     description: "Withdrawal to JP Morgan Chase (1133)",
     status: "Completed",
     amount: "-3,420.00 USD",
-    type: "withdrawal"
+    type: "withdrawal",
   },
   {
     id: 7,
@@ -71,15 +71,17 @@ const transactions = [
     description: "Payment from Stripe",
     status: "Completed",
     amount: "+2,345.75 USD",
-    type: "payment"
-  }
+    type: "payment",
+  },
 ];
 
 export default function Page() {
   return (
     <div className="space-y-4">
       <div className="flex flex-row items-center justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Transactions</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Transactions
+        </h1>
         <div className="flex items-center space-x-2">
           <CalendarDateRangePicker />
           <Button size="icon">
@@ -101,7 +103,9 @@ export default function Page() {
                   <TableBody>
                     {transactions.map((transaction) => (
                       <TableRow key={transaction.id}>
-                        <TableCell className="w-36 ps-6">{transaction.date}</TableCell>
+                        <TableCell className="w-36 ps-6">
+                          {transaction.date}
+                        </TableCell>
                         <TableCell>
                           <div>
                             <div className="text-foreground font-medium">
@@ -116,8 +120,10 @@ export default function Page() {
                           <div className="flex items-center justify-end space-x-4">
                             <span
                               className={cn({
-                                "text-green-600": transaction.type === "payment",
-                                "text-red-400": transaction.type === "withdrawal"
+                                "text-green-600":
+                                  transaction.type === "payment",
+                                "text-red-400":
+                                  transaction.type === "withdrawal",
                               })}
                             >
                               {transaction.amount}

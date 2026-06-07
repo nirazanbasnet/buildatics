@@ -11,7 +11,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Organize daily tasks, categorize activities, and manage priorities with a clean, multi-pane to-do list ui featuring detailed task views. A professional productivity app built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/apps/todo-list-app"
+    canonical: "/apps/todo-list-app",
   });
 }
 

@@ -6,7 +6,7 @@ import {
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
-  EmptyTitle
+  EmptyTitle,
 } from "@/components/ui/empty";
 import { Button } from "@/components/ui/button";
 
@@ -16,7 +16,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Empty states show placeholder content when no data is available. Built with shadcn/ui, Tailwind CSS, Next.js and React.",
-    canonical: "/pages/empty-states/03"
+    canonical: "/pages/empty-states/03",
   });
 }
 
@@ -32,9 +32,12 @@ export default function Page() {
             alt="..."
           />
         </EmptyMedia>
-        <EmptyTitle className="text-xl">Access to this page is blocked!</EmptyTitle>
+        <EmptyTitle className="text-xl">
+          Access to this page is blocked!
+        </EmptyTitle>
         <EmptyDescription>
-          Please try another way or make sure you have the necessary permissions.
+          Please try another way or make sure you have the necessary
+          permissions.
         </EmptyDescription>
       </EmptyHeader>
       <EmptyContent className="flex-row justify-center gap-2">

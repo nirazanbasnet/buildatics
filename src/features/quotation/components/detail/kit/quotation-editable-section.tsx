@@ -20,7 +20,7 @@ export function QuotationEditableSection({
   value,
   placeholder,
   onChange,
-  className
+  className,
 }: Props) {
   const [editing, setEditing] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -48,7 +48,11 @@ export function QuotationEditableSection({
           aria-label={editing ? `Save ${title}` : `Edit ${title}`}
           aria-pressed={editing}
         >
-          {editing ? <Check className="size-4" /> : <Pencil className="size-4" />}
+          {editing ? (
+            <Check className="size-4" />
+          ) : (
+            <Pencil className="size-4" />
+          )}
         </Button>
       </header>
       <Textarea
@@ -60,7 +64,7 @@ export function QuotationEditableSection({
         aria-label={title}
         className={cn(
           "mt-4 min-h-28 resize-y",
-          !editing && "bg-muted/40 cursor-default focus-visible:ring-0"
+          !editing && "bg-muted/40 cursor-default focus-visible:ring-0",
         )}
       />
     </section>

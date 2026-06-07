@@ -1,6 +1,15 @@
 "use client";
 
-import { ArrowDown, ArrowUp, Copy, Eye, EyeOff, MoreVertical, Pencil, Trash2 } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUp,
+  Copy,
+  Eye,
+  EyeOff,
+  MoreVertical,
+  Pencil,
+  Trash2,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +17,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +40,7 @@ export function QuotationLineItemActionsMenu({
   onMoveUp,
   onMoveDown,
   onDelete,
-  className
+  className,
 }: Props) {
   return (
     <DropdownMenu>

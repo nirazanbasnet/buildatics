@@ -22,7 +22,7 @@ export function PropertyListingCard({
   isFavorite,
   onOpenDetail,
   onToggleFavorite,
-  formatPrice
+  formatPrice,
 }: PropertyListingCardProps) {
   return (
     <Card
@@ -30,7 +30,11 @@ export function PropertyListingCard({
       onClick={() => onOpenDetail(property)}
     >
       <div className="relative">
-        <img src={property.image} alt={property.title} className="h-48 w-full object-cover" />
+        <img
+          src={property.image}
+          alt={property.title}
+          className="h-48 w-full object-cover"
+        />
         <Button
           variant="ghost"
           size="icon-sm"
@@ -38,8 +42,8 @@ export function PropertyListingCard({
           className={cn(
             "bg-background text-muted-foreground hover:text-destructive absolute top-3 right-3 rounded-full",
             {
-              "text-destructive": isFavorite
-            }
+              "text-destructive": isFavorite,
+            },
           )}
         >
           <Heart fill={isFavorite ? "currentColor" : "none"} />
@@ -72,12 +76,18 @@ export function PropertyListingCard({
                 {formatPrice(property.originalPrice)}
               </span>
             )}
-            <span className="text-lg font-bold">{formatPrice(property.price)}</span>
-            <span className="text-muted-foreground text-sm">/{property.priceType}</span>
+            <span className="text-lg font-bold">
+              {formatPrice(property.price)}
+            </span>
+            <span className="text-muted-foreground text-sm">
+              /{property.priceType}
+            </span>
           </div>
           <div className="flex items-center gap-1">
             <Star className="size-3 fill-amber-500 text-amber-500" />
-            <span className="text-muted-foreground text-xs">{property.rating.toFixed(1)}</span>
+            <span className="text-muted-foreground text-xs">
+              {property.rating.toFixed(1)}
+            </span>
           </div>
         </div>
       </CardContent>

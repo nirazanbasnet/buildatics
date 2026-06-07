@@ -10,7 +10,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -23,7 +23,7 @@ import {
   garageOptions,
   makeDefaultFilters,
   type AreaBounds,
-  type DesignFilterState
+  type DesignFilterState,
 } from "../../lib/filter";
 
 type DesignFilterSheetProps = {
@@ -40,7 +40,7 @@ export function DesignFilterSheet({
   onOpenChange,
   value,
   onApply,
-  areaBounds
+  areaBounds,
 }: DesignFilterSheetProps) {
   const close = () => onOpenChange(false);
   return (
@@ -51,7 +51,12 @@ export function DesignFilterSheet({
         className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
       >
         <SheetHeader className="flex flex-row items-center justify-between gap-2 border-b px-4 py-3 md:px-6 md:py-4">
-          <Button variant="ghost" size="sm" onClick={close} className="-ml-2 gap-1 p-0! md:hidden">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={close}
+            className="-ml-2 gap-1 p-0! md:hidden"
+          >
             <ChevronLeft className="size-5" />
             Back
           </Button>
@@ -67,7 +72,8 @@ export function DesignFilterSheet({
           </Button>
         </SheetHeader>
         <SheetDescription className="sr-only">
-          Filter designs by house area, block size, bedrooms, bathrooms and garage.
+          Filter designs by house area, block size, bedrooms, bathrooms and
+          garage.
         </SheetDescription>
         <FilterContent
           hideHeader
@@ -102,7 +108,7 @@ function FilterContent({
   onCancel,
   onApply,
   hideHeader,
-  className
+  className,
 }: FilterContentProps) {
   const [draft, setDraft] = useState<DesignFilterState>(value);
   const activeCount = countActiveFilters(draft, areaBounds);
@@ -114,7 +120,10 @@ function FilterContent({
     if (open) setDraft(value);
   }, [open, value]);
 
-  function update<K extends keyof DesignFilterState>(key: K, next: DesignFilterState[K]) {
+  function update<K extends keyof DesignFilterState>(
+    key: K,
+    next: DesignFilterState[K],
+  ) {
     setDraft((prev) => ({ ...prev, [key]: next }));
   }
 
@@ -133,7 +142,11 @@ function FilterContent({
       <div className="h-full flex-1 space-y-6 overflow-y-auto px-4 py-5 md:px-6">
         <Section label="House Area">
           <div className="relative pt-8">
-            <SliderTooltip value={draft.houseArea[1]} min={areaMin} max={areaMax} />
+            <SliderTooltip
+              value={draft.houseArea[1]}
+              min={areaMin}
+              max={areaMax}
+            />
             <Slider
               min={areaMin}
               max={areaMax}
@@ -220,7 +233,15 @@ function FilterContent({
   );
 }
 
-function SliderTooltip({ value, min, max }: { value: number; min: number; max: number }) {
+function SliderTooltip({
+  value,
+  min,
+  max,
+}: {
+  value: number;
+  min: number;
+  max: number;
+}) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
     <div
@@ -233,7 +254,13 @@ function SliderTooltip({ value, min, max }: { value: number; min: number; max: n
   );
 }
 
-function Section({ label, children }: { label: string; children: React.ReactNode }) {
+function Section({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="space-y-3">
       <Label className="text-foreground text-sm font-medium">{label}</Label>
@@ -249,7 +276,7 @@ function Divider() {
 function PillToggleGroup({
   value,
   onValueChange,
-  options
+  options,
 }: {
   value: string;
   onValueChange: (value: string) => void;
@@ -268,7 +295,7 @@ function PillToggleGroup({
           value={opt.value}
           variant="outline"
           className={cn(
-            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors"
+            "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary h-9 rounded-md px-4 text-sm transition-colors",
           )}
         >
           {opt.label}

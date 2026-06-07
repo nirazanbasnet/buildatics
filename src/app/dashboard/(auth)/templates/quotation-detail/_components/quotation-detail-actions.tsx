@@ -14,7 +14,11 @@ type Props = {
   className?: string;
 };
 
-export function QuotationDetailActions({ onStatusChange, onCreateRevision, className }: Props) {
+export function QuotationDetailActions({
+  onStatusChange,
+  onCreateRevision,
+  className,
+}: Props) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className="grid grid-cols-2 gap-2">

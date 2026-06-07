@@ -22,7 +22,11 @@ function MetaCell({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function BrochuresTableV2({ brochures, className, onBrochureClick }: Props) {
+export function BrochuresTableV2({
+  brochures,
+  className,
+  onBrochureClick,
+}: Props) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       {brochures.map((brochure) => {
@@ -31,7 +35,9 @@ export function BrochuresTableV2({ brochures, className, onBrochureClick }: Prop
         return (
           <article
             key={brochure.id}
-            onClick={onBrochureClick ? () => onBrochureClick(brochure) : undefined}
+            onClick={
+              onBrochureClick ? () => onBrochureClick(brochure) : undefined
+            }
             onKeyDown={
               interactive
                 ? (e) => {
@@ -47,10 +53,13 @@ export function BrochuresTableV2({ brochures, className, onBrochureClick }: Prop
             className={cn(
               "bg-card relative flex items-stretch gap-4 overflow-hidden rounded-lg border py-4 pr-3 pl-5 transition duration-300",
               interactive &&
-                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none"
+                "focus-visible:ring-ring cursor-pointer hover:-translate-y-1 hover:shadow-lg focus-visible:ring-2 focus-visible:outline-none",
             )}
           >
-            <span className={cn("absolute inset-y-0 left-0 w-1", status.stripe)} aria-hidden />
+            <span
+              className={cn("absolute inset-y-0 left-0 w-1", status.stripe)}
+              aria-hidden
+            />
 
             <div className="flex min-w-fit flex-col items-start justify-between gap-2">
               <span className="bg-muted text-foreground rounded-md px-2 py-1 font-mono text-sm font-bold tracking-tight">
@@ -64,7 +73,9 @@ export function BrochuresTableV2({ brochures, className, onBrochureClick }: Prop
 
             <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="text-foreground text-sm font-semibold">{brochure.design}</span>
+                <span className="text-foreground text-sm font-semibold">
+                  {brochure.design}
+                </span>
                 <span className="text-muted-foreground inline-flex items-center gap-1 text-xs">
                   <MapPin className="size-3.5 shrink-0" />
                   {brochure.siteAddress}
@@ -76,10 +87,15 @@ export function BrochuresTableV2({ brochures, className, onBrochureClick }: Prop
               </dl>
             </div>
 
-            <div className="flex items-center pl-2" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="flex items-center pl-2"
+              onClick={(e) => e.stopPropagation()}
+            >
               <BrochuresActionsMenu
                 brochureRef={brochure.ref}
-                onView={onBrochureClick ? () => onBrochureClick(brochure) : undefined}
+                onView={
+                  onBrochureClick ? () => onBrochureClick(brochure) : undefined
+                }
               />
             </div>
           </article>

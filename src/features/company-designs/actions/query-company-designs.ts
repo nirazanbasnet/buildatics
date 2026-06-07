@@ -1,6 +1,9 @@
 "use server";
 
-import { applyDesignFilters, type DesignFilterState } from "@/features/designs/lib/filter";
+import {
+  applyDesignFilters,
+  type DesignFilterState,
+} from "@/features/designs/lib/filter";
 import type { DesignProperty } from "@/features/designs";
 
 import { getAllCompanyDesigns } from "../lib/get-company-designs-page";
@@ -24,6 +27,6 @@ export async function queryCompanyDesigns(params: {
 
   return {
     items: filtered.slice(start, start + params.pageSize),
-    total: filtered.length
+    total: filtered.length,
   };
 }

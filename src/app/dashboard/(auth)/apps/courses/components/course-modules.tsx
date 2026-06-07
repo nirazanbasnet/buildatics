@@ -1,5 +1,11 @@
 import { Check, Play, Pause } from "lucide-react";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 interface Module {
@@ -38,7 +44,7 @@ export function CourseModules({ data }: CourseModulesProps) {
               className={cn(
                 "flex items-center gap-3 rounded-lg border p-3 transition-colors",
                 module.current && "border-primary bg-primary/5",
-                !module.current && "border-border"
+                !module.current && "border-border",
               )}
             >
               {module.completed ? (
@@ -56,7 +62,9 @@ export function CourseModules({ data }: CourseModulesProps) {
               )}
               <div className="flex-1">
                 <p className="font-medium">{module.title}</p>
-                <p className="text-muted-foreground text-sm">{module.duration}</p>
+                <p className="text-muted-foreground text-sm">
+                  {module.duration}
+                </p>
               </div>
             </div>
           ))}

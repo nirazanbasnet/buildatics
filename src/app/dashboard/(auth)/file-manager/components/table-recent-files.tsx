@@ -13,7 +13,7 @@ import {
   Download,
   Share2,
   ChevronRight,
-  ImageIcon
+  ImageIcon,
 } from "lucide-react";
 import { format } from "date-fns";
 
@@ -23,7 +23,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
   Table,
@@ -31,9 +31,15 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 Bytes";
@@ -66,30 +72,36 @@ const files = [
     name: "project-proposal.docx",
     type: "document",
     size: 2500000,
-    uploadDate: new Date(2025, 3, 15)
+    uploadDate: new Date(2025, 3, 15),
   },
   {
     id: 2,
     name: "company-logo.png",
     type: "image",
     size: 1200000,
-    uploadDate: new Date(2025, 3, 14)
+    uploadDate: new Date(2025, 3, 14),
   },
   {
     id: 3,
     name: "presentation.pptx",
     type: "document",
     size: 5600000,
-    uploadDate: new Date(2025, 3, 13)
+    uploadDate: new Date(2025, 3, 13),
   },
-  { id: 4, name: "budget.xlsx", type: "document", size: 980000, uploadDate: new Date(2025, 2, 12) },
+  {
+    id: 4,
+    name: "budget.xlsx",
+    type: "document",
+    size: 980000,
+    uploadDate: new Date(2025, 2, 12),
+  },
   {
     id: 5,
     name: "product-video.mp4",
     type: "video",
     size: 158000000,
-    uploadDate: new Date(2025, 3, 11)
-  }
+    uploadDate: new Date(2025, 3, 11),
+  },
 ];
 
 export function TableRecentFiles() {

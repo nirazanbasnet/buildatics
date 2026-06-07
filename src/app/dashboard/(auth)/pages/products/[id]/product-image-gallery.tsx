@@ -21,7 +21,7 @@ export default function ProductImageGallery() {
     `/images/products/03.jpeg`,
     `/images/products/04.jpeg`,
     `/images/products/05.jpeg`,
-    `/images/products/06.jpeg`
+    `/images/products/06.jpeg`,
   ];
 
   return (
@@ -30,7 +30,7 @@ export default function ProductImageGallery() {
         style={
           {
             "--swiper-navigation-color": "var(--primary)",
-            "--swiper-pagination-color": "var(--primary)"
+            "--swiper-pagination-color": "var(--primary)",
           } as React.CSSProperties
         }
         loop={true}

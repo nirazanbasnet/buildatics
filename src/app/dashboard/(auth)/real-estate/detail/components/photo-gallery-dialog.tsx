@@ -6,7 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import {
   Dialog,
@@ -14,7 +14,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import type { ListingData } from "../../types";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";

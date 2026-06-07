@@ -4,7 +4,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -25,7 +25,9 @@ export default function SavingGoal() {
         <div className="space-y-4">
           <div className="font-display text-4xl">
             $1052.98
-            <span className="text-muted-foreground ml-2 text-sm font-normal">of $1,200</span>
+            <span className="text-muted-foreground ml-2 text-sm font-normal">
+              of $1,200
+            </span>
           </div>
           <Progress
             value={75}

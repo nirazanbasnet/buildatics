@@ -12,7 +12,9 @@ export function ExpenseCard() {
         <div className="flex items-center text-xs">
           <ArrowDownIcon className="mr-1 size-3 text-red-500" />
           <span className="font-medium text-red-500">6.0%</span>
-          <span className="text-muted-foreground ml-1">Compare from last month</span>
+          <span className="text-muted-foreground ml-1">
+            Compare from last month
+          </span>
         </div>
       </CardHeader>
     </Card>

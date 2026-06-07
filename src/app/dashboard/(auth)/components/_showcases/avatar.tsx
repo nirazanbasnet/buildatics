@@ -17,7 +17,9 @@ export default function AvatarShowcase() {
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarFallback className="bg-primary text-primary-foreground">N</AvatarFallback>
+          <AvatarFallback className="bg-primary text-primary-foreground">
+            N
+          </AvatarFallback>
         </Avatar>
       </ShowcaseSection>
 

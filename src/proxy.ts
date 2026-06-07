@@ -8,7 +8,7 @@ const GUEST_PREFIXES = [
   "/login",
   "/dashboard/login",
   "/dashboard/register",
-  "/dashboard/forgot-password"
+  "/dashboard/forgot-password",
 ];
 // Always reachable regardless of auth state (error screens, etc.).
 const PUBLIC_PREFIXES = ["/dashboard/pages/error"];
@@ -29,7 +29,9 @@ export function proxy(request: NextRequest) {
 
   // Entry points: send users to the right place based on auth state.
   if (pathname === "/" || pathname === "/dashboard") {
-    return NextResponse.redirect(new URL(isAuthed ? APP_HOME : LOGIN_PATH, request.url));
+    return NextResponse.redirect(
+      new URL(isAuthed ? APP_HOME : LOGIN_PATH, request.url),
+    );
   }
 
   const isGuestPath = hasPrefix(pathname, GUEST_PREFIXES);
@@ -62,6 +64,6 @@ export const config = {
     "/quotation/:path*",
     "/profile/:path*",
     "/users/:path*",
-    "/team/:path*"
-  ]
+    "/team/:path*",
+  ],
 };

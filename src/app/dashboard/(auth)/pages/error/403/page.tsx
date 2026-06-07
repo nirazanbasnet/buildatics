@@ -7,7 +7,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "The unauthorized 403 page template. Built with shadcn/ui, Tailwind CSS and Next.js.",
-    canonical: "/pages/error/403"
+    canonical: "/pages/error/403",
   });
 }
 
@@ -16,10 +16,18 @@ export default function Page() {
     <div className="flex h-[calc(100vh-6rem)] items-center justify-center">
       <div className="text-center">
         <figure className="m-auto w-40 lg:w-60">
-          <img width="300px" height="200px" src={`/403.svg`} className="w-full" alt="..." />
+          <img
+            width="300px"
+            height="200px"
+            src={`/403.svg`}
+            className="w-full"
+            alt="..."
+          />
         </figure>
         <div className="mt-6 space-y-4 lg:mt-8">
-          <h1 className="text-3xl font-bold tracking-tight lg:text-5xl">No Authorization</h1>
+          <h1 className="text-3xl font-bold tracking-tight lg:text-5xl">
+            No Authorization
+          </h1>
           <p className="text-muted-foreground">
             You do not appear to have permission to access this page
           </p>

@@ -22,7 +22,7 @@ export const items: Booking[] = [
     status: "finished",
     room: 1,
     timeSlot: "07:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928310",
@@ -33,7 +33,7 @@ export const items: Booking[] = [
     status: "cancelled",
     room: 2,
     timeSlot: "07:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928311",
@@ -44,7 +44,7 @@ export const items: Booking[] = [
     status: "approved",
     room: 3,
     timeSlot: "07:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928312",
@@ -55,7 +55,7 @@ export const items: Booking[] = [
     status: "pending",
     room: 1,
     timeSlot: "09:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928313",
@@ -66,7 +66,7 @@ export const items: Booking[] = [
     status: "approved",
     room: 2,
     timeSlot: "09:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928314",
@@ -77,7 +77,7 @@ export const items: Booking[] = [
     status: "approved",
     room: 1,
     timeSlot: "11:00 AM",
-    date: new Date().toISOString().split("T")[0]
+    date: new Date().toISOString().split("T")[0],
   },
   {
     id: "ID1928315",
@@ -88,8 +88,8 @@ export const items: Booking[] = [
     status: "approved",
     room: 2,
     timeSlot: "11:00 AM",
-    date: new Date().toISOString().split("T")[0]
-  }
+    date: new Date().toISOString().split("T")[0],
+  },
 ];
 
 export const timeSlots = [
@@ -99,7 +99,7 @@ export const timeSlots = [
   "10:00 AM",
   "11:00 AM",
   "12:00 AM",
-  "13:00 AM"
+  "13:00 AM",
 ];
 
 export const rooms = [
@@ -109,12 +109,12 @@ export const rooms = [
   { value: "4", label: "Room 4" },
   { value: "5", label: "Room 5" },
   { value: "6", label: "Room 6" },
-  { value: "7", label: "Room 7" }
+  { value: "7", label: "Room 7" },
 ];
 
 export const statuses = [
   { value: "pending", label: "Pending" },
   { value: "approved", label: "Approved" },
   { value: "completed", label: "Completed" },
-  { value: "cancelled", label: "Cancelled" }
+  { value: "cancelled", label: "Cancelled" },
 ];

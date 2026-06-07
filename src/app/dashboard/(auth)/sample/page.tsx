@@ -5,7 +5,13 @@ import { ArrowRight, type LucideIcon } from "lucide-react";
 
 import { referenceNavItems } from "@src/components/layout/sidebar/reference-nav-items";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 type FlatItem = {
   title: string;
@@ -34,7 +40,7 @@ function flattenNav(): { group: string; items: FlatItem[] }[] {
             isComing: sub.isComing,
             isNew: sub.isNew,
             isDataBadge: sub.isDataBadge,
-            newTab: sub.newTab
+            newTab: sub.newTab,
           });
         }
       } else {
@@ -46,7 +52,7 @@ function flattenNav(): { group: string; items: FlatItem[] }[] {
           isComing: entry.isComing,
           isNew: entry.isNew,
           isDataBadge: entry.isDataBadge,
-          newTab: entry.newTab
+          newTab: entry.newTab,
         });
       }
     }
@@ -61,10 +67,12 @@ export default function SampleDashboardPage() {
   return (
     <div className="space-y-8">
       <header className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">Sample Dashboard</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Sample Dashboard
+        </h1>
         <p className="text-muted-foreground text-sm">
-          Reference index of every sidebar navigation item ({total} total). Click any tile to jump
-          to that page.
+          Reference index of every sidebar navigation item ({total} total).
+          Click any tile to jump to that page.
         </p>
       </header>
 
@@ -73,7 +81,10 @@ export default function SampleDashboardPage() {
           <h2 className="text-lg font-semibold">{section.group}</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {section.items.map((item) => (
-              <NavCard key={`${item.group}-${item.title}-${item.href}`} item={item} />
+              <NavCard
+                key={`${item.group}-${item.title}-${item.href}`}
+                item={item}
+              />
             ))}
           </div>
         </section>
@@ -104,12 +115,17 @@ function NavCard({ item }: { item: FlatItem }) {
         <div className="flex flex-wrap items-center gap-2">
           <code className="text-muted-foreground text-xs">{item.href}</code>
           {item.isNew ? (
-            <Badge variant="outline" className="border-green-400 text-green-600">
+            <Badge
+              variant="outline"
+              className="border-green-400 text-green-600"
+            >
               New
             </Badge>
           ) : null}
           {item.isComing ? <Badge variant="outline">Coming</Badge> : null}
-          {item.isDataBadge ? <Badge variant="secondary">{item.isDataBadge}</Badge> : null}
+          {item.isDataBadge ? (
+            <Badge variant="secondary">{item.isDataBadge}</Badge>
+          ) : null}
         </div>
       </CardContent>
     </Card>

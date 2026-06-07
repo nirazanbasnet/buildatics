@@ -1,31 +1,44 @@
 "use client";
 
-import { Label, PolarGrid, PolarRadiusAxis, RadialBar, RadialBarChart } from "recharts";
+import {
+  Label,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadialBar,
+  RadialBarChart,
+} from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 
-const chartData = [{ browser: "safari", visitors: 200, fill: "var(--color-safari)" }];
+const chartData = [
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+];
 
 const chartConfig = {
   visitors: {
-    label: "Visitors"
+    label: "Visitors",
   },
   safari: {
     label: "Safari",
-    color: "var(--primary)"
-  }
+    color: "var(--primary)",
+  },
 } satisfies ChartConfig;
 
 export function TargetCard() {
   return (
     <Card className="gap-2">
       <CardHeader>
-        <CardTitle className="font-display text-xl">Your target is incomplete</CardTitle>
+        <CardTitle className="font-display text-xl">
+          Your target is incomplete
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-2">
           <div>
-            <ChartContainer config={chartConfig} className="mx-auto aspect-square h-[60px]">
+            <ChartContainer
+              config={chartConfig}
+              className="mx-auto aspect-square h-[60px]"
+            >
               <RadialBarChart
                 data={chartData}
                 startAngle={0}
@@ -68,8 +81,8 @@ export function TargetCard() {
             </ChartContainer>
           </div>
           <p className="text-muted-foreground text-sm">
-            You have completed <span className="text-orange-500">48%</span> of the given target, you
-            can also check your status
+            You have completed <span className="text-orange-500">48%</span> of
+            the given target, you can also check your status
           </p>
         </div>
       </CardContent>

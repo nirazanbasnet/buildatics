@@ -7,7 +7,7 @@ const COLUMNS: Array<{ header: string; value: (r: QuotationRow) => string }> = [
   { header: "Site Address", value: (r) => r.siteAddress },
   { header: "Quote Date", value: (r) => r.quoteDate },
   { header: "Expiry Date", value: (r) => r.expiryDate },
-  { header: "Status", value: (r) => r.statusLabel }
+  { header: "Status", value: (r) => r.statusLabel },
 ];
 
 function escapeCell(value: string): string {
@@ -16,12 +16,19 @@ function escapeCell(value: string): string {
 
 export function quotesToCsv(rows: QuotationRow[]): string {
   const header = COLUMNS.map((c) => c.header).join(",");
-  const body = rows.map((r) => COLUMNS.map((c) => escapeCell(c.value(r))).join(",")).join("\n");
+  const body = rows
+    .map((r) => COLUMNS.map((c) => escapeCell(c.value(r))).join(","))
+    .join("\n");
   return `${header}\n${body}`;
 }
 
-export function downloadQuotesCsv(rows: QuotationRow[], filename = "quotations.csv"): void {
-  const blob = new Blob([quotesToCsv(rows)], { type: "text/csv;charset=utf-8;" });
+export function downloadQuotesCsv(
+  rows: QuotationRow[],
+  filename = "quotations.csv",
+): void {
+  const blob = new Blob([quotesToCsv(rows)], {
+    type: "text/csv;charset=utf-8;",
+  });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

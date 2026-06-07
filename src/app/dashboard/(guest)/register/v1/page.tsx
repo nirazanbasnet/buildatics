@@ -11,7 +11,7 @@ export async function generateMetadata() {
     title: "Register Page",
     description:
       "A login form with email and password. There's an option to login with Google and a link to sign up if you don't have an account.",
-    canonical: "/register/v1"
+    canonical: "/register/v1",
   });
 }
 
@@ -102,7 +102,9 @@ export default function Page() {
           <div className="mt-6">
             <div className="flex items-center gap-3">
               <div className="w-full border-t" />
-              <span className="text-muted-foreground shrink-0 text-sm">or continue with</span>
+              <span className="text-muted-foreground shrink-0 text-sm">
+                or continue with
+              </span>
               <div className="w-full border-t" />
             </div>
 

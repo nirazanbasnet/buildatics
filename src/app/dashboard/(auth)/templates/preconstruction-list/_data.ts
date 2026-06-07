@@ -11,13 +11,15 @@ export type PreconstructionListProject = {
   progress: number;
 };
 
-export const preconstructionListStatusLabels: Record<PreconstructionListStatus, string> = {
-  "in-progress": "In Progress"
+export const preconstructionListStatusLabels: Record<
+  PreconstructionListStatus,
+  string
+> = {
+  "in-progress": "In Progress",
 };
 
-export const preconstructionListProjects: PreconstructionListProject[] = Array.from(
-  { length: 15 },
-  (_, i) => ({
+export const preconstructionListProjects: PreconstructionListProject[] =
+  Array.from({ length: 15 }, (_, i) => ({
     id: `pr-${String(i + 1).padStart(3, "0")}`,
     projectNo: "#PR1000",
     address: "LotNo, streetNo streetName, suburb postCode",
@@ -25,6 +27,5 @@ export const preconstructionListProjects: PreconstructionListProject[] = Array.f
     stage: "stage_name",
     council: "client_name",
     developer: "developer_name",
-    progress: 50
-  })
-);
+    progress: 50,
+  }));

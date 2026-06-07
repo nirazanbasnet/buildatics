@@ -19,13 +19,21 @@ type LoginFormProps = {
 };
 
 export function LoginForm({ className }: LoginFormProps) {
-  const [state, formAction, isPending] = useActionState(loginAction, initialState);
+  const [state, formAction, isPending] = useActionState(
+    loginAction,
+    initialState,
+  );
 
   return (
-    <div className={cn("w-full max-w-md space-y-8 px-4", className)} data-slot="login-form">
+    <div
+      className={cn("w-full max-w-md space-y-8 px-4", className)}
+      data-slot="login-form"
+    >
       <div className="text-center">
         <h2 className="mt-6 text-3xl font-bold">Welcome back</h2>
-        <p className="text-muted-foreground mt-2 text-sm">Please sign in to your account</p>
+        <p className="text-muted-foreground mt-2 text-sm">
+          Please sign in to your account
+        </p>
       </div>
 
       <form action={formAction} className="mt-8 space-y-6" noValidate>
@@ -54,7 +62,9 @@ export function LoginForm({ className }: LoginFormProps) {
               placeholder="Email address"
             />
             {state.fieldErrors?.email ? (
-              <p className="text-destructive text-sm">{state.fieldErrors.email}</p>
+              <p className="text-destructive text-sm">
+                {state.fieldErrors.email}
+              </p>
             ) : null}
           </div>
           <div className="space-y-1">
@@ -72,7 +82,9 @@ export function LoginForm({ className }: LoginFormProps) {
               placeholder="Password"
             />
             {state.fieldErrors?.password ? (
-              <p className="text-destructive text-sm">{state.fieldErrors.password}</p>
+              <p className="text-destructive text-sm">
+                {state.fieldErrors.password}
+              </p>
             ) : null}
           </div>
           <div className="text-end">
@@ -95,12 +107,19 @@ export function LoginForm({ className }: LoginFormProps) {
       <div className="mt-6">
         <div className="flex items-center gap-3">
           <div className="w-full border-t" />
-          <span className="text-muted-foreground shrink-0 text-sm">or continue with</span>
+          <span className="text-muted-foreground shrink-0 text-sm">
+            or continue with
+          </span>
           <div className="w-full border-t" />
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
-          <Button variant="outline" className="w-full" disabled title="Coming soon">
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled
+            title="Coming soon"
+          >
             <svg viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -121,7 +140,12 @@ export function LoginForm({ className }: LoginFormProps) {
             </svg>
             Google
           </Button>
-          <Button variant="outline" className="w-full" disabled title="Coming soon">
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled
+            title="Coming soon"
+          >
             <GithubIcon />
             GitHub
           </Button>

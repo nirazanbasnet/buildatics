@@ -9,7 +9,7 @@ export async function generateMetadata() {
     title: "POS System App",
     description:
       "Product and order management application template for restaurants or online businesses. Built with shadcn/ui, Next.js and Tailwind CSS.",
-    canonical: "/apps/ai-chat"
+    canonical: "/apps/ai-chat",
   });
 }
 

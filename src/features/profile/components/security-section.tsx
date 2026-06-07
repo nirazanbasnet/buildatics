@@ -3,7 +3,13 @@
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
@@ -18,7 +24,9 @@ type SecuritySectionProps = {
 // Persisting the 2FA toggle reuses UserProfile/Update (no dedicated endpoint), so we resend the
 // current name/phone alongside the new flag to avoid clobbering them.
 export function SecuritySection({ profile }: SecuritySectionProps) {
-  const [twoFactor, setTwoFactor] = useState(profile.emailOtp2FAEnabled ?? false);
+  const [twoFactor, setTwoFactor] = useState(
+    profile.emailOtp2FAEnabled ?? false,
+  );
   const [isPending, startTransition] = useTransition();
 
   function onToggle(next: boolean) {
@@ -35,12 +43,19 @@ export function SecuritySection({ profile }: SecuritySectionProps) {
           suburb: profile.address?.suburb ?? "",
           city: profile.address?.city ?? "",
           areaCode: profile.address?.areaCode ?? "",
-          state: profile.address?.state != null ? String(profile.address.state) : undefined
+          state:
+            profile.address?.state != null
+              ? String(profile.address.state)
+              : undefined,
         },
-        next
+        next,
       );
       if (res.ok) {
-        toast.success(next ? "Two-factor authentication enabled" : "Two-factor authentication disabled");
+        toast.success(
+          next
+            ? "Two-factor authentication enabled"
+            : "Two-factor authentication disabled",
+        );
       } else {
         setTwoFactor(previous);
         toast.error(res.error ?? "Failed to update two-factor authentication.");
@@ -62,7 +77,8 @@ export function SecuritySection({ profile }: SecuritySectionProps) {
             <div className="space-y-0.5">
               <Label htmlFor="email-otp-2fa">Email OTP</Label>
               <p className="text-muted-foreground text-sm">
-                Send a verification code to {profile.email ?? "your email"} on login.
+                Send a verification code to {profile.email ?? "your email"} on
+                login.
               </p>
             </div>
             <Switch
@@ -78,7 +94,9 @@ export function SecuritySection({ profile }: SecuritySectionProps) {
       <Card>
         <CardHeader>
           <CardTitle>Change password</CardTitle>
-          <CardDescription>Update the password you use to sign in.</CardDescription>
+          <CardDescription>
+            Update the password you use to sign in.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <ChangePasswordForm />

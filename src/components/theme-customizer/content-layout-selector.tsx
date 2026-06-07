@@ -14,7 +14,9 @@ export function ContentLayoutSelector() {
         className="w-full"
         value={theme.contentLayout}
         type="single"
-        onValueChange={(value) => setTheme({ ...theme, contentLayout: value as any })}
+        onValueChange={(value) =>
+          setTheme({ ...theme, contentLayout: value as any })
+        }
       >
         <ToggleGroupItem variant="outline" className="grow" value="full">
           Full

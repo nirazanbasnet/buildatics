@@ -15,14 +15,18 @@ import { SalesAnalyticsCard } from "./components/sales-analytics-card";
 import { PropertyOverviewCard } from "./components/property-overview-card";
 
 import data from "./data.json";
-import type { ActiveListingRow, FeaturedPropertyItem, RealEstateProperty } from "./types";
+import type {
+  ActiveListingRow,
+  FeaturedPropertyItem,
+  RealEstateProperty,
+} from "./types";
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMeta({
     title: "Real Estate Admin Dashboard",
     description:
       "Manage property listings, sales analytics, and lead tracking. A professional real estate admin page built with React, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/real-estate"
+    canonical: "/real-estate",
   });
 }
 
@@ -30,12 +34,14 @@ const iconMap = {
   users: <Users className="text-primary size-4" />,
   "dollar-sign": <DollarSign className="text-warning size-4" />,
   "building-2": <Building2 className="text-success size-4" />,
-  "check-circle": <CheckCircle className="text-warning size-4" />
+  "check-circle": <CheckCircle className="text-warning size-4" />,
 } as const;
 
 const dashboardData = data.dashboard;
 
-function isActiveProperty(property: RealEstateProperty): property is RealEstateProperty & {
+function isActiveProperty(
+  property: RealEstateProperty,
+): property is RealEstateProperty & {
   isActive: true;
   type: string;
   units: number;
@@ -47,7 +53,9 @@ function isActiveProperty(property: RealEstateProperty): property is RealEstateP
   return property.isActive === true;
 }
 
-function isFeaturedProperty(property: RealEstateProperty): property is RealEstateProperty & {
+function isFeaturedProperty(
+  property: RealEstateProperty,
+): property is RealEstateProperty & {
   isFeatured: true;
   type: string;
   featuredSold: number;
@@ -58,7 +66,9 @@ function isFeaturedProperty(property: RealEstateProperty): property is RealEstat
   return property.isFeatured === true;
 }
 
-function toActiveListingTableRows(properties: readonly RealEstateProperty[]): ActiveListingRow[] {
+function toActiveListingTableRows(
+  properties: readonly RealEstateProperty[],
+): ActiveListingRow[] {
   return properties.filter(isActiveProperty).map((property) => ({
     id: property.id,
     property: property.name,
@@ -69,12 +79,12 @@ function toActiveListingTableRows(properties: readonly RealEstateProperty[]): Ac
     cost: property.cost,
     leads: property.leads,
     views: property.views,
-    status: property.listingStatus
+    status: property.listingStatus,
   }));
 }
 
 function toFeaturedPropertyItem(
-  properties: readonly RealEstateProperty[]
+  properties: readonly RealEstateProperty[],
 ): FeaturedPropertyItem | null {
   const featuredProperty = properties.find(isFeaturedProperty);
   if (!featuredProperty) return null;
@@ -86,7 +96,7 @@ function toFeaturedPropertyItem(
     sold: featuredProperty.featuredSold,
     rented: featuredProperty.featuredRented,
     views: featuredProperty.featuredViews,
-    leads: featuredProperty.featuredLeads
+    leads: featuredProperty.featuredLeads,
   };
 }
 
@@ -108,7 +118,9 @@ export default function Page() {
       <div className="gap-4 space-y-4 lg:grid lg:space-y-0 2xl:grid-cols-3">
         <PerformanceChart />
         <div className="space-y-4">
-          {featuredProperty ? <FeaturedProperty item={featuredProperty} /> : null}
+          {featuredProperty ? (
+            <FeaturedProperty item={featuredProperty} />
+          ) : null}
           <DealsProgress />
         </div>
         <ReminderCard items={dashboardData.reminders} />

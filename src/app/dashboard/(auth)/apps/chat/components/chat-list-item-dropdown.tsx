@@ -6,7 +6,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import useChatStore from "../useChatStore";
 
@@ -18,7 +18,9 @@ export function ChatUserDropdown({ children }: { children: React.ReactNode }) {
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={() => toggleProfileSheet(true)}>View profile</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => toggleProfileSheet(true)}>
+            View profile
+          </DropdownMenuItem>
           <DropdownMenuItem>Add to archive</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Block</DropdownMenuItem>

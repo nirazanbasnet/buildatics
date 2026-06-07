@@ -14,7 +14,7 @@ import {
   SquareIcon,
   ThumbsDownIcon,
   ThumbsUpIcon,
-  X
+  X,
 } from "lucide-react";
 import { CodeIcon, CopyIcon } from "@radix-ui/react-icons";
 import Lottie from "lottie-react";
@@ -23,7 +23,7 @@ import {
   Input,
   PromptInputAction,
   PromptInputActions,
-  PromptInputTextarea
+  PromptInputTextarea,
 } from "@/components/ui/custom/prompt/input";
 import { Button } from "@/components/ui/button";
 import { Suggestion } from "@/components/ui/custom/prompt/suggestion";
@@ -32,7 +32,7 @@ import {
   Message,
   MessageAction,
   MessageActions,
-  MessageContent
+  MessageContent,
 } from "@/components/ui/custom/prompt/message";
 import { Markdown } from "@/components/ui/custom/prompt/markdown";
 import { PromptLoader } from "@/components/ui/custom/prompt/loader";
@@ -42,7 +42,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { AIUpgradePricingModal } from "./ai-upgrade-modal";
 
@@ -78,7 +78,8 @@ export default function AIChatInterface() {
     }
   }, [selectedConversation]);
 
-  const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   const streamResponse = async () => {
     if (isStreaming) return;
@@ -94,8 +95,8 @@ export default function AIChatInterface() {
           id: newMessageId,
           role: "user",
           content: prompt,
-          files: files
-        }
+          files: files,
+        },
       ]);
 
       setPrompt("");
@@ -111,8 +112,8 @@ export default function AIChatInterface() {
         {
           id: newMessageId + 1,
           role: "assistant",
-          content: ""
-        }
+          content: "",
+        },
       ]);
 
       let charIndex = 0;
@@ -123,8 +124,10 @@ export default function AIChatInterface() {
           streamContentRef.current += fullResponse[charIndex];
           setMessages((prev) =>
             prev.map((msg) =>
-              msg.id === newMessageId + 1 ? { ...msg, content: streamContentRef.current } : msg
-            )
+              msg.id === newMessageId + 1
+                ? { ...msg, content: streamContentRef.current }
+                : msg,
+            ),
           );
           charIndex++;
         } else {
@@ -160,7 +163,7 @@ export default function AIChatInterface() {
   const FileListItem = ({
     file,
     dismiss = true,
-    index
+    index,
   }: {
     file: File;
     dismiss?: boolean;
@@ -180,7 +183,9 @@ export default function AIChatInterface() {
     </div>
   );
 
-  const activeCategoryData = suggestionGroups.find((group) => group.label === activeCategory);
+  const activeCategoryData = suggestionGroups.find(
+    (group) => group.label === activeCategory,
+  );
 
   const showCategorySuggestions = activeCategory !== "";
 
@@ -188,7 +193,7 @@ export default function AIChatInterface() {
     <div className="mx-auto flex h-full w-full max-w-4xl flex-col items-center justify-center space-y-4 lg:p-4">
       <ChatContainer
         className={cn("relative w-full flex-1 space-y-4 pe-2 pt-10 md:pt-0", {
-          hidden: !isFirstResponse
+          hidden: !isFirstResponse,
         })}
         ref={containerRef}
         scrollToRef={bottomRef}
@@ -200,36 +205,52 @@ export default function AIChatInterface() {
           return (
             <Message
               key={message.id}
-              className={message.role === "user" ? "justify-end" : "justify-start"}
+              className={
+                message.role === "user" ? "justify-end" : "justify-start"
+              }
             >
               <div
                 className={cn("max-w-[85%] flex-1 sm:max-w-[75%]", {
-                  "justify-end text-end": !isAssistant
+                  "justify-end text-end": !isAssistant,
                 })}
               >
                 {isAssistant ? (
                   <div className="space-y-2">
                     <div className="bg-muted text-foreground prose rounded-lg border p-4">
-                      <Markdown className={"space-y-4"}>{message.content}</Markdown>
+                      <Markdown className={"space-y-4"}>
+                        {message.content}
+                      </Markdown>
                     </div>
                     <MessageActions
                       className={cn(
                         "flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100",
-                        isLastMessage && "opacity-100"
+                        isLastMessage && "opacity-100",
                       )}
                     >
                       <MessageAction tooltip="Copy" delayDuration={100}>
-                        <Button variant="ghost" size="icon" className="rounded-full">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="rounded-full"
+                        >
                           <CopyIcon />
                         </Button>
                       </MessageAction>
                       <MessageAction tooltip="Upvote" delayDuration={100}>
-                        <Button variant="ghost" size="icon" className="rounded-full">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="rounded-full"
+                        >
                           <ThumbsUpIcon />
                         </Button>
                       </MessageAction>
                       <MessageAction tooltip="Downvote" delayDuration={100}>
-                        <Button variant="ghost" size="icon" className="rounded-full">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="rounded-full"
+                        >
                           <ThumbsDownIcon />
                         </Button>
                       </MessageAction>
@@ -239,7 +260,12 @@ export default function AIChatInterface() {
                   <div className="flex flex-col items-end space-y-2">
                     <div className="flex flex-wrap justify-end gap-2">
                       {message.files.map((file, index) => (
-                        <FileListItem key={index} index={index} file={file} dismiss={false} />
+                        <FileListItem
+                          key={index}
+                          index={index}
+                          file={file}
+                          dismiss={false}
+                        />
                       ))}
                     </div>
                     {message.content ? (
@@ -279,7 +305,12 @@ export default function AIChatInterface() {
       {!isFirstResponse && (
         <div className="mb-10">
           <div className="mx-auto -mt-36 hidden w-72 mask-b-from-100% mask-radial-[50%_50%] mask-radial-from-0% md:block">
-            <Lottie className="w-full" animationData={aiSphereAnimation} loop autoplay />
+            <Lottie
+              className="w-full"
+              animationData={aiSphereAnimation}
+              loop
+              autoplay
+            />
           </div>
 
           <h1 className="text-center text-2xl leading-normal font-medium lg:text-4xl">
@@ -315,7 +346,10 @@ export default function AIChatInterface() {
             </div>
           )}
 
-          <PromptInputTextarea placeholder="Ask me anything..." className="min-h-auto p-4" />
+          <PromptInputTextarea
+            placeholder="Ask me anything..."
+            className="min-h-auto p-4"
+          />
 
           <PromptInputActions className="flex items-center justify-between gap-2 p-3">
             <div className="flex items-center gap-2">
@@ -355,11 +389,17 @@ export default function AIChatInterface() {
 
             <div className="flex gap-2">
               <PromptInputAction tooltip="Voice input">
-                <Button variant="outline" size="icon" className="size-9 rounded-full">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-9 rounded-full"
+                >
                   <MicIcon size={18} />
                 </Button>
               </PromptInputAction>
-              <PromptInputAction tooltip={isStreaming ? "Stop generation" : "Send message"}>
+              <PromptInputAction
+                tooltip={isStreaming ? "Stop generation" : "Send message"}
+              >
                 <Button
                   variant="default"
                   size="icon"
@@ -425,7 +465,12 @@ const suggestionGroups = [
     icon: BrainIcon,
     label: "Summary",
     highlight: "Summarize",
-    items: ["Summarize a document", "Summarize a video", "Summarize a podcast", "Summarize a book"]
+    items: [
+      "Summarize a document",
+      "Summarize a video",
+      "Summarize a podcast",
+      "Summarize a book",
+    ],
   },
   {
     icon: CodeIcon,
@@ -435,8 +480,8 @@ const suggestionGroups = [
       "Help me write React components",
       "Help me debug code",
       "Help me learn Python",
-      "Help me learn SQL"
-    ]
+      "Help me learn SQL",
+    ],
   },
   {
     icon: DribbbleIcon,
@@ -446,8 +491,8 @@ const suggestionGroups = [
       "Design a small logo",
       "Design a hero section",
       "Design a landing page",
-      "Design a social media post"
-    ]
+      "Design a social media post",
+    ],
   },
   {
     icon: GlobeIcon,
@@ -457,7 +502,7 @@ const suggestionGroups = [
       "Research the best practices for SEO",
       "Research the best running shoes",
       "Research the best restaurants in Paris",
-      "Research the best AI tools"
-    ]
-  }
+      "Research the best AI tools",
+    ],
+  },
 ];

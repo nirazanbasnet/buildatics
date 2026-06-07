@@ -13,7 +13,7 @@ export async function generateMetadata() {
     additionalTitle: true,
     description:
       "Manage user alerts, mark all as read, and configure notification preferences. A professional notifications page built with React, Next.js, TypeScript, Tailwind CSS, and shadcn/ui.",
-    canonical: "/pages/notifications"
+    canonical: "/pages/notifications",
   });
 }
 
@@ -21,7 +21,9 @@ export default async function Page() {
   return (
     <div className="mx-auto max-w-4xl space-y-4 xl:mt-8">
       <div className="flex items-start justify-between">
-        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">Notifications</h1>
+        <h1 className="text-xl font-bold tracking-tight lg:text-2xl">
+          Notifications
+        </h1>
         <div className="flex items-center gap-2">
           <Button>
             <Check />

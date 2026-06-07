@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function PropertyListItem({
   property,
-  view = "facade"
+  view = "facade",
 }: {
   property: Property;
   view?: PropertyView;
@@ -30,7 +30,10 @@ export function PropertyListItem({
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <h3 className="truncate font-semibold">{property.title}</h3>
-          <Badge variant="outline" className="gap-1 rounded-full px-2 py-0 text-xs">
+          <Badge
+            variant="outline"
+            className="gap-1 rounded-full px-2 py-0 text-xs"
+          >
             <Clock className="size-3" />v{property.version}
           </Badge>
           <Badge variant="secondary" className="rounded-full px-2 py-0 text-xs">
@@ -57,7 +60,13 @@ export function PropertyListItem({
   );
 }
 
-function CompactStat({ icon: Icon, value }: { icon: typeof BedDouble; value: number }) {
+function CompactStat({
+  icon: Icon,
+  value,
+}: {
+  icon: typeof BedDouble;
+  value: number;
+}) {
   return (
     <div className="text-muted-foreground flex items-center gap-1">
       <Icon className="size-4" />

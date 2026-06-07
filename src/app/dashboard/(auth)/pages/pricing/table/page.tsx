@@ -11,7 +11,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -30,8 +30,8 @@ export default function Page() {
         support: "Basic support",
         integrations: "Limited integrations",
         analytics: false,
-        api: false
-      }
+        api: false,
+      },
     },
     {
       name: "Pro",
@@ -43,8 +43,8 @@ export default function Page() {
         support: "Priority support",
         integrations: "Advanced integrations",
         analytics: true,
-        api: false
-      }
+        api: false,
+      },
     },
     {
       name: "Enterprise",
@@ -56,14 +56,17 @@ export default function Page() {
         support: "24/7 premium support",
         integrations: "Custom integrations",
         analytics: true,
-        api: true
-      }
-    }
+        api: true,
+      },
+    },
   ];
 
   const formatPrice = (price: number) => `$${price.toFixed(2)}`;
 
-  const calculateYearlySavings = (monthlyPrice: number, yearlyPrice: number) => {
+  const calculateYearlySavings = (
+    monthlyPrice: number,
+    yearlyPrice: number,
+  ) => {
     const yearlyCost = monthlyPrice * 12;
     const savings = yearlyCost - yearlyPrice;
     const savingsPercentage = (savings / yearlyCost) * 100;
@@ -73,15 +76,21 @@ export default function Page() {
   return (
     <div className="mx-auto max-w-(--breakpoint-lg) lg:py-16">
       <div className="mb-6 flex flex-col items-start justify-between space-y-2 lg:flex-row lg:items-center">
-        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">Choose Your Plan</h1>
+        <h1 className="text-2xl font-bold tracking-tight lg:text-3xl">
+          Choose Your Plan
+        </h1>
         <div className="flex items-start justify-center space-x-4 lg:items-center">
-          <span className={`text-sm ${!isYearly ? "font-bold" : ""}`}>Monthly</span>
+          <span className={`text-sm ${!isYearly ? "font-bold" : ""}`}>
+            Monthly
+          </span>
           <Switch
             checked={isYearly}
             onCheckedChange={setIsYearly}
             aria-label="Toggle yearly pricing"
           />
-          <span className={`text-sm ${isYearly ? "font-bold" : ""}`}>Yearly</span>
+          <span className={`text-sm ${isYearly ? "font-bold" : ""}`}>
+            Yearly
+          </span>
         </div>
       </div>
 
@@ -97,7 +106,12 @@ export default function Page() {
                       {tier.name}
                       {isYearly && (
                         <Badge variant="success" className="absolute ms-2">
-                          Save {calculateYearlySavings(tier.monthlyPrice, tier.yearlyPrice)}%
+                          Save{" "}
+                          {calculateYearlySavings(
+                            tier.monthlyPrice,
+                            tier.yearlyPrice,
+                          )}
+                          %
                         </Badge>
                       )}
                     </TableHead>
@@ -110,8 +124,12 @@ export default function Page() {
                   {pricingTiers.map((tier, index) => (
                     <TableCell key={index} className="text-center">
                       <div className="font-display text-2xl">
-                        {isYearly ? formatPrice(tier.yearlyPrice) : formatPrice(tier.monthlyPrice)}
-                        <span className="text-sm font-normal">/{isYearly ? "year" : "month"}</span>
+                        {isYearly
+                          ? formatPrice(tier.yearlyPrice)
+                          : formatPrice(tier.monthlyPrice)}
+                        <span className="text-sm font-normal">
+                          /{isYearly ? "year" : "month"}
+                        </span>
                       </div>
                     </TableCell>
                   ))}
@@ -122,7 +140,9 @@ export default function Page() {
                   >
                 ).map((feature) => (
                   <TableRow key={feature}>
-                    <TableCell className="font-medium capitalize">{feature}</TableCell>
+                    <TableCell className="font-medium capitalize">
+                      {feature}
+                    </TableCell>
                     {pricingTiers.map((tier, index) => (
                       <TableCell key={index} className="text-center">
                         {typeof tier.features[feature] === "boolean" ? (
@@ -157,7 +177,9 @@ export default function Page() {
         <div className="grid gap-4 md:grid-cols-3">
           <Card className="gap-2">
             <CardHeader>
-              <CardTitle className="lg:text-xl">Comprehensive Library</CardTitle>
+              <CardTitle className="lg:text-xl">
+                Comprehensive Library
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
@@ -180,7 +202,9 @@ export default function Page() {
               <CardTitle className="lg:text-xl">Flexible Learning</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground">Study at your own pace, anytime and anywhere</p>
+              <p className="text-muted-foreground">
+                Study at your own pace, anytime and anywhere
+              </p>
             </CardContent>
           </Card>
         </div>

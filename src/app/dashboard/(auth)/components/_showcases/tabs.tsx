@@ -15,13 +15,22 @@ export default function TabsShowcase() {
               <TabsTrigger value="activity">Activity</TabsTrigger>
               <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
-            <TabsContent value="overview" className="text-muted-foreground text-sm">
+            <TabsContent
+              value="overview"
+              className="text-muted-foreground text-sm"
+            >
               Overview content
             </TabsContent>
-            <TabsContent value="activity" className="text-muted-foreground text-sm">
+            <TabsContent
+              value="activity"
+              className="text-muted-foreground text-sm"
+            >
               Activity content
             </TabsContent>
-            <TabsContent value="settings" className="text-muted-foreground text-sm">
+            <TabsContent
+              value="settings"
+              className="text-muted-foreground text-sm"
+            >
               Settings content
             </TabsContent>
           </Tabs>

@@ -13,7 +13,7 @@ import {
   SheetContent,
   SheetDescription,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
 import type { DesignProperty } from "@/features/designs";
 
@@ -26,7 +26,11 @@ type ImportDesignSheetProps = {
   onSaved?: () => void;
 };
 
-export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignSheetProps) {
+export function ImportDesignSheet({
+  open,
+  onOpenChange,
+  onSaved,
+}: ImportDesignSheetProps) {
   const [designs, setDesigns] = useState<DesignProperty[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [query, setQuery] = useState("");
@@ -51,7 +55,9 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
   const q = query.trim().toLowerCase();
   const filtered = q
     ? designs.filter(
-        (d) => d.title.toLowerCase().includes(q) || d.brand.toLowerCase().includes(q)
+        (d) =>
+          d.title.toLowerCase().includes(q) ||
+          d.brand.toLowerCase().includes(q),
       )
     : designs;
 
@@ -72,7 +78,10 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 p-0 sm:max-w-md">
+      <SheetContent
+        side="right"
+        className="flex w-full flex-col gap-0 p-0 sm:max-w-md"
+      >
         <SheetHeader className="border-b">
           <SheetTitle>Import from library</SheetTitle>
           <SheetDescription className="sr-only">
@@ -95,7 +104,10 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
         <div className="min-h-0 flex-1 space-y-2 overflow-y-auto px-4 py-4">
           {isLoading && !loaded ? (
             Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-lg border p-2">
+              <div
+                key={i}
+                className="flex items-center gap-3 rounded-lg border p-2"
+              >
                 <Skeleton className="size-16 rounded-md" />
                 <div className="flex-1 space-y-2">
                   <Skeleton className="h-4 w-32" />
@@ -106,7 +118,9 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
             ))
           ) : filtered.length === 0 ? (
             <p className="text-muted-foreground py-12 text-center text-sm">
-              {q ? "No designs match your search." : "No system designs available to import."}
+              {q
+                ? "No designs match your search."
+                : "No system designs available to import."}
             </p>
           ) : (
             filtered.map((design) => (
@@ -126,7 +140,9 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium">{design.title}</p>
                   {design.brand ? (
-                    <p className="text-muted-foreground truncate text-xs">{design.brand}</p>
+                    <p className="text-muted-foreground truncate text-xs">
+                      {design.brand}
+                    </p>
                   ) : null}
                 </div>
                 <Button
@@ -135,7 +151,9 @@ export function ImportDesignSheet({ open, onOpenChange, onSaved }: ImportDesignS
                   disabled={isImporting}
                   onClick={() => handleImport(design)}
                 >
-                  {isImporting && importingId === design.id ? "Importing…" : "Import"}
+                  {isImporting && importingId === design.id
+                    ? "Importing…"
+                    : "Import"}
                 </Button>
               </div>
             ))

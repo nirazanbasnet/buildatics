@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle
+  DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 
@@ -24,7 +24,10 @@ type ForgotPasswordLinkDialogProps = {
 };
 
 // Requests a reset link for the user and shows it for the admin to copy and share manually.
-export function ForgotPasswordLinkDialog({ user, onOpenChange }: ForgotPasswordLinkDialogProps) {
+export function ForgotPasswordLinkDialog({
+  user,
+  onOpenChange,
+}: ForgotPasswordLinkDialogProps) {
   const [isPending, startTransition] = useTransition();
   const [link, setLink] = useState<string | null>(null);
 
@@ -81,7 +84,11 @@ export function ForgotPasswordLinkDialog({ user, onOpenChange }: ForgotPasswordL
           </Button>
         </div>
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => onOpenChange(false)}
+          >
             Close
           </Button>
         </DialogFooter>

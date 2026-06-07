@@ -6,13 +6,13 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent
+  ChartTooltipContent,
 } from "@/components/ui/chart";
 import { Bar, BarChart, XAxis } from "recharts";
 
@@ -20,12 +20,12 @@ export function EcommerceTotalRevenueCard() {
   const chartConfig = {
     desktop: {
       label: "Desktop",
-      color: "var(--chart-1)"
+      color: "var(--chart-1)",
     },
     mobile: {
       label: "Mobile",
-      color: "var(--chart-2)"
-    }
+      color: "var(--chart-2)",
+    },
   } satisfies ChartConfig;
 
   const chartData = [
@@ -34,7 +34,7 @@ export function EcommerceTotalRevenueCard() {
     { month: "March", desktop: 240, mobile: 120 },
     { month: "April", desktop: 120, mobile: 190 },
     { month: "May", desktop: 110, mobile: 130 },
-    { month: "June", desktop: 250, mobile: 140 }
+    { month: "June", desktop: 250, mobile: 140 },
   ];
 
   return (
@@ -49,13 +49,17 @@ export function EcommerceTotalRevenueCard() {
                 <span className="text-muted-foreground text-xs tracking-wider uppercase">
                   Desktop
                 </span>
-                <span className="font-display text-lg leading-none sm:text-2xl">24,828</span>
+                <span className="font-display text-lg leading-none sm:text-2xl">
+                  24,828
+                </span>
               </button>
               <button className="flex flex-1 flex-col justify-center gap-2 text-left">
                 <span className="text-muted-foreground text-xs tracking-wider uppercase">
                   Mobile
                 </span>
-                <span className="font-display text-lg leading-none sm:text-2xl">25,010</span>
+                <span className="font-display text-lg leading-none sm:text-2xl">
+                  25,010
+                </span>
               </button>
             </div>
           </div>
@@ -69,7 +73,7 @@ export function EcommerceTotalRevenueCard() {
               data={chartData}
               margin={{
                 left: -6,
-                right: -6
+                right: -6,
               }}
             >
               <XAxis
@@ -79,7 +83,10 @@ export function EcommerceTotalRevenueCard() {
                 axisLine={false}
                 tickFormatter={(value) => value}
               />
-              <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dashed" />}
+              />
               <Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
               <Bar dataKey="mobile" fill="var(--color-mobile)" radius={8} />
             </BarChart>

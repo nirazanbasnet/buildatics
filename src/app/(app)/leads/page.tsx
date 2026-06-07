@@ -1,11 +1,16 @@
-import { getAllLeads, getLeadOptions, LeadsList, LEADS_PAGE_SIZE } from "@/features/leads";
+import {
+  getAllLeads,
+  getLeadOptions,
+  LeadsList,
+  LEADS_PAGE_SIZE,
+} from "@/features/leads";
 import { generateMeta } from "@/lib/utils";
 
 export function generateMetadata() {
   return generateMeta({
     title: "Leads",
     description: "Manage sales leads through the pipeline.",
-    canonical: "/leads"
+    canonical: "/leads",
   });
 }
 

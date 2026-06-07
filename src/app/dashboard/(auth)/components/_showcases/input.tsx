@@ -27,7 +27,11 @@ export default function InputShowcase() {
         <div className="w-72 space-y-3">
           <Input placeholder="Disabled" disabled />
           <Input placeholder="Invalid" aria-invalid />
-          <Input type="password" placeholder="Password" defaultValue="secret123" />
+          <Input
+            type="password"
+            placeholder="Password"
+            defaultValue="secret123"
+          />
         </div>
       </ShowcaseSection>
 

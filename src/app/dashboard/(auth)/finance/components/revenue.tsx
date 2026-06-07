@@ -2,14 +2,20 @@
 
 import { ArrowUpIcon, CreditCardIcon, TrendingUpIcon } from "lucide-react";
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const incomeData = [
   { category: "Rental", amount: 35000, color: "var(--chart-1)" },
   { category: "Investments", amount: 28000, color: "var(--chart-2)" },
   { category: "Business", amount: 18000, color: "var(--chart-3)" },
-  { category: "Freelance", amount: 11000, color: "var(--chart-4)" }
+  { category: "Freelance", amount: 11000, color: "var(--chart-4)" },
 ];
 
 export default function Revenue() {
@@ -30,7 +36,9 @@ export default function Revenue() {
           <div className="mb-4 flex items-center text-sm text-green-600">
             <TrendingUpIcon className="mr-1 size-4" />
             15.5%
-            <span className="text-muted-foreground ml-1">compared to last month</span>
+            <span className="text-muted-foreground ml-1">
+              compared to last month
+            </span>
           </div>
         </div>
 
@@ -41,7 +49,7 @@ export default function Revenue() {
               className="h-full"
               style={{
                 backgroundColor: item.color,
-                width: `${(item.amount / 92000) * 100}%`
+                width: `${(item.amount / 92000) * 100}%`,
               }}
             />
           ))}
@@ -49,9 +57,15 @@ export default function Revenue() {
 
         <div className="space-y-4">
           {incomeData.map((item, index) => (
-            <div key={index} className="flex items-center justify-between text-sm">
+            <div
+              key={index}
+              className="flex items-center justify-between text-sm"
+            >
               <div className="flex items-center gap-3">
-                <div className="size-3 rounded-full" style={{ backgroundColor: item.color }} />
+                <div
+                  className="size-3 rounded-full"
+                  style={{ backgroundColor: item.color }}
+                />
                 <span className="text-muted-foreground">{item.category}</span>
               </div>
               <span className="font-medium" suppressHydrationWarning>
@@ -65,7 +79,9 @@ export default function Revenue() {
         <div className="flex items-start">
           <CreditCardIcon className="text-muted-foreground mt-0.5 mr-3 h-5 w-5" />
           <div className="text-muted-foreground text-sm">
-            <div className="mb-1 font-medium">Passive income streams growing steadily.</div>
+            <div className="mb-1 font-medium">
+              Passive income streams growing steadily.
+            </div>
             <div>Automate your rental collection for better efficiency.</div>
           </div>
         </div>

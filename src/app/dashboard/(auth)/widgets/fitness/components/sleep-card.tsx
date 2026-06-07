@@ -8,7 +8,9 @@ export function SleepCard() {
     <Card>
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-muted-foreground text-sm font-medium">Sleep</CardTitle>
+          <CardTitle className="text-muted-foreground text-sm font-medium">
+            Sleep
+          </CardTitle>
           <Moon className="h-4 w-4 text-purple-500" />
         </div>
       </CardHeader>

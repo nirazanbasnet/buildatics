@@ -61,7 +61,9 @@ export function StudyProgress({ progress }: StudyProgressProps) {
             );
           })}
         </div>
-        <div className="bg-muted/50 text-muted-foreground rounded-lg p-3 text-sm">{message}</div>
+        <div className="bg-muted/50 text-muted-foreground rounded-lg p-3 text-sm">
+          {message}
+        </div>
       </CardContent>
     </Card>
   );

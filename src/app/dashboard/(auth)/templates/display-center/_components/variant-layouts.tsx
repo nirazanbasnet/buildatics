@@ -20,9 +20,17 @@ const defaultGrid = "lg:grid-cols-3";
 
 export function Variant1Layout({ view, gridClassName = defaultGrid }: Props) {
   return (
-    <div key={view ?? "facade"} className={cn("grid gap-5 sm:grid-cols-2", gridClassName)}>
+    <div
+      key={view ?? "facade"}
+      className={cn("grid gap-5 sm:grid-cols-2", gridClassName)}
+    >
       {properties.map((property, index) => (
-        <PropertyCard key={property.id} property={property} view={view} index={index} />
+        <PropertyCard
+          key={property.id}
+          property={property}
+          view={view}
+          index={index}
+        />
       ))}
     </div>
   );
@@ -40,9 +48,17 @@ export function Variant5Layout({ view }: Props) {
 
 export function Variant6Layout({ view, gridClassName = defaultGrid }: Props) {
   return (
-    <div key={view ?? "facade"} className={cn("grid gap-5 sm:grid-cols-2", gridClassName)}>
+    <div
+      key={view ?? "facade"}
+      className={cn("grid gap-5 sm:grid-cols-2", gridClassName)}
+    >
       {properties.map((property, index) => (
-        <PropertyCardV6 key={property.id} property={property} view={view} index={index} />
+        <PropertyCardV6
+          key={property.id}
+          property={property}
+          view={view}
+          index={index}
+        />
       ))}
     </div>
   );
@@ -53,7 +69,7 @@ export function Variant7Layout({
   detailEnabled,
   detailVariant,
   gridClassName = defaultGrid,
-  properties: items = properties
+  properties: items = properties,
 }: Props) {
   return (
     <div
@@ -78,7 +94,7 @@ export const VARIANT_LAYOUTS = {
   1: Variant1Layout,
   5: Variant5Layout,
   6: Variant6Layout,
-  7: Variant7Layout
+  7: Variant7Layout,
 } as const;
 
 export type VariantId = keyof typeof VARIANT_LAYOUTS;
