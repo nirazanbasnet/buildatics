@@ -21,6 +21,7 @@ import {
   ComponentIcon,
   FileTextIcon,
   HardHatIcon,
+  LibraryBigIcon,
   SettingsIcon,
   Share2Icon,
   UserIcon,
@@ -66,6 +67,11 @@ export const navItems: NavGroup[] = [
         title: "Design Library",
         href: "/design-library",
         icon: Building2Icon
+      },
+      {
+        title: "Company Library",
+        href: "/company-library",
+        icon: LibraryBigIcon
       }
     ]
   },

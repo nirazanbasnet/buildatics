@@ -41,6 +41,4 @@ tsconfig.tsbuildinfo
 .bun                 
 .output              
 /public/build
-
-.DS_Store
           
