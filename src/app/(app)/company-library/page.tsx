@@ -1,3 +1,5 @@
+import { AccessDenied } from "@src/components/access-denied";
+import { loadGuarded } from "@/features/auth/lib/guard";
 import {
   CompanyLibrary,
   getAllCompanyDesigns,
@@ -17,7 +19,16 @@ export function generateMetadata() {
 export default async function CompanyLibraryPage() {
   // Initial render: fetch the full set once to derive the area-filter bounds and the first page.
   // Subsequent filter/page changes go through the queryCompanyDesigns server action (see CompanyLibrary).
-  const all = await getAllCompanyDesigns();
+  const result = await loadGuarded(() => getAllCompanyDesigns());
+  if (!result.ok) {
+    return (
+      <AccessDenied
+        title="No access to the company library"
+        description="Your account doesn't have permission to view company designs. Contact an administrator if you need access."
+      />
+    );
+  }
+  const all = result.data;
   const areaBounds = getAreaBounds(all);
 
   return (

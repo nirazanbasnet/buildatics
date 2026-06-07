@@ -1,3 +1,5 @@
+import { AccessDenied } from "@src/components/access-denied";
+import { loadGuarded } from "@/features/auth/lib/guard";
 import {
   ShareToSite,
   getAllPublicDesigns,
@@ -18,12 +20,26 @@ export function generateMetadata() {
 export default async function ShareToSitePage() {
   // The iframe embed code carries the public token + style; we parse it to drive the live preview.
   // SAS preview URLs expire ~15 min, so this fetches per request (no caching).
-  const [frame, config] = await Promise.all([
-    getCompanyDesignsIFrame(),
-    getShareConfig(),
-  ]);
-  const parsed = parseIframe(frame.iFrame);
-  const designs = parsed?.token ? await getAllPublicDesigns(parsed.token) : [];
+  const result = await loadGuarded(async () => {
+    const [frame, config] = await Promise.all([
+      getCompanyDesignsIFrame(),
+      getShareConfig(),
+    ]);
+    const parsed = parseIframe(frame.iFrame);
+    const designs = parsed?.token
+      ? await getAllPublicDesigns(parsed.token)
+      : [];
+    return { frame, config, parsed, designs };
+  });
+  if (!result.ok) {
+    return (
+      <AccessDenied
+        title="No access to Share to Site"
+        description="Your account doesn't have permission to manage the public design embed. Contact an administrator if you need access."
+      />
+    );
+  }
+  const { frame, config, parsed, designs } = result.data;
 
   return (
     <ShareToSite

@@ -21,6 +21,7 @@ import {
   ComponentIcon,
   FileTextIcon,
   HardHatIcon,
+  LayoutTemplateIcon,
   LibraryBigIcon,
   SettingsIcon,
   Share2Icon,
@@ -106,6 +107,11 @@ export const navItems: NavGroup[] = [
         href: "/quotation",
         icon: FileTextIcon,
       },
+      {
+        title: "Brochures",
+        href: "/brochures",
+        icon: BookOpenIcon,
+      },
     ],
   },
   {
@@ -131,13 +137,8 @@ export const navItems: NavGroup[] = [
   {
     items: [
       {
-        title: "Brochures",
-        href: "/dashboard/brochures",
-        icon: BookOpenIcon,
-      },
-      {
         title: "Settings",
-        href: "/dashboard/settings",
+        href: "/settings",
         icon: SettingsIcon,
       },
       {
@@ -161,6 +162,11 @@ const adminNavGroup: NavGroup = {
       title: "Users",
       href: "/users",
       icon: UsersIcon,
+    },
+    {
+      title: "Brochure Templates",
+      href: "/brochure-templates",
+      icon: LayoutTemplateIcon,
     },
   ],
 };

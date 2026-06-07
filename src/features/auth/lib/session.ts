@@ -4,22 +4,14 @@ import { cookies } from "next/headers";
 
 import type { ResourceOwnerTokenRes } from "./dto";
 import type { SessionUser } from "../types";
-
-const ACCESS_COOKIE = "ba_access_token";
-const REFRESH_COOKIE = "ba_refresh_token";
-const USER_COOKIE = "ba_user";
-
-// Refresh tokens outlive the short access token; cap their cookie lifetime here (30 days).
-const REFRESH_MAX_AGE_SECONDS = 60 * 60 * 24 * 30;
-
-function baseCookieOptions() {
-  return {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax" as const,
-    path: "/",
-  };
-}
+import {
+  ACCESS_COOKIE,
+  ACCESS_EXPIRES_COOKIE,
+  REFRESH_COOKIE,
+  SESSION_MAX_AGE_SECONDS,
+  USER_COOKIE,
+  baseCookieOptions,
+} from "./cookies";
 
 function toSessionUser(res: ResourceOwnerTokenRes): SessionUser {
   return {
@@ -32,30 +24,30 @@ function toSessionUser(res: ResourceOwnerTokenRes): SessionUser {
   };
 }
 
-// Persists a successful login response as httpOnly cookies. The refresh cookie is only
-// written when the API returned one (i.e. rememberMe was requested).
+// Persists a login (or refresh) response as httpOnly cookies. Cookies live for the refresh window;
+// the access token's real expiry is recorded in ACCESS_EXPIRES_COOKIE so middleware can refresh it
+// transparently (and still has the expired token to exchange). The refresh cookie is written when the
+// API returned one (rememberMe).
 export async function setSession(
   res: ResourceOwnerTokenRes,
   rememberMe: boolean,
 ): Promise<void> {
   const store = await cookies();
-  const accessMaxAge =
-    res.expiresIn && res.expiresIn > 0 ? res.expiresIn : undefined;
+  const opts = { ...baseCookieOptions(), maxAge: SESSION_MAX_AGE_SECONDS };
 
-  store.set(ACCESS_COOKIE, res.accessToken ?? "", {
-    ...baseCookieOptions(),
-    maxAge: accessMaxAge,
-  });
-  store.set(USER_COOKIE, JSON.stringify(toSessionUser(res)), {
-    ...baseCookieOptions(),
-    maxAge: accessMaxAge,
-  });
+  store.set(ACCESS_COOKIE, res.accessToken ?? "", opts);
+  store.set(USER_COOKIE, JSON.stringify(toSessionUser(res)), opts);
+
+  if (res.expiresIn && res.expiresIn > 0) {
+    store.set(
+      ACCESS_EXPIRES_COOKIE,
+      String(Date.now() + res.expiresIn * 1000),
+      opts,
+    );
+  }
 
   if (rememberMe && res.refreshToken) {
-    store.set(REFRESH_COOKIE, res.refreshToken, {
-      ...baseCookieOptions(),
-      maxAge: REFRESH_MAX_AGE_SECONDS,
-    });
+    store.set(REFRESH_COOKIE, res.refreshToken, opts);
   }
 }
 
@@ -89,4 +81,5 @@ export async function clearSession(): Promise<void> {
   store.delete(ACCESS_COOKIE);
   store.delete(REFRESH_COOKIE);
   store.delete(USER_COOKIE);
+  store.delete(ACCESS_EXPIRES_COOKIE);
 }

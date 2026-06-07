@@ -1,3 +1,5 @@
+import { AccessDenied } from "@src/components/access-denied";
+import { loadGuarded } from "@/features/auth/lib/guard";
 import {
   getAllLeads,
   getLeadOptions,
@@ -16,7 +18,18 @@ export function generateMetadata() {
 
 export default async function LeadsPage() {
   // Initial render: fetch the full set (for client-side filtering) plus the form/filter options.
-  const [leads, options] = await Promise.all([getAllLeads(), getLeadOptions()]);
+  const result = await loadGuarded(() =>
+    Promise.all([getAllLeads(), getLeadOptions()]),
+  );
+  if (!result.ok) {
+    return (
+      <AccessDenied
+        title="No access to leads"
+        description="Your account doesn't have permission to view leads. Contact an administrator if you need access."
+      />
+    );
+  }
+  const [leads, options] = result.data;
 
   return (
     <LeadsList

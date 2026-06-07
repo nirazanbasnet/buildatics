@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { apiFetch, ApiError } from "../lib/api-client";
 import { setSession } from "../lib/session";
+import { TERMS_URL } from "../lib/terms";
 import { loginSchema } from "../lib/validation";
 import type { ResourceOwnerTokenReq, ResourceOwnerTokenRes } from "../lib/dto";
 import type { LoginFormState } from "../types";
@@ -23,6 +24,8 @@ export async function loginAction(
       formData.get("rememberMe") === null
         ? true
         : formData.get("rememberMe") === "on",
+    acceptTerms: formData.get("acceptTerms") === "on",
+    emailOtpCode: formData.get("emailOtpCode") ?? undefined,
   });
 
   if (!parsed.success) {
@@ -36,8 +39,17 @@ export async function loginAction(
     };
   }
 
-  const { email, password, rememberMe } = parsed.data;
-  const body: ResourceOwnerTokenReq = { userName: email, password, rememberMe };
+  const { email, password, rememberMe, acceptTerms, emailOtpCode } =
+    parsed.data;
+  const body: ResourceOwnerTokenReq = {
+    userName: email,
+    password,
+    rememberMe,
+    // The API rejects login until terms are accepted; send the accepted URL when the user opts in.
+    ...(acceptTerms ? { termsAndConditionsUrl: TERMS_URL } : {}),
+    // Second step: include the OTP the user received by email.
+    ...(emailOtpCode ? { emailOtpCode } : {}),
+  };
 
   let res: ResourceOwnerTokenRes;
   try {
@@ -53,14 +65,15 @@ export async function loginAction(
     return { ok: false, error: message };
   }
 
-  // Email-OTP 2FA is not wired up yet — surface a clear message rather than silently failing.
-  if (res.requiresTwoFactor) {
+  // Email-OTP 2FA: the API sent a code and is waiting for it. This is informational, not an error —
+  // surface it as a notice and reveal the code input (the entered email/password are retained).
+  if (res.requiresTwoFactor && !res.accessToken) {
     return {
       ok: false,
       requiresTwoFactor: true,
-      error:
+      notice:
         res.message ??
-        "Two-factor authentication is required but not yet supported here.",
+        "A verification code has been sent to your email address.",
     };
   }
 

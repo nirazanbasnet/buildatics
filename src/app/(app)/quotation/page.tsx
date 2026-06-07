@@ -1,3 +1,5 @@
+import { AccessDenied } from "@src/components/access-denied";
+import { loadGuarded } from "@/features/auth/lib/guard";
 import {
   getAllQuotes,
   getQuoteLeadOptions,
@@ -15,10 +17,18 @@ export function generateMetadata() {
 }
 
 export default async function QuotationPage() {
-  const [quotes, leads] = await Promise.all([
-    getAllQuotes(),
-    getQuoteLeadOptions(),
-  ]);
+  const result = await loadGuarded(() =>
+    Promise.all([getAllQuotes(), getQuoteLeadOptions()]),
+  );
+  if (!result.ok) {
+    return (
+      <AccessDenied
+        title="No access to quotations"
+        description="Your account doesn't have permission to view quotations. Contact an administrator if you need access."
+      />
+    );
+  }
+  const [quotes, leads] = result.data;
 
   return (
     <QuotationList
